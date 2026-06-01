@@ -6,17 +6,23 @@ const content = {
   en: {
     nav: ["Home", "Relocation", "Process", "Trust", "FAQ", "Contact"],
     heroLocation: "Riviera Maya • Mexico",
-    heroTitle: "Cielo Nuevo",
+    heroTitle: "PATH TO MEXICO",
+    heroSignal: "[ CIELO NUEVO ]",
     heroHook1: "Some people visit Mexico.",
     heroHook2: "Others disappear into a better life.",
     heroSubtext:
-      "Path To Mexico helps people transition into a new rhythm of life through trusted local connections, lifestyle guidance, and on-the-ground support in Playa del Carmen.",
-    explore: "Explore Mexico",
+      "Most people think they want a new country. What they really want is distance from a life that no longer feels like their own. Mexico just happens to be where many of them find it.",
+    explore: "Enter The Signal",
     start: "Start The Conversation",
 
-    servicesTitle: "Relocating Made Simple",
+    manifestoLabel: "Before People Ask How",
+    manifestoTitle: "A different country is rarely just about geography.",
+    manifestoText:
+      "People arrive searching for better weather, more space, lower costs, or a fresh start. What they often discover is something quieter: time, possibility, and the feeling that life can still change.",
+
+    servicesTitle: "Relocation Without The Noise",
     servicesText:
-      "We help people transition into life in Mexico through local connections, real estate guidance, residency assistance, and concierge-style support.",
+      "Path To Mexico helps people step into life in Mexico through trusted local connections, real estate guidance, residency support, and grounded on-the-ground clarity.",
     services: [
       ["Relocation Guidance", "Step-by-step support for settling into Playa del Carmen with confidence."],
       ["Real Estate Connections", "Trusted introductions for rentals, condos, investment properties, and local opportunities."],
@@ -79,17 +85,23 @@ const content = {
   es: {
     nav: ["Inicio", "Reubicación", "Proceso", "Confianza", "FAQ", "Contacto"],
     heroLocation: "Riviera Maya • México",
-    heroTitle: "Cielo Nuevo",
+    heroTitle: "PATH TO MEXICO",
+    heroSignal: "[ CIELO NUEVO ]",
     heroHook1: "Algunas personas visitan México.",
     heroHook2: "Otras desaparecen hacia una vida mejor.",
     heroSubtext:
-      "Path To Mexico ayuda a las personas a entrar en un nuevo ritmo de vida con conexiones locales confiables, orientación de estilo de vida y apoyo real en Playa del Carmen.",
-    explore: "Explorar México",
+      "La mayoría cree que quiere un nuevo país. Lo que realmente busca es distancia de una vida que ya no se siente propia. México simplemente es donde muchos lo encuentran.",
+    explore: "Entrar A La Señal",
     start: "Iniciar Conversación",
 
-    servicesTitle: "Mudarse De Forma Más Simple",
+    manifestoLabel: "Antes De Preguntar Cómo",
+    manifestoTitle: "Un país diferente casi nunca se trata solo de geografía.",
+    manifestoText:
+      "Las personas llegan buscando mejor clima, más espacio, menores costos o un nuevo comienzo. Lo que muchas veces descubren es algo más silencioso: tiempo, posibilidad y la sensación de que la vida todavía puede cambiar.",
+
+    servicesTitle: "Reubicación Sin Ruido",
     servicesText:
-      "Ayudamos a las personas a comenzar su vida en México con conexiones locales, guía inmobiliaria, apoyo de residencia y asistencia tipo concierge.",
+      "Path To Mexico ayuda a las personas a entrar en la vida en México con conexiones locales confiables, guía inmobiliaria, apoyo de residencia y claridad real en el terreno.",
     services: [
       ["Guía De Reubicación", "Apoyo paso a paso para establecerte en Playa del Carmen con confianza."],
       ["Conexiones Inmobiliarias", "Introducciones confiables para rentas, condominios, propiedades de inversión y oportunidades locales."],
@@ -155,8 +167,8 @@ function LeadForm({ t }) {
 
   if (state.succeeded) {
     return (
-      <div className="rounded-3xl bg-white p-8 text-center text-black shadow-xl">
-        <h3 className="mb-4 text-3xl font-bold">Message Sent</h3>
+      <div className="rounded-none border border-white/10 bg-white p-8 text-center text-black shadow-xl">
+        <h3 className="mb-4 text-3xl font-semibold tracking-tight">Message Sent</h3>
         <p className="text-zinc-600">{t.formSuccess}</p>
       </div>
     );
@@ -164,17 +176,17 @@ function LeadForm({ t }) {
 
   return (
     <form onSubmit={handleSubmit} className="mx-auto mt-12 grid max-w-3xl gap-5 text-left">
-      <input className="rounded-2xl border border-white/20 bg-white px-5 py-4 text-black" type="text" name="name" placeholder="Full Name" required />
-      <input className="rounded-2xl border border-white/20 bg-white px-5 py-4 text-black" type="email" name="email" placeholder="Email Address" required />
+      <input className="border border-white/20 bg-white px-5 py-4 text-black outline-none transition focus:border-white" type="text" name="name" placeholder="Full Name" required />
+      <input className="border border-white/20 bg-white px-5 py-4 text-black outline-none transition focus:border-white" type="email" name="email" placeholder="Email Address" required />
       <ValidationError field="email" errors={state.errors} />
 
-      <input className="rounded-2xl border border-white/20 bg-white px-5 py-4 text-black" type="text" name="country" placeholder="Current Country" />
-      <input className="rounded-2xl border border-white/20 bg-white px-5 py-4 text-black" type="text" name="timeline" placeholder="Ideal Timeline" />
+      <input className="border border-white/20 bg-white px-5 py-4 text-black outline-none transition focus:border-white" type="text" name="country" placeholder="Current Country" />
+      <input className="border border-white/20 bg-white px-5 py-4 text-black outline-none transition focus:border-white" type="text" name="timeline" placeholder="Ideal Timeline" />
 
-      <textarea className="min-h-36 rounded-2xl border border-white/20 bg-white px-5 py-4 text-black" name="message" placeholder="What do you need help with?" required />
+      <textarea className="min-h-36 border border-white/20 bg-white px-5 py-4 text-black outline-none transition focus:border-white" name="message" placeholder="What do you need help with?" required />
       <ValidationError field="message" errors={state.errors} />
 
-      <button disabled={state.submitting} className="rounded-full bg-white px-10 py-5 text-lg font-bold text-black transition duration-300 hover:scale-105 hover:bg-stone-200 disabled:opacity-60">
+      <button disabled={state.submitting} className="border border-white bg-white px-10 py-5 text-sm font-semibold uppercase tracking-[0.25em] text-black transition duration-300 hover:bg-transparent hover:text-white disabled:opacity-60">
         {state.submitting ? "Sending..." : "Send Inquiry"}
       </button>
     </form>
@@ -186,65 +198,104 @@ function App() {
   const t = content[lang];
 
   return (
-    <main className="min-h-screen bg-stone-100 text-zinc-900 scroll-smooth">
+    <main className="min-h-screen bg-[#080807] text-zinc-100 scroll-smooth">
       <section id="home" className="relative min-h-screen overflow-hidden text-white">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Mexico beach" className="h-full w-full object-cover scale-105" />
-          <div className="absolute inset-0 bg-black/50"></div>
+          <img
+            src="https://images.unsplash.com/photo-1600566752355-35792bedcfea"
+            alt="Cinematic architectural passageway with shadow and warm light"
+            className="h-full w-full scale-105 object-cover"
+          />
+          <div className="absolute inset-0 bg-black/72"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/40 to-[#080807]"></div>
+          <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_45%_20%,rgba(255,255,255,0.12),transparent_32%)]"></div>
         </div>
 
-        <nav className="fixed top-0 left-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/20 px-8 py-5 backdrop-blur-md">
-          <a href="#home" className="text-2xl font-bold tracking-[0.25em] transition hover:opacity-70">CN</a>
+        <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/25 px-6 py-5 backdrop-blur-md md:px-10">
+          <a href="#home" className="text-xs font-semibold uppercase tracking-[0.45em] text-white/80 transition hover:opacity-70">
+            Path To Mexico
+          </a>
 
-          <div className="hidden gap-8 text-sm uppercase tracking-widest md:flex">
-            <a href="#home">{t.nav[0]}</a>
-            <a href="#relocation">{t.nav[1]}</a>
-            <a href="#process">{t.nav[2]}</a>
-            <a href="#trust">{t.nav[3]}</a>
-            <a href="#faq">{t.nav[4]}</a>
-            <a href="#contact">{t.nav[5]}</a>
+          <div className="hidden gap-8 text-[10px] uppercase tracking-[0.3em] text-white/40 md:flex">
+            <a className="transition hover:text-white" href="#home">{t.nav[0]}</a>
+            <a className="transition hover:text-white" href="#relocation">{t.nav[1]}</a>
+            <a className="transition hover:text-white" href="#process">{t.nav[2]}</a>
+            <a className="transition hover:text-white" href="#trust">{t.nav[3]}</a>
+            <a className="transition hover:text-white" href="#faq">{t.nav[4]}</a>
+            <a className="transition hover:text-white" href="#contact">{t.nav[5]}</a>
           </div>
 
-          <button onClick={() => setLang(lang === "en" ? "es" : "en")} className="rounded-full border border-white/30 px-4 py-2 text-sm font-semibold transition hover:bg-white hover:text-black">
+          <button onClick={() => setLang(lang === "en" ? "es" : "en")} className="border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-white/70 transition hover:bg-white hover:text-black">
             {lang === "en" ? "ES" : "EN"}
           </button>
         </nav>
 
-        <div className="relative z-10 flex min-h-screen items-center justify-center px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2 }} className="max-w-5xl">
-            <p className="mb-6 text-sm uppercase tracking-[0.5em] text-white/70">{t.heroLocation}</p>
+        <div className="relative z-10 flex min-h-screen items-center px-6 pt-24 md:px-16">
+          <motion.div initial={{ opacity: 0, y: 70 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4, ease: "easeOut" }} className="max-w-6xl">
+            <p className="mb-8 text-xs uppercase tracking-[0.55em] text-white/45">{t.heroLocation}</p>
 
-            <h1 className="text-7xl font-semibold leading-none md:text-[10rem]">
+            <p className="mb-8 text-xs uppercase tracking-[0.45em] text-white/60">{t.heroSignal}</p>
+
+            <h1 className="max-w-6xl text-[4rem] font-medium uppercase leading-[0.85] tracking-[-0.08em] md:text-[10rem] lg:text-[13rem]">
               {t.heroTitle}
             </h1>
 
-            <p className="mx-auto mt-8 max-w-4xl text-2xl font-light leading-relaxed tracking-wide text-white/90 md:text-4xl">
+            <div className="mt-10 h-px w-32 bg-white/30"></div>
+
+            <p className="mt-16 max-w-4xl text-3xl font-light leading-tight tracking-[-0.04em] text-white md:text-6xl">
               {t.heroHook1}
               <br />
               {t.heroHook2}
             </p>
 
-            <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed tracking-wide text-white/60 md:text-lg">
+            <p className="mt-10 max-w-2xl text-base leading-relaxed text-white/60 md:text-lg">
               {t.heroSubtext}
             </p>
 
-            <div className="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
-              <a href="#relocation" className="rounded-full bg-white px-10 py-5 text-lg font-semibold text-black transition duration-300 hover:scale-105 hover:bg-stone-200">{t.explore}</a>
-              <a href="#contact" className="rounded-full border border-white px-10 py-5 text-lg font-semibold text-white transition duration-300 hover:bg-white hover:text-black">{t.start}</a>
+            <div className="mt-12 flex flex-col gap-4 sm:flex-row">
+              <a href="#relocation" className="border border-white bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.25em] text-black transition duration-300 hover:bg-transparent hover:text-white">
+                {t.explore}
+              </a>
+              <a href="#contact" className="border border-white/30 px-8 py-4 text-xs font-semibold uppercase tracking-[0.25em] text-white transition duration-300 hover:border-white hover:bg-white hover:text-black">
+                {t.start}
+              </a>
             </div>
           </motion.div>
         </div>
+
+        <div className="absolute bottom-8 right-8 z-10 hidden text-right text-[10px] uppercase tracking-[0.35em] text-white/35 md:block">
+          <p>Signal 001</p>
+          <p>Riviera Maya</p>
+        </div>
       </section>
 
-      <section id="relocation" className="bg-white px-6 py-24 md:px-20">
-        <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto max-w-6xl">
-          <h2 className="mb-6 text-4xl font-bold md:text-6xl">{t.servicesTitle}</h2>
-          <p className="mb-14 max-w-3xl text-xl leading-relaxed text-zinc-600">{t.servicesText}</p>
+      <section className="bg-[#080807] px-6 py-28 text-white md:px-20">
+        <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} viewport={{ once: true }} className="mx-auto grid max-w-6xl gap-12 border-t border-white/10 pt-16 md:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="text-xs uppercase tracking-[0.45em] text-white/40">{t.manifestoLabel}</p>
+          </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div>
+            <h2 className="mb-8 max-w-4xl text-4xl font-light leading-tight tracking-[-0.04em] md:text-7xl">
+              {t.manifestoTitle}
+            </h2>
+            <p className="max-w-3xl text-xl leading-relaxed text-white/55">
+              {t.manifestoText}
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
+      <section id="relocation" className="bg-[#f4f0e8] px-6 py-28 text-zinc-950 md:px-20">
+        <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto max-w-6xl">
+          <p className="mb-6 text-xs uppercase tracking-[0.4em] text-zinc-500">The Practical Layer</p>
+          <h2 className="mb-6 max-w-4xl text-5xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.servicesTitle}</h2>
+          <p className="mb-16 max-w-3xl text-xl leading-relaxed text-zinc-600">{t.servicesText}</p>
+
+          <div className="grid gap-px bg-zinc-300 md:grid-cols-3">
             {t.services.map(([title, text]) => (
-              <motion.div key={title} whileHover={{ y: -10 }} className="rounded-3xl bg-stone-100 p-8 shadow-lg transition hover:shadow-2xl">
-                <h3 className="mb-4 text-2xl font-bold">{title}</h3>
+              <motion.div key={title} whileHover={{ y: -6 }} className="bg-[#f4f0e8] p-8 transition hover:bg-white">
+                <h3 className="mb-6 text-2xl font-medium tracking-[-0.03em]">{title}</h3>
                 <p className="leading-relaxed text-zinc-600">{text}</p>
               </motion.div>
             ))}
@@ -252,69 +303,69 @@ function App() {
         </motion.div>
       </section>
 
-      <section className="grid bg-stone-100 md:grid-cols-2">
-        <div className="min-h-[520px] bg-[url('https://images.unsplash.com/photo-1519046904884-53103b34b206')] bg-cover bg-center"></div>
+      <section className="grid bg-[#e8e0d3] text-zinc-950 md:grid-cols-2">
+        <div className="min-h-[620px] bg-[url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3')] bg-cover bg-center"></div>
         <motion.div initial={{ opacity: 0, x: 70 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="flex items-center px-6 py-24 md:px-20">
           <div>
-            <p className="mb-4 text-sm uppercase tracking-[0.35em] text-zinc-500">{t.lifestyleLabel}</p>
-            <h2 className="mb-8 text-4xl font-bold md:text-6xl">{t.lifestyleTitle}</h2>
+            <p className="mb-6 text-xs uppercase tracking-[0.4em] text-zinc-500">{t.lifestyleLabel}</p>
+            <h2 className="mb-8 text-5xl font-light leading-tight tracking-[-0.05em] md:text-7xl">{t.lifestyleTitle}</h2>
             <p className="mb-8 text-xl leading-relaxed text-zinc-600">{t.lifestyleText1}</p>
-            <p className="text-lg leading-relaxed text-zinc-500">{t.lifestyleText2}</p>
+            <p className="text-sm uppercase tracking-[0.35em] text-zinc-500">{t.lifestyleText2}</p>
           </div>
         </motion.div>
       </section>
 
-      <section id="process" className="bg-white px-6 py-24 md:px-20">
+      <section id="process" className="bg-[#080807] px-6 py-28 text-white md:px-20">
         <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto max-w-6xl">
-          <p className="mb-4 text-sm uppercase tracking-[0.35em] text-zinc-500">{t.processLabel}</p>
-          <h2 className="mb-14 text-4xl font-bold md:text-6xl">{t.processTitle}</h2>
+          <p className="mb-6 text-xs uppercase tracking-[0.4em] text-white/40">{t.processLabel}</p>
+          <h2 className="mb-16 max-w-5xl text-5xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.processTitle}</h2>
 
-          <div className="grid gap-6 md:grid-cols-4">
+          <div className="grid gap-px bg-white/15 md:grid-cols-4">
             {t.process.map(([number, title, text]) => (
-              <motion.div key={title} whileHover={{ y: -8 }} className="rounded-3xl border border-zinc-200 p-8 transition hover:shadow-xl">
-                <p className="mb-6 text-sm font-bold tracking-widest text-zinc-400">{number}</p>
-                <h3 className="mb-4 text-2xl font-bold">{title}</h3>
-                <p className="leading-relaxed text-zinc-600">{text}</p>
+              <motion.div key={title} whileHover={{ y: -6 }} className="bg-[#080807] p-8 transition hover:bg-white hover:text-black">
+                <p className="mb-10 text-xs font-semibold uppercase tracking-[0.35em] opacity-40">{number}</p>
+                <h3 className="mb-5 text-2xl font-medium tracking-[-0.03em]">{title}</h3>
+                <p className="leading-relaxed opacity-60">{text}</p>
               </motion.div>
             ))}
           </div>
         </motion.div>
       </section>
 
-      <section id="trust" className="bg-stone-100 px-6 py-24 md:px-20">
+      <section id="trust" className="bg-[#f4f0e8] px-6 py-28 text-zinc-950 md:px-20">
         <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
           <div>
-            <p className="mb-4 text-sm uppercase tracking-[0.35em] text-zinc-500">{t.trustLabel}</p>
-            <h2 className="text-4xl font-bold md:text-6xl">{t.trustTitle}</h2>
+            <p className="mb-6 text-xs uppercase tracking-[0.4em] text-zinc-500">{t.trustLabel}</p>
+            <h2 className="text-5xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.trustTitle}</h2>
           </div>
 
-          <div className="space-y-6 text-lg leading-relaxed text-zinc-600">
+          <div className="space-y-8 text-lg leading-relaxed text-zinc-600">
             <p>{t.trust1}</p>
             <p>{t.trust2}</p>
-            <p className="rounded-2xl bg-white p-6 text-zinc-700 shadow-md">{t.trust3}</p>
+            <p className="border border-zinc-300 bg-white/50 p-8 text-zinc-700">{t.trust3}</p>
           </div>
         </motion.div>
       </section>
 
       <section className="bg-black px-6 py-24 text-white md:px-20">
-        <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto grid max-w-6xl gap-10 text-center md:grid-cols-4">
+        <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto grid max-w-6xl gap-px bg-white/15 text-center md:grid-cols-4">
           {t.stats.map(([big, small]) => (
-            <div key={small}>
-              <h3 className="text-5xl font-bold">{big}</h3>
-              <p className="mt-4 text-sm uppercase tracking-[0.3em] text-white/60">{small}</p>
+            <div key={small} className="bg-black p-10">
+              <h3 className="text-5xl font-light tracking-[-0.06em]">{big}</h3>
+              <p className="mt-4 text-xs uppercase tracking-[0.35em] text-white/45">{small}</p>
             </div>
           ))}
         </motion.div>
       </section>
 
-      <section className="bg-white px-6 py-24 md:px-20">
+      <section className="bg-[#f4f0e8] px-6 py-28 text-zinc-950 md:px-20">
         <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto max-w-6xl">
-          <h2 className="mb-6 text-4xl font-bold md:text-6xl">{t.whoTitle}</h2>
-          <p className="mb-12 max-w-3xl text-xl leading-relaxed text-zinc-600">{t.whoText}</p>
+          <h2 className="mb-8 max-w-5xl text-5xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.whoTitle}</h2>
+          <p className="mb-14 max-w-3xl text-xl leading-relaxed text-zinc-600">{t.whoText}</p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3">
             {t.tags.map((item) => (
-              <span key={item} className="rounded-full bg-stone-100 px-6 py-3 text-lg shadow-md transition duration-300 hover:scale-105 hover:shadow-xl">
+              <span key={item} className="border border-zinc-300 px-5 py-3 text-xs uppercase tracking-[0.25em] text-zinc-600 transition duration-300 hover:bg-black hover:text-white">
                 {item}
               </span>
             ))}
@@ -322,15 +373,15 @@ function App() {
         </motion.div>
       </section>
 
-      <section id="faq" className="bg-stone-100 px-6 py-24 md:px-20">
+      <section id="faq" className="bg-[#e8e0d3] px-6 py-28 text-zinc-950 md:px-20">
         <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto max-w-6xl">
-          <p className="mb-4 text-sm uppercase tracking-[0.35em] text-zinc-500">{t.faqLabel}</p>
-          <h2 className="mb-12 text-4xl font-bold md:text-6xl">{t.faqTitle}</h2>
+          <p className="mb-6 text-xs uppercase tracking-[0.4em] text-zinc-500">{t.faqLabel}</p>
+          <h2 className="mb-14 text-5xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.faqTitle}</h2>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-px bg-zinc-300 md:grid-cols-2">
             {t.faqs.map(([question, answer]) => (
-              <div key={question} className="rounded-3xl bg-white p-8 shadow-md">
-                <h3 className="mb-4 text-2xl font-bold">{question}</h3>
+              <div key={question} className="bg-[#e8e0d3] p-8 transition hover:bg-white">
+                <h3 className="mb-4 text-2xl font-medium tracking-[-0.03em]">{question}</h3>
                 <p className="leading-relaxed text-zinc-600">{answer}</p>
               </div>
             ))}
@@ -340,26 +391,30 @@ function App() {
 
       <section id="contact" className="bg-black px-6 py-28 text-center text-white">
         <motion.div initial={{ opacity: 0, y: 70 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto max-w-4xl">
-          <h2 className="mb-8 text-5xl font-bold md:text-7xl">{t.contactTitle}</h2>
-          <p className="mb-8 text-xl leading-relaxed text-white/70">{t.contactText}</p>
+          <p className="mb-6 text-xs uppercase tracking-[0.4em] text-white/40">Begin</p>
+          <h2 className="mb-8 text-5xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.contactTitle}</h2>
+          <p className="mb-8 text-xl leading-relaxed text-white/60">{t.contactText}</p>
 
           <LeadForm t={t} />
 
-          <a href="https://wa.me/16043154625" target="_blank" rel="noreferrer" className="mt-10 inline-block text-white/70 underline">
+          <a href="https://wa.me/16043154625" target="_blank" rel="noreferrer" className="mt-10 inline-block text-white/60 underline">
             Prefer WhatsApp? Message us directly.
           </a>
         </motion.div>
       </section>
 
-      <a href="https://wa.me/16043154625" target="_blank" rel="noreferrer" className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-3xl text-white shadow-2xl transition duration-300 hover:scale-110">
+      <a href="https://wa.me/16043154625" target="_blank" rel="noreferrer" className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl text-black shadow-2xl transition duration-300 hover:scale-110">
         💬
       </a>
 
-      <footer className="bg-zinc-950 px-8 py-10 text-center text-sm text-zinc-400">
-        <p className="tracking-[0.35em] text-zinc-200">PATH TO MEXICO</p>
-        <p className="mt-3 text-zinc-500">—</p>
-        <p className="mt-3 italic">{t.footerLine}</p>
-        <p className="mt-6">{t.footer}</p>
+      <footer className="bg-zinc-950 px-8 py-14 text-center text-sm text-zinc-500">
+        <p className="text-xs uppercase tracking-[0.45em] text-zinc-200">PATH TO MEXICO</p>
+        <p className="mt-6 text-zinc-600">[ CIELO NUEVO ]</p>
+        <p className="mt-6 italic text-zinc-400">{t.footerLine}</p>
+        <p className="mt-6 text-zinc-600">{t.footer}</p>
+        <p className="mt-8 text-xs uppercase tracking-[0.35em] text-zinc-700">
+          Some people visit. Others disappear.
+        </p>
       </footer>
     </main>
   );
