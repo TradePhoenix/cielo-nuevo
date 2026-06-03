@@ -22,3 +22,14 @@ h5,
 h6 {
   font-family: 'Cormorant Garamond', serif;
 }
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}
