@@ -4,7 +4,7 @@ import { useForm, ValidationError } from "@formspree/react";
 
 const content = {
   en: {
-    nav: ["Home", "Story", "Work", "Signal", "Relocation", "Process", "Trust", "FAQ", "Contact"],
+    nav: ["Home", "Story", "Signal", "Relocation", "Work", "Process", "Trust", "FAQ", "Contact"],
     heroLocation: "Riviera Maya • Mexico",
     heroTitle: "PATH TO MEXICO",
     heroSignal: "[ CIELO NUEVO ]",
@@ -12,7 +12,7 @@ const content = {
     heroHook2: "where they started.",
     heroSubtext:
       "A different rhythm of life awaits in Mexico. Path To Mexico helps people explore relocation, lifestyle, trusted local connections, and the deeper possibility of beginning again.",
-    explore: "Start Here",
+    explore: "Enter The Signal",
     start: "Start The Conversation",
 
     founderLabel: "Founder Story",
@@ -44,31 +44,10 @@ const content = {
     founderSignature: "— Kalen Enns",
     founderRole: "Founder, Path To Mexico",
 
-    workLabel: "Work With Me",
-    workTitle: "Clear guidance for people seriously considering a life in Mexico.",
-    workText:
-      "Whether you are just starting to explore the idea or already planning your move, Path To Mexico helps you understand your options, avoid common mistakes, and connect with trusted people on the ground.",
-    offers: [
-      [
-        "Discovery Call",
-        "A private conversation to help you understand your options, ask real questions, and get clear direction before making major decisions.",
-        "Early-stage exploration, cost-of-living questions, residency basics, neighborhoods, and lifestyle clarity.",
-        "Book A Discovery Call"
-      ],
-      [
-        "Relocation Blueprint",
-        "A personalized roadmap built around your goals, timeline, budget, and the kind of life you want to create in Mexico.",
-        "Individuals, couples, families, remote workers, retirees, and people who want a clearer plan before taking action.",
-        "Apply For A Blueprint"
-      ],
-      [
-        "White Glove Relocation",
-        "Private relocation support for people who want a more guided, hands-on experience from first decision to feeling settled.",
-        "Families, investors, entrepreneurs, professionals, and people who want trusted support throughout the process.",
-        "Schedule A Conversation"
-      ]
-    ],
-    bestFor: "Best For",
+    manifestoLabel: "Before People Ask How",
+    manifestoTitle: "A different country is rarely just about geography.",
+    manifestoText:
+      "People arrive searching for better weather, more space, lower costs, or a fresh start. What they often discover is something quieter: time, possibility, and the feeling that life can still change.",
 
     signalLabel: "Signal 001",
     signalTitle: "The Arrival Is Not The Beginning. It Is The Threshold.",
@@ -90,6 +69,36 @@ const content = {
       ["Real Estate Connections", "Trusted introductions for rentals, condos, investment properties, and local opportunities."],
       ["Residency Support", "Guidance toward the right professionals for residency, paperwork, and local setup."]
     ],
+
+    workLabel: "Work With Me",
+    workTitle1: "Moving countries is a big decision.",
+    workTitle2: "You don't have to figure it out alone.",
+    workText:
+      "Whether you're simply exploring the possibility or preparing to make the move, Path To Mexico provides clear guidance, trusted introductions, and real-world insight from someone who has already walked the path.",
+    workOffers: [
+      [
+        "Discovery Call",
+        "$99 USD",
+        "A private one-on-one conversation designed to answer your questions, provide honest insight, and help you understand what moving to Mexico could realistically look like for you.",
+        "Perfect for people still exploring the idea, researching costs, residency options, neighborhoods, lifestyle questions, and next steps.",
+        "Book Discovery Call"
+      ],
+      [
+        "Relocation Blueprint",
+        "Starting at $499 USD",
+        "A personalized relocation strategy built around your goals, timeline, budget, lifestyle preferences, and long-term vision for life in Mexico.",
+        "Ideal for individuals, couples, families, retirees, entrepreneurs, and remote workers who want a clear roadmap before making major decisions.",
+        "Apply For Blueprint"
+      ],
+      [
+        "White Glove Relocation",
+        "Custom Quote",
+        "Private concierge-style relocation support designed for people who want hands-on guidance, trusted introductions, and ongoing assistance throughout the relocation process.",
+        "Best for families, professionals, investors, business owners, and anyone seeking a highly personalized experience.",
+        "Schedule Conversation"
+      ]
+    ],
+    bestFor: "Best For",
 
     lifestyleLabel: "Riviera Maya Living",
     lifestyleTitle: "A Softer Landing Into A Bigger Life",
@@ -144,7 +153,7 @@ const content = {
   },
 
   es: {
-    nav: ["Inicio", "Historia", "Trabajar", "Señal", "Reubicación", "Proceso", "Confianza", "FAQ", "Contacto"],
+    nav: ["Inicio", "Historia", "Señal", "Reubicación", "Trabajar", "Proceso", "Confianza", "FAQ", "Contacto"],
     heroLocation: "Riviera Maya • México",
     heroTitle: "PATH TO MEXICO",
     heroSignal: "[ CIELO NUEVO ]",
@@ -152,7 +161,7 @@ const content = {
     heroHook2: "a quedarse donde empezaron.",
     heroSubtext:
       "Un ritmo de vida diferente te espera en México. Path To Mexico ayuda a explorar reubicación, estilo de vida, conexiones locales confiables y la posibilidad más profunda de empezar otra vez.",
-    explore: "Empezar Aquí",
+    explore: "Entrar A La Señal",
     start: "Iniciar Conversación",
 
     founderLabel: "Historia Del Fundador",
@@ -184,31 +193,10 @@ const content = {
     founderSignature: "— Kalen Enns",
     founderRole: "Fundador, Path To Mexico",
 
-    workLabel: "Trabaja Conmigo",
-    workTitle: "Guía clara para personas que están considerando seriamente una vida en México.",
-    workText:
-      "Ya sea que apenas estés explorando la idea o que ya estés planeando tu mudanza, Path To Mexico te ayuda a entender tus opciones, evitar errores comunes y conectar con personas confiables en el terreno.",
-    offers: [
-      [
-        "Llamada De Descubrimiento",
-        "Una conversación privada para entender tus opciones, hacer preguntas reales y obtener dirección antes de tomar decisiones importantes.",
-        "Exploración inicial, costo de vida, residencia, zonas y claridad sobre el estilo de vida.",
-        "Agendar Llamada"
-      ],
-      [
-        "Plan De Reubicación",
-        "Una ruta personalizada basada en tus metas, tiempos, presupuesto y el tipo de vida que quieres crear en México.",
-        "Personas, parejas, familias, trabajadores remotos, jubilados y quienes quieren un plan claro antes de actuar.",
-        "Aplicar Para Un Plan"
-      ],
-      [
-        "Reubicación Privada",
-        "Apoyo privado para personas que quieren una experiencia más guiada desde la primera decisión hasta sentirse establecidas.",
-        "Familias, inversionistas, emprendedores, profesionales y personas que quieren apoyo confiable durante todo el proceso.",
-        "Agendar Conversación"
-      ]
-    ],
-    bestFor: "Ideal Para",
+    manifestoLabel: "Antes De Preguntar Cómo",
+    manifestoTitle: "Un país diferente casi nunca se trata solo de geografía.",
+    manifestoText:
+      "Las personas llegan buscando mejor clima, más espacio, menores costos o un nuevo comienzo. Lo que muchas veces descubren es algo más silencioso: tiempo, posibilidad y la sensación de que la vida todavía puede cambiar.",
 
     signalLabel: "Señal 001",
     signalTitle: "La llegada no es el comienzo. Es el umbral.",
@@ -230,6 +218,36 @@ const content = {
       ["Conexiones Inmobiliarias", "Introducciones confiables para rentas, condominios, propiedades de inversión y oportunidades locales."],
       ["Apoyo De Residencia", "Orientación hacia profesionales adecuados para residencia, documentos y trámites locales."]
     ],
+
+    workLabel: "Trabaja Conmigo",
+    workTitle1: "Mudarse de país es una gran decisión.",
+    workTitle2: "No tienes que resolverlo todo solo.",
+    workText:
+      "Ya sea que estés explorando la posibilidad o preparándote para mudarte, Path To Mexico ofrece guía clara, conexiones confiables y perspectiva real de alguien que ya ha recorrido ese camino.",
+    workOffers: [
+      [
+        "Llamada De Descubrimiento",
+        "$99 USD",
+        "Una conversación privada uno a uno para responder tus preguntas, darte perspectiva honesta y ayudarte a entender cómo podría verse realmente una mudanza a México para ti.",
+        "Perfecto para personas que están explorando la idea, investigando costos, opciones de residencia, zonas, estilo de vida y próximos pasos.",
+        "Reservar Llamada"
+      ],
+      [
+        "Blueprint De Reubicación",
+        "Desde $499 USD",
+        "Una estrategia personalizada de reubicación construida alrededor de tus metas, tiempos, presupuesto, preferencias de vida y visión a largo plazo en México.",
+        "Ideal para individuos, parejas, familias, jubilados, emprendedores y trabajadores remotos que quieren un plan claro antes de tomar grandes decisiones.",
+        "Aplicar Al Blueprint"
+      ],
+      [
+        "Reubicación White Glove",
+        "Cotización Personalizada",
+        "Apoyo privado estilo concierge para personas que quieren guía práctica, conexiones confiables y acompañamiento durante el proceso de reubicación.",
+        "Ideal para familias, profesionales, inversionistas, dueños de negocios y personas que buscan una experiencia altamente personalizada.",
+        "Agendar Conversación"
+      ]
+    ],
+    bestFor: "Ideal Para",
 
     lifestyleLabel: "Vida En La Riviera Maya",
     lifestyleTitle: "Una Llegada Más Suave A Una Vida Más Grande",
@@ -394,10 +412,14 @@ function WorkWithMe({ t }) {
         viewport={{ once: true }}
         className="mx-auto max-w-6xl"
       >
-        <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{t.workLabel}</p>
+        <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
+          {t.workLabel}
+        </p>
 
         <h2 className="mb-7 max-w-5xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">
-          {t.workTitle}
+          {t.workTitle1}
+          <br />
+          {t.workTitle2}
         </h2>
 
         <p className="mb-14 max-w-3xl text-lg leading-relaxed text-zinc-600 sm:text-xl">
@@ -405,22 +427,33 @@ function WorkWithMe({ t }) {
         </p>
 
         <div className="grid gap-px bg-zinc-300 md:grid-cols-3">
-          {t.offers.map(([title, text, bestFor, cta]) => (
+          {t.workOffers.map(([title, price, text, bestFor, cta]) => (
             <motion.div
               key={title}
               whileHover={{ y: -6 }}
-              className="flex min-h-[460px] flex-col justify-between bg-[#f4f0e8] p-7 transition hover:bg-white"
+              className="flex min-h-[500px] flex-col justify-between bg-[#f4f0e8] p-7 transition hover:bg-white"
             >
               <div>
-                <h3 className="mb-6 text-3xl font-light tracking-[-0.04em]">{title}</h3>
+                <h3 className="mb-3 text-3xl font-light tracking-[-0.04em]">
+                  {title}
+                </h3>
 
-                <p className="mb-7 leading-relaxed text-zinc-600">{text}</p>
+                <p className="mb-6 text-sm uppercase tracking-[0.25em] text-zinc-500">
+                  {price}
+                </p>
+
+                <p className="mb-7 leading-relaxed text-zinc-600">
+                  {text}
+                </p>
 
                 <div className="border-t border-zinc-300 pt-6">
                   <p className="mb-3 text-[10px] uppercase tracking-[0.25em] text-zinc-500">
                     {t.bestFor}
                   </p>
-                  <p className="leading-relaxed text-zinc-600">{bestFor}</p>
+
+                  <p className="leading-relaxed text-zinc-600">
+                    {bestFor}
+                  </p>
                 </div>
               </div>
 
@@ -441,7 +474,8 @@ function WorkWithMe({ t }) {
 function App() {
   const [lang, setLang] = useState("en");
   const t = content[lang];
-  const navLinks = ["#home", "#story", "#work", "#signal", "#relocation", "#process", "#trust", "#faq", "#contact"];
+
+  const navLinks = ["#home", "#story", "#signal", "#relocation", "#work", "#process", "#trust", "#faq", "#contact"];
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#080807] text-zinc-100 scroll-smooth">
@@ -462,7 +496,7 @@ function App() {
             Path To Mexico
           </a>
 
-          <div className="hidden gap-7 text-[10px] uppercase tracking-[0.25em] text-white/40 lg:flex">
+          <div className="hidden gap-8 text-[10px] uppercase tracking-[0.3em] text-white/40 lg:flex">
             {t.nav.map((item, index) => (
               <a key={item} className="transition hover:text-white" href={navLinks[index]}>
                 {item}
@@ -497,7 +531,7 @@ function App() {
             </p>
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href="#work" className="border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white">
+              <a href="#story" className="border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white">
                 {t.explore}
               </a>
               <a href="#contact" className="border border-white/30 px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:border-white hover:bg-white hover:text-black">
@@ -509,7 +543,16 @@ function App() {
       </section>
 
       <FounderStory t={t} />
-      <WorkWithMe t={t} />
+
+      <section className="bg-[#080807] px-6 py-20 text-white md:px-20 md:py-28">
+        <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto grid max-w-6xl gap-10 border-t border-white/10 pt-12 md:grid-cols-[0.8fr_1.2fr]">
+          <p className="text-xs uppercase tracking-[0.35em] text-white/40">{t.manifestoLabel}</p>
+          <div>
+            <h2 className="mb-7 max-w-4xl text-3xl font-light leading-tight tracking-[-0.04em] sm:text-4xl md:text-7xl">{t.manifestoTitle}</h2>
+            <p className="max-w-3xl text-lg leading-relaxed text-white/55 sm:text-xl">{t.manifestoText}</p>
+          </div>
+        </motion.div>
+      </section>
 
       <section id="signal" className="relative overflow-hidden bg-black px-6 py-20 text-white md:px-20 md:py-32">
         <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="relative z-10 mx-auto max-w-6xl">
@@ -561,6 +604,8 @@ function App() {
           </div>
         </motion.div>
       </section>
+
+      <WorkWithMe t={t} />
 
       <section className="grid bg-[#e8e0d3] text-zinc-950 md:grid-cols-2">
         <ImagePanel src="/lifestyle.jpg" label="Riviera Maya Living" sublabel="A Softer Landing" />
