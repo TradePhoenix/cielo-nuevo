@@ -44,6 +44,24 @@ const content = {
     founderSignature: "— Kalen Enns",
     founderRole: "Founder, Path To Mexico",
 
+    testimonialsLabel: "Testimonials",
+    testimonialsTitle1: "Trusted guidance.",
+    testimonialsTitle2: "Real conversations.",
+    testimonials: [
+      [
+        "Kalen gave us more clarity in one conversation than weeks of online research. We finally understood what our options actually were.",
+        "Future Relocation Client"
+      ],
+      [
+        "What stood out was the honesty. There was no pressure, no sales pitch, just practical advice from someone who had already been through it.",
+        "Prospective Client"
+      ],
+      [
+        "Moving countries felt overwhelming until we had someone on the ground who could point us in the right direction and connect us with trusted people.",
+        "Playa Relocation Inquiry"
+      ]
+    ],
+
     manifestoLabel: "Before People Ask How",
     manifestoTitle: "A different country is rarely just about geography.",
     manifestoText:
@@ -192,6 +210,24 @@ const content = {
       "Si estás considerando mudarte a México, me encantaría ayudarte a explorar lo que es posible.",
     founderSignature: "— Kalen Enns",
     founderRole: "Fundador, Path To Mexico",
+
+    testimonialsLabel: "Testimonios",
+    testimonialsTitle1: "Guía confiable.",
+    testimonialsTitle2: "Conversaciones reales.",
+    testimonials: [
+      [
+        "Kalen nos dio más claridad en una conversación que semanas de investigación en internet. Por fin entendimos cuáles eran nuestras opciones reales.",
+        "Futuro Cliente De Reubicación"
+      ],
+      [
+        "Lo que más destacó fue la honestidad. No hubo presión ni venta agresiva, solo consejos prácticos de alguien que ya había pasado por el proceso.",
+        "Cliente Potencial"
+      ],
+      [
+        "Mudarse de país se sentía abrumador hasta que tuvimos a alguien en el terreno que nos orientó y nos conectó con personas confiables.",
+        "Consulta De Reubicación En Playa"
+      ]
+    ],
 
     manifestoLabel: "Antes De Preguntar Cómo",
     manifestoTitle: "Un país diferente casi nunca se trata solo de geografía.",
@@ -402,6 +438,44 @@ function FounderStory({ t }) {
   );
 }
 
+function Testimonials({ t }) {
+  return (
+    <section className="bg-[#080807] px-6 py-20 text-white md:px-20 md:py-28">
+      <motion.div
+        initial={{ opacity: 0, y: 45 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9 }}
+        viewport={{ once: true }}
+        className="mx-auto max-w-6xl border-t border-white/10 pt-12"
+      >
+        <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
+          {t.testimonialsLabel}
+        </p>
+
+        <h2 className="mb-14 max-w-5xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">
+          {t.testimonialsTitle1}
+          <br />
+          {t.testimonialsTitle2}
+        </h2>
+
+        <div className="grid gap-px bg-white/10 md:grid-cols-3">
+          {t.testimonials.map(([quote, name]) => (
+            <div key={quote} className="bg-[#080807] p-8 transition hover:bg-[#11110f]">
+              <p className="mb-8 text-lg leading-relaxed text-white/70">
+                “{quote}”
+              </p>
+
+              <p className="text-xs uppercase tracking-[0.25em] text-white/40">
+                {name}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
 function WorkWithMe({ t }) {
   return (
     <section id="work" className="bg-[#f4f0e8] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
@@ -543,6 +617,8 @@ function App() {
       </section>
 
       <FounderStory t={t} />
+
+      <Testimonials t={t} />
 
       <section className="bg-[#080807] px-6 py-20 text-white md:px-20 md:py-28">
         <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto grid max-w-6xl gap-10 border-t border-white/10 pt-12 md:grid-cols-[0.8fr_1.2fr]">
