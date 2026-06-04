@@ -4,16 +4,45 @@ import { useForm, ValidationError } from "@formspree/react";
 
 const content = {
   en: {
-    nav: ["Home", "Signal", "Relocation", "Process", "Trust", "FAQ", "Contact"],
+    nav: ["Home", "Story", "Signal", "Relocation", "Process", "Trust", "FAQ", "Contact"],
     heroLocation: "Riviera Maya • Mexico",
     heroTitle: "PATH TO MEXICO",
     heroSignal: "[ CIELO NUEVO ]",
-    heroHook1: "Some people visit Mexico.",
-    heroHook2: "Others disappear into a better life.",
+    heroHook1: "Not everyone is meant to stay",
+    heroHook2: "where they started.",
     heroSubtext:
-      "Most people think they want a new country. What they really want is distance from a life that no longer feels like their own. Mexico just happens to be where many of them find it.",
+      "A different rhythm of life awaits in Mexico. Path To Mexico helps people explore relocation, lifestyle, trusted local connections, and the deeper possibility of beginning again.",
     explore: "Enter The Signal",
     start: "Start The Conversation",
+
+    founderLabel: "Founder Story",
+    founderTitle: "Meet Kalen",
+    founderIntro:
+      "Path To Mexico was not created from theory. It was built from lived experience.",
+    founderParagraphs: [
+      "I never planned on building a relocation business. I simply made a decision that changed my own life.",
+      "After spending most of my life in Canada, I reached a point where I felt something was missing. On paper, things looked fine, but deep down I knew I wanted a different experience of life.",
+      "More freedom. More sunshine. More connection. More time spent living, and less time spent waiting for life to begin.",
+      "So I packed up what I could, left British Columbia behind, and moved to Mexico.",
+      "Like most major life decisions, it was not as simple or as glamorous as social media makes it look. There were questions about residency, banking, healthcare, housing, legal paperwork, and figuring out who could actually be trusted.",
+      "Some things were easier than I expected. Others were much harder. But somewhere along the way, something shifted.",
+      "Life slowed down. I started walking more. Spending more time outdoors. Meeting people from all over the world. Enjoying simple things again.",
+      "Fresh food. Ocean air. Conversations that were not rushed. Days that felt less scheduled and more lived.",
+      "Mexico did not solve all my problems. No place can do that. But it gave me something I did not realize I was looking for: perspective.",
+      "It reminded me that there is not only one way to live.",
+      "Since moving here, friends, family members, and complete strangers have reached out asking the same questions:"
+    ],
+    founderQuestions: ["How did you do it?", "Where should I live?", "What is the real cost?", "Who can I trust?"],
+    founderClosing:
+      "That is what eventually led to Path To Mexico. Not as a corporate relocation company, but as a trusted guide built from real experience.",
+    founderClosing2:
+      "Today, I help connect people with reliable local professionals, share what I have learned, and help others explore whether life in Mexico might be right for them.",
+    founderQuote:
+      "Some people come here for a vacation. Others come here looking for something they have not quite found yet.",
+    founderFinal:
+      "If you are considering a move to Mexico, I would be happy to help you explore what is possible.",
+    founderSignature: "— Kalen Enns",
+    founderRole: "Founder, Path To Mexico",
 
     manifestoLabel: "Before People Ask How",
     manifestoTitle: "A different country is rarely just about geography.",
@@ -59,7 +88,7 @@ const content = {
     trustLabel: "Trust & Clarity",
     trustTitle: "Not everyone is meant to stay where they started.",
     trust1:
-      "Cielo Nuevo acts as a trusted connector and relocation guide, helping you find the right people, places, and next steps in Playa del Carmen.",
+      "Path To Mexico acts as a trusted connector and relocation guide, helping you find the right people, places, and next steps in Playa del Carmen.",
     trust2:
       "For legal, immigration, tax, and real estate transactions, we connect clients with qualified local professionals so each step is handled properly.",
     trust3: "Simple promise: clearer options, better introductions, and a smoother landing in Mexico.",
@@ -73,7 +102,7 @@ const content = {
 
     whoTitle: "Built For People Ready For A Different Life",
     whoText:
-      "Whether you are coming from Canada, the United States, or somewhere else, Cielo Nuevo helps you understand your options and connect with the right people on the ground.",
+      "Whether you are coming from Canada, the United States, or somewhere else, Path To Mexico helps you understand your options and connect with the right people on the ground.",
     tags: ["Canadians", "Americans", "Digital Nomads", "Retirees", "Investors", "Families", "Remote Workers", "Freedom Seekers"],
 
     faqLabel: "Common Questions",
@@ -94,16 +123,45 @@ const content = {
   },
 
   es: {
-    nav: ["Inicio", "Señal", "Reubicación", "Proceso", "Confianza", "FAQ", "Contacto"],
+    nav: ["Inicio", "Historia", "Señal", "Reubicación", "Proceso", "Confianza", "FAQ", "Contacto"],
     heroLocation: "Riviera Maya • México",
     heroTitle: "PATH TO MEXICO",
     heroSignal: "[ CIELO NUEVO ]",
-    heroHook1: "Algunas personas visitan México.",
-    heroHook2: "Otras desaparecen hacia una vida mejor.",
+    heroHook1: "No todos están destinados",
+    heroHook2: "a quedarse donde empezaron.",
     heroSubtext:
-      "La mayoría cree que quiere un nuevo país. Lo que realmente busca es distancia de una vida que ya no se siente propia. México simplemente es donde muchos lo encuentran.",
+      "Un ritmo de vida diferente te espera en México. Path To Mexico ayuda a explorar reubicación, estilo de vida, conexiones locales confiables y la posibilidad más profunda de empezar otra vez.",
     explore: "Entrar A La Señal",
     start: "Iniciar Conversación",
+
+    founderLabel: "Historia Del Fundador",
+    founderTitle: "Conoce A Kalen",
+    founderIntro:
+      "Path To Mexico no nació de una teoría. Nació de una experiencia real.",
+    founderParagraphs: [
+      "Nunca planeé construir un negocio de reubicación. Simplemente tomé una decisión que cambió mi propia vida.",
+      "Después de pasar la mayor parte de mi vida en Canadá, llegué a un punto en el que sentía que algo faltaba. En papel, todo parecía estar bien, pero en el fondo sabía que quería una experiencia de vida diferente.",
+      "Más libertad. Más sol. Más conexión. Más tiempo viviendo, y menos tiempo esperando que la vida comenzara.",
+      "Así que empaqué lo que pude, dejé British Columbia atrás y me mudé a México.",
+      "Como muchas decisiones importantes, no fue tan simple ni tan glamuroso como parece en redes sociales. Había preguntas sobre residencia, bancos, salud, vivienda, documentos legales y cómo encontrar personas en quienes realmente pudiera confiar.",
+      "Algunas cosas fueron más fáciles de lo que esperaba. Otras fueron mucho más difíciles. Pero en algún punto, algo cambió.",
+      "La vida bajó de velocidad. Empecé a caminar más. Pasar más tiempo afuera. Conocer personas de todo el mundo. Disfrutar otra vez de las cosas simples.",
+      "Comida fresca. Aire del mar. Conversaciones sin prisa. Días que se sentían menos programados y más vividos.",
+      "México no resolvió todos mis problemas. Ningún lugar puede hacer eso. Pero me dio algo que no sabía que estaba buscando: perspectiva.",
+      "Me recordó que no existe una sola forma de vivir.",
+      "Desde que me mudé aquí, amigos, familiares y personas que no conocía empezaron a hacerme las mismas preguntas:"
+    ],
+    founderQuestions: ["¿Cómo lo hiciste?", "¿Dónde debería vivir?", "¿Cuál es el costo real?", "¿En quién puedo confiar?"],
+    founderClosing:
+      "Eso fue lo que eventualmente llevó a Path To Mexico. No como una empresa corporativa de reubicación, sino como una guía confiable construida desde la experiencia real.",
+    founderClosing2:
+      "Hoy ayudo a conectar personas con profesionales locales confiables, comparto lo que he aprendido y ayudo a otros a explorar si la vida en México puede ser adecuada para ellos.",
+    founderQuote:
+      "Algunas personas vienen de vacaciones. Otras vienen buscando algo que todavía no han encontrado.",
+    founderFinal:
+      "Si estás considerando mudarte a México, me encantaría ayudarte a explorar lo que es posible.",
+    founderSignature: "— Kalen Enns",
+    founderRole: "Fundador, Path To Mexico",
 
     manifestoLabel: "Antes De Preguntar Cómo",
     manifestoTitle: "Un país diferente casi nunca se trata solo de geografía.",
@@ -149,7 +207,7 @@ const content = {
     trustLabel: "Confianza & Claridad",
     trustTitle: "No todos están destinados a quedarse donde empezaron.",
     trust1:
-      "Cielo Nuevo funciona como guía y conector confiable para ayudarte a encontrar las personas, lugares y próximos pasos adecuados en Playa del Carmen.",
+      "Path To Mexico funciona como guía y conector confiable para ayudarte a encontrar las personas, lugares y próximos pasos adecuados en Playa del Carmen.",
     trust2:
       "Para temas legales, migratorios, fiscales e inmobiliarios, conectamos a los clientes con profesionales locales calificados.",
     trust3: "Promesa simple: opciones más claras, mejores conexiones y una llegada más tranquila a México.",
@@ -163,7 +221,7 @@ const content = {
 
     whoTitle: "Hecho Para Personas Listas Para Una Vida Diferente",
     whoText:
-      "Ya vengas de Canadá, Estados Unidos u otro lugar, Cielo Nuevo te ayuda a entender tus opciones y conectar con las personas correctas en el terreno.",
+      "Ya vengas de Canadá, Estados Unidos u otro lugar, Path To Mexico te ayuda a entender tus opciones y conectar con las personas correctas en el terreno.",
     tags: ["Canadienses", "Americanos", "Nómadas Digitales", "Jubilados", "Inversionistas", "Familias", "Trabajadores Remotos", "Buscadores De Libertad"],
 
     faqLabel: "Preguntas Comunes",
@@ -233,9 +291,62 @@ function ImagePanel({ src, label, sublabel }) {
   );
 }
 
+function FounderStory({ t }) {
+  return (
+    <section id="story" className="bg-[#0b0b0a] px-6 py-20 text-white md:px-20 md:py-28">
+      <motion.div
+        initial={{ opacity: 0, y: 45 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9 }}
+        viewport={{ once: true }}
+        className="mx-auto grid max-w-6xl gap-12 border-t border-white/10 pt-12 md:grid-cols-[0.85fr_1.15fr]"
+      >
+        <div>
+          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">{t.founderLabel}</p>
+          <h2 className="max-w-xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
+            {t.founderTitle}
+          </h2>
+          <p className="mt-7 max-w-md text-lg leading-relaxed text-white/55 sm:text-xl">
+            {t.founderIntro}
+          </p>
+        </div>
+
+        <div className="space-y-6 text-lg leading-relaxed text-white/60">
+          {t.founderParagraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+
+          <div className="border-l border-white/15 pl-6 text-white/80">
+            {t.founderQuestions.map((question) => (
+              <p key={question}>{question}</p>
+            ))}
+          </div>
+
+          <p>{t.founderClosing}</p>
+          <p>{t.founderClosing2}</p>
+
+          <p className="pt-4 text-3xl font-light leading-tight tracking-[-0.04em] text-white md:text-5xl">
+            {t.founderQuote}
+          </p>
+
+          <p>{t.founderFinal}</p>
+
+          <p className="pt-6 text-white/45">
+            {t.founderSignature}
+            <br />
+            {t.founderRole}
+          </p>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
 function App() {
   const [lang, setLang] = useState("en");
   const t = content[lang];
+
+  const navLinks = ["#home", "#story", "#signal", "#relocation", "#process", "#trust", "#faq", "#contact"];
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#080807] text-zinc-100 scroll-smooth">
@@ -258,7 +369,7 @@ function App() {
 
           <div className="hidden gap-8 text-[10px] uppercase tracking-[0.3em] text-white/40 lg:flex">
             {t.nav.map((item, index) => (
-              <a key={item} className="transition hover:text-white" href={["#home", "#signal", "#relocation", "#process", "#trust", "#faq", "#contact"][index]}>
+              <a key={item} className="transition hover:text-white" href={navLinks[index]}>
                 {item}
               </a>
             ))}
@@ -291,7 +402,7 @@ function App() {
             </p>
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href="#signal" className="border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white">
+              <a href="#story" className="border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white">
                 {t.explore}
               </a>
               <a href="#contact" className="border border-white/30 px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:border-white hover:bg-white hover:text-black">
@@ -301,6 +412,8 @@ function App() {
           </motion.div>
         </div>
       </section>
+
+      <FounderStory t={t} />
 
       <section className="bg-[#080807] px-6 py-20 text-white md:px-20 md:py-28">
         <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto grid max-w-6xl gap-10 border-t border-white/10 pt-12 md:grid-cols-[0.8fr_1.2fr]">
@@ -474,7 +587,7 @@ function App() {
         <p className="mt-6 italic text-zinc-400">{t.footerLine}</p>
         <p className="mt-6 text-zinc-600">{t.footer}</p>
         <p className="mt-8 text-xs uppercase tracking-[0.3em] text-zinc-700">
-          Some people visit. Others disappear.
+          Not everyone is meant to stay where they started.
         </p>
       </footer>
     </main>
