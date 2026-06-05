@@ -471,6 +471,15 @@ function Testimonials({ t }) {
             </div>
           ))}
         </div>
+
+        <div className="mt-12 text-center">
+          <a
+            href="#contact"
+            className="inline-block border border-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-black"
+          >
+            Share Your Experience
+          </a>
+        </div>
       </motion.div>
     </section>
   );
@@ -775,6 +784,16 @@ function App() {
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">Begin</p>
           <h2 className="mb-7 text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.contactTitle}</h2>
           <p className="mb-8 text-lg leading-relaxed text-white/60 sm:text-xl">{t.contactText}</p>
+
+          <div className="mb-8 border border-white/10 bg-white/5 p-6 text-left">
+            <p className="mb-2 text-xs uppercase tracking-[0.3em] text-white/40">
+              Testimonials Welcome
+            </p>
+            <p className="text-white/60">
+              If Path To Mexico has helped you in any way, feel free to share your experience below.
+              Every testimonial is reviewed personally before being published.
+            </p>
+          </div>
 
           <LeadForm t={t} />
 
