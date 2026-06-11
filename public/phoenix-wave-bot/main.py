@@ -106,3 +106,57 @@ async def webhook(request: Request):
     print("NEW SIGNAL:", signal)
 
     return signal
+
+
+@app.get("/stats")
+def stats():
+    if not os.path.isfile(TRADE_DB_FILE):
+        return {
+            "status": "no_database",
+            "message": "No trade database found yet."
+        }
+
+    with open(TRADE_DB_FILE, mode="r", newline="") as file:
+        reader = csv.DictReader(file)
+        trades = list(reader)
+
+    total = len(trades)
+    wins = [t for t in trades if t.get("outcome", "").lower() == "win"]
+    losses = [t for t in trades if t.get("outcome", "").lower() == "loss"]
+    open_trades = [t for t in trades if t.get("outcome", "").lower() == "open"]
+
+    rr_values = []
+    for trade in trades:
+        try:
+            rr_values.append(float(trade.get("rr_achieved", "")))
+        except:
+            pass
+
+    win_rate = round((len(wins) / total) * 100, 2) if total else 0
+    average_rr = round(sum(rr_values) / len(rr_values), 2) if rr_values else 0
+
+    poi_counts = {}
+    session_counts = {}
+    setup_counts = {}
+
+    for trade in trades:
+        poi = trade.get("poi_type", "") or "Unknown"
+        session = trade.get("session_window", "") or "Unknown"
+        setup = trade.get("setup_type", "") or "Unknown"
+
+        poi_counts[poi] = poi_counts.get(poi, 0) + 1
+        session_counts[session] = session_counts.get(session, 0) + 1
+        setup_counts[setup] = setup_counts.get(setup, 0) + 1
+
+    return {
+        "status": "ok",
+        "total_trades": total,
+        "wins": len(wins),
+        "losses": len(losses),
+        "open_trades": len(open_trades),
+        "win_rate": win_rate,
+        "average_rr": average_rr,
+        "poi_counts": poi_counts,
+        "session_counts": session_counts,
+        "setup_counts": setup_counts
+    }
