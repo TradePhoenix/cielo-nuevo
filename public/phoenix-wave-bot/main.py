@@ -160,3 +160,22 @@ def stats():
         "session_counts": session_counts,
         "setup_counts": setup_counts
     }
+
+
+@app.get("/recent-trades")
+def recent_trades(limit: int = 10):
+    if not os.path.isfile(TRADE_DB_FILE):
+        return {
+            "status": "no_database",
+            "trades": []
+        }
+
+    with open(TRADE_DB_FILE, mode="r", newline="") as file:
+        reader = csv.DictReader(file)
+        trades = list(reader)
+
+    return {
+        "status": "ok",
+        "count": min(limit, len(trades)),
+        "trades": trades[-limit:]
+    }
