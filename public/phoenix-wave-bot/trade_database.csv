@@ -1,3 +1,4 @@
 date,time,market,direction,setup_type,poi_type,fvg_timeframe,session_window,entry_price,stop_loss,take_profit,risk_reward,outcome,rr_achieved,grade,liquidity_sweep,displacement,arrow_confirmation,premium_discount,screenshot_path,notes
 2026-06-11,17:50:44,NQ,buy,,,,,30420,,,,Open,,,,,,,,signal_received
 2026-06-11,17:57:51,NQ,buy,Reversal,PDL,1m,9:45,30420,,,2,Win,2,A+,True,True,True,Discount,,Full Phoenix Wave test
+2026-06-11,18:42:47,NQ,buy,,,,,30420,,,,Open,,,,,,,,signal_received
