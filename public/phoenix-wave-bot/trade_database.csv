@@ -1,0 +1,2 @@
+date,time,market,direction,setup_type,poi_type,fvg_timeframe,session_window,entry_price,stop_loss,take_profit,risk_reward,outcome,rr_achieved,grade,liquidity_sweep,displacement,arrow_confirmation,premium_discount,screenshot_path,notes
+2026-06-11,17:50:44,NQ,buy,,,,,30420,,,,Open,,,,,,,,signal_received
