@@ -95,25 +95,25 @@ const content = {
       "Whether you're simply exploring the possibility or preparing to make the move, Path To Mexico provides clear guidance, trusted introductions, and real-world insight from someone who has already walked the path.",
     workOffers: [
       [
-        "Discovery Call",
+        "Mexico Fit Call",
         "$99 USD",
         "A private one-on-one conversation designed to answer your questions, provide honest insight, and help you understand what moving to Mexico could realistically look like for you.",
         "Perfect for people still exploring the idea, researching costs, residency options, neighborhoods, lifestyle questions, and next steps.",
-        "Book Discovery Call"
+        "Book Mexico Fit Call"
       ],
       [
-        "Relocation Blueprint",
+        "Relocation Roadmap",
         "Starting at $499 USD",
         "A personalized relocation strategy built around your goals, timeline, budget, lifestyle preferences, and long-term vision for life in Mexico.",
         "Ideal for individuals, couples, families, retirees, entrepreneurs, and remote workers who want a clear roadmap before making major decisions.",
-        "Apply For Blueprint"
+        "Apply For Roadmap"
       ],
       [
-        "White Glove Relocation",
+        "Guided Landing",
         "Custom Quote",
         "Private concierge-style relocation support designed for people who want hands-on guidance, trusted introductions, and ongoing assistance throughout the relocation process.",
         "Best for families, professionals, investors, business owners, and anyone seeking a highly personalized experience.",
-        "Schedule Conversation"
+        "Schedule A Conversation"
       ]
     ],
     bestFor: "Best For",
