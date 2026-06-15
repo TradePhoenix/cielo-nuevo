@@ -12,8 +12,8 @@ const content = {
     heroHook2: "where they started.",
     heroSubtext:
       "A different rhythm of life awaits in Mexico. Path To Mexico helps people explore relocation, lifestyle, trusted local connections, and the deeper possibility of beginning again.",
-    explore: "Explore Further",
-    start: "Start The Conversation",
+    explore: "Explore Relocation Support",
+    start: "Book A Mexico Fit Call",
 
     founderLabel: "Founder Story",
     founderTitle: "Meet Kalen — Founder of Path To Mexico",
@@ -162,9 +162,9 @@ const content = {
       ["Is this only for retirees?", "No. We support retirees, investors, remote workers, digital nomads, families, and people looking for a different lifestyle."]
     ],
 
-    contactTitle: "Tell Us What You’re Looking For",
+    contactTitle: "Start Your Path To Mexico",
     contactText:
-      "Send a few details and we’ll help you understand the best path toward relocation, lifestyle, real estate, and opportunity in Playa del Carmen.",
+      "Send a few details about your timeline, goals, and questions. We’ll help you understand the clearest next step toward relocation, residency, lifestyle, real estate, or trusted local support in Mexico.",
     formSuccess: "Thanks — your inquiry was sent. We’ll be in touch soon.",
     footerLine: "A different rhythm of life.",
     footer: "Playa del Carmen • Riviera Maya • Mexico"
@@ -361,7 +361,7 @@ function LeadForm({ t }) {
       <ValidationError field="message" errors={state.errors} />
 
       <button disabled={state.submitting} className="border border-white bg-white px-8 py-5 text-sm font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white disabled:opacity-60">
-        {state.submitting ? "Sending..." : "Send Inquiry"}
+        {state.submitting ? "Sending..." : "Send Relocation Inquiry"}
       </button>
     </form>
   );
