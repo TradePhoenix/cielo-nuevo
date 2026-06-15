@@ -104,6 +104,13 @@ const content = {
         href: "/guides/grocery-costs-in-mexico",
         label: "2026 Guide",
       },
+      {
+        title: "Moving to Playa del Carmen",
+        description:
+          "A practical relocation guide for moving to Playa del Carmen, including neighborhoods, cost of living, rentals, residency, healthcare, lifestyle, and trusted local support.",
+        href: "/guides/moving-to-playa-del-carmen",
+        label: "2026 Guide",
+      },
     ],
   },
 
@@ -206,6 +213,13 @@ const content = {
         description:
           "A practical guide to grocery shopping in Mexico, including supermarkets, local markets, imported foods, weekly budgets, and how daily food costs compare.",
         href: "/guides/grocery-costs-in-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Moving to Playa del Carmen",
+        description:
+          "A practical relocation guide for moving to Playa del Carmen, including neighborhoods, cost of living, rentals, residency, healthcare, lifestyle, and trusted local support.",
+        href: "/guides/moving-to-playa-del-carmen",
         label: "2026 Guide",
       },
     ],
