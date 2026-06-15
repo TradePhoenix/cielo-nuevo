@@ -12,7 +12,7 @@ const content = {
     heroHook2: "where they started.",
     heroSubtext:
       "A different rhythm of life awaits in Mexico. Path To Mexico helps people explore relocation, lifestyle, trusted local connections, and the deeper possibility of beginning again.",
-    explore: "Enter The Signal",
+    explore: "Explore Further",
     start: "Start The Conversation",
 
     founderLabel: "Founder Story",
@@ -633,7 +633,7 @@ function HomePage() {
             </p>
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href="#story" className="border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white">
+              <a href="#signal" className="border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white">
                 {t.explore}
               </a>
               <a href="#contact" className="border border-white/30 px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:border-white hover:bg-white hover:text-black">
