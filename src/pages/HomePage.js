@@ -67,7 +67,7 @@ const content = {
     manifestoText:
       "People arrive searching for better weather, more space, lower costs, or a fresh start. What they often discover is something quieter: time, possibility, and the feeling that life can still change.",
 
-    signalLabel: "Signal 001",
+    signalLabel: "The Inner Shift",
     signalTitle: "The Arrival Is Not The Beginning. It Is The Threshold.",
     signalText:
       "Path To Mexico is for the ones who can feel the old rhythm losing its grip. Underneath the paperwork, flights, rentals, and decisions, something deeper is happening: a private departure from the life that no longer fits.",
@@ -406,12 +406,23 @@ function FounderStory({ t }) {
             {t.founderIntro}
           </p>
 
-          <div className="mt-10 max-w-sm overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-            <img
-              src="/kalen.jpg"
-              alt="Kalen Enns, founder of Path To Mexico"
-              className="h-full w-full object-cover"
-            />
+          <div className="mt-10 max-w-sm md:sticky md:top-28">
+            <div className="overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+              <img
+                src="/kalen.jpg"
+                alt="Kalen Enns, founder of Path To Mexico"
+                className="aspect-[4/5] h-full w-full object-cover"
+              />
+            </div>
+
+            <div className="mt-6 border border-white/10 bg-white/5 p-6">
+              <p className="text-[10px] uppercase tracking-[0.28em] text-white/35">
+                Built From Lived Experience
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-white/55">
+                Path To Mexico was created from actually making the move, learning the process, and building real connections on the ground.
+              </p>
+            </div>
           </div>
         </div>
 
