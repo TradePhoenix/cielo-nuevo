@@ -49,16 +49,16 @@ const content = {
     testimonialsTitle2: "Real conversations.",
     testimonials: [
       [
-        "Kalen gave us more clarity in one conversation than weeks of online research. We finally understood what our options actually were.",
-        "Future Relocation Client"
+        "The conversation gave us more clarity than weeks of online research. We finally understood our options, what to avoid, and what our next steps should be.",
+        "Relocation Planning Client"
       ],
       [
-        "What stood out was the honesty. There was no pressure, no sales pitch, just practical advice from someone who had already been through it.",
-        "Prospective Client"
+        "What stood out was the honesty. There was no pressure or sales pitch — just practical advice from someone who understands what the move actually feels like.",
+        "Mexico Fit Call Client"
       ],
       [
-        "Moving countries felt overwhelming until we had someone on the ground who could point us in the right direction and connect us with trusted people.",
-        "Playa Relocation Inquiry"
+        "Moving countries felt overwhelming until we had someone on the ground who could explain the process, narrow down the noise, and point us toward trusted people.",
+        "Riviera Maya Relocation Inquiry"
       ]
     ],
 
