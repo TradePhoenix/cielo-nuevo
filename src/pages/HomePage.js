@@ -918,7 +918,7 @@ function HomePage() {
               </a>
 
               <a
-                href="/mexico-fit-call"16043154625"
+                href="/mexico-fit-call"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-block border border-white/30 px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-black"
@@ -951,7 +951,7 @@ function HomePage() {
 
           <div className="mt-10 flex flex-col items-center gap-4">
             <a
-              href="/mexico-fit-call"16043154625"
+              href="/mexico-fit-call"
               target="_blank"
               rel="noreferrer"
               className="inline-block border border-white/30 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-black"
@@ -966,7 +966,7 @@ function HomePage() {
         </div>
       </section>
 
-      <a href="/mexico-fit-call"16043154625" target="_blank" rel="noreferrer" className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl text-black shadow-2xl transition duration-300 hover:scale-110">
+      <a href="/mexico-fit-call" target="_blank" rel="noreferrer" className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl text-black shadow-2xl transition duration-300 hover:scale-110">
         💬
       </a>
 
