@@ -799,6 +799,62 @@ function HomePage() {
       </section>
 
 
+
+      <section id="network" className="bg-white px-6 py-20 text-zinc-950 md:px-20 md:py-28">
+        <div className="mx-auto max-w-6xl">
+          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
+            Trusted Local Network
+          </p>
+
+          <h2 className="max-w-4xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
+            You don't have to figure everything out alone.
+          </h2>
+
+          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-zinc-600">
+            Path To Mexico connects people with carefully selected professionals and local resources to help create a smoother transition and a more confident landing.
+          </p>
+
+          <div className="mt-16 grid gap-6 md:grid-cols-3">
+            <div className="border border-zinc-200 p-8">
+              Realtors
+            </div>
+
+            <div className="border border-zinc-200 p-8">
+              Residency Facilitators
+            </div>
+
+            <div className="border border-zinc-200 p-8">
+              Lawyers
+            </div>
+
+            <div className="border border-zinc-200 p-8">
+              Insurance Brokers
+            </div>
+
+            <div className="border border-zinc-200 p-8">
+              Doctors
+            </div>
+
+            <div className="border border-zinc-200 p-8">
+              Property Managers
+            </div>
+
+            <div className="border border-zinc-200 p-8">
+              Contractors
+            </div>
+
+            <div className="border border-zinc-200 p-8">
+              Accountants
+            </div>
+
+            <div className="border border-zinc-200 p-8">
+              Movers
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       <section id="free-guide" className="bg-[#f4f0e8] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
         <div className="mx-auto grid max-w-6xl gap-10 border-t border-zinc-300 pt-12 md:grid-cols-[0.9fr_1.1fr]">
           <div>
