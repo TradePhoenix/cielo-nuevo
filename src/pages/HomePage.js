@@ -886,6 +886,51 @@ function HomePage() {
         </div>
       </section>
 
+
+      <section id="book-call" className="bg-[#0b0b0a] px-6 py-20 text-white md:px-20 md:py-28">
+        <div className="mx-auto grid max-w-6xl gap-10 border-t border-white/10 pt-12 md:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
+              Mexico Fit Call
+            </p>
+            <h2 className="text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
+              Start with clarity before making the move.
+            </h2>
+          </div>
+
+          <div className="space-y-6 text-lg leading-relaxed text-white/60">
+            <p>
+              A Mexico Fit Call helps you understand your timeline, budget, lifestyle goals,
+              residency questions, rental or buying strategy, and the smartest first steps.
+            </p>
+
+            <p>
+              This is the best starting point if you are serious about Mexico but do not want
+              to make expensive decisions blindly.
+            </p>
+
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#contact"
+                className="inline-block border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white"
+              >
+                Book A Mexico Fit Call
+              </a>
+
+              <a
+                href="https://wa.me/16043154625"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block border border-white/30 px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-black"
+              >
+                Message On WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       <section id="contact" className="bg-black px-6 py-20 text-center text-white md:py-28">
         <div className="mx-auto max-w-4xl">
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">Begin</p>
