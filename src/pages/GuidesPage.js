@@ -156,14 +156,14 @@ const content = {
       {
         title: "Remote Workers Moving to Mexico",
         description:
-          "",
+          "A guide for digital nomads and remote workers moving to Mexico, including internet, lifestyle, coworking, visas, and location choices.",
         href: "/guides/remote-workers-moving-to-mexico",
         label: "2026 Guide",
       },
       {
         title: "Mexico Relocation Checklist",
         description:
-          "",
+          "A practical relocation checklist for moving to Mexico, including documents, residency, housing, banking, healthcare, insurance, pets, transportation, and first-month setup.",
         href: "/guides/mexico-relocation-checklist",
         label: "2026 Guide",
       },
@@ -323,14 +323,14 @@ const content = {
       {
         title: "Remote Workers Moving to Mexico",
         description:
-          "",
+          "A guide for digital nomads and remote workers moving to Mexico, including internet, lifestyle, coworking, visas, and location choices.",
         href: "/guides/remote-workers-moving-to-mexico",
         label: "2026 Guide",
       },
       {
         title: "Mexico Relocation Checklist",
         description:
-          "",
+          "A practical relocation checklist for moving to Mexico, including documents, residency, housing, banking, healthcare, insurance, pets, transportation, and first-month setup.",
         href: "/guides/mexico-relocation-checklist",
         label: "2026 Guide",
       },
