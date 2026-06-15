@@ -125,6 +125,41 @@ const content = {
         href: "/guides/moving-to-riviera-maya",
         label: "2026 Guide",
       },
+      {
+        title: "Canada to Mexico Relocation",
+        description:
+          "A practical guide for Canadians moving to Mexico, including residency, healthcare, banking, taxes, lifestyle, and what to expect before making the move.",
+        href: "/guides/canada-to-mexico-relocation",
+        label: "2026 Guide",
+      },
+      {
+        title: "US to Mexico Relocation",
+        description:
+          "A practical guide for Americans moving to Mexico, including healthcare, residency, taxes, banking, lifestyle, and building a new life abroad.",
+        href: "/guides/us-to-mexico-relocation",
+        label: "2026 Guide",
+      },
+      {
+        title: "Mexico Residency Support",
+        description:
+          "Understanding temporary residency, permanent residency, financial requirements, and the process of legally living in Mexico.",
+        href: "/guides/mexico-residency-support",
+        label: "2026 Guide",
+      },
+      {
+        title: "Retiring in Mexico",
+        description:
+          "A practical guide for retirees considering Mexico, including healthcare, costs, lifestyle, residency, and choosing the right location.",
+        href: "/guides/retiring-in-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Remote Workers Moving to Mexico",
+        description:
+          "",
+        href: "/guides/remote-workers-moving-to-mexico",
+        label: "2026 Guide",
+      },
     ],
   },
 
@@ -248,6 +283,41 @@ const content = {
         description:
           "A practical guide to moving to the Riviera Maya, including Playa del Carmen, Tulum, Cancún, Puerto Morelos, healthcare, lifestyle differences, and local support.",
         href: "/guides/moving-to-riviera-maya",
+        label: "2026 Guide",
+      },
+      {
+        title: "Canada to Mexico Relocation",
+        description:
+          "A practical guide for Canadians moving to Mexico, including residency, healthcare, banking, taxes, lifestyle, and what to expect before making the move.",
+        href: "/guides/canada-to-mexico-relocation",
+        label: "2026 Guide",
+      },
+      {
+        title: "US to Mexico Relocation",
+        description:
+          "A practical guide for Americans moving to Mexico, including healthcare, residency, taxes, banking, lifestyle, and building a new life abroad.",
+        href: "/guides/us-to-mexico-relocation",
+        label: "2026 Guide",
+      },
+      {
+        title: "Mexico Residency Support",
+        description:
+          "Understanding temporary residency, permanent residency, financial requirements, and the process of legally living in Mexico.",
+        href: "/guides/mexico-residency-support",
+        label: "2026 Guide",
+      },
+      {
+        title: "Retiring in Mexico",
+        description:
+          "A practical guide for retirees considering Mexico, including healthcare, costs, lifestyle, residency, and choosing the right location.",
+        href: "/guides/retiring-in-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Remote Workers Moving to Mexico",
+        description:
+          "",
+        href: "/guides/remote-workers-moving-to-mexico",
         label: "2026 Guide",
       },
     ],

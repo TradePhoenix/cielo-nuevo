@@ -5,6 +5,11 @@ import CostOfLivingPage from "./pages/CostOfLivingPage";
 import TemporaryResidencyPage from "./pages/TemporaryResidencyPage";
 import HealthcareInMexicoForCanadiansPage from "./pages/HealthcareInMexicoForCanadiansPage";
 import BestAreasToLivePage from "./pages/BestAreasToLivePage";
+import RemoteWorkersMovingToMexicoPage from "./pages/RemoteWorkersMovingToMexicoPage";
+import RetiringInMexicoPage from "./pages/RetiringInMexicoPage";
+import MexicoResidencySupportPage from "./pages/MexicoResidencySupportPage";
+import UsToMexicoRelocationPage from "./pages/UsToMexicoRelocationPage";
+import CanadaToMexicoRelocationPage from "./pages/CanadaToMexicoRelocationPage";
 import MovingToRivieraMayaPage from "./pages/MovingToRivieraMayaPage";
 import MovingToTulumPage from "./pages/MovingToTulumPage";
 import MovingToPlayaDelCarmenPage from "./pages/MovingToPlayaDelCarmenPage";
@@ -29,6 +34,11 @@ function App() {
         <Route path="/guides/temporary-residency-mexico" element={<TemporaryResidencyPage />} />
         <Route path="/guides/healthcare-in-mexico-for-canadians" element={<HealthcareInMexicoForCanadiansPage />} />
         <Route path="/guides/best-areas-to-live-in-playa-del-carmen" element={<BestAreasToLivePage />} />
+        <Route path="/guides/remote-workers-moving-to-mexico" element={<RemoteWorkersMovingToMexicoPage />} />
+        <Route path="/guides/retiring-in-mexico" element={<RetiringInMexicoPage />} />
+        <Route path="/guides/mexico-residency-support" element={<MexicoResidencySupportPage />} />
+        <Route path="/guides/us-to-mexico-relocation" element={<UsToMexicoRelocationPage />} />
+        <Route path="/guides/canada-to-mexico-relocation" element={<CanadaToMexicoRelocationPage />} />
         <Route path="/guides/moving-to-riviera-maya" element={<MovingToRivieraMayaPage />} />
         <Route path="/guides/moving-to-tulum" element={<MovingToTulumPage />} />
         <Route path="/guides/moving-to-playa-del-carmen" element={<MovingToPlayaDelCarmenPage />} />
