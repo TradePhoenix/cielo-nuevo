@@ -17,6 +17,7 @@ import MovingToPlayaDelCarmenPage from "./pages/MovingToPlayaDelCarmenPage";
 import ScrollToTop from "./ScrollToTop";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
+import MexicoFitCallPage from "./pages/MexicoFitCallPage";
 import GroceryCostsInMexicoPage from "./pages/GroceryCostsInMexicoPage";
 import SafetyInMexicoPage from "./pages/SafetyInMexicoPage";
 import HowMuchMoneyDoYouNeedToMoveToMexicoPage from "./pages/HowMuchMoneyDoYouNeedToMoveToMexicoPage";
@@ -56,6 +57,7 @@ function App() {
         <Route path="/guides/renting-vs-buying-in-mexico" element={<RentingVsBuyingInMexicoPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+              <Route path="/mexico-fit-call" element={<MexicoFitCallPage />} />
       </Routes>
     </BrowserRouter>
   );
