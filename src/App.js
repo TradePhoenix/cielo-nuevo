@@ -5,6 +5,7 @@ import CostOfLivingPage from "./pages/CostOfLivingPage";
 import TemporaryResidencyPage from "./pages/TemporaryResidencyPage";
 import HealthcareInMexicoForCanadiansPage from "./pages/HealthcareInMexicoForCanadiansPage";
 import BestAreasToLivePage from "./pages/BestAreasToLivePage";
+import ScrollToTop from "./ScrollToTop";
 import GroceryCostsInMexicoPage from "./pages/GroceryCostsInMexicoPage";
 import SafetyInMexicoPage from "./pages/SafetyInMexicoPage";
 import HowMuchMoneyDoYouNeedToMoveToMexicoPage from "./pages/HowMuchMoneyDoYouNeedToMoveToMexicoPage";
@@ -17,6 +18,7 @@ import RentingVsBuyingInMexicoPage from "./pages/RentingVsBuyingInMexicoPage";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/guides" element={<GuidesPage />} />
