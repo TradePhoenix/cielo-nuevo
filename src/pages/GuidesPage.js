@@ -55,6 +55,41 @@ const content = {
         href: "/guides/renting-vs-buying-in-mexico",
         label: "2026 Guide",
       },
+      {
+        title: "Bringing Pets to Mexico",
+        description:
+          "A practical guide to bringing dogs and cats to Mexico, including travel documents, airline planning, vet care, rentals, and settling in with pets.",
+        href: "/guides/bringing-pets-to-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Banking in Mexico as a Foreigner",
+        description:
+          "A practical guide to opening bank accounts, handling money, using cards, transfers, fees, and financial setup as a foreigner living in Mexico.",
+        href: "/guides/banking-in-mexico-as-a-foreigner",
+        label: "2026 Guide",
+      },
+      {
+        title: "Internet and Remote Work in Mexico",
+        description:
+          "A practical guide to internet reliability, mobile data, coworking spaces, backup options, remote work lifestyle, and working online from Mexico.",
+        href: "/guides/internet-and-remote-work-in-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Tulum vs Playa del Carmen",
+        description:
+          "A practical comparison of Tulum and Playa del Carmen, including cost, lifestyle, transportation, community, infrastructure, beaches, and long-term living.",
+        href: "/guides/tulum-vs-playa-del-carmen",
+        label: "2026 Guide",
+      },
+      {
+        title: "How Much Money Do You Need to Move to Mexico?",
+        description:
+          "A practical guide to startup costs, monthly budgets, rent, deposits, emergency funds, healthcare, transportation, and planning your move to Mexico.",
+        href: "/guides/how-much-money-do-you-need-to-move-to-mexico",
+        label: "2026 Guide",
+      },
     ],
   },
 
@@ -108,6 +143,41 @@ const content = {
         description:
           "A practical guide to renting, buying, deposits, contracts, neighborhoods, ownership questions, and how to think clearly before committing to property in Mexico.",
         href: "/guides/renting-vs-buying-in-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Bringing Pets to Mexico",
+        description:
+          "A practical guide to bringing dogs and cats to Mexico, including travel documents, airline planning, vet care, rentals, and settling in with pets.",
+        href: "/guides/bringing-pets-to-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Banking in Mexico as a Foreigner",
+        description:
+          "A practical guide to opening bank accounts, handling money, using cards, transfers, fees, and financial setup as a foreigner living in Mexico.",
+        href: "/guides/banking-in-mexico-as-a-foreigner",
+        label: "2026 Guide",
+      },
+      {
+        title: "Internet and Remote Work in Mexico",
+        description:
+          "A practical guide to internet reliability, mobile data, coworking spaces, backup options, remote work lifestyle, and working online from Mexico.",
+        href: "/guides/internet-and-remote-work-in-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Tulum vs Playa del Carmen",
+        description:
+          "A practical comparison of Tulum and Playa del Carmen, including cost, lifestyle, transportation, community, infrastructure, beaches, and long-term living.",
+        href: "/guides/tulum-vs-playa-del-carmen",
+        label: "2026 Guide",
+      },
+      {
+        title: "How Much Money Do You Need to Move to Mexico?",
+        description:
+          "A practical guide to startup costs, monthly budgets, rent, deposits, emergency funds, healthcare, transportation, and planning your move to Mexico.",
+        href: "/guides/how-much-money-do-you-need-to-move-to-mexico",
         label: "2026 Guide",
       },
     ],
