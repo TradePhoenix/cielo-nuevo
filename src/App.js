@@ -15,6 +15,8 @@ import MovingToRivieraMayaPage from "./pages/MovingToRivieraMayaPage";
 import MovingToTulumPage from "./pages/MovingToTulumPage";
 import MovingToPlayaDelCarmenPage from "./pages/MovingToPlayaDelCarmenPage";
 import ScrollToTop from "./ScrollToTop";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
 import GroceryCostsInMexicoPage from "./pages/GroceryCostsInMexicoPage";
 import SafetyInMexicoPage from "./pages/SafetyInMexicoPage";
 import HowMuchMoneyDoYouNeedToMoveToMexicoPage from "./pages/HowMuchMoneyDoYouNeedToMoveToMexicoPage";
@@ -52,6 +54,8 @@ function App() {
         <Route path="/guides/banking-in-mexico-as-a-foreigner" element={<BankingInMexicoAsAForeignerPage />} />
         <Route path="/guides/bringing-pets-to-mexico" element={<BringingPetsToMexicoPage />} />
         <Route path="/guides/renting-vs-buying-in-mexico" element={<RentingVsBuyingInMexicoPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
       </Routes>
     </BrowserRouter>
   );
