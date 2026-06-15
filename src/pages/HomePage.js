@@ -16,7 +16,7 @@ const content = {
     start: "Start The Conversation",
 
     founderLabel: "Founder Story",
-    founderTitle: "Meet Kalen",
+    founderTitle: "Meet Kalen — Founder of Path To Mexico",
     founderIntro:
       "Path To Mexico was not created from theory. It was built from lived experience.",
     founderParagraphs: [
@@ -405,6 +405,14 @@ function FounderStory({ t }) {
           <p className="mt-7 max-w-md text-lg leading-relaxed text-white/55 sm:text-xl">
             {t.founderIntro}
           </p>
+
+          <div className="mt-10 max-w-sm overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+            <img
+              src="/kalen.jpg"
+              alt="Kalen Enns, founder of Path To Mexico"
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
 
         <div className="space-y-6 text-lg leading-relaxed text-white/60">
