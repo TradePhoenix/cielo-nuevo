@@ -798,6 +798,38 @@ function HomePage() {
         </div>
       </section>
 
+
+      <section id="free-guide" className="bg-[#f4f0e8] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
+        <div className="mx-auto grid max-w-6xl gap-10 border-t border-zinc-300 pt-12 md:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
+              Free Relocation Guide
+            </p>
+            <h2 className="text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
+              10 things to know before moving to Playa del Carmen.
+            </h2>
+          </div>
+
+          <div className="space-y-6 text-lg leading-relaxed text-zinc-600">
+            <p>
+              Get a simple starter guide covering cost of living, residency questions,
+              renting, healthcare, banking, neighborhoods, and the common mistakes people make before moving.
+            </p>
+
+            <p>
+              This is built for people still exploring Mexico and wanting a clearer first step before booking a call.
+            </p>
+
+            <a
+              href="#contact"
+              className="inline-block border border-zinc-950 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition duration-300 hover:bg-zinc-950 hover:text-white"
+            >
+              Request The Free Guide
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section id="contact" className="bg-black px-6 py-20 text-center text-white md:py-28">
         <div className="mx-auto max-w-4xl">
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">Begin</p>
