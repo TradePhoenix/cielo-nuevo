@@ -970,6 +970,22 @@ function HomePage() {
         💬
       </a>
 
+
+      <section id="disclaimer" className="bg-[#f4f0e8] px-6 py-12 text-zinc-950 md:px-20">
+        <div className="mx-auto max-w-6xl border-t border-zinc-300 pt-8">
+          <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">
+            Important Note
+          </p>
+
+          <p className="max-w-4xl text-sm leading-relaxed text-zinc-600">
+            Path To Mexico provides relocation guidance, local insight, and trusted introductions.
+            We are not a law firm, immigration agency, tax advisor, financial advisor, or real estate brokerage.
+            Legal, immigration, tax, financial, and real estate services are provided by independent qualified professionals where appropriate.
+          </p>
+        </div>
+      </section>
+
+
       <footer className="bg-zinc-950 px-8 py-14 text-center text-sm text-zinc-500">
         <p className="text-xs uppercase tracking-[0.38em] text-zinc-200">PATH TO MEXICO</p>
         <p className="mt-6 text-zinc-600">[ CIELO NUEVO ]</p>
