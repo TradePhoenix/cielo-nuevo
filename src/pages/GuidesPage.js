@@ -160,6 +160,13 @@ const content = {
         href: "/guides/remote-workers-moving-to-mexico",
         label: "2026 Guide",
       },
+      {
+        title: "Mexico Relocation Checklist",
+        description:
+          "",
+        href: "/guides/mexico-relocation-checklist",
+        label: "2026 Guide",
+      },
     ],
   },
 
@@ -318,6 +325,13 @@ const content = {
         description:
           "",
         href: "/guides/remote-workers-moving-to-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Mexico Relocation Checklist",
+        description:
+          "",
+        href: "/guides/mexico-relocation-checklist",
         label: "2026 Guide",
       },
     ],
