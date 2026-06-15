@@ -90,6 +90,20 @@ const content = {
         href: "/guides/how-much-money-do-you-need-to-move-to-mexico",
         label: "2026 Guide",
       },
+      {
+        title: "Safety in Mexico",
+        description:
+          "A practical guide to safety in Mexico, including neighborhoods, common-sense habits, transportation, scams, nightlife, and how to feel grounded as a newcomer.",
+        href: "/guides/safety-in-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Grocery Costs in Mexico",
+        description:
+          "A practical guide to grocery shopping in Mexico, including supermarkets, local markets, imported foods, weekly budgets, and how daily food costs compare.",
+        href: "/guides/grocery-costs-in-mexico",
+        label: "2026 Guide",
+      },
     ],
   },
 
@@ -178,6 +192,20 @@ const content = {
         description:
           "A practical guide to startup costs, monthly budgets, rent, deposits, emergency funds, healthcare, transportation, and planning your move to Mexico.",
         href: "/guides/how-much-money-do-you-need-to-move-to-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Safety in Mexico",
+        description:
+          "A practical guide to safety in Mexico, including neighborhoods, common-sense habits, transportation, scams, nightlife, and how to feel grounded as a newcomer.",
+        href: "/guides/safety-in-mexico",
+        label: "2026 Guide",
+      },
+      {
+        title: "Grocery Costs in Mexico",
+        description:
+          "A practical guide to grocery shopping in Mexico, including supermarkets, local markets, imported foods, weekly budgets, and how daily food costs compare.",
+        href: "/guides/grocery-costs-in-mexico",
         label: "2026 Guide",
       },
     ],
