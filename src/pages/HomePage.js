@@ -848,9 +848,20 @@ function HomePage() {
 
           <LeadForm t={t} />
 
-          <a href="https://wa.me/16043154625" target="_blank" rel="noreferrer" className="mt-10 inline-block text-white/60 underline">
-            Prefer WhatsApp? Message us directly.
-          </a>
+          <div className="mt-10 flex flex-col items-center gap-4">
+            <a
+              href="https://wa.me/16043154625"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-block border border-white/30 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-black"
+            >
+              Prefer WhatsApp? Message Directly
+            </a>
+
+            <p className="max-w-xl text-sm leading-relaxed text-white/45">
+              For quick questions about relocation, residency direction, trusted contacts, or getting started, WhatsApp is often the fastest way to connect.
+            </p>
+          </div>
         </div>
       </section>
 
