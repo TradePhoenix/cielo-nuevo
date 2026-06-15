@@ -48,6 +48,13 @@ const content = {
         href: "/guides/best-areas-to-live-in-playa-del-carmen",
         label: "2026 Guide",
       },
+      {
+        title: "Renting vs Buying Property in Mexico",
+        description:
+          "A practical guide to renting, buying, deposits, contracts, neighborhoods, ownership questions, and how to think clearly before committing to property in Mexico.",
+        href: "/guides/renting-vs-buying-in-mexico",
+        label: "2026 Guide",
+      },
     ],
   },
 
@@ -95,6 +102,13 @@ const content = {
           "Descubre las diferencias entre Centro, Playacar, Zazil-Ha, Colosio y otras zonas populares de Playa del Carmen.",
         href: "/guides/best-areas-to-live-in-playa-del-carmen",
         label: "Guía 2026",
+      },
+      {
+        title: "Renting vs Buying Property in Mexico",
+        description:
+          "A practical guide to renting, buying, deposits, contracts, neighborhoods, ownership questions, and how to think clearly before committing to property in Mexico.",
+        href: "/guides/renting-vs-buying-in-mexico",
+        label: "2026 Guide",
       },
     ],
   },
