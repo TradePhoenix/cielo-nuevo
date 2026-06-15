@@ -5,6 +5,8 @@ import CostOfLivingPage from "./pages/CostOfLivingPage";
 import TemporaryResidencyPage from "./pages/TemporaryResidencyPage";
 import HealthcareInMexicoForCanadiansPage from "./pages/HealthcareInMexicoForCanadiansPage";
 import BestAreasToLivePage from "./pages/BestAreasToLivePage";
+import MovingToRivieraMayaPage from "./pages/MovingToRivieraMayaPage";
+import MovingToTulumPage from "./pages/MovingToTulumPage";
 import MovingToPlayaDelCarmenPage from "./pages/MovingToPlayaDelCarmenPage";
 import ScrollToTop from "./ScrollToTop";
 import GroceryCostsInMexicoPage from "./pages/GroceryCostsInMexicoPage";
@@ -27,6 +29,8 @@ function App() {
         <Route path="/guides/temporary-residency-mexico" element={<TemporaryResidencyPage />} />
         <Route path="/guides/healthcare-in-mexico-for-canadians" element={<HealthcareInMexicoForCanadiansPage />} />
         <Route path="/guides/best-areas-to-live-in-playa-del-carmen" element={<BestAreasToLivePage />} />
+        <Route path="/guides/moving-to-riviera-maya" element={<MovingToRivieraMayaPage />} />
+        <Route path="/guides/moving-to-tulum" element={<MovingToTulumPage />} />
         <Route path="/guides/moving-to-playa-del-carmen" element={<MovingToPlayaDelCarmenPage />} />
         <Route path="/guides/grocery-costs-in-mexico" element={<GroceryCostsInMexicoPage />} />
         <Route path="/guides/safety-in-mexico" element={<SafetyInMexicoPage />} />

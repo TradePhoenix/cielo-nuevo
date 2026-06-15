@@ -111,6 +111,20 @@ const content = {
         href: "/guides/moving-to-playa-del-carmen",
         label: "2026 Guide",
       },
+      {
+        title: "Moving to Tulum",
+        description:
+          "A practical relocation guide for moving to Tulum, including lifestyle, cost of living, transportation, rentals, wellness culture, and what to expect before settling there.",
+        href: "/guides/moving-to-tulum",
+        label: "2026 Guide",
+      },
+      {
+        title: "Moving to Riviera Maya",
+        description:
+          "A practical guide to moving to the Riviera Maya, including Playa del Carmen, Tulum, Cancún, Puerto Morelos, healthcare, lifestyle differences, and local support.",
+        href: "/guides/moving-to-riviera-maya",
+        label: "2026 Guide",
+      },
     ],
   },
 
@@ -220,6 +234,20 @@ const content = {
         description:
           "A practical relocation guide for moving to Playa del Carmen, including neighborhoods, cost of living, rentals, residency, healthcare, lifestyle, and trusted local support.",
         href: "/guides/moving-to-playa-del-carmen",
+        label: "2026 Guide",
+      },
+      {
+        title: "Moving to Tulum",
+        description:
+          "A practical relocation guide for moving to Tulum, including lifestyle, cost of living, transportation, rentals, wellness culture, and what to expect before settling there.",
+        href: "/guides/moving-to-tulum",
+        label: "2026 Guide",
+      },
+      {
+        title: "Moving to Riviera Maya",
+        description:
+          "A practical guide to moving to the Riviera Maya, including Playa del Carmen, Tulum, Cancún, Puerto Morelos, healthcare, lifestyle differences, and local support.",
+        href: "/guides/moving-to-riviera-maya",
         label: "2026 Guide",
       },
     ],
