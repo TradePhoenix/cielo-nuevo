@@ -46,7 +46,7 @@ export default function FreeGuidePage() {
           </div>
 
           <a
-            href="/#begin"
+            href="/downloads/10-things-to-know-before-moving-to-playa-del-carmen.pdf"
             className="inline-block mt-12 bg-black text-white px-8 py-4 rounded-full uppercase tracking-[0.2em] text-sm"
           >
             Receive The Guide
