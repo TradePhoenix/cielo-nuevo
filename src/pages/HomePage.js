@@ -493,7 +493,7 @@ function Testimonials({ t }) {
 
         <div className="mt-12 text-center">
           <a
-            href="#contact"
+            href="/free-guide"
             className="inline-block border border-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-black"
           >
             Share Your Experience
@@ -560,7 +560,7 @@ function WorkWithMe({ t }) {
               </div>
 
               <a
-                href="#contact"
+                href="/free-guide"
                 className="mt-9 inline-block border border-zinc-950 px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition duration-300 hover:bg-zinc-950 hover:text-white"
               >
                 {cta}
@@ -636,7 +636,7 @@ function HomePage() {
               <a href="#signal" className="border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white">
                 {t.explore}
               </a>
-              <a href="#contact" className="border border-white/30 px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:border-white hover:bg-white hover:text-black">
+              <a href="/free-guide" className="border border-white/30 px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:border-white hover:bg-white hover:text-black">
                 {t.start}
               </a>
             </div>
@@ -877,7 +877,7 @@ function HomePage() {
             </p>
 
             <a
-              href="#contact"
+              href="/free-guide"
               className="inline-block border border-zinc-950 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition duration-300 hover:bg-zinc-950 hover:text-white"
             >
               Request The Free Guide
@@ -911,7 +911,7 @@ function HomePage() {
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <a
-                href="#contact"
+                href="/free-guide"
                 className="inline-block border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white"
               >
                 Book A Mexico Fit Call
