@@ -83,9 +83,9 @@ const content = {
     servicesText:
       "Once the inner decision is made, the practical path matters. Path To Mexico helps people step into life in Mexico through trusted local connections, real estate guidance, residency support, and grounded on-the-ground clarity.",
     services: [
-      ["Relocation Guidance", "Step-by-step support for settling into Playa del Carmen with confidence."],
+      ["Relocation Support", "Step-by-step support for settling into Playa del Carmen with confidence."],
       ["Real Estate Connections", "Trusted introductions for rentals, condos, investment properties, and local opportunities."],
-      ["Residency Support", "Guidance toward the right professionals for residency, paperwork, and local setup."]
+      ["Residency Support", "Support toward the right professionals for residency, paperwork, and local setup."]
     ],
 
     workLabel: "Work With Me",
@@ -144,14 +144,14 @@ const content = {
     stats: [
       ["100+", "Conversations"],
       ["Playa", "Local Focus"],
-      ["24/7", "Guidance"],
+      ["Personal", "Support"],
       ["Real", "Connections"]
     ],
 
     whoTitle: "Built For People Ready For A Different Life",
     whoText:
       "Whether you are coming from Canada, the United States, or somewhere else, Path To Mexico helps you understand your options and connect with the right people on the ground.",
-    tags: ["Canadians", "Americans", "Digital Nomads", "Retirees", "Investors", "Families", "Remote Workers", "Freedom Seekers"],
+    tags: ["Canadians", "Americans", "Remote Professionals", "Retirees", "Investors", "Families", "Remote Workers", "Entrepreneurs"],
 
     faqLabel: "Common Questions",
     faqTitle: "Before You Make The Move",
@@ -311,7 +311,7 @@ const content = {
     stats: [
       ["100+", "Conversaciones"],
       ["Playa", "Enfoque Local"],
-      ["24/7", "Guía"],
+      ["Personal", "Guía"],
       ["Real", "Conexiones"]
     ],
 
@@ -807,11 +807,11 @@ function HomePage() {
           </p>
 
           <h2 className="max-w-4xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
-            You don't have to figure everything out alone.
+            Trusted people matter.
           </h2>
 
           <p className="mt-8 max-w-3xl text-lg leading-relaxed text-zinc-600">
-            Path To Mexico connects people with carefully selected professionals and local resources to help create a smoother transition and a more confident landing.
+            Path To Mexico connects clients with carefully selected professionals and local resources to create a smoother transition and a more confident landing.
           </p>
 
           <div className="mt-16 grid gap-6 md:grid-cols-3">

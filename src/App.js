@@ -18,6 +18,7 @@ import ScrollToTop from "./ScrollToTop";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import MexicoFitCallPage from "./pages/MexicoFitCallPage";
+import WorkWithPathToMexicoPage from "./pages/WorkWithPathToMexicoPage";
 import GroceryCostsInMexicoPage from "./pages/GroceryCostsInMexicoPage";
 import SafetyInMexicoPage from "./pages/SafetyInMexicoPage";
 import HowMuchMoneyDoYouNeedToMoveToMexicoPage from "./pages/HowMuchMoneyDoYouNeedToMoveToMexicoPage";
@@ -58,9 +59,9 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service" element={<TermsOfServicePage />} />
               <Route path="/mexico-fit-call" element={<MexicoFitCallPage />} />
+              <Route path="/work-with-path-to-mexico" element={<WorkWithPathToMexicoPage />} />
       </Routes>
     </BrowserRouter>
   );
 }
-
 export default App;
