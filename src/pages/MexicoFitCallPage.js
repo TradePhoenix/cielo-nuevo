@@ -21,7 +21,7 @@ export default function MexicoFitCallPage() {
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
           <a
-            href="https://calendly.com/YOUR-CALENDLY-LINK"
+            href="https://wa.me/16043154625?text=Hi%20Kalen,%20I%20found%20Path%20To%20Mexico%20and%20would%20love%20to%20book%20a%20Mexico%20Fit%20Call."
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-[#1f1a17] px-8 py-4 text-center text-xs font-semibold uppercase tracking-[0.22em] text-white transition hover:bg-[#3a3028]"
@@ -117,7 +117,7 @@ export default function MexicoFitCallPage() {
           </p>
 
           <a
-            href="https://calendly.com/YOUR-CALENDLY-LINK"
+            href="https://wa.me/16043154625?text=Hi%20Kalen,%20I%20found%20Path%20To%20Mexico%20and%20would%20love%20to%20book%20a%20Mexico%20Fit%20Call."
             target="_blank"
             rel="noopener noreferrer"
             className="mt-10 inline-block rounded-full bg-[#d8a15f] px-8 py-4 text-xs font-semibold uppercase tracking-[0.22em] text-[#1f1a17] transition hover:bg-[#e4b77c]"
