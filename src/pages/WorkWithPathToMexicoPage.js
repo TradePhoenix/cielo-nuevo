@@ -69,7 +69,7 @@ export default function WorkWithPathToMexicoPage() {
           </ul>
 
           <a
-            href="/#contact"
+            href="/mexico-fit-call"
             className="inline-block rounded-full bg-black px-8 py-4 text-sm uppercase tracking-[0.2em] text-white"
           >
             Apply For A Roadmap
@@ -95,7 +95,7 @@ export default function WorkWithPathToMexicoPage() {
           </ul>
 
           <a
-            href="/#contact"
+            href="/mexico-fit-call"
             className="inline-block rounded-full bg-black px-8 py-4 text-sm uppercase tracking-[0.2em] text-white"
           >
             Schedule A Conversation
