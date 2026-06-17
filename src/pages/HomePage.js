@@ -560,7 +560,7 @@ function WorkWithMe({ t }) {
               </div>
 
               <a
-                href="/free-guide"
+                href={title.includes("Mexico Fit") || title.includes("Descubrimiento") ? "/mexico-fit-call" : "/#contact"}
                 className="mt-9 inline-block border border-zinc-950 px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition duration-300 hover:bg-zinc-950 hover:text-white"
               >
                 {cta}
