@@ -911,14 +911,14 @@ function HomePage() {
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <a
-                href="/free-guide"
+                href="/mexico-fit-call"
                 className="inline-block border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white"
               >
                 Book A Mexico Fit Call
               </a>
 
               <a
-                href="/#contact"
+                href="https://wa.me/16043154625?text=Hi%20Kalen,%20I%20found%20Path%20To%20Mexico%20and%20would%20love%20to%20learn%20more%20about%20moving%20to%20Mexico."
                 target="_blank"
                 rel="noreferrer"
                 className="inline-block border border-white/30 px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-black"
