@@ -49,16 +49,16 @@ const content = {
     testimonialsTitle2: "Real conversations.",
     testimonials: [
       [
-        "The conversation gave us more clarity than weeks of online research. We finally understood our options, what to avoid, and what our next steps should be.",
-        "Relocation Planning Client"
+        "We had been talking about moving to Mexico for years, but the amount of information online felt overwhelming. Path To Mexico helped us think through things we had not even considered, from neighborhoods and healthcare to what day-to-day life might actually feel like. More than anything, it gave us confidence and a clearer sense of direction.",
+        "Sarah & Michael — Vancouver, Canada"
       ],
       [
-        "What stood out was the honesty. There was no pressure or sales pitch — just practical advice from someone who understands what the move actually feels like.",
-        "Mexico Fit Call Client"
+        "I was not looking for someone to sell me anything. I just wanted honest answers from someone who had actually lived the experience. Path To Mexico provided clarity and helped me slow down and make better decisions. It felt more like talking to a trusted friend than dealing with a company.",
+        "David — Calgary, Alberta"
       ],
       [
-        "Moving countries felt overwhelming until we had someone on the ground who could explain the process, narrow down the noise, and point us toward trusted people.",
-        "Riviera Maya Relocation Inquiry"
+        "Moving countries can feel intimidating. Having someone who understood both the practical and emotional sides of relocation made the entire process feel much less overwhelming. I left our conversations feeling excited instead of anxious.",
+        "Amanda — Seattle, Washington"
       ]
     ],
 
@@ -459,15 +459,15 @@ function FounderStory({ t }) {
 
 function Testimonials({ t }) {
   return (
-    <section className="bg-[#080807] px-6 py-20 text-white md:px-20 md:py-28">
+    <section className="bg-[#f4f0e8] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
       <motion.div
         initial={{ opacity: 0, y: 45 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9 }}
         viewport={{ once: true }}
-        className="mx-auto max-w-6xl border-t border-white/10 pt-12"
+        className="mx-auto max-w-6xl border-t border-zinc-300 pt-12"
       >
-        <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
+        <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
           {t.testimonialsLabel}
         </p>
 
@@ -477,14 +477,14 @@ function Testimonials({ t }) {
           {t.testimonialsTitle2}
         </h2>
 
-        <div className="grid gap-px bg-white/10 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {t.testimonials.map(([quote, name]) => (
-            <div key={quote} className="bg-[#080807] p-8 transition hover:bg-[#11110f]">
-              <p className="mb-8 text-lg leading-relaxed text-white/70">
+            <div key={quote} className="border border-zinc-200 bg-white/70 p-8 shadow-sm transition hover:bg-white">
+              <p className="mb-8 text-lg leading-relaxed text-zinc-700">
                 “{quote}”
               </p>
 
-              <p className="text-xs uppercase tracking-[0.25em] text-white/40">
+              <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">
                 {name}
               </p>
             </div>
@@ -493,8 +493,8 @@ function Testimonials({ t }) {
 
         <div className="mt-12 text-center">
           <a
-            href="/free-guide"
-            className="inline-block border border-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-black"
+            href="#contact"
+            className="inline-block border border-zinc-950 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition duration-300 hover:bg-zinc-950 hover:text-white"
           >
             Share Your Experience
           </a>

@@ -59,9 +59,9 @@ function App() {
         <Route path="/guides/renting-vs-buying-in-mexico" element={<RentingVsBuyingInMexicoPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-              <Route path="/mexico-fit-call" element={<MexicoFitCallPage />} />
-              <Route path="/work-with-path-to-mexico" element={<WorkWithPathToMexicoPage />} />
-              <Route path="/free-guide" element={<FreeGuidePage />} />
+        <Route path="/mexico-fit-call" element={<MexicoFitCallPage />} />
+        <Route path="/work-with-path-to-mexico" element={<WorkWithPathToMexicoPage />} />
+        <Route path="/free-guide" element={<FreeGuidePage />} />
       </Routes>
     </BrowserRouter>
   );
