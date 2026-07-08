@@ -1,15 +1,50 @@
-function ArticleSection({ title, children }) {
-  return (
-    <section className="border-t border-zinc-300 py-10">
-      <h2 className="mb-5 text-3xl font-light tracking-[-0.04em] text-zinc-950 md:text-5xl">
-        {title}
-      </h2>
+import { motion } from "framer-motion";
 
-      <div className="space-y-5 text-lg leading-relaxed text-zinc-700">
-        {children}
-      </div>
-    </section>
+export default function SectionHeader({
+  label,
+  title,
+  text,
+  light = false,
+  center = false,
+  className = "",
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 35 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className={`${center ? "mx-auto text-center" : ""} max-w-6xl ${className}`}
+    >
+      {label && (
+        <p
+          className={`mb-6 text-xs uppercase tracking-[0.35em] ${
+            light ? "text-white/40" : "text-zinc-500"
+          }`}
+        >
+          {label}
+        </p>
+      )}
+
+      {title && (
+        <h2
+          className={`max-w-5xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl ${
+            center ? "mx-auto" : ""
+          } ${light ? "text-white" : "text-zinc-950"}`}
+        >
+          {title}
+        </h2>
+      )}
+
+      {text && (
+        <p
+          className={`mt-8 max-w-3xl text-lg leading-relaxed sm:text-xl ${
+            center ? "mx-auto" : ""
+          } ${light ? "text-white/65" : "text-zinc-600"}`}
+        >
+          {text}
+        </p>
+      )}
+    </motion.div>
   );
 }
-
-export default ArticleSection;
