@@ -4,45 +4,75 @@ import { useForm, ValidationError } from "@formspree/react";
 
 const content = {
   en: {
-    nav: ["Home", "Story", "Signal", "Relocation", "Work", "Guides", "Process", "Trust", "FAQ", "Contact"],
+    nav: ["Home", "Relocation", "Services", "Guides", "About", "FAQ", "Contact"],
     heroLocation: "Riviera Maya • Mexico",
-    heroTitle: "PATH TO MEXICO",
     heroSignal: "[ CIELO NUEVO ]",
-    heroHook1: "Not everyone is meant to stay",
-    heroHook2: "where they started.",
+    heroTitle: "Move to Mexico with confidence.",
     heroSubtext:
-      "A different rhythm of life awaits in Mexico. Path To Mexico helps people explore relocation, lifestyle, trusted local connections, and the deeper possibility of beginning again.",
-    explore: "Explore Relocation Support",
+      "Path To Mexico helps people explore relocation, lifestyle, residency direction, trusted local connections, and the real possibility of building a new life in Mexico.",
     start: "Book A Mexico Fit Call",
+    explore: "Explore Relocation Support",
 
-    founderLabel: "Founder Story",
-    founderTitle: "Meet Kalen — Founder of Path To Mexico",
-    founderIntro:
-      "Path To Mexico was not created from theory. It was built from lived experience.",
-    founderParagraphs: [
-      "I never planned on building a relocation business. I simply made a decision that changed my own life.",
-      "After spending most of my life in Canada, I reached a point where I felt something was missing. On paper, things looked fine, but deep down I knew I wanted a different experience of life.",
-      "More freedom. More sunshine. More connection. More time spent living, and less time spent waiting for life to begin.",
-      "So I packed up what I could, left British Columbia behind, and moved to Mexico.",
-      "Like most major life decisions, it was not as simple or as glamorous as social media makes it look. There were questions about residency, banking, healthcare, housing, legal paperwork, and figuring out who could actually be trusted.",
-      "Some things were easier than I expected. Others were much harder. But somewhere along the way, something shifted.",
-      "Life slowed down. I started walking more. Spending more time outdoors. Meeting people from all over the world. Enjoying simple things again.",
-      "Fresh food. Ocean air. Conversations that were not rushed. Days that felt less scheduled and more lived.",
-      "Mexico did not solve all my problems. No place can do that. But it gave me something I did not realize I was looking for: perspective.",
-      "It reminded me that there is not only one way to live.",
-      "Since moving here, friends, family members, and complete strangers have reached out asking the same questions:"
+    servicesLabel: "Relocation Support",
+    servicesTitle: "Practical guidance for moving to Mexico without guessing your way through it.",
+    servicesText:
+      "From early research to trusted introductions, Path To Mexico helps you understand your options and make clearer decisions before you move.",
+    services: [
+      ["Relocation Support", "Step-by-step support for understanding your move, priorities, timeline, and next best decisions."],
+      ["Residency Direction", "Guidance on the general residency path and introductions to qualified professionals when needed."],
+      ["Housing Connections", "Support understanding areas, rentals, real estate options, and trusted local contacts."],
+      ["Lifestyle Planning", "Clear insight into cost of living, healthcare, banking, transportation, pets, and daily life."],
+      ["Trusted Local Network", "Introductions to local professionals across relocation, legal, real estate, insurance, and services."],
+      ["Guided Landing", "More personalized support for people who want help before, during, and after arrival."]
     ],
-    founderQuestions: ["How did you do it?", "Where should I live?", "What is the real cost?", "Who can I trust?"],
-    founderClosing:
-      "That is what eventually led to Path To Mexico. Not as a corporate relocation company, but as a trusted guide built from real experience.",
-    founderClosing2:
-      "Today, I help connect people with reliable local professionals, share what I have learned, and help others explore whether life in Mexico might be right for them.",
-    founderQuote:
-      "Some people come here for a vacation. Others come here looking for something they have not quite found yet.",
-    founderFinal:
-      "If you are considering a move to Mexico, I would be happy to help you explore what is possible.",
-    founderSignature: "— Kalen Enns",
-    founderRole: "Founder, Path To Mexico",
+
+    workLabel: "Work With Me",
+    workTitle1: "Moving countries is a big decision.",
+    workTitle2: "You do not have to figure it out alone.",
+    workText:
+      "Whether you are just exploring the possibility or preparing to make the move, Path To Mexico provides clear guidance, trusted introductions, and real-world insight from someone already living the path.",
+    workOffers: [
+      [
+        "Mexico Fit Call",
+        "$99 USD",
+        "A private one-on-one conversation designed to answer your questions, provide honest insight, and help you understand what moving to Mexico could realistically look like for you.",
+        "Perfect for people still exploring costs, residency options, neighborhoods, lifestyle questions, and next steps.",
+        "Book Mexico Fit Call",
+        "/mexico-fit-call"
+      ],
+      [
+        "Relocation Roadmap",
+        "Starting at $499 USD",
+        "A personalized relocation strategy built around your goals, timeline, budget, lifestyle preferences, and long-term vision for life in Mexico.",
+        "Ideal for individuals, couples, families, retirees, entrepreneurs, and remote workers who want a clear roadmap before making major decisions.",
+        "Apply For Roadmap",
+        "#contact"
+      ],
+      [
+        "Guided Landing",
+        "Custom Quote",
+        "Private concierge-style relocation support for people who want hands-on guidance, trusted introductions, and ongoing assistance throughout the process.",
+        "Best for families, professionals, investors, business owners, and anyone seeking a highly personalized relocation experience.",
+        "Schedule A Conversation",
+        "#contact"
+      ]
+    ],
+    bestFor: "Best For",
+
+    guideLabel: "Free Relocation Guide",
+    guideTitle: "10 things to know before moving to Playa del Carmen.",
+    guideText:
+      "Get a simple starter guide covering cost of living, residency questions, renting, healthcare, banking, neighborhoods, and common mistakes people make before moving.",
+    guideCta: "Request The Free Guide",
+
+    processLabel: "How It Works",
+    processTitle: "From first conversation to feeling more prepared.",
+    process: [
+      ["01", "Talk", "We start with your goals, budget, timeline, and what kind of life you want in Mexico."],
+      ["02", "Plan", "We map your best relocation path, including neighborhoods, rentals, residency questions, and priorities."],
+      ["03", "Connect", "We point you toward trusted local professionals, agents, and service providers when needed."],
+      ["04", "Settle", "You move forward with more clarity, fewer surprises, and people already on the ground."]
+    ],
 
     testimonialsLabel: "Testimonials",
     testimonialsTitle1: "Trusted guidance.",
@@ -62,154 +92,142 @@ const content = {
       ]
     ],
 
-    manifestoLabel: "Before People Ask How",
-    manifestoTitle: "A different country is rarely just about geography.",
-    manifestoText:
-      "People arrive searching for better weather, more space, lower costs, or a fresh start. What they often discover is something quieter: time, possibility, and the feeling that life can still change.",
-
-    signalLabel: "The Inner Shift",
-    signalTitle: "The Arrival Is Not The Beginning. It Is The Threshold.",
-    signalText:
-      "Path To Mexico is for the ones who can feel the old rhythm losing its grip. Underneath the paperwork, flights, rentals, and decisions, something deeper is happening: a private departure from the life that no longer fits.",
-    signalPoints: ["Less noise.", "More space.", "A softer rhythm.", "A life that feels chosen."],
-
-    atmosphereLabel: "The World Beneath The Logistics",
-    atmosphereTitle: "Hidden sanctuary. Quiet architecture. A life with more oxygen.",
-    atmosphereText:
-      "The strongest moves do not always announce themselves. Sometimes they begin with a room full of warm light, a street you do not know yet, a morning without the old pressure, and the strange calm of realizing you are allowed to begin again.",
-
-    servicesLabel: "The Practical Layer",
-    servicesTitle: "Relocation Without The Noise",
-    servicesText:
-      "Once the inner decision is made, the practical path matters. Path To Mexico helps people step into life in Mexico through trusted local connections, real estate guidance, residency support, and grounded on-the-ground clarity.",
-    services: [
-      ["Relocation Support", "Step-by-step support for settling into Playa del Carmen with confidence."],
-      ["Real Estate Connections", "Trusted introductions for rentals, condos, investment properties, and local opportunities."],
-      ["Residency Support", "Support toward the right professionals for residency, paperwork, and local setup."]
+    founderLabel: "Founder Story",
+    founderTitle: "Built from lived experience, not theory.",
+    founderIntro:
+      "Path To Mexico was created by Kalen Enns after leaving Canada and rebuilding life in Mexico.",
+    founderParagraphs: [
+      "I never planned on building a relocation business. I simply made a decision that changed my own life.",
+      "After spending most of my life in Canada, I reached a point where I wanted something different: more freedom, more sunshine, more connection, and more time actually living.",
+      "So I packed up what I could, left British Columbia behind, and moved to Mexico.",
+      "It was not as simple or glamorous as social media makes it look. There were questions about residency, banking, healthcare, housing, paperwork, and figuring out who could actually be trusted.",
+      "Some things were easier than I expected. Others were much harder. But somewhere along the way, life started to feel different.",
+      "Mexico did not solve everything. No place can do that. But it gave me perspective and reminded me there is not only one way to live.",
+      "That is what eventually led to Path To Mexico: not a corporate relocation company, but a trusted guide built from real experience."
     ],
+    founderQuote:
+      "Some people come to Mexico for a vacation. Others come here looking for a life that feels more like their own.",
+    founderSignature: "— Kalen Enns",
+    founderRole: "Founder, Path To Mexico",
 
-    workLabel: "Work With Me",
-    workTitle1: "Moving countries is a big decision.",
-    workTitle2: "You don't have to figure it out alone.",
-    workText:
-      "Whether you're simply exploring the possibility or preparing to make the move, Path To Mexico provides clear guidance, trusted introductions, and real-world insight from someone who has already walked the path.",
-    workOffers: [
-      [
-        "Mexico Fit Call",
-        "$99 USD",
-        "A private one-on-one conversation designed to answer your questions, provide honest insight, and help you understand what moving to Mexico could realistically look like for you.",
-        "Perfect for people still exploring the idea, researching costs, residency options, neighborhoods, lifestyle questions, and next steps.",
-        "Book Mexico Fit Call"
-      ],
-      [
-        "Relocation Roadmap",
-        "Starting at $499 USD",
-        "A personalized relocation strategy built around your goals, timeline, budget, lifestyle preferences, and long-term vision for life in Mexico.",
-        "Ideal for individuals, couples, families, retirees, entrepreneurs, and remote workers who want a clear roadmap before making major decisions.",
-        "Apply For Roadmap"
-      ],
-      [
-        "Guided Landing",
-        "Custom Quote",
-        "Private concierge-style relocation support designed for people who want hands-on guidance, trusted introductions, and ongoing assistance throughout the relocation process.",
-        "Best for families, professionals, investors, business owners, and anyone seeking a highly personalized experience.",
-        "Schedule A Conversation"
-      ]
-    ],
-    bestFor: "Best For",
-
-    lifestyleLabel: "Riviera Maya Living",
-    lifestyleTitle: "A Softer Landing Into A Bigger Life",
-    lifestyleText:
-      "Relocating is more than finding a place to stay. It is understanding neighborhoods, lifestyle, timing, paperwork, people, and the quiet details that make a new country feel like home.",
-    lifestyleLine: "A different rhythm of life.",
-
-    processLabel: "How It Works",
-    processTitle: "From First Conversation To Feeling Settled",
-    process: [
-      ["01", "Talk", "We start with your goals, budget, timeline, and what kind of life you want in Mexico."],
-      ["02", "Plan", "We map out your best relocation path, including neighborhoods, rentals, residency, and priorities."],
-      ["03", "Connect", "We introduce you to trusted local professionals, agents, and service providers."],
-      ["04", "Settle", "You arrive with more clarity, fewer surprises, and people already on the ground."]
+    networkLabel: "Trusted Local Network",
+    networkTitle: "Trusted people matter.",
+    networkText:
+      "Path To Mexico connects clients with selected professionals and local resources to create a smoother transition and a more confident landing.",
+    network: [
+      "Realtors",
+      "Residency Facilitators",
+      "Lawyers",
+      "Insurance Brokers",
+      "Doctors",
+      "Property Managers",
+      "Contractors",
+      "Accountants",
+      "Movers"
     ],
 
     trustLabel: "Trust & Clarity",
-    trustTitle: "Not everyone is meant to stay where they started.",
-    trust1:
-      "Path To Mexico acts as a trusted connector and relocation guide, helping you find the right people, places, and next steps in Playa del Carmen.",
-    trust2:
-      "For legal, immigration, tax, and real estate transactions, we connect clients with qualified local professionals so each step is handled properly.",
-    trust3: "Simple promise: clearer options, better introductions, and a smoother landing in Mexico.",
-
-    stats: [
-      ["100+", "Conversations"],
-      ["Playa", "Local Focus"],
-      ["Personal", "Support"],
-      ["Real", "Connections"]
+    trustTitle: "Clearer options, better introductions, and fewer expensive mistakes.",
+    trustPoints: [
+      "Canadian founder living in Mexico",
+      "Riviera Maya local knowledge",
+      "Trusted professional network",
+      "Personal one-on-one support"
     ],
 
-    whoTitle: "Built For People Ready For A Different Life",
+    whoTitle: "Built for people ready for a different life.",
     whoText:
       "Whether you are coming from Canada, the United States, or somewhere else, Path To Mexico helps you understand your options and connect with the right people on the ground.",
     tags: ["Canadians", "Americans", "Remote Professionals", "Retirees", "Investors", "Families", "Remote Workers", "Entrepreneurs"],
 
     faqLabel: "Common Questions",
-    faqTitle: "Before You Make The Move",
+    faqTitle: "Before you make the move.",
     faqs: [
-      ["Do you only help Canadians?", "No. We mainly support Canadians and Americans, but we can help people from anywhere explore relocation to Playa del Carmen."],
-      ["Do you sell real estate directly?", "We connect people with trusted local professionals. For legal contracts and real estate transactions, clients work with qualified experts."],
-      ["Can you help with residency?", "Yes. We can help you understand the general path and connect you with the right professionals for immigration and paperwork."],
-      ["Is this only for retirees?", "No. We support retirees, investors, remote workers, digital nomads, families, and people looking for a different lifestyle."]
+      ["Do you only help Canadians?", "No. We mainly support Canadians and Americans, but we can help people from anywhere explore relocation to Mexico."],
+      ["Do you sell real estate directly?", "No. We provide guidance and introductions to trusted local professionals. Real estate transactions are handled by qualified experts."],
+      ["Can you help with residency?", "Yes. We can help you understand the general path and connect you with qualified professionals for immigration and paperwork."],
+      ["Is this only for retirees?", "No. We support retirees, investors, remote workers, digital nomads, families, entrepreneurs, and people looking for a different lifestyle."]
     ],
 
+    contactLabel: "Start Here",
     contactTitle: "Start Your Path To Mexico",
     contactText:
       "Send a few details about your timeline, goals, and questions. We’ll help you understand the clearest next step toward relocation, residency, lifestyle, real estate, or trusted local support in Mexico.",
     formSuccess: "Thanks — your inquiry was sent. We’ll be in touch soon.",
     footerLine: "A different rhythm of life.",
-    footer: "Playa del Carmen • Riviera Maya • Mexico"
+    footer: "Playa del Carmen • Tulum • Riviera Maya • Mexico"
   },
 
   es: {
-    nav: ["Inicio", "Historia", "Señal", "Reubicación", "Trabajar", "Guías", "Proceso", "Confianza", "FAQ", "Contacto"],
+    nav: ["Inicio", "Reubicación", "Servicios", "Guías", "Historia", "FAQ", "Contacto"],
     heroLocation: "Riviera Maya • México",
-    heroTitle: "PATH TO MEXICO",
     heroSignal: "[ CIELO NUEVO ]",
-    heroHook1: "No todos están destinados",
-    heroHook2: "a quedarse donde empezaron.",
+    heroTitle: "Múdate a México con más claridad.",
     heroSubtext:
-      "Un ritmo de vida diferente te espera en México. Path To Mexico ayuda a explorar reubicación, estilo de vida, conexiones locales confiables y la posibilidad más profunda de empezar otra vez.",
-    explore: "Entrar A La Señal",
-    start: "Iniciar Conversación",
+      "Path To Mexico ayuda a personas a explorar reubicación, estilo de vida, orientación de residencia, conexiones locales confiables y la posibilidad real de construir una nueva vida en México.",
+    start: "Reservar Llamada",
+    explore: "Explorar Reubicación",
 
-    founderLabel: "Historia Del Fundador",
-    founderTitle: "Conoce A Kalen",
-    founderIntro:
-      "Path To Mexico no nació de una teoría. Nació de una experiencia real.",
-    founderParagraphs: [
-      "Nunca planeé construir un negocio de reubicación. Simplemente tomé una decisión que cambió mi propia vida.",
-      "Después de pasar la mayor parte de mi vida en Canadá, llegué a un punto en el que sentía que algo faltaba. En papel, todo parecía estar bien, pero en el fondo sabía que quería una experiencia de vida diferente.",
-      "Más libertad. Más sol. Más conexión. Más tiempo viviendo, y menos tiempo esperando que la vida comenzara.",
-      "Así que empaqué lo que pude, dejé British Columbia atrás y me mudé a México.",
-      "Como muchas decisiones importantes, no fue tan simple ni tan glamuroso como parece en redes sociales. Había preguntas sobre residencia, bancos, salud, vivienda, documentos legales y cómo encontrar personas en quienes realmente pudiera confiar.",
-      "Algunas cosas fueron más fáciles de lo que esperaba. Otras fueron mucho más difíciles. Pero en algún punto, algo cambió.",
-      "La vida bajó de velocidad. Empecé a caminar más. Pasar más tiempo afuera. Conocer personas de todo el mundo. Disfrutar otra vez de las cosas simples.",
-      "Comida fresca. Aire del mar. Conversaciones sin prisa. Días que se sentían menos programados y más vividos.",
-      "México no resolvió todos mis problemas. Ningún lugar puede hacer eso. Pero me dio algo que no sabía que estaba buscando: perspectiva.",
-      "Me recordó que no existe una sola forma de vivir.",
-      "Desde que me mudé aquí, amigos, familiares y personas que no conocía empezaron a hacerme las mismas preguntas:"
+    servicesLabel: "Apoyo De Reubicación",
+    servicesTitle: "Guía práctica para mudarte a México sin adivinar cada paso.",
+    servicesText:
+      "Desde la investigación inicial hasta conexiones confiables, Path To Mexico te ayuda a entender tus opciones y tomar mejores decisiones antes de mudarte.",
+    services: [
+      ["Apoyo De Reubicación", "Apoyo paso a paso para entender tu mudanza, prioridades, tiempos y próximas decisiones."],
+      ["Orientación De Residencia", "Guía general sobre el camino de residencia y conexiones con profesionales calificados cuando sea necesario."],
+      ["Conexiones De Vivienda", "Apoyo para entender zonas, rentas, opciones inmobiliarias y contactos locales confiables."],
+      ["Planeación De Estilo De Vida", "Claridad sobre costo de vida, salud, bancos, transporte, mascotas y vida diaria."],
+      ["Red Local Confiable", "Introducciones a profesionales locales en reubicación, legal, bienes raíces, seguros y servicios."],
+      ["Llegada Guiada", "Apoyo más personalizado para quienes quieren ayuda antes, durante y después de llegar."]
     ],
-    founderQuestions: ["¿Cómo lo hiciste?", "¿Dónde debería vivir?", "¿Cuál es el costo real?", "¿En quién puedo confiar?"],
-    founderClosing:
-      "Eso fue lo que eventualmente llevó a Path To Mexico. No como una empresa corporativa de reubicación, sino como una guía confiable construida desde la experiencia real.",
-    founderClosing2:
-      "Hoy ayudo a conectar personas con profesionales locales confiables, comparto lo que he aprendido y ayudo a otros a explorar si la vida en México puede ser adecuada para ellos.",
-    founderQuote:
-      "Algunas personas vienen de vacaciones. Otras vienen buscando algo que todavía no han encontrado.",
-    founderFinal:
-      "Si estás considerando mudarte a México, me encantaría ayudarte a explorar lo que es posible.",
-    founderSignature: "— Kalen Enns",
-    founderRole: "Fundador, Path To Mexico",
+
+    workLabel: "Trabaja Conmigo",
+    workTitle1: "Mudarse de país es una gran decisión.",
+    workTitle2: "No tienes que resolverlo todo solo.",
+    workText:
+      "Ya sea que estés explorando la posibilidad o preparándote para mudarte, Path To Mexico ofrece guía clara, conexiones confiables y perspectiva real de alguien que ya vive el camino.",
+    workOffers: [
+      [
+        "Llamada México Fit",
+        "$99 USD",
+        "Una conversación privada uno a uno para responder tus preguntas, darte perspectiva honesta y ayudarte a entender cómo podría verse una mudanza a México para ti.",
+        "Perfecto para personas que están explorando costos, opciones de residencia, zonas, estilo de vida y próximos pasos.",
+        "Reservar Llamada",
+        "/mexico-fit-call"
+      ],
+      [
+        "Roadmap De Reubicación",
+        "Desde $499 USD",
+        "Una estrategia personalizada construida alrededor de tus metas, tiempos, presupuesto, preferencias de vida y visión a largo plazo en México.",
+        "Ideal para individuos, parejas, familias, jubilados, emprendedores y trabajadores remotos que quieren un plan claro.",
+        "Aplicar Al Roadmap",
+        "#contact"
+      ],
+      [
+        "Llegada Guiada",
+        "Cotización Personalizada",
+        "Apoyo privado estilo concierge para quienes quieren guía práctica, conexiones confiables y acompañamiento durante el proceso.",
+        "Ideal para familias, profesionales, inversionistas, dueños de negocios y personas que buscan una experiencia personalizada.",
+        "Agendar Conversación",
+        "#contact"
+      ]
+    ],
+    bestFor: "Ideal Para",
+
+    guideLabel: "Guía Gratis",
+    guideTitle: "10 cosas que debes saber antes de mudarte a Playa del Carmen.",
+    guideText:
+      "Recibe una guía simple sobre costo de vida, residencia, rentas, salud, bancos, zonas y errores comunes antes de mudarte.",
+    guideCta: "Solicitar La Guía Gratis",
+
+    processLabel: "Cómo Funciona",
+    processTitle: "De la primera conversación a sentirte más preparado.",
+    process: [
+      ["01", "Hablar", "Empezamos con tus metas, presupuesto, tiempos y el tipo de vida que quieres en México."],
+      ["02", "Planear", "Mapeamos tu camino de reubicación: zonas, rentas, residencia y prioridades."],
+      ["03", "Conectar", "Te orientamos hacia profesionales, agentes y proveedores confiables cuando sea necesario."],
+      ["04", "Establecerte", "Avanzas con más claridad, menos sorpresas y personas listas para ayudarte."]
+    ],
 
     testimonialsLabel: "Testimonios",
     testimonialsTitle1: "Guía confiable.",
@@ -229,112 +247,70 @@ const content = {
       ]
     ],
 
-    manifestoLabel: "Antes De Preguntar Cómo",
-    manifestoTitle: "Un país diferente casi nunca se trata solo de geografía.",
-    manifestoText:
-      "Las personas llegan buscando mejor clima, más espacio, menores costos o un nuevo comienzo. Lo que muchas veces descubren es algo más silencioso: tiempo, posibilidad y la sensación de que la vida todavía puede cambiar.",
-
-    signalLabel: "Señal 001",
-    signalTitle: "La llegada no es el comienzo. Es el umbral.",
-    signalText:
-      "Path To Mexico es para quienes sienten que el ritmo anterior ya no les pertenece. Debajo de los documentos, vuelos, rentas y decisiones, ocurre algo más profundo: una salida privada de una vida que ya no encaja.",
-    signalPoints: ["Menos ruido.", "Más espacio.", "Un ritmo más suave.", "Una vida elegida."],
-
-    atmosphereLabel: "El Mundo Debajo De La Logística",
-    atmosphereTitle: "Santuario oculto. Arquitectura tranquila. Una vida con más oxígeno.",
-    atmosphereText:
-      "Los movimientos más importantes no siempre se anuncian. A veces empiezan con una habitación llena de luz cálida, una calle que todavía no conoces, una mañana sin la presión antigua y la calma extraña de darte cuenta de que puedes empezar otra vez.",
-
-    servicesLabel: "La Capa Práctica",
-    servicesTitle: "Reubicación Sin Ruido",
-    servicesText:
-      "Una vez tomada la decisión interna, el camino práctico importa. Path To Mexico ayuda con conexiones locales confiables, guía inmobiliaria, apoyo de residencia y claridad real en el terreno.",
-    services: [
-      ["Guía De Reubicación", "Apoyo paso a paso para establecerte en Playa del Carmen con confianza."],
-      ["Conexiones Inmobiliarias", "Introducciones confiables para rentas, condominios, propiedades de inversión y oportunidades locales."],
-      ["Apoyo De Residencia", "Orientación hacia profesionales adecuados para residencia, documentos y trámites locales."]
+    founderLabel: "Historia Del Fundador",
+    founderTitle: "Construido desde experiencia real, no teoría.",
+    founderIntro:
+      "Path To Mexico fue creado por Kalen Enns después de dejar Canadá y reconstruir su vida en México.",
+    founderParagraphs: [
+      "Nunca planeé construir un negocio de reubicación. Simplemente tomé una decisión que cambió mi propia vida.",
+      "Después de pasar la mayor parte de mi vida en Canadá, llegué a un punto donde quería algo diferente: más libertad, más sol, más conexión y más tiempo viviendo de verdad.",
+      "Así que empaqué lo que pude, dejé British Columbia atrás y me mudé a México.",
+      "No fue tan simple ni glamuroso como parece en redes sociales. Había preguntas sobre residencia, bancos, salud, vivienda, documentos y cómo encontrar personas confiables.",
+      "Algunas cosas fueron más fáciles de lo esperado. Otras fueron más difíciles. Pero en algún punto, la vida empezó a sentirse diferente.",
+      "México no resolvió todo. Ningún lugar puede hacer eso. Pero me dio perspectiva y me recordó que no existe una sola forma de vivir.",
+      "Eso fue lo que llevó a Path To Mexico: no como una empresa corporativa de reubicación, sino como una guía confiable construida desde experiencia real."
     ],
+    founderQuote:
+      "Algunas personas vienen a México de vacaciones. Otras vienen buscando una vida que se sienta más propia.",
+    founderSignature: "— Kalen Enns",
+    founderRole: "Fundador, Path To Mexico",
 
-    workLabel: "Trabaja Conmigo",
-    workTitle1: "Mudarse de país es una gran decisión.",
-    workTitle2: "No tienes que resolverlo todo solo.",
-    workText:
-      "Ya sea que estés explorando la posibilidad o preparándote para mudarte, Path To Mexico ofrece guía clara, conexiones confiables y perspectiva real de alguien que ya ha recorrido ese camino.",
-    workOffers: [
-      [
-        "Llamada De Descubrimiento",
-        "$99 USD",
-        "Una conversación privada uno a uno para responder tus preguntas, darte perspectiva honesta y ayudarte a entender cómo podría verse realmente una mudanza a México para ti.",
-        "Perfecto para personas que están explorando la idea, investigando costos, opciones de residencia, zonas, estilo de vida y próximos pasos.",
-        "Reservar Llamada"
-      ],
-      [
-        "Blueprint De Reubicación",
-        "Desde $499 USD",
-        "Una estrategia personalizada de reubicación construida alrededor de tus metas, tiempos, presupuesto, preferencias de vida y visión a largo plazo en México.",
-        "Ideal para individuos, parejas, familias, jubilados, emprendedores y trabajadores remotos que quieren un plan claro antes de tomar grandes decisiones.",
-        "Aplicar Al Blueprint"
-      ],
-      [
-        "Reubicación White Glove",
-        "Cotización Personalizada",
-        "Apoyo privado estilo concierge para personas que quieren guía práctica, conexiones confiables y acompañamiento durante el proceso de reubicación.",
-        "Ideal para familias, profesionales, inversionistas, dueños de negocios y personas que buscan una experiencia altamente personalizada.",
-        "Agendar Conversación"
-      ]
-    ],
-    bestFor: "Ideal Para",
-
-    lifestyleLabel: "Vida En La Riviera Maya",
-    lifestyleTitle: "Una Llegada Más Suave A Una Vida Más Grande",
-    lifestyleText:
-      "Mudarse es más que encontrar un lugar para vivir. Es entender zonas, estilo de vida, tiempos, documentos, personas y los detalles que hacen que un nuevo país se sienta como hogar.",
-    lifestyleLine: "Un ritmo de vida diferente.",
-
-    processLabel: "Cómo Funciona",
-    processTitle: "De La Primera Conversación A Sentirte Establecido",
-    process: [
-      ["01", "Hablar", "Empezamos con tus metas, presupuesto, tiempo y el tipo de vida que quieres en México."],
-      ["02", "Planear", "Diseñamos tu mejor camino de reubicación: zonas, rentas, residencia y prioridades."],
-      ["03", "Conectar", "Te presentamos profesionales locales, agentes y proveedores de confianza."],
-      ["04", "Establecerte", "Llegas con más claridad, menos sorpresas y personas listas para ayudarte."]
+    networkLabel: "Red Local Confiable",
+    networkTitle: "Las personas confiables importan.",
+    networkText:
+      "Path To Mexico conecta clientes con profesionales seleccionados y recursos locales para crear una transición más tranquila y una llegada con más confianza.",
+    network: [
+      "Agentes Inmobiliarios",
+      "Facilitadores De Residencia",
+      "Abogados",
+      "Seguros",
+      "Doctores",
+      "Administradores De Propiedad",
+      "Contratistas",
+      "Contadores",
+      "Mudanzas"
     ],
 
     trustLabel: "Confianza & Claridad",
-    trustTitle: "No todos están destinados a quedarse donde empezaron.",
-    trust1:
-      "Path To Mexico funciona como guía y conector confiable para ayudarte a encontrar las personas, lugares y próximos pasos adecuados en Playa del Carmen.",
-    trust2:
-      "Para temas legales, migratorios, fiscales e inmobiliarios, conectamos a los clientes con profesionales locales calificados.",
-    trust3: "Promesa simple: opciones más claras, mejores conexiones y una llegada más tranquila a México.",
-
-    stats: [
-      ["100+", "Conversaciones"],
-      ["Playa", "Enfoque Local"],
-      ["Personal", "Guía"],
-      ["Real", "Conexiones"]
+    trustTitle: "Opciones más claras, mejores conexiones y menos errores costosos.",
+    trustPoints: [
+      "Fundador canadiense viviendo en México",
+      "Conocimiento local de Riviera Maya",
+      "Red profesional confiable",
+      "Apoyo personal uno a uno"
     ],
 
-    whoTitle: "Hecho Para Personas Listas Para Una Vida Diferente",
+    whoTitle: "Hecho para personas listas para una vida diferente.",
     whoText:
       "Ya vengas de Canadá, Estados Unidos u otro lugar, Path To Mexico te ayuda a entender tus opciones y conectar con las personas correctas en el terreno.",
-    tags: ["Canadienses", "Americanos", "Nómadas Digitales", "Jubilados", "Inversionistas", "Familias", "Trabajadores Remotos", "Buscadores De Libertad"],
+    tags: ["Canadienses", "Americanos", "Profesionales Remotos", "Jubilados", "Inversionistas", "Familias", "Trabajadores Remotos", "Emprendedores"],
 
     faqLabel: "Preguntas Comunes",
-    faqTitle: "Antes De Mudarte",
+    faqTitle: "Antes de mudarte.",
     faqs: [
-      ["¿Solo ayudan a canadienses?", "No. Principalmente apoyamos a canadienses y estadounidenses, pero podemos ayudar a personas de cualquier lugar."],
-      ["¿Venden bienes raíces directamente?", "Conectamos a las personas con profesionales locales confiables. Para contratos y transacciones, los clientes trabajan con expertos calificados."],
-      ["¿Pueden ayudar con residencia?", "Sí. Podemos ayudarte a entender el camino general y conectarte con profesionales adecuados."],
-      ["¿Es solo para jubilados?", "No. Apoyamos jubilados, inversionistas, trabajadores remotos, nómadas digitales, familias y personas buscando otro estilo de vida."]
+      ["¿Solo ayudan a canadienses?", "No. Principalmente apoyamos a canadienses y estadounidenses, pero también podemos ayudar a personas de otros países."],
+      ["¿Venden bienes raíces directamente?", "No. Ofrecemos guía e introducciones a profesionales locales confiables. Las transacciones se manejan con expertos calificados."],
+      ["¿Pueden ayudar con residencia?", "Sí. Podemos ayudarte a entender el camino general y conectarte con profesionales calificados."],
+      ["¿Es solo para jubilados?", "No. Apoyamos jubilados, inversionistas, trabajadores remotos, nómadas digitales, familias, emprendedores y personas buscando otro estilo de vida."]
     ],
 
-    contactTitle: "Cuéntanos Qué Estás Buscando",
+    contactLabel: "Empieza Aquí",
+    contactTitle: "Empieza Tu Camino A México",
     contactText:
-      "Envía algunos detalles y te ayudaremos a entender el mejor camino hacia reubicación, estilo de vida, bienes raíces y oportunidad en Playa del Carmen.",
+      "Envía algunos detalles sobre tus tiempos, metas y preguntas. Te ayudaremos a entender el próximo paso más claro hacia reubicación, residencia, estilo de vida, bienes raíces o apoyo local confiable en México.",
     formSuccess: "Gracias — tu consulta fue enviada. Te contactaremos pronto.",
     footerLine: "Un ritmo de vida diferente.",
-    footer: "Playa del Carmen • Riviera Maya • México"
+    footer: "Playa del Carmen • Tulum • Riviera Maya • México"
   }
 };
 
@@ -343,8 +319,8 @@ function LeadForm({ t }) {
 
   if (state.succeeded) {
     return (
-      <div className="rounded-none border border-white/10 bg-white p-8 text-center text-black shadow-xl">
-        <h3 className="mb-4 text-3xl font-semibold tracking-tight">Message Sent</h3>
+      <div className="border border-zinc-200 bg-white p-8 text-center text-zinc-950 shadow-sm">
+        <h3 className="mb-4 text-3xl font-light tracking-[-0.04em]">Message Sent</h3>
         <p className="text-zinc-600">{t.formSuccess}</p>
       </div>
     );
@@ -352,224 +328,36 @@ function LeadForm({ t }) {
 
   return (
     <form onSubmit={handleSubmit} className="mx-auto mt-10 grid max-w-3xl gap-5 text-left">
-      <input className="border border-white/20 bg-white px-5 py-4 text-black outline-none transition focus:border-white" type="text" name="name" placeholder="Full Name" required />
-      <input className="border border-white/20 bg-white px-5 py-4 text-black outline-none transition focus:border-white" type="email" name="email" placeholder="Email Address" required />
+      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="name" placeholder="Full Name" required />
+      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="email" name="email" placeholder="Email Address" required />
       <ValidationError field="email" errors={state.errors} />
-      <input className="border border-white/20 bg-white px-5 py-4 text-black outline-none transition focus:border-white" type="text" name="country" placeholder="Current Country" />
-      <input className="border border-white/20 bg-white px-5 py-4 text-black outline-none transition focus:border-white" type="text" name="timeline" placeholder="Ideal Timeline" />
-      <textarea className="min-h-36 border border-white/20 bg-white px-5 py-4 text-black outline-none transition focus:border-white" name="message" placeholder="What do you need help with?" required />
+      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="country" placeholder="Current Country" />
+      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="timeline" placeholder="Ideal Timeline" />
+      <textarea className="min-h-36 border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" name="message" placeholder="What do you need help with?" required />
       <ValidationError field="message" errors={state.errors} />
 
-      <button disabled={state.submitting} className="border border-white bg-white px-8 py-5 text-sm font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white disabled:opacity-60">
+      <button disabled={state.submitting} className="bg-zinc-950 px-8 py-5 text-sm font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-zinc-800 disabled:opacity-60">
         {state.submitting ? "Sending..." : "Send Relocation Inquiry"}
       </button>
     </form>
   );
 }
 
-function ImagePanel({ src, label, sublabel }) {
+function SectionHeader({ label, title, text, light = false }) {
   return (
-    <div className="relative min-h-[360px] overflow-hidden sm:min-h-[500px] md:min-h-[620px]">
-      <img
-        src={src}
-        alt={label}
-        onError={(event) => {
-          event.currentTarget.src = "/hero.jpg";
-        }}
-        className="h-full w-full object-cover"
-      />
-      <div className="absolute inset-0 bg-black/35"></div>
-      <div className="absolute bottom-6 left-6 text-[10px] uppercase tracking-[0.28em] text-white/45">
-        <p>{label}</p>
-        <p>{sublabel}</p>
-      </div>
-    </div>
-  );
-}
-
-function FounderStory({ t }) {
-  return (
-    <section id="story" className="bg-[#0b0b0a] px-6 py-20 text-white md:px-20 md:py-28">
-      <motion.div
-        initial={{ opacity: 0, y: 45 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
-        viewport={{ once: true }}
-        className="mx-auto grid max-w-6xl gap-12 border-t border-white/10 pt-12 md:grid-cols-[0.85fr_1.15fr]"
-      >
-        <div>
-          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">{t.founderLabel}</p>
-          <h2 className="max-w-xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
-            {t.founderTitle}
-          </h2>
-          <p className="mt-7 max-w-md text-lg leading-relaxed text-white/55 sm:text-xl">
-            {t.founderIntro}
-          </p>
-
-          <div className="mt-10 max-w-sm md:sticky md:top-28">
-            <div className="overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-              <img
-                src="/kalen.jpg"
-                alt="Kalen Enns, founder of Path To Mexico"
-                className="aspect-[4/5] h-full w-full object-cover"
-              />
-            </div>
-
-            <div className="mt-6 border border-white/10 bg-white/5 p-6">
-              <p className="text-[10px] uppercase tracking-[0.28em] text-white/35">
-                Built From Lived Experience
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-white/55">
-                Path To Mexico was created from actually making the move, learning the process, and building real connections on the ground.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-6 text-lg leading-relaxed text-white/60">
-          {t.founderParagraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-
-          <div className="border-l border-white/15 pl-6 text-white/80">
-            {t.founderQuestions.map((question) => (
-              <p key={question}>{question}</p>
-            ))}
-          </div>
-
-          <p>{t.founderClosing}</p>
-          <p>{t.founderClosing2}</p>
-
-          <p className="pt-4 text-3xl font-light leading-tight tracking-[-0.04em] text-white md:text-5xl">
-            {t.founderQuote}
-          </p>
-
-          <p>{t.founderFinal}</p>
-
-          <p className="pt-6 text-white/45">
-            {t.founderSignature}
-            <br />
-            {t.founderRole}
-          </p>
-        </div>
-      </motion.div>
-    </section>
-  );
-}
-
-function Testimonials({ t }) {
-  return (
-    <section className="bg-[#f4f0e8] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
-      <motion.div
-        initial={{ opacity: 0, y: 45 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
-        viewport={{ once: true }}
-        className="mx-auto max-w-6xl border-t border-zinc-300 pt-12"
-      >
-        <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
-          {t.testimonialsLabel}
+    <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="mx-auto max-w-6xl">
+      <p className={`mb-6 text-xs uppercase tracking-[0.35em] ${light ? "text-white/40" : "text-zinc-500"}`}>
+        {label}
+      </p>
+      <h2 className={`max-w-5xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl ${light ? "text-white" : "text-zinc-950"}`}>
+        {title}
+      </h2>
+      {text && (
+        <p className={`mt-8 max-w-3xl text-lg leading-relaxed sm:text-xl ${light ? "text-white/60" : "text-zinc-600"}`}>
+          {text}
         </p>
-
-        <h2 className="mb-14 max-w-5xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">
-          {t.testimonialsTitle1}
-          <br />
-          {t.testimonialsTitle2}
-        </h2>
-
-        <div className="grid gap-6 md:grid-cols-3">
-          {t.testimonials.map(([quote, name]) => (
-            <div key={quote} className="border border-zinc-200 bg-white/70 p-8 shadow-sm transition hover:bg-white">
-              <p className="mb-8 text-lg leading-relaxed text-zinc-700">
-                “{quote}”
-              </p>
-
-              <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">
-                {name}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 text-center">
-          <a
-            href="#contact"
-            className="inline-block border border-zinc-950 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition duration-300 hover:bg-zinc-950 hover:text-white"
-          >
-            Share Your Experience
-          </a>
-        </div>
-      </motion.div>
-    </section>
-  );
-}
-
-function WorkWithMe({ t }) {
-  return (
-    <section id="work" className="bg-[#f4f0e8] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
-      <motion.div
-        initial={{ opacity: 0, y: 45 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
-        viewport={{ once: true }}
-        className="mx-auto max-w-6xl"
-      >
-        <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
-          {t.workLabel}
-        </p>
-
-        <h2 className="mb-7 max-w-5xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">
-          {t.workTitle1}
-          <br />
-          {t.workTitle2}
-        </h2>
-
-        <p className="mb-14 max-w-3xl text-lg leading-relaxed text-zinc-600 sm:text-xl">
-          {t.workText}
-        </p>
-
-        <div className="grid gap-px bg-zinc-300 md:grid-cols-3">
-          {t.workOffers.map(([title, price, text, bestFor, cta]) => (
-            <motion.div
-              key={title}
-              whileHover={{ y: -6 }}
-              className="flex min-h-[500px] flex-col justify-between bg-[#f4f0e8] p-7 transition hover:bg-white"
-            >
-              <div>
-                <h3 className="mb-3 text-3xl font-light tracking-[-0.04em]">
-                  {title}
-                </h3>
-
-                <p className="mb-6 text-sm uppercase tracking-[0.25em] text-zinc-500">
-                  {price}
-                </p>
-
-                <p className="mb-7 leading-relaxed text-zinc-600">
-                  {text}
-                </p>
-
-                <div className="border-t border-zinc-300 pt-6">
-                  <p className="mb-3 text-[10px] uppercase tracking-[0.25em] text-zinc-500">
-                    {t.bestFor}
-                  </p>
-
-                  <p className="leading-relaxed text-zinc-600">
-                    {bestFor}
-                  </p>
-                </div>
-              </div>
-
-              <a
-                href={title.includes("Mexico Fit") || title.includes("Descubrimiento") ? "/mexico-fit-call" : "/#contact"}
-                className="mt-9 inline-block border border-zinc-950 px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition duration-300 hover:bg-zinc-950 hover:text-white"
-              >
-                {cta}
-              </a>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-    </section>
+      )}
+    </motion.div>
   );
 }
 
@@ -577,28 +365,23 @@ function HomePage() {
   const [lang, setLang] = useState("en");
   const t = content[lang];
 
-  const navLinks = ["#home", "#story", "#signal", "#relocation", "#work", "/guides", "#process", "#trust", "#faq", "#contact"];
+  const navLinks = ["#home", "#relocation", "#services", "/guides", "#about", "#faq", "#contact"];
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#080807] text-zinc-100 scroll-smooth">
+    <main className="min-h-screen overflow-x-hidden bg-[#f6f1e8] text-zinc-950 scroll-smooth">
       <section id="home" className="relative min-h-[100svh] overflow-hidden text-white">
         <div className="absolute inset-0">
-          <img
-            src="/hero.jpg"
-            alt="Cinematic hidden sanctuary in the Riviera Maya"
-            className="h-full w-full scale-105 object-cover"
-          />
-          <div className="absolute inset-0 bg-black/72"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/35 to-[#080807]"></div>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.75),transparent_65%)]"></div>
+          <img src="/hero.jpg" alt="Riviera Maya relocation lifestyle" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-[#f6f1e8]"></div>
         </div>
 
-        <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/40 px-4 py-4 backdrop-blur-md md:px-10">
-          <a href="#home" className="max-w-[210px] text-[10px] font-semibold uppercase tracking-[0.28em] text-white/80 transition hover:opacity-70 sm:max-w-none sm:text-xs sm:tracking-[0.45em]">
+        <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/15 bg-black/35 px-4 py-4 backdrop-blur-md md:px-10">
+          <a href="#home" className="text-[10px] font-semibold uppercase tracking-[0.35em] text-white/90 sm:text-xs">
             Path To Mexico
           </a>
 
-          <div className="hidden gap-8 text-[10px] uppercase tracking-[0.3em] text-white/40 lg:flex">
+          <div className="hidden gap-8 text-[10px] uppercase tracking-[0.25em] text-white/65 lg:flex">
             {t.nav.map((item, index) => (
               <a key={item} className="transition hover:text-white" href={navLinks[index]}>
                 {item}
@@ -606,175 +389,181 @@ function HomePage() {
             ))}
           </div>
 
-          <button onClick={() => setLang(lang === "en" ? "es" : "en")} className="shrink-0 border border-white/20 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/70 transition hover:bg-white hover:text-black sm:px-4 sm:text-xs">
+          <button onClick={() => setLang(lang === "en" ? "es" : "en")} className="border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white hover:text-black">
             {lang === "en" ? "ES" : "EN"}
           </button>
         </nav>
 
-        <div className="relative z-10 flex min-h-[100svh] items-center px-5 pb-16 pt-28 md:px-16">
-          <motion.div initial={{ opacity: 0, y: 45 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.1, ease: "easeOut" }} className="max-w-6xl">
-            <p className="mb-5 text-[10px] uppercase tracking-[0.32em] text-white/45 sm:text-xs sm:tracking-[0.55em]">{t.heroLocation}</p>
-            <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-white/60 sm:text-xs sm:tracking-[0.45em]">{t.heroSignal}</p>
+        <div className="relative z-10 flex min-h-[100svh] items-center px-5 pb-20 pt-28 md:px-16">
+          <motion.div initial={{ opacity: 0, y: 45 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="max-w-5xl">
+            <p className="mb-5 text-xs uppercase tracking-[0.45em] text-white/60">{t.heroLocation}</p>
+            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/55">{t.heroSignal}</p>
 
-            <h1 className="max-w-full break-words text-[2.75rem] font-medium uppercase leading-[0.92] tracking-[-0.055em] sm:text-[4rem] md:text-[8rem] lg:text-[11rem]">
+            <h1 className="max-w-5xl text-5xl font-light leading-[0.95] tracking-[-0.06em] sm:text-7xl md:text-8xl lg:text-9xl">
               {t.heroTitle}
             </h1>
 
-            <div className="mt-8 h-px w-24 bg-white/30 sm:w-32"></div>
-
-            <p className="mt-10 max-w-4xl text-2xl font-light leading-tight tracking-[-0.04em] text-white sm:text-3xl md:text-6xl">
-              {t.heroHook1}
-              <br />
-              {t.heroHook2}
-            </p>
-
-            <p className="mt-7 max-w-2xl text-sm leading-relaxed text-white/60 sm:text-base md:text-lg">
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
               {t.heroSubtext}
             </p>
 
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href="#relocation" className="border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white">
-                {t.explore}
-              </a>
-              <a href="/mexico-fit-call" className="border border-white/30 px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:border-white hover:bg-white hover:text-black">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a href="/mexico-fit-call" className="bg-white px-8 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-zinc-950 hover:text-white">
                 {t.start}
+              </a>
+              <a href="#relocation" className="border border-white/40 px-8 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-zinc-950">
+                {t.explore}
               </a>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <FounderStory t={t} />
-
-      <Testimonials t={t} />
-
-      <section className="bg-[#080807] px-6 py-20 text-white md:px-20 md:py-28">
-        <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto grid max-w-6xl gap-10 border-t border-white/10 pt-12 md:grid-cols-[0.8fr_1.2fr]">
-          <p className="text-xs uppercase tracking-[0.35em] text-white/40">{t.manifestoLabel}</p>
-          <div>
-            <h2 className="mb-7 max-w-4xl text-3xl font-light leading-tight tracking-[-0.04em] sm:text-4xl md:text-7xl">{t.manifestoTitle}</h2>
-            <p className="max-w-3xl text-lg leading-relaxed text-white/55 sm:text-xl">{t.manifestoText}</p>
-          </div>
-        </motion.div>
+      <section id="relocation" className="bg-[#f6f1e8] px-6 py-20 md:px-20 md:py-28">
+        <SectionHeader label={t.servicesLabel} title={t.servicesTitle} text={t.servicesText} />
       </section>
 
-      <section id="signal" className="relative overflow-hidden bg-black px-6 py-20 text-white md:px-20 md:py-32">
-        <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="relative z-10 mx-auto max-w-6xl">
-          <p className="mb-7 text-xs uppercase tracking-[0.38em] text-white/35">{t.signalLabel}</p>
+      <section id="services" className="bg-[#efe7d8] px-6 py-20 md:px-20 md:py-28">
+        <div className="mx-auto grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-3">
+          {t.services.map(([title, text]) => (
+            <motion.div key={title} whileHover={{ y: -6 }} className="bg-[#efe7d8] p-8 transition hover:bg-white">
+              <h3 className="mb-5 text-3xl font-light tracking-[-0.04em]">{title}</h3>
+              <p className="leading-relaxed text-zinc-600">{text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-          <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr]">
-            <h2 className="max-w-5xl text-4xl font-light leading-[0.98] tracking-[-0.05em] sm:text-5xl md:text-8xl">{t.signalTitle}</h2>
+      <section id="work" className="bg-white px-6 py-20 md:px-20 md:py-28">
+        <SectionHeader label={t.workLabel} title={`${t.workTitle1} ${t.workTitle2}`} text={t.workText} />
 
-            <div className="border-l border-white/10 pl-6 sm:pl-8">
-              <p className="mb-8 text-lg leading-relaxed text-white/55 sm:text-xl">{t.signalText}</p>
+        <div className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-3">
+          {t.workOffers.map(([title, price, text, bestFor, cta, href]) => (
+            <motion.div key={title} whileHover={{ y: -6 }} className="flex min-h-[500px] flex-col justify-between bg-white p-7 transition hover:bg-[#f6f1e8]">
+              <div>
+                <h3 className="mb-3 text-3xl font-light tracking-[-0.04em]">{title}</h3>
+                <p className="mb-6 text-sm uppercase tracking-[0.25em] text-zinc-500">{price}</p>
+                <p className="mb-7 leading-relaxed text-zinc-600">{text}</p>
 
-              <div className="grid gap-px bg-white/10">
-                {t.signalPoints.map((point) => (
-                  <div key={point} className="bg-black px-5 py-5 text-xs uppercase tracking-[0.22em] text-white/55">
-                    {point}
-                  </div>
-                ))}
+                <div className="border-t border-zinc-300 pt-6">
+                  <p className="mb-3 text-[10px] uppercase tracking-[0.25em] text-zinc-500">{t.bestFor}</p>
+                  <p className="leading-relaxed text-zinc-600">{bestFor}</p>
+                </div>
               </div>
-            </div>
-          </div>
-        </motion.div>
+
+              <a href={href} className="mt-9 inline-block border border-zinc-950 px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-zinc-950 hover:text-white">
+                {cta}
+              </a>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
-      <section className="grid bg-[#0d0c0a] text-white md:grid-cols-2">
-        <ImagePanel src="/sanctuary.jpg" label="Hidden Sanctuary" sublabel="Another Rhythm" />
-
-        <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="flex items-center px-6 py-20 md:px-20 md:py-24">
+      <section id="free-guide" className="bg-[#f6f1e8] px-6 py-20 md:px-20 md:py-28">
+        <div className="mx-auto grid max-w-6xl gap-10 border-t border-zinc-300 pt-12 md:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/35">{t.atmosphereLabel}</p>
-            <h2 className="mb-7 text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">{t.atmosphereTitle}</h2>
-            <p className="text-lg leading-relaxed text-white/55 sm:text-xl">{t.atmosphereText}</p>
+            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{t.guideLabel}</p>
+            <h2 className="text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">{t.guideTitle}</h2>
           </div>
-        </motion.div>
+
+          <div className="space-y-6 text-lg leading-relaxed text-zinc-600">
+            <p>{t.guideText}</p>
+            <a href="/free-guide" className="inline-block border border-zinc-950 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-zinc-950 hover:text-white">
+              {t.guideCta}
+            </a>
+          </div>
+        </div>
       </section>
 
-      <section id="relocation" className="bg-[#f4f0e8] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
-        <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto max-w-6xl">
-          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{t.servicesLabel}</p>
-          <h2 className="mb-6 max-w-4xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.servicesTitle}</h2>
-          <p className="mb-12 max-w-3xl text-lg leading-relaxed text-zinc-600 sm:text-xl">{t.servicesText}</p>
+      <section id="process" className="bg-[#0b0b0a] px-6 py-20 text-white md:px-20 md:py-28">
+        <SectionHeader label={t.processLabel} title={t.processTitle} light />
 
-          <div className="grid gap-px bg-zinc-300 md:grid-cols-3">
-            {t.services.map(([title, text]) => (
-              <motion.div key={title} whileHover={{ y: -6 }} className="bg-[#f4f0e8] p-7 transition hover:bg-white">
-                <h3 className="mb-5 text-2xl font-medium tracking-[-0.03em]">{title}</h3>
-                <p className="leading-relaxed text-zinc-600">{text}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <div className="mx-auto mt-14 grid max-w-6xl gap-px bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+          {t.process.map(([number, title, text]) => (
+            <motion.div key={title} whileHover={{ y: -6 }} className="bg-[#0b0b0a] p-7 transition hover:bg-white hover:text-zinc-950">
+              <p className="mb-8 text-xs font-semibold uppercase tracking-[0.3em] opacity-40">{number}</p>
+              <h3 className="mb-5 text-2xl font-medium tracking-[-0.03em]">{title}</h3>
+              <p className="leading-relaxed opacity-65">{text}</p>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
-      <WorkWithMe t={t} />
+      <section className="bg-[#efe7d8] px-6 py-20 md:px-20 md:py-28">
+        <SectionHeader label={t.testimonialsLabel} title={`${t.testimonialsTitle1} ${t.testimonialsTitle2}`} />
 
-      <section className="grid bg-[#e8e0d3] text-zinc-950 md:grid-cols-2">
-        <ImagePanel src="/lifestyle.jpg" label="Riviera Maya Living" sublabel="A Softer Landing" />
-
-        <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="flex items-center px-6 py-20 md:px-20 md:py-24">
-          <div>
-            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{t.lifestyleLabel}</p>
-            <h2 className="mb-7 text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">{t.lifestyleTitle}</h2>
-            <p className="mb-7 text-lg leading-relaxed text-zinc-600 sm:text-xl">{t.lifestyleText}</p>
-            <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">{t.lifestyleLine}</p>
-          </div>
-        </motion.div>
-      </section>
-
-      <section id="process" className="bg-[#080807] px-6 py-20 text-white md:px-20 md:py-28">
-        <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto max-w-6xl">
-          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">{t.processLabel}</p>
-          <h2 className="mb-12 max-w-5xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.processTitle}</h2>
-
-          <div className="grid gap-px bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
-            {t.process.map(([number, title, text]) => (
-              <motion.div key={title} whileHover={{ y: -6 }} className="bg-[#080807] p-7 transition hover:bg-white hover:text-black">
-                <p className="mb-8 text-xs font-semibold uppercase tracking-[0.3em] opacity-40">{number}</p>
-                <h3 className="mb-5 text-2xl font-medium tracking-[-0.03em]">{title}</h3>
-                <p className="leading-relaxed opacity-60">{text}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      <section id="trust" className="bg-[#f4f0e8] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
-        <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} viewport={{ once: true }} className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2">
-          <div>
-            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{t.trustLabel}</p>
-            <h2 className="text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.trustTitle}</h2>
-          </div>
-
-          <div className="space-y-7 text-lg leading-relaxed text-zinc-600">
-            <p>{t.trust1}</p>
-            <p>{t.trust2}</p>
-            <p className="border border-zinc-300 bg-white/50 p-7 text-zinc-700">{t.trust3}</p>
-          </div>
-        </motion.div>
-      </section>
-
-      <section className="bg-black px-6 py-20 text-white md:px-20">
-        <div className="mx-auto grid max-w-6xl gap-px bg-white/15 text-center sm:grid-cols-2 lg:grid-cols-4">
-          {t.stats.map(([big, small]) => (
-            <div key={small} className="bg-black p-8">
-              <h3 className="text-5xl font-light tracking-[-0.06em]">{big}</h3>
-              <p className="mt-4 text-xs uppercase tracking-[0.3em] text-white/45">{small}</p>
+        <div className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3">
+          {t.testimonials.map(([quote, name]) => (
+            <div key={quote} className="border border-zinc-200 bg-white/70 p-8 shadow-sm transition hover:bg-white">
+              <p className="mb-8 text-lg leading-relaxed text-zinc-700">“{quote}”</p>
+              <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">{name}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-[#f4f0e8] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
+      <section id="about" className="bg-[#f6f1e8] px-6 py-20 md:px-20 md:py-28">
+        <div className="mx-auto grid max-w-6xl gap-12 border-t border-zinc-300 pt-12 md:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{t.founderLabel}</p>
+            <h2 className="text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">{t.founderTitle}</h2>
+            <p className="mt-7 max-w-md text-lg leading-relaxed text-zinc-600 sm:text-xl">{t.founderIntro}</p>
+
+            <div className="mt-10 max-w-sm overflow-hidden border border-zinc-200 bg-white p-3 shadow-sm">
+              <img src="/kalen.jpg" alt="Kalen Enns, founder of Path To Mexico" className="aspect-[4/5] h-full w-full object-cover" />
+            </div>
+          </div>
+
+          <div className="space-y-6 text-lg leading-relaxed text-zinc-600">
+            {t.founderParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+
+            <p className="pt-4 text-3xl font-light leading-tight tracking-[-0.04em] text-zinc-950 md:text-5xl">
+              {t.founderQuote}
+            </p>
+
+            <p className="pt-6 text-zinc-500">
+              {t.founderSignature}
+              <br />
+              {t.founderRole}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="network" className="bg-white px-6 py-20 md:px-20 md:py-28">
+        <SectionHeader label={t.networkLabel} title={t.networkTitle} text={t.networkText} />
+
+        <div className="mx-auto mt-14 grid max-w-6xl gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {t.network.map((item) => (
+            <div key={item} className="border border-zinc-200 bg-white p-8 text-lg text-zinc-700 transition hover:bg-[#f6f1e8]">
+              {item}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="trust" className="bg-[#efe7d8] px-6 py-20 md:px-20 md:py-28">
+        <SectionHeader label={t.trustLabel} title={t.trustTitle} />
+
+        <div className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 sm:grid-cols-2 lg:grid-cols-4">
+          {t.trustPoints.map((point) => (
+            <div key={point} className="bg-[#efe7d8] p-8 text-lg text-zinc-700 transition hover:bg-white">
+              {point}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-[#f6f1e8] px-6 py-20 md:px-20 md:py-28">
         <div className="mx-auto max-w-6xl">
           <h2 className="mb-7 max-w-5xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.whoTitle}</h2>
           <p className="mb-12 max-w-3xl text-lg leading-relaxed text-zinc-600 sm:text-xl">{t.whoText}</p>
 
           <div className="flex flex-wrap gap-3">
             {t.tags.map((item) => (
-              <span key={item} className="border border-zinc-300 px-4 py-3 text-[10px] uppercase tracking-[0.2em] text-zinc-600 transition duration-300 hover:bg-black hover:text-white">
+              <span key={item} className="border border-zinc-300 px-4 py-3 text-[10px] uppercase tracking-[0.2em] text-zinc-600 transition hover:bg-zinc-950 hover:text-white">
                 {item}
               </span>
             ))}
@@ -782,170 +571,24 @@ function HomePage() {
         </div>
       </section>
 
-      <section id="faq" className="bg-[#e8e0d3] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
-        <div className="mx-auto max-w-6xl">
-          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{t.faqLabel}</p>
-          <h2 className="mb-12 text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.faqTitle}</h2>
+      <section id="faq" className="bg-white px-6 py-20 md:px-20 md:py-28">
+        <SectionHeader label={t.faqLabel} title={t.faqTitle} />
 
-          <div className="grid gap-px bg-zinc-300 md:grid-cols-2">
-            {t.faqs.map(([question, answer]) => (
-              <div key={question} className="bg-[#e8e0d3] p-7 transition hover:bg-white">
-                <h3 className="mb-4 text-2xl font-medium tracking-[-0.03em]">{question}</h3>
-                <p className="leading-relaxed text-zinc-600">{answer}</p>
-              </div>
-            ))}
-          </div>
+        <div className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-2">
+          {t.faqs.map(([question, answer]) => (
+            <div key={question} className="bg-white p-7 transition hover:bg-[#f6f1e8]">
+              <h3 className="mb-4 text-2xl font-medium tracking-[-0.03em]">{question}</h3>
+              <p className="leading-relaxed text-zinc-600">{answer}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-
-
-      <section id="network" className="bg-white px-6 py-20 text-zinc-950 md:px-20 md:py-28">
-        <div className="mx-auto max-w-6xl">
-          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
-            Trusted Local Network
-          </p>
-
-          <h2 className="max-w-4xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
-            Trusted people matter.
-          </h2>
-
-          <p className="mt-8 max-w-3xl text-lg leading-relaxed text-zinc-600">
-            Path To Mexico connects clients with carefully selected professionals and local resources to create a smoother transition and a more confident landing.
-          </p>
-
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            <div className="border border-zinc-200 p-8">
-              Realtors
-            </div>
-
-            <div className="border border-zinc-200 p-8">
-              Residency Facilitators
-            </div>
-
-            <div className="border border-zinc-200 p-8">
-              Lawyers
-            </div>
-
-            <div className="border border-zinc-200 p-8">
-              Insurance Brokers
-            </div>
-
-            <div className="border border-zinc-200 p-8">
-              Doctors
-            </div>
-
-            <div className="border border-zinc-200 p-8">
-              Property Managers
-            </div>
-
-            <div className="border border-zinc-200 p-8">
-              Contractors
-            </div>
-
-            <div className="border border-zinc-200 p-8">
-              Accountants
-            </div>
-
-            <div className="border border-zinc-200 p-8">
-              Movers
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section id="free-guide" className="bg-[#f4f0e8] px-6 py-20 text-zinc-950 md:px-20 md:py-28">
-        <div className="mx-auto grid max-w-6xl gap-10 border-t border-zinc-300 pt-12 md:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
-              Free Relocation Guide
-            </p>
-            <h2 className="text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
-              10 things to know before moving to Playa del Carmen.
-            </h2>
-          </div>
-
-          <div className="space-y-6 text-lg leading-relaxed text-zinc-600">
-            <p>
-              Get a simple starter guide covering cost of living, residency questions,
-              renting, healthcare, banking, neighborhoods, and the common mistakes people make before moving.
-            </p>
-
-            <p>
-              This is built for people still exploring Mexico and wanting a clearer first step before booking a call.
-            </p>
-
-            <a
-              href="/free-guide"
-              className="inline-block border border-zinc-950 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition duration-300 hover:bg-zinc-950 hover:text-white"
-            >
-              Request The Free Guide
-            </a>
-          </div>
-        </div>
-      </section>
-
-
-      <section id="book-call" className="bg-[#0b0b0a] px-6 py-20 text-white md:px-20 md:py-28">
-        <div className="mx-auto grid max-w-6xl gap-10 border-t border-white/10 pt-12 md:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
-              Mexico Fit Call
-            </p>
-            <h2 className="text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
-              Start with clarity before making the move.
-            </h2>
-          </div>
-
-          <div className="space-y-6 text-lg leading-relaxed text-white/60">
-            <p>
-              A Mexico Fit Call helps you understand your timeline, budget, lifestyle goals,
-              residency questions, rental or buying strategy, and the smartest first steps.
-            </p>
-
-            <p>
-              This is the best starting point if you are serious about Mexico but do not want
-              to make expensive decisions blindly.
-            </p>
-
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <a
-                href="/mexico-fit-call"
-                className="inline-block border border-white bg-white px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-black transition duration-300 hover:bg-transparent hover:text-white"
-              >
-                Book A Mexico Fit Call
-              </a>
-
-              <a
-                href="https://wa.me/16043154625?text=Hi%20Kalen,%20I%20found%20Path%20To%20Mexico%20and%20would%20love%20to%20learn%20more%20about%20moving%20to%20Mexico."
-                target="_blank"
-                rel="noreferrer"
-                className="inline-block border border-white/30 px-7 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-black"
-              >
-                Message On WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section id="contact" className="bg-black px-6 py-20 text-center text-white md:py-28">
+      <section id="contact" className="bg-[#0b0b0a] px-6 py-20 text-center text-white md:py-28">
         <div className="mx-auto max-w-4xl">
-          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">Begin</p>
+          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">{t.contactLabel}</p>
           <h2 className="mb-7 text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.contactTitle}</h2>
-          <p className="mb-8 text-lg leading-relaxed text-white/60 sm:text-xl">{t.contactText}</p>
-
-          <div className="mb-8 border border-white/10 bg-white/5 p-6 text-left">
-            <p className="mb-2 text-xs uppercase tracking-[0.3em] text-white/40">
-              Testimonials Welcome
-            </p>
-            <p className="text-white/60">
-              If Path To Mexico has helped you in any way, feel free to share your experience below.
-              Every testimonial is reviewed personally before being published.
-            </p>
-          </div>
+          <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-white/60 sm:text-xl">{t.contactText}</p>
 
           <LeadForm t={t} />
 
@@ -954,37 +597,31 @@ function HomePage() {
               href="https://wa.me/16043154625?text=Hi%20Kalen,%20I%20found%20Path%20To%20Mexico%20and%20would%20love%20to%20learn%20more%20about%20moving%20to%20Mexico."
               target="_blank"
               rel="noreferrer"
-              className="inline-block border border-white/30 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-white hover:text-black"
+              className="inline-block border border-white/30 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-black"
             >
               Prefer WhatsApp? Message Directly
             </a>
-
-            <p className="max-w-xl text-sm leading-relaxed text-white/45">
-              For quick questions about relocation, residency direction, trusted contacts, or getting started, WhatsApp is often the fastest way to connect.
-            </p>
           </div>
         </div>
       </section>
 
-      <a href="https://wa.me/16043154625?text=Hi%20Kalen,%20I%20found%20Path%20To%20Mexico%20and%20would%20love%20to%20learn%20more%20about%20moving%20to%20Mexico." target="_blank" rel="noreferrer" className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-white text-2xl text-black shadow-2xl transition duration-300 hover:scale-110">
+      <a
+        href="https://wa.me/16043154625?text=Hi%20Kalen,%20I%20found%20Path%20To%20Mexico%20and%20would%20love%20to%20learn%20more%20about%20moving%20to%20Mexico."
+        target="_blank"
+        rel="noreferrer"
+        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-950 text-2xl text-white shadow-2xl transition hover:scale-110"
+      >
         💬
       </a>
 
-
-      <section id="disclaimer" className="bg-[#f4f0e8] px-6 py-12 text-zinc-950 md:px-20">
+      <section id="disclaimer" className="bg-[#f6f1e8] px-6 py-12 text-zinc-950 md:px-20">
         <div className="mx-auto max-w-6xl border-t border-zinc-300 pt-8">
-          <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">
-            Important Note
-          </p>
-
+          <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">Important Note</p>
           <p className="max-w-4xl text-sm leading-relaxed text-zinc-600">
-            Path To Mexico provides relocation guidance, local insight, and trusted introductions.
-            We are not a law firm, immigration agency, tax advisor, financial advisor, or real estate brokerage.
-            Legal, immigration, tax, financial, and real estate services are provided by independent qualified professionals where appropriate.
+            Path To Mexico provides relocation guidance, local insight, and trusted introductions. We are not a law firm, immigration agency, tax advisor, financial advisor, or real estate brokerage. Legal, immigration, tax, financial, and real estate services are provided by independent qualified professionals where appropriate.
           </p>
         </div>
       </section>
-
 
       <footer className="bg-zinc-950 px-8 py-14 text-center text-sm text-zinc-500">
         <p className="text-xs uppercase tracking-[0.38em] text-zinc-200">PATH TO MEXICO</p>
