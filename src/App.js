@@ -28,6 +28,7 @@ import InternetAndRemoteWorkInMexicoPage from "./pages/InternetAndRemoteWorkInMe
 import BankingInMexicoAsAForeignerPage from "./pages/BankingInMexicoAsAForeignerPage";
 import BringingPetsToMexicoPage from "./pages/BringingPetsToMexicoPage";
 import RentingVsBuyingInMexicoPage from "./pages/RentingVsBuyingInMexicoPage";
+import DeveloperDashboardPage from "./pages/DeveloperDashboardPage";
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
+
+        <Route path="/developer-dashboard" element={<DeveloperDashboardPage />} />
+
         <Route path="/guides" element={<GuidesPage />} />
         <Route path="/guides/cost-of-living-playa-del-carmen" element={<CostOfLivingPage />} />
         <Route path="/guides/temporary-residency-mexico" element={<TemporaryResidencyPage />} />
@@ -57,13 +61,16 @@ function App() {
         <Route path="/guides/banking-in-mexico-as-a-foreigner" element={<BankingInMexicoAsAForeignerPage />} />
         <Route path="/guides/bringing-pets-to-mexico" element={<BringingPetsToMexicoPage />} />
         <Route path="/guides/renting-vs-buying-in-mexico" element={<RentingVsBuyingInMexicoPage />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+
         <Route path="/mexico-fit-call" element={<MexicoFitCallPage />} />
         <Route path="/work-with-path-to-mexico" element={<WorkWithPathToMexicoPage />} />
         <Route path="/free-guide" element={<FreeGuidePage />} />
+
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
       </Routes>
     </BrowserRouter>
   );
 }
+
 export default App;
