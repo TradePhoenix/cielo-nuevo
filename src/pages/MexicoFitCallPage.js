@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FOUNDER, TESTIMONIALS, FIT_CALL_PRICE } from "../data/trustContent";
 
 export default function MexicoFitCallPage() {
   const whatsapp =
@@ -23,7 +24,11 @@ export default function MexicoFitCallPage() {
             questions, lifestyle needs, and the smartest next step.
           </p>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          <p className="mt-8 text-xs uppercase tracking-[0.3em] text-white/50">
+            {FIT_CALL_PRICE} &middot; One Private, One-On-One Call
+          </p>
+
+          <div className="mt-6 flex flex-col gap-4 sm:flex-row">
             <a
               href={whatsapp}
               target="_blank"
@@ -40,6 +45,21 @@ export default function MexicoFitCallPage() {
               Back To Home
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-zinc-200 bg-white px-6 py-6 md:px-20">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
+          <p className="text-sm leading-relaxed text-zinc-600">
+            Already built your <span className="font-semibold text-zinc-950">My Mexico Plan</span>? Bring it to the
+            call — we'll refine your city choice, residency path, budget, and next actions together.
+          </p>
+          <Link
+            to="/my-mexico-plan"
+            className="flex-shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-700 underline decoration-zinc-300 underline-offset-4 transition hover:text-zinc-950 hover:decoration-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
+          >
+            Open My Mexico Plan
+          </Link>
         </div>
       </section>
 
@@ -113,6 +133,38 @@ export default function MexicoFitCallPage() {
         </div>
       </section>
 
+      <section className="bg-white px-6 py-20 md:px-20 md:py-28">
+        <div className="mx-auto max-w-6xl">
+          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
+            Who You're Talking To
+          </p>
+          <h2 className="mb-12 max-w-4xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-6xl">
+            Not a sales team. One person who has already done this.
+          </h2>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="border border-zinc-200 bg-[#f6f1e8] p-8">
+              <img
+                src={FOUNDER.photo}
+                alt={FOUNDER.name}
+                className="h-16 w-16 rounded-full object-cover"
+              />
+              <p className="mt-5 text-lg leading-relaxed text-zinc-700">"{FOUNDER.quote}"</p>
+              <p className="mt-5 text-xs uppercase tracking-[0.25em] text-zinc-500">
+                {FOUNDER.name} &middot; {FOUNDER.role}
+              </p>
+            </div>
+
+            <div className="border border-zinc-200 bg-[#f6f1e8] p-8">
+              <p className="text-lg leading-relaxed text-zinc-700">"{TESTIMONIALS[0].quote}"</p>
+              <p className="mt-5 text-xs uppercase tracking-[0.25em] text-zinc-500">
+                {TESTIMONIALS[0].name}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#0b0b0a] px-6 py-24 text-center text-white md:py-32">
         <div className="mx-auto max-w-4xl">
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
@@ -128,14 +180,33 @@ export default function MexicoFitCallPage() {
             you understand whether Mexico fits the life you are trying to build.
           </p>
 
+          <p className="mx-auto mt-6 text-xs uppercase tracking-[0.25em] text-white/40">
+            {FIT_CALL_PRICE} &middot; One Private Call
+          </p>
+
           <a
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-10 inline-block bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f]"
+            className="mt-8 inline-block bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f]"
           >
             Book Your Mexico Fit Call
           </a>
+
+          <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-white/40">
+            Want more than a single call? The Relocation Roadmap and Guided Landing options go
+            further —{" "}
+            <a href="/#work" className="underline underline-offset-4 hover:text-white">
+              see what's available
+            </a>
+            .
+          </p>
+
+          <p className="mx-auto mt-10 max-w-2xl text-xs leading-relaxed text-white/30">
+            Path To Mexico provides relocation guidance, local insight, and trusted
+            introductions. We are not a law firm, immigration agency, tax advisor, financial
+            advisor, or real estate brokerage.
+          </p>
         </div>
       </section>
     </main>

@@ -33,3 +33,15 @@ body,
 img {
   max-width: 100%;
 }
+
+/* My Mexico Plan — print page margins. The closed-"Coming Up"-disclosure
+   problem (its content shouldn't stay hidden on a printed page) is handled
+   in JS, not CSS — see MyMexicoPlanPage.js's beforeprint/afterprint
+   handling. A CSS-only override of `<details>`'s closed-state hiding isn't
+   reliable across browsers, since it's implemented via internal shadow DOM
+   rather than a plain overridable `display` rule on light-DOM children. */
+@media print {
+  @page {
+    margin: 0.75in;
+  }
+}

@@ -10,6 +10,10 @@ export default function DeveloperDashboardPage() {
         ["📞 Mexico Fit Call", "/mexico-fit-call"],
         ["📄 Free Guide", "/free-guide"],
         ["💼 Work With Path To Mexico", "/work-with-path-to-mexico"],
+        ["🧭 My Mexico Blueprint", "/my-mexico-blueprint"],
+        ["🌎 Your Mexico", "/your-mexico"],
+        ["🗓️ My Mexico Plan", "/my-mexico-plan"],
+        ["📊 Client Dashboard (no auth yet)", "/dashboard"],
       ],
     },
     {

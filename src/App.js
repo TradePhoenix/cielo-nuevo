@@ -29,6 +29,13 @@ import BankingInMexicoAsAForeignerPage from "./pages/BankingInMexicoAsAForeigner
 import BringingPetsToMexicoPage from "./pages/BringingPetsToMexicoPage";
 import RentingVsBuyingInMexicoPage from "./pages/RentingVsBuyingInMexicoPage";
 import DeveloperDashboardPage from "./pages/DeveloperDashboardPage";
+import MyMexicoBlueprintPage from "./pages/MyMexicoBlueprintPage";
+import YourMexicoPage from "./features/yourMexico/pages/YourMexicoPage";
+import ComparePage from "./features/yourMexico/pages/ComparePage";
+import CityDetailPage from "./features/yourMexico/pages/CityDetailPage";
+import MyMexicoPlanSetupPage from "./features/myMexicoPlan/pages/MyMexicoPlanSetupPage";
+import MyMexicoPlanPage from "./features/myMexicoPlan/pages/MyMexicoPlanPage";
+import DashboardPage from "./features/dashboard/pages/DashboardPage";
 
 function App() {
   return (
@@ -65,6 +72,13 @@ function App() {
         <Route path="/mexico-fit-call" element={<MexicoFitCallPage />} />
         <Route path="/work-with-path-to-mexico" element={<WorkWithPathToMexicoPage />} />
         <Route path="/free-guide" element={<FreeGuidePage />} />
+        <Route path="/my-mexico-blueprint" element={<MyMexicoBlueprintPage />} />
+        <Route path="/your-mexico" element={<YourMexicoPage />} />
+        <Route path="/your-mexico/compare" element={<ComparePage />} />
+        <Route path="/your-mexico/:cityId" element={<CityDetailPage />} />
+        <Route path="/my-mexico-plan" element={<MyMexicoPlanSetupPage />} />
+        <Route path="/my-mexico-plan/:cityId" element={<MyMexicoPlanPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
 
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service" element={<TermsOfServicePage />} />

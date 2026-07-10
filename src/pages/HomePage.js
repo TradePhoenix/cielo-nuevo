@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
 
+const heroFadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const heroStagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.16, delayChildren: 0.1 } },
+};
+
 const content = {
   en: {
-    nav: ["Home", "Relocation", "Services", "Guides", "About", "FAQ", "Contact"],
+    nav: ["Home", "Blueprint", "Relocation", "Services", "Guides", "About", "FAQ", "Contact"],
     heroLocation: "Riviera Maya • Mexico",
     heroSignal: "[ CIELO NUEVO ]",
     heroTitle: "Move to Mexico with confidence.",
@@ -37,7 +47,7 @@ const content = {
         "$99 USD",
         "A private one-on-one conversation designed to answer your questions, provide honest insight, and help you understand what moving to Mexico could realistically look like for you.",
         "Perfect for people still exploring costs, residency options, neighborhoods, lifestyle questions, and next steps.",
-        "Book Mexico Fit Call",
+        "Book A Mexico Fit Call",
         "/mexico-fit-call"
       ],
       [
@@ -159,7 +169,7 @@ const content = {
   },
 
   es: {
-    nav: ["Inicio", "Reubicación", "Servicios", "Guías", "Historia", "FAQ", "Contacto"],
+    nav: ["Inicio", "Blueprint", "Reubicación", "Servicios", "Guías", "Historia", "FAQ", "Contacto"],
     heroLocation: "Riviera Maya • México",
     heroSignal: "[ CIELO NUEVO ]",
     heroTitle: "Múdate a México con más claridad.",
@@ -363,59 +373,220 @@ function SectionHeader({ label, title, text, light = false }) {
 
 function HomePage() {
   const [lang, setLang] = useState("en");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [nearContact, setNearContact] = useState(false);
   const t = content[lang];
 
-  const navLinks = ["#home", "#relocation", "#services", "/guides", "#about", "#faq", "#contact"];
+  const navLinks = ["#home", "/my-mexico-blueprint", "#relocation", "#services", "/guides", "#about", "#faq", "#contact"];
+
+  const heroRef = useRef(null);
+  const contactRef = useRef(null);
+
+  useEffect(() => {
+    const node = heroRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setScrolled(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const node = contactRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setNearContact(entry.isIntersecting),
+      { rootMargin: "0px 0px -20% 0px", threshold: 0 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f6f1e8] text-zinc-950 scroll-smooth">
-      <section id="home" className="relative min-h-[100svh] overflow-hidden text-white">
+      <section id="home" ref={heroRef} className="relative min-h-[100svh] overflow-hidden text-white">
         <div className="absolute inset-0">
           <img src="/hero.jpg" alt="Riviera Maya relocation lifestyle" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-black/50"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-[#f6f1e8]"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-black/10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#f6f1e8]"></div>
         </div>
 
-        <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/15 bg-black/35 px-4 py-4 backdrop-blur-md md:px-10">
-          <a href="#home" className="text-[10px] font-semibold uppercase tracking-[0.35em] text-white/90 sm:text-xs">
+        <nav
+          className={`fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b px-4 py-4 backdrop-blur-md transition-colors duration-300 md:px-10 ${
+            scrolled ? "border-zinc-200 bg-[#f6f1e8]/90" : "border-white/15 bg-black/35"
+          }`}
+        >
+          <a
+            href="#home"
+            className={`text-[10px] font-semibold uppercase tracking-[0.35em] transition-colors duration-300 sm:text-xs ${
+              scrolled ? "text-zinc-950" : "text-white/90"
+            }`}
+          >
             Path To Mexico
           </a>
 
-          <div className="hidden gap-8 text-[10px] uppercase tracking-[0.25em] text-white/65 lg:flex">
+          <div
+            className={`hidden gap-8 text-[10px] uppercase tracking-[0.25em] transition-colors duration-300 lg:flex ${
+              scrolled ? "text-zinc-500" : "text-white/65"
+            }`}
+          >
             {t.nav.map((item, index) => (
-              <a key={item} className="transition hover:text-white" href={navLinks[index]}>
+              <a
+                key={item}
+                href={navLinks[index]}
+                className={`transition duration-300 ${scrolled ? "hover:text-zinc-950" : "hover:text-white"}`}
+              >
                 {item}
               </a>
             ))}
           </div>
 
-          <button onClick={() => setLang(lang === "en" ? "es" : "en")} className="border border-white/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white hover:text-black">
-            {lang === "en" ? "ES" : "EN"}
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setLang(lang === "en" ? "es" : "en")}
+              className={`border px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition duration-300 ${
+                scrolled
+                  ? "border-zinc-300 text-zinc-700 hover:bg-zinc-950 hover:text-white"
+                  : "border-white/25 text-white hover:bg-white hover:text-black"
+              }`}
+            >
+              {lang === "en" ? "ES" : "EN"}
+            </button>
+
+            <button
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open menu"
+              aria-expanded={menuOpen}
+              className={`text-[10px] font-semibold uppercase tracking-[0.3em] transition-colors duration-300 lg:hidden ${
+                scrolled ? "text-zinc-950" : "text-white"
+              }`}
+            >
+              Menu
+            </button>
+          </div>
         </nav>
 
-        <div className="relative z-10 flex min-h-[100svh] items-center px-5 pb-20 pt-28 md:px-16">
-          <motion.div initial={{ opacity: 0, y: 45 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="max-w-5xl">
-            <p className="mb-5 text-xs uppercase tracking-[0.45em] text-white/60">{t.heroLocation}</p>
-            <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/55">{t.heroSignal}</p>
+        <div
+          className={`fixed inset-0 z-[60] flex flex-col bg-[#0b0b0a] transition-all duration-500 ease-out lg:hidden ${
+            menuOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-3 opacity-0 pointer-events-none"
+          }`}
+          aria-hidden={!menuOpen}
+        >
+          <div className="flex items-center justify-between px-4 py-4 md:px-10">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.35em] text-white/90 sm:text-xs">
+              Path To Mexico
+            </span>
 
-            <h1 className="max-w-5xl text-5xl font-light leading-[0.95] tracking-[-0.06em] sm:text-7xl md:text-8xl lg:text-9xl">
+            <button
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+              tabIndex={menuOpen ? 0 : -1}
+              className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white transition hover:text-white/70"
+            >
+              Close
+            </button>
+          </div>
+
+          <div className="flex flex-1 flex-col justify-center gap-7 px-8 pb-20">
+            {t.nav.map((item, index) => (
+              <a
+                key={item}
+                href={navLinks[index]}
+                onClick={() => setMenuOpen(false)}
+                tabIndex={menuOpen ? 0 : -1}
+                className="group flex items-baseline gap-5"
+              >
+                <span className="text-xs uppercase tracking-[0.3em] text-white/35">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-['Cormorant_Garamond'] text-4xl font-light leading-none tracking-[-0.03em] text-white/90 transition group-hover:text-white sm:text-5xl">
+                  {item}
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative z-10 flex min-h-[100svh] items-center px-6 pb-24 pt-32 md:px-16 md:pb-28 md:pt-28">
+          <motion.div initial="hidden" animate="show" variants={heroStagger} className="max-w-5xl">
+            <motion.p
+              variants={heroFadeUp}
+              className="mb-8 flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.4em] text-white/55 sm:mb-10"
+            >
+              <span>{t.heroLocation}</span>
+              <span className="h-px w-8 bg-white/30" aria-hidden="true"></span>
+              <span className="text-white/40">{t.heroSignal}</span>
+            </motion.p>
+
+            <motion.h1
+              variants={heroFadeUp}
+              className="max-w-5xl text-[2.75rem] font-light leading-[1.04] tracking-[-0.03em] sm:text-7xl sm:leading-[0.97] sm:tracking-[-0.05em] md:text-8xl lg:text-9xl lg:tracking-[-0.06em]"
+            >
               {t.heroTitle}
-            </h1>
+            </motion.h1>
 
-            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
+            <motion.p
+              variants={heroFadeUp}
+              className="mt-7 max-w-xl text-base leading-relaxed text-white/70 sm:mt-9 sm:max-w-2xl sm:text-xl"
+            >
               {t.heroSubtext}
-            </p>
+            </motion.p>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <a href="/mexico-fit-call" className="bg-white px-8 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-zinc-950 hover:text-white">
+            <motion.div
+              variants={heroFadeUp}
+              className="mt-10 flex flex-col items-start gap-5 sm:mt-14 sm:flex-row sm:items-center sm:gap-8"
+            >
+              <a
+                href="/mexico-fit-call"
+                className="bg-white px-9 py-4 text-center text-xs font-semibold uppercase tracking-[0.22em] text-zinc-950 transition duration-300 hover:bg-[#d8a15f]"
+              >
                 {t.start}
               </a>
-              <a href="#relocation" className="border border-white/40 px-8 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-zinc-950">
+              <a
+                href="#relocation"
+                className="group inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-white/70 transition hover:text-white"
+              >
                 {t.explore}
+                <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </a>
-            </div>
+            </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      <section id="blueprint" className="bg-[#0b0b0a] px-6 py-20 text-center text-white md:py-28">
+        <div className="mx-auto max-w-3xl">
+          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
+            My Mexico Blueprint
+          </p>
+          <h2 className="mb-7 text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
+            See what your move to Mexico could actually look like.
+          </h2>
+          <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-white/60 sm:text-xl">
+            Answer 6 quick questions and get your personalized city matches, readiness score, and
+            30/60/90-day roadmap.
+          </p>
+          <a
+            href="/my-mexico-blueprint"
+            className="inline-block bg-white px-9 py-4 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-950 transition duration-300 hover:bg-[#d8a15f]"
+          >
+            Build My Mexico Blueprint
+          </a>
+          <p className="mt-6 text-xs uppercase tracking-[0.25em] text-white/40">
+            Free &middot; Takes About 2 Minutes
+          </p>
         </div>
       </section>
 
@@ -438,24 +609,49 @@ function HomePage() {
         <SectionHeader label={t.workLabel} title={`${t.workTitle1} ${t.workTitle2}`} text={t.workText} />
 
         <div className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-3">
-          {t.workOffers.map(([title, price, text, bestFor, cta, href]) => (
-            <motion.div key={title} whileHover={{ y: -6 }} className="flex min-h-[500px] flex-col justify-between bg-white p-7 transition hover:bg-[#f6f1e8]">
-              <div>
-                <h3 className="mb-3 text-3xl font-light tracking-[-0.04em]">{title}</h3>
-                <p className="mb-6 text-sm uppercase tracking-[0.25em] text-zinc-500">{price}</p>
-                <p className="mb-7 leading-relaxed text-zinc-600">{text}</p>
+          {t.workOffers.map(([title, price, text, bestFor, cta, href], index) => {
+            const isPrimary = index === 0;
+            return (
+              <motion.div
+                key={title}
+                whileHover={{ y: -6 }}
+                className={`flex min-h-[500px] flex-col justify-between p-7 transition ${
+                  isPrimary ? "bg-zinc-950 text-white hover:bg-zinc-900" : "bg-white text-zinc-950 hover:bg-[#f6f1e8]"
+                }`}
+              >
+                <div>
+                  {isPrimary && (
+                    <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/50">
+                      Start Here
+                    </p>
+                  )}
+                  <h3 className="mb-3 text-3xl font-light tracking-[-0.04em]">{title}</h3>
+                  <p className={`mb-6 text-sm uppercase tracking-[0.25em] ${isPrimary ? "text-white/50" : "text-zinc-500"}`}>
+                    {price}
+                  </p>
+                  <p className={`mb-7 leading-relaxed ${isPrimary ? "text-white/70" : "text-zinc-600"}`}>{text}</p>
 
-                <div className="border-t border-zinc-300 pt-6">
-                  <p className="mb-3 text-[10px] uppercase tracking-[0.25em] text-zinc-500">{t.bestFor}</p>
-                  <p className="leading-relaxed text-zinc-600">{bestFor}</p>
+                  <div className={`border-t pt-6 ${isPrimary ? "border-white/20" : "border-zinc-300"}`}>
+                    <p className={`mb-3 text-[10px] uppercase tracking-[0.25em] ${isPrimary ? "text-white/50" : "text-zinc-500"}`}>
+                      {t.bestFor}
+                    </p>
+                    <p className={`leading-relaxed ${isPrimary ? "text-white/70" : "text-zinc-600"}`}>{bestFor}</p>
+                  </div>
                 </div>
-              </div>
 
-              <a href={href} className="mt-9 inline-block border border-zinc-950 px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-zinc-950 hover:text-white">
-                {cta}
-              </a>
-            </motion.div>
-          ))}
+                <a
+                  href={href}
+                  className={`mt-9 inline-block px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] transition ${
+                    isPrimary
+                      ? "bg-white text-zinc-950 hover:bg-[#d8a15f]"
+                      : "border border-zinc-950 text-zinc-950 hover:bg-zinc-950 hover:text-white"
+                  }`}
+                >
+                  {cta}
+                </a>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
@@ -584,7 +780,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="bg-[#0b0b0a] px-6 py-20 text-center text-white md:py-28">
+      <section id="contact" ref={contactRef} className="bg-[#0b0b0a] px-6 py-20 text-center text-white md:py-28">
         <div className="mx-auto max-w-4xl">
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">{t.contactLabel}</p>
           <h2 className="mb-7 text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.contactTitle}</h2>
@@ -609,7 +805,11 @@ function HomePage() {
         href="https://wa.me/16043154625?text=Hi%20Kalen,%20I%20found%20Path%20To%20Mexico%20and%20would%20love%20to%20learn%20more%20about%20moving%20to%20Mexico."
         target="_blank"
         rel="noreferrer"
-        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-950 text-2xl text-white shadow-2xl transition hover:scale-110"
+        aria-hidden={nearContact || menuOpen}
+        tabIndex={nearContact || menuOpen ? -1 : 0}
+        className={`fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-950 text-2xl text-white shadow-2xl transition-all duration-300 ${
+          nearContact || menuOpen ? "pointer-events-none scale-75 opacity-0" : "opacity-100 hover:scale-110"
+        }`}
       >
         💬
       </a>
