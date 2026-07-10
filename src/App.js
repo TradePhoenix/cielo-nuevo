@@ -36,6 +36,7 @@ import CityDetailPage from "./features/yourMexico/pages/CityDetailPage";
 import MyMexicoPlanSetupPage from "./features/myMexicoPlan/pages/MyMexicoPlanSetupPage";
 import MyMexicoPlanPage from "./features/myMexicoPlan/pages/MyMexicoPlanPage";
 import DashboardPage from "./features/dashboard/pages/DashboardPage";
+import DocumentVaultPage from "./features/documentVault/pages/DocumentVaultPage";
 
 function App() {
   return (
@@ -79,6 +80,7 @@ function App() {
         <Route path="/my-mexico-plan" element={<MyMexicoPlanSetupPage />} />
         <Route path="/my-mexico-plan/:cityId" element={<MyMexicoPlanPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard/documents" element={<DocumentVaultPage />} />
 
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service" element={<TermsOfServicePage />} />

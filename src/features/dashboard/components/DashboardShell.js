@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 // module grid as the real content below it. No sidebar — this is one page
 // of modules, not a multi-page app, so a full collapsing sidebar would be
 // complexity this doesn't need yet.
-export default function DashboardShell({ children }) {
+export default function DashboardShell({ children, backTo = "/", backLabel = "Back To Site" }) {
   return (
     <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
       <div className="border-b border-zinc-200 bg-white">
@@ -19,10 +19,10 @@ export default function DashboardShell({ children }) {
             Path To Mexico
           </Link>
           <Link
-            to="/"
+            to={backTo}
             className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 transition hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
           >
-            Back To Site
+            {backLabel}
           </Link>
         </div>
       </div>

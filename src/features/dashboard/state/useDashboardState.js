@@ -1,8 +1,8 @@
 // Client Dashboard — composes the Blueprint's answers, Your Mexico's
-// matches, and My Mexico Plan's saved progress (all read-only) into one
-// summary, and owns the dashboard's own local state: document checklist
-// completion and notes. Persistence mirrors the same versioned-localStorage
-// pattern used by Blueprint and My Mexico Plan.
+// matches, My Mexico Plan's saved progress, and the Document Vault's saved
+// documents (all read-only) into one summary, and owns the dashboard's own
+// remaining local state: notes. Persistence mirrors the same
+// versioned-localStorage pattern used everywhere else in the product.
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useBlueprintAnswers } from "../../blueprint/hooks/useBlueprintAnswers";
@@ -10,8 +10,9 @@ import { useTopMatches } from "../../yourMexico/hooks/useTopMatches";
 import { getCityById } from "../../yourMexico/logic/cityLookup";
 import { buildPlan, getCurrentChapterIndex } from "../../myMexicoPlan/logic/buildPlan";
 import { STORAGE_KEY as PLAN_STORAGE_KEY } from "../../myMexicoPlan/state/usePlanState";
+import { STORAGE_KEY as VAULT_STORAGE_KEY } from "../../documentVault/state/useDocumentVaultState";
+import { computeVaultSummary } from "../../documentVault/logic/documentFilters";
 import { buildDashboardSummary } from "../logic/buildDashboardSummary";
-import { DOCUMENT_CHECKLIST } from "../data/documentChecklist";
 
 const DASHBOARD_STORAGE_KEY = "pathToMexico.dashboard.v1";
 const DASHBOARD_STORAGE_VERSION = 1;
@@ -30,15 +31,27 @@ function readSavedPlan() {
   }
 }
 
+function readSavedDocuments() {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(VAULT_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return parsed.documents || [];
+  } catch (error) {
+    return [];
+  }
+}
+
 function loadDashboardState() {
-  const defaults = { documentState: {}, notes: [] };
+  const defaults = { notes: [] };
   if (typeof window === "undefined") return defaults;
   try {
     const raw = window.localStorage.getItem(DASHBOARD_STORAGE_KEY);
     if (!raw) return defaults;
     const parsed = JSON.parse(raw);
     if (parsed.version !== DASHBOARD_STORAGE_VERSION) return defaults;
-    return { documentState: parsed.documentState || {}, notes: parsed.notes || [] };
+    return { notes: parsed.notes || [] };
   } catch (error) {
     return defaults;
   }
@@ -48,17 +61,16 @@ export function useDashboardState() {
   const { hasCompletedBlueprint, answers, scores } = useBlueprintAnswers();
   const { matches, recommendation } = useTopMatches();
 
-  const [{ documentState, notes }, setLocalState] = useState(loadDashboardState);
+  const [{ notes }, setLocalState] = useState(loadDashboardState);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    window.localStorage.setItem(
-      DASHBOARD_STORAGE_KEY,
-      JSON.stringify({ version: DASHBOARD_STORAGE_VERSION, documentState, notes })
-    );
-  }, [documentState, notes]);
+    window.localStorage.setItem(DASHBOARD_STORAGE_KEY, JSON.stringify({ version: DASHBOARD_STORAGE_VERSION, notes }));
+  }, [notes]);
 
   const savedPlan = useMemo(() => readSavedPlan(), []);
+  const savedDocuments = useMemo(() => readSavedDocuments(), []);
+  const documentVaultSummary = useMemo(() => computeVaultSummary(savedDocuments), [savedDocuments]);
 
   // The full city record (budget, lifestyle, neighborhoods) — buildPlan's
   // own output only carries what task-selection needed (id/name/tags), so
@@ -86,13 +98,6 @@ export function useDashboardState() {
     });
   }, [hasCompletedBlueprint, recommendation, matches, plan, currentChapterIndex, savedPlan]);
 
-  const toggleDocument = useCallback((docId) => {
-    setLocalState((prev) => ({
-      ...prev,
-      documentState: { ...prev.documentState, [docId]: !prev.documentState[docId] },
-    }));
-  }, []);
-
   const addNote = useCallback((text) => {
     const trimmed = text.trim();
     if (!trimmed) return;
@@ -113,9 +118,7 @@ export function useDashboardState() {
     planCity,
     currentChapterIndex,
     summary,
-    documentChecklist: DOCUMENT_CHECKLIST,
-    documentState,
-    toggleDocument,
+    documentVaultSummary,
     notes,
     addNote,
     deleteNote,

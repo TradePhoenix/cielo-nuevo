@@ -12,7 +12,7 @@ import TimelineModule from "../components/TimelineModule";
 import BudgetTrackerModule from "../components/BudgetTrackerModule";
 import RecommendedGuidesModule from "../components/RecommendedGuidesModule";
 import ResidencyProgressModule from "../components/ResidencyProgressModule";
-import DocumentChecklistModule from "../components/DocumentChecklistModule";
+import DocumentVaultSummaryModule from "../components/DocumentVaultSummaryModule";
 import NotesModule from "../components/NotesModule";
 import ConnectorRecommendationsModule from "../components/ConnectorRecommendationsModule";
 import UpcomingAppointmentsModule from "../components/UpcomingAppointmentsModule";
@@ -29,9 +29,7 @@ export default function DashboardPage() {
     planCity,
     currentChapterIndex,
     summary,
-    documentChecklist,
-    documentState,
-    toggleDocument,
+    documentVaultSummary,
     notes,
     addNote,
     deleteNote,
@@ -74,8 +72,6 @@ export default function DashboardPage() {
     );
   }
 
-  const documentsChecked = documentChecklist.filter((doc) => documentState[doc.id]).length;
-
   return (
     <DashboardShell>
       <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Client Dashboard</p>
@@ -91,8 +87,8 @@ export default function DashboardPage() {
         <WelcomeModule readiness={summary.readiness} />
         <ProgressOverviewModule
           summary={summary}
-          documentsChecked={documentsChecked}
-          documentsTotal={documentChecklist.length}
+          documentsChecked={documentVaultSummary.complete}
+          documentsTotal={documentVaultSummary.total}
         />
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -123,11 +119,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <DocumentChecklistModule
-            documentChecklist={documentChecklist}
-            documentState={documentState}
-            onToggleDocument={toggleDocument}
-          />
+          <DocumentVaultSummaryModule documentVaultSummary={documentVaultSummary} />
           <NotesModule notes={notes} onAddNote={addNote} onDeleteNote={deleteNote} />
         </div>
 
