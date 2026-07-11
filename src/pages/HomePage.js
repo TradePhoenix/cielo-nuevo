@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
+import SEO from "../components/SEO";
 
 const heroFadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -382,6 +383,9 @@ function HomePage() {
 
   const heroRef = useRef(null);
   const contactRef = useRef(null);
+  const menuTriggerRef = useRef(null);
+  const firstMenuLinkRef = useRef(null);
+  const menuHasOpenedRef = useRef(false);
 
   useEffect(() => {
     const node = heroRef.current;
@@ -412,8 +416,43 @@ function HomePage() {
     };
   }, [menuOpen]);
 
+  // Move focus into the menu when it opens, and back to the trigger when it
+  // closes — skipped on initial mount (menuHasOpenedRef only becomes true
+  // once the menu has actually been opened at least once), so page load
+  // never steals focus onto the "Menu" button. The focus call is deferred to
+  // the next animation frame because the click that opened the menu also
+  // gives the trigger button native browser focus-on-click, which otherwise
+  // runs after this effect and steals focus straight back.
+  useEffect(() => {
+    if (menuOpen) {
+      menuHasOpenedRef.current = true;
+      const frame = requestAnimationFrame(() => firstMenuLinkRef.current?.focus());
+      return () => cancelAnimationFrame(frame);
+    } else if (menuHasOpenedRef.current) {
+      const frame = requestAnimationFrame(() => menuTriggerRef.current?.focus());
+      return () => cancelAnimationFrame(frame);
+    }
+  }, [menuOpen]);
+
+  // Escape closes the menu — only listens while it's actually open.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f6f1e8] text-zinc-950 scroll-smooth">
+      <SEO
+        title="Path To Mexico | A Different Rhythm Of Life"
+        description="Relocation guidance, trusted local connections, and lifestyle support for people considering a new life in Mexico."
+        path="/"
+      />
       <section id="home" ref={heroRef} className="relative min-h-[100svh] overflow-hidden text-white">
         <div className="absolute inset-0">
           <img src="/hero.jpg" alt="Riviera Maya relocation lifestyle" className="h-full w-full object-cover" />
@@ -464,9 +503,12 @@ function HomePage() {
             </button>
 
             <button
+              ref={menuTriggerRef}
               onClick={() => setMenuOpen(true)}
+              onMouseDown={(event) => event.preventDefault()}
               aria-label="Open menu"
               aria-expanded={menuOpen}
+              aria-haspopup="dialog"
               className={`text-[10px] font-semibold uppercase tracking-[0.3em] transition-colors duration-300 lg:hidden ${
                 scrolled ? "text-zinc-950" : "text-white"
               }`}
@@ -478,8 +520,11 @@ function HomePage() {
 
         <div
           className={`fixed inset-0 z-[60] flex flex-col bg-[#0b0b0a] transition-all duration-500 ease-out lg:hidden ${
-            menuOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-3 opacity-0 pointer-events-none"
+            menuOpen ? "translate-y-0 opacity-100" : "-translate-y-3 opacity-0 pointer-events-none"
           }`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
           aria-hidden={!menuOpen}
         >
           <div className="flex items-center justify-between px-4 py-4 md:px-10">
@@ -489,6 +534,7 @@ function HomePage() {
 
             <button
               onClick={() => setMenuOpen(false)}
+              onMouseDown={(event) => event.preventDefault()}
               aria-label="Close menu"
               tabIndex={menuOpen ? 0 : -1}
               className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white transition hover:text-white/70"
@@ -501,6 +547,7 @@ function HomePage() {
             {t.nav.map((item, index) => (
               <a
                 key={item}
+                ref={index === 0 ? firstMenuLinkRef : null}
                 href={navLinks[index]}
                 onClick={() => setMenuOpen(false)}
                 tabIndex={menuOpen ? 0 : -1}
