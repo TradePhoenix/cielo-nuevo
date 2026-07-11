@@ -82,12 +82,20 @@ function ArticleLayout({
               through trusted local resources and honest on-the-ground insight.
             </p>
 
-            <a
-              href="/#contact"
-              className="inline-block border border-zinc-950 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-zinc-950 hover:text-white"
-            >
-              Start The Conversation
-            </a>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link
+                to="/my-mexico-blueprint"
+                className="inline-block bg-zinc-950 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#d8a15f]"
+              >
+                Build My Mexico Blueprint
+              </Link>
+              <Link
+                to="/mexico-fit-call"
+                className="inline-block border border-zinc-950 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-zinc-950 hover:text-white"
+              >
+                Book A Mexico Fit Call
+              </Link>
+            </div>
           </div>
 
         </div>

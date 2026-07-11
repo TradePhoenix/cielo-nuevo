@@ -174,6 +174,7 @@ const content = {
     ctaText:
       "The guides are a strong starting point. A Mexico Fit Call helps you apply the information to your real timeline, budget, lifestyle, and relocation questions.",
     ctaButton: "Book A Mexico Fit Call",
+    ctaButtonSecondary: "Build My Mexico Blueprint",
     footerLine: "A different rhythm of life.",
     footer: "Playa del Carmen • Tulum • Riviera Maya • Mexico",
   },
@@ -197,6 +198,7 @@ const content = {
     ctaText:
       "Las guías son un buen primer paso. Una Mexico Fit Call te ayuda a aplicar la información a tu tiempo, presupuesto, estilo de vida y preguntas reales.",
     ctaButton: "Reservar Llamada",
+    ctaButtonSecondary: "Build My Mexico Blueprint",
     footerLine: "Un ritmo de vida diferente.",
     footer: "Playa del Carmen • Tulum • Riviera Maya • México",
   },
@@ -331,12 +333,20 @@ function GuidesPage() {
             {t.ctaText}
           </p>
 
-          <Link
-            to="/mexico-fit-call"
-            className="mt-10 inline-block bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f]"
-          >
-            {t.ctaButton}
-          </Link>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              to="/my-mexico-blueprint"
+              className="inline-block bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f]"
+            >
+              {t.ctaButtonSecondary}
+            </Link>
+            <Link
+              to="/mexico-fit-call"
+              className="inline-block border border-white/30 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-zinc-950"
+            >
+              {t.ctaButton}
+            </Link>
+          </div>
         </div>
       </section>
 
