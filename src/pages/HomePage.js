@@ -753,7 +753,7 @@ function HomePage() {
             <p className="mt-7 max-w-md text-lg leading-relaxed text-zinc-600 sm:text-xl">{t.founderIntro}</p>
 
             <div className="mt-10 max-w-sm overflow-hidden border border-zinc-200 bg-white p-3 shadow-sm">
-              <img src="/kalen.jpg" alt="Kalen Enns, founder of Path To Mexico" className="aspect-[4/5] h-full w-full object-cover" />
+              <img src="/kalen.jpg" alt="Kalen Enns, founder of Path To Mexico" loading="lazy" className="aspect-[4/5] h-full w-full object-cover" />
             </div>
           </div>
 

@@ -153,6 +153,7 @@ export default function MexicoFitCallPage() {
               <img
                 src={FOUNDER.photo}
                 alt={FOUNDER.name}
+                loading="lazy"
                 className="h-16 w-16 rounded-full object-cover"
               />
               <p className="mt-5 text-lg leading-relaxed text-zinc-700">"{FOUNDER.quote}"</p>

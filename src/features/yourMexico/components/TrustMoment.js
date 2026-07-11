@@ -15,6 +15,7 @@ export default function TrustMoment() {
           <img
             src={FOUNDER.photo}
             alt={FOUNDER.name}
+            loading="lazy"
             className="h-14 w-14 rounded-full object-cover"
           />
           <p className="mt-4 text-lg leading-relaxed text-zinc-700">"{FOUNDER.quote}"</p>
