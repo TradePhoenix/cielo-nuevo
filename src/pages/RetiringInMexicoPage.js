@@ -5,7 +5,7 @@ function RetiringInMexicoPage() {
   return (
     <ArticleLayout
       title="Retiring in Mexico"
-      subtitle="A practical guide for retirees considering Mexico, including healthcare, costs, lifestyle, residency, and choosing the right location."
+      description="A practical guide for retirees considering Mexico, including healthcare, costs, lifestyle, residency, and choosing the right location."
       category="2026 Guide"
     >
       <Section title="Why People Retire In Mexico">

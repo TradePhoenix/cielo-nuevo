@@ -5,7 +5,7 @@ function MovingToRivieraMayaPage() {
   return (
     <ArticleLayout
       title="Moving to Riviera Maya"
-      subtitle="A practical guide to moving to the Riviera Maya, including Playa del Carmen, Tulum, Cancún, Puerto Morelos, healthcare, lifestyle differences, and local support."
+      description="A practical guide to moving to the Riviera Maya, including Playa del Carmen, Tulum, Cancún, Puerto Morelos, healthcare, lifestyle differences, and local support."
       category="2026 Guide"
     >
       <Section title="Moving To Riviera Maya">

@@ -5,7 +5,7 @@ function RentingVsBuyingInMexicoPage() {
   return (
     <ArticleLayout
       title="Renting vs Buying Property in Mexico"
-      subtitle="A practical guide to renting, buying, deposits, contracts, ownership questions, and how to think clearly before committing to property in Mexico."
+      description="A practical guide to renting, buying, deposits, contracts, ownership questions, and how to think clearly before committing to property in Mexico."
       category="2026 Guide"
     >
       <Section title="Overview">

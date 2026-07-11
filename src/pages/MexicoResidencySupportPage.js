@@ -5,7 +5,7 @@ function MexicoResidencySupportPage() {
   return (
     <ArticleLayout
       title="Mexico Residency Support"
-      subtitle="Understanding temporary residency, permanent residency, financial requirements, and the process of legally living in Mexico."
+      description="Understanding temporary residency, permanent residency, financial requirements, and the process of legally living in Mexico."
       category="2026 Guide"
     >
       <Section title="Understanding Mexico Residency">

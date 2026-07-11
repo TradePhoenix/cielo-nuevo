@@ -5,7 +5,7 @@ function CanadaToMexicoRelocationPage() {
   return (
     <ArticleLayout
       title="Canada to Mexico Relocation"
-      subtitle="A practical guide for Canadians moving to Mexico, including residency, healthcare, banking, taxes, lifestyle, and what to expect before making the move."
+      description="A practical guide for Canadians moving to Mexico, including residency, healthcare, banking, taxes, lifestyle, and what to expect before making the move."
       category="2026 Guide"
     >
       <Section title="Why Canadians Are Moving To Mexico">

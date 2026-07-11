@@ -5,7 +5,7 @@ function SafetyInMexicoPage() {
   return (
     <ArticleLayout
       title="Safety in Mexico"
-      subtitle="A practical guide to safety, neighborhoods, transportation, scams, and everyday awareness for foreigners living in Mexico."
+      description="A practical guide to safety, neighborhoods, transportation, scams, and everyday awareness for foreigners living in Mexico."
       category="2026 Guide"
     >
       <Section title="Overview">

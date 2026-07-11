@@ -5,7 +5,7 @@ function MexicoRelocationChecklistPage() {
   return (
     <ArticleLayout
       title="Mexico Relocation Checklist"
-      subtitle="A practical relocation checklist for moving to Mexico, including documents, residency, housing, banking, healthcare, insurance, pets, transportation, and first-month setup."
+      description="A practical relocation checklist for moving to Mexico, including documents, residency, housing, banking, healthcare, insurance, pets, transportation, and first-month setup."
       category="2026 Guide"
     >
       <Section title="Before You Move">

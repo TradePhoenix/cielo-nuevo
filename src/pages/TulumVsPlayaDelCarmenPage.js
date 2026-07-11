@@ -5,7 +5,7 @@ function TulumVsPlayaDelCarmenPage() {
   return (
     <ArticleLayout
       title="Tulum vs Playa del Carmen"
-      subtitle="A practical comparison of cost, lifestyle, infrastructure, transportation, community, beaches, and long-term living."
+      description="A practical comparison of cost, lifestyle, infrastructure, transportation, community, beaches, and long-term living."
       category="2026 Guide"
     >
       <Section title="Overview">

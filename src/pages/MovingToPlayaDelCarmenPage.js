@@ -5,7 +5,7 @@ function MovingToPlayaDelCarmenPage() {
   return (
     <ArticleLayout
       title="Moving to Playa del Carmen"
-      subtitle="A practical relocation guide for moving to Playa del Carmen, including neighborhoods, cost of living, rentals, residency, healthcare, lifestyle, and trusted local support."
+      description="A practical relocation guide for moving to Playa del Carmen, including neighborhoods, cost of living, rentals, residency, healthcare, lifestyle, and trusted local support."
       category="2026 Guide"
     >
       <Section title="Why So Many People Are Moving To Playa Del Carmen">

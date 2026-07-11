@@ -5,7 +5,7 @@ function BringingPetsToMexicoPage() {
   return (
     <ArticleLayout
       title="Bringing Pets to Mexico"
-      subtitle="A practical guide to bringing dogs and cats to Mexico, including documents, airline planning, rentals, vet care, and settling in."
+      description="A practical guide to bringing dogs and cats to Mexico, including documents, airline planning, rentals, vet care, and settling in."
       category="2026 Guide"
     >
       <Section title="Overview">

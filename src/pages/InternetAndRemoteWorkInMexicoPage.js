@@ -5,7 +5,7 @@ function InternetAndRemoteWorkInMexicoPage() {
   return (
     <ArticleLayout
       title="Internet and Remote Work in Mexico"
-      subtitle="A practical guide to internet reliability, mobile data, coworking spaces, backup plans, and working online from Mexico."
+      description="A practical guide to internet reliability, mobile data, coworking spaces, backup plans, and working online from Mexico."
       category="2026 Guide"
     >
       <Section title="Overview">

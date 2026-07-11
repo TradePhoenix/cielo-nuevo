@@ -5,7 +5,7 @@ function UsToMexicoRelocationPage() {
   return (
     <ArticleLayout
       title="US to Mexico Relocation"
-      subtitle="A practical guide for Americans moving to Mexico, including healthcare, residency, taxes, banking, lifestyle, and building a new life abroad."
+      description="A practical guide for Americans moving to Mexico, including healthcare, residency, taxes, banking, lifestyle, and building a new life abroad."
       category="2026 Guide"
     >
       <Section title="Why Americans Are Moving To Mexico">

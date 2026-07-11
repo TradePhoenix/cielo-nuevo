@@ -5,7 +5,7 @@ function HowMuchMoneyDoYouNeedToMoveToMexicoPage() {
   return (
     <ArticleLayout
       title="How Much Money Do You Need to Move to Mexico?"
-      subtitle="A practical guide to startup costs, rent, deposits, monthly budgets, emergency funds, healthcare, and planning your move."
+      description="A practical guide to startup costs, rent, deposits, monthly budgets, emergency funds, healthcare, and planning your move."
       category="2026 Guide"
     >
       <Section title="Overview">

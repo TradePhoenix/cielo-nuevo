@@ -5,7 +5,7 @@ function RemoteWorkersMovingToMexicoPage() {
   return (
     <ArticleLayout
       title="Remote Workers Moving to Mexico"
-      subtitle="A guide for digital nomads and remote workers moving to Mexico, including internet, lifestyle, coworking, visas, and location choices."
+      description="A guide for digital nomads and remote workers moving to Mexico, including internet, lifestyle, coworking, visas, and location choices."
       category="2026 Guide"
     >
       <Section title="Why Remote Workers Are Choosing Mexico">

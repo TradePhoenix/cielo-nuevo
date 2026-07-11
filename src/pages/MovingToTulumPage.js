@@ -5,7 +5,7 @@ function MovingToTulumPage() {
   return (
     <ArticleLayout
       title="Moving to Tulum"
-      subtitle="A practical relocation guide for moving to Tulum, including lifestyle, cost of living, transportation, rentals, wellness culture, and what to expect before settling there."
+      description="A practical relocation guide for moving to Tulum, including lifestyle, cost of living, transportation, rentals, wellness culture, and what to expect before settling there."
       category="2026 Guide"
     >
       <Section title="Moving To Tulum">

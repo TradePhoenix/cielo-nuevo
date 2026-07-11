@@ -5,7 +5,7 @@ function BankingInMexicoAsAForeignerPage() {
   return (
     <ArticleLayout
       title="Banking in Mexico as a Foreigner"
-      subtitle="A practical guide to bank accounts, cards, transfers, fees, and setting up your financial life in Mexico."
+      description="A practical guide to bank accounts, cards, transfers, fees, and setting up your financial life in Mexico."
       category="2026 Guide"
     >
       <Section title="Overview">

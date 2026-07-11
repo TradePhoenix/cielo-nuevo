@@ -5,7 +5,7 @@ function GroceryCostsInMexicoPage() {
   return (
     <ArticleLayout
       title="Grocery Costs in Mexico"
-      subtitle="A practical guide to supermarkets, markets, imported foods, and realistic food budgets in Mexico."
+      description="A practical guide to supermarkets, markets, imported foods, and realistic food budgets in Mexico."
       category="2026 Guide"
     >
       <Section title="Overview">
