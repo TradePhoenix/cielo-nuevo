@@ -4,6 +4,7 @@ export default function SectionHeader({
   label,
   title,
   text,
+  children,
   light = false,
   center = false,
   className = "",
@@ -44,6 +45,16 @@ export default function SectionHeader({
         >
           {text}
         </p>
+      )}
+
+      {children && (
+        <div
+          className={`mt-8 space-y-5 text-lg leading-relaxed ${
+            light ? "text-white/70" : "text-zinc-700"
+          }`}
+        >
+          {children}
+        </div>
       )}
     </motion.div>
   );
