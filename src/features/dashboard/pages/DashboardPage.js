@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import DashboardShell from "../components/DashboardShell";
+import SEO from "../../../components/SEO";
 import WelcomeModule from "../components/WelcomeModule";
 import ProgressOverviewModule from "../components/ProgressOverviewModule";
 import PlanProgressModule from "../components/PlanProgressModule";
@@ -50,6 +51,7 @@ export default function DashboardPage() {
   if (!hasCompletedBlueprint || !summary) {
     return (
       <DashboardShell>
+        <SEO title="Client Dashboard" description="Everything about your move, in one place." path="/dashboard" />
         <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Client Dashboard</p>
         <h1
           ref={headingRef}
@@ -74,6 +76,7 @@ export default function DashboardPage() {
 
   return (
     <DashboardShell>
+      <SEO title="Client Dashboard" description="Everything about your move, in one place." path="/dashboard" />
       <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Client Dashboard</p>
       <h1
         ref={headingRef}

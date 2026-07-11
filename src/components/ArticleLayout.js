@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import SEO from "./SEO";
 
 function ArticleLayout({
   category,
@@ -7,8 +8,11 @@ function ArticleLayout({
   description,
   children
 }) {
+  const location = useLocation();
+
   return (
     <main className="min-h-screen bg-[#f4f0e8] text-zinc-950">
+      <SEO title={title} description={description} path={location.pathname} />
 
       <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/50 px-4 py-4 backdrop-blur-md md:px-10">
         <Link

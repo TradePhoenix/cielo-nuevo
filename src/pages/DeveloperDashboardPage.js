@@ -1,4 +1,5 @@
 import React from "react";
+import SEO from "../components/SEO";
 
 export default function DeveloperDashboardPage() {
   const sections = [
@@ -54,6 +55,7 @@ export default function DeveloperDashboardPage() {
 
   return (
     <main className="min-h-screen bg-[#f6f1e8] px-6 py-20 text-zinc-950 md:px-20">
+      <SEO title="Developer Dashboard" path="/developer-dashboard" />
       <div className="mx-auto max-w-7xl">
 
         <p className="mb-5 text-xs uppercase tracking-[0.35em] text-zinc-500">

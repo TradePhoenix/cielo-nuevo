@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import SEO from "../components/SEO";
 
 function Section({ title, children }) {
   return (
@@ -18,6 +19,11 @@ function Section({ title, children }) {
 function TemporaryResidencyPage() {
   return (
     <main className="min-h-screen bg-[#f4f0e8] text-zinc-950">
+      <SEO
+        title="Temporary Residency In Mexico Explained"
+        description="A practical guide for Canadians, Americans, retirees, remote workers, and families exploring life in Mexico."
+        path="/guides/temporary-residency-mexico"
+      />
 
       <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/50 px-4 py-4 backdrop-blur-md md:px-10">
         <Link to="/" className="text-[10px] font-semibold uppercase tracking-[0.35em] text-white/80">

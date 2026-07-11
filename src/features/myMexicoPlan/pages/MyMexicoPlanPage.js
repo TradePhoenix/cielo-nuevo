@@ -3,6 +3,7 @@ import { useParams, Navigate } from "react-router-dom";
 import YourMexicoShell from "../../yourMexico/components/YourMexicoShell";
 import TrustMoment from "../../yourMexico/components/TrustMoment";
 import FitCallBar from "../../yourMexico/components/FitCallBar";
+import SEO from "../../../components/SEO";
 import ChapterTracker from "../components/ChapterTracker";
 import NowNextLater from "../components/NowNextLater";
 import ReshuffleControl from "../components/ReshuffleControl";
@@ -67,6 +68,11 @@ export default function MyMexicoPlanPage() {
 
   return (
     <YourMexicoShell backTo="/your-mexico" backLabel="Back To Your Mexico">
+      <SEO
+        title={`My Mexico Plan — ${city.name}`}
+        description={`Your 365-day relocation roadmap for ${city.name}, built from your Blueprint answers.`}
+        path={`/my-mexico-plan/${cityId}`}
+      />
       <div className="print:hidden flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">My Mexico Plan &middot; {city.name}</p>

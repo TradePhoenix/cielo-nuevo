@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 function PrivacyPolicyPage() {
   return (
     <main className="min-h-screen bg-[#f4f0e8] px-6 py-24 text-zinc-950 md:px-20">
+      <SEO
+        title="Privacy Policy"
+        description="Path To Mexico's privacy policy — how your information is collected, used, and protected."
+        path="/privacy-policy"
+      />
       <div className="mx-auto max-w-4xl">
         <Link to="/" className="text-xs uppercase tracking-[0.25em] text-zinc-500">
           ← Back To Path To Mexico

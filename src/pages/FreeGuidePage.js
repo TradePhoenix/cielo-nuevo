@@ -1,11 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 export default function FreeGuidePage() {
   const guideLink = "/downloads/10-things-to-know-before-moving-to-playa-del-carmen.html";
 
   return (
     <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
+      <SEO
+        title="Free Relocation Guide"
+        description="10 things to know before moving to Playa del Carmen — a practical starter guide for people exploring life in Mexico."
+        path="/free-guide"
+      />
       <section className="bg-[#0b0b0a] px-6 py-28 text-white md:px-20 md:py-36">
         <div className="mx-auto max-w-6xl">
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">

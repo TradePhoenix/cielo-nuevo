@@ -3,12 +3,16 @@
   <head>
     <meta charset="utf-8" />
 
+    <!-- Fallback title/description/canonical/OG/Twitter tags for the brief
+         pre-hydration window and for any consumer that doesn't execute JS.
+         Every route overrides these at render time via src/components/SEO.js
+         (React 19 hoists <title>/<meta>/<link> rendered anywhere in the tree
+         into <head>). Only one static copy of each is kept here — duplicate
+         static + rendered copies of a duplicable tag like <meta> or <link>
+         don't get deduped the way <title> does, so keeping just one avoids
+         the SEO component's per-route values silently losing to a stale
+         first-in-DOM-order duplicate. -->
     <title>Path To Mexico | A Different Rhythm Of Life</title>
-
-    <meta
-      name="description"
-      content="Relocation guidance, trusted local connections, and lifestyle support for people considering a new life in Mexico."
-    />
 
     <meta
       name="keywords"
@@ -19,7 +23,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0B0B0A" />
 
-    <link rel="canonical" href="https://pathtomexico.com/" />
     <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/path-to-mexico-icon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
@@ -28,23 +31,11 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://pathtomexico.com/" />
     <meta property="og:site_name" content="Path To Mexico" />
-    <meta property="og:title" content="Path To Mexico | A Different Rhythm Of Life" />
-    <meta
-      property="og:description"
-      content="Relocation guidance, trusted local connections, and lifestyle support for people considering a new life in Mexico."
-    />
     <meta property="og:image" content="https://pathtomexico.com/og-image.jpg?v=3" />
     <meta property="og:image:alt" content="Path To Mexico — A different rhythm of life." />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://pathtomexico.com/" />
-    <meta name="twitter:title" content="Path To Mexico | A Different Rhythm Of Life" />
-    <meta
-      name="twitter:description"
-      content="Relocation guidance, trusted local connections, and lifestyle support for people considering a new life in Mexico."
-    />
     <meta name="twitter:image" content="https://pathtomexico.com/og-image.jpg?v=3" />
 
     <meta name="apple-mobile-web-app-title" content="Path To Mexico" />

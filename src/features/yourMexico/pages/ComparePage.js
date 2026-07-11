@@ -2,6 +2,7 @@ import YourMexicoShell from "../components/YourMexicoShell";
 import CitySection from "../components/CitySection";
 import CompareYourMatches from "../components/CompareYourMatches";
 import FitCallBar from "../components/FitCallBar";
+import SEO from "../../../components/SEO";
 import { getAllCities } from "../logic/cityLookup";
 import { useTopMatches } from "../hooks/useTopMatches";
 
@@ -14,6 +15,11 @@ export default function ComparePage() {
 
   return (
     <YourMexicoShell backTo="/your-mexico" backLabel="Back To Your Top Matches">
+      <SEO
+        title="Compare Your Matches"
+        description="Compare cost, pace, and the practical details of your matched Mexico cities side by side."
+        path="/your-mexico/compare"
+      />
       <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Compare Your Matches</p>
       <h1 className="mt-4 max-w-2xl text-4xl font-light leading-tight tracking-[-0.03em] sm:text-5xl">
         How your matches stack up.

@@ -3,7 +3,16 @@ import YourMexicoShell from "../components/YourMexicoShell";
 import CityCard from "../components/CityCard";
 import TrustMoment from "../components/TrustMoment";
 import FitCallBar from "../components/FitCallBar";
+import SEO from "../../../components/SEO";
 import { useTopMatches } from "../hooks/useTopMatches";
+
+const YOUR_MEXICO_SEO = (
+  <SEO
+    title="Your Mexico — City Matches"
+    description="See where your next chapter could begin, based on your Blueprint answers."
+    path="/your-mexico"
+  />
+);
 
 // Welcome to Your Mexico + Your Top Matches — the threshold screen reached
 // from Blueprint Results. Foundation only: later sprints deepen each city's
@@ -14,6 +23,7 @@ export default function YourMexicoPage() {
   if (!hasCompletedBlueprint || matches.length === 0) {
     return (
       <YourMexicoShell>
+        {YOUR_MEXICO_SEO}
         <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Your Mexico</p>
         <h1 className="mt-4 max-w-2xl text-4xl font-light leading-tight tracking-[-0.03em] sm:text-5xl">
           Complete your Blueprint to see your matches.
@@ -34,6 +44,7 @@ export default function YourMexicoPage() {
 
   return (
     <YourMexicoShell>
+      {YOUR_MEXICO_SEO}
       <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Welcome To Your Mexico</p>
       <h1 className="mt-4 max-w-2xl text-4xl font-light leading-tight tracking-[-0.03em] sm:text-5xl">
         Based on your Blueprint, here's where your next chapter could begin.

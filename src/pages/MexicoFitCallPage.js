@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FOUNDER, TESTIMONIALS, FIT_CALL_PRICE } from "../data/trustContent";
+import SEO from "../components/SEO";
 
 export default function MexicoFitCallPage() {
   const whatsapp =
@@ -8,6 +9,11 @@ export default function MexicoFitCallPage() {
 
   return (
     <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
+      <SEO
+        title="Mexico Fit Call"
+        description="Get clear before you move to Mexico — a private one-on-one call to answer your questions and help you understand what moving could realistically look like for you."
+        path="/mexico-fit-call"
+      />
       <section className="relative overflow-hidden bg-[#0b0b0a] px-6 py-28 text-white md:px-20 md:py-36">
         <div className="mx-auto max-w-6xl">
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">

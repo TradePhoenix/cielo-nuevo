@@ -15,6 +15,7 @@ import CitySection from "../components/CitySection";
 import CompareYourMatches from "../components/CompareYourMatches";
 import TrustMoment from "../components/TrustMoment";
 import FitCallBar from "../components/FitCallBar";
+import SEO from "../../../components/SEO";
 import { getCityById, getAllCities, getOtherCities } from "../logic/cityLookup";
 import { useTopMatches } from "../hooks/useTopMatches";
 
@@ -41,6 +42,11 @@ export default function CityDetailPage() {
     <YourMexicoShell
       hero={<CityHero city={city} backTo="/your-mexico" backLabel="Back To Your Top Matches" />}
     >
+      <SEO
+        title={`${city.name} — Your Mexico`}
+        description={city.tagline}
+        path={`/your-mexico/${cityId}`}
+      />
       <WhyThisFeelsLikeYou city={city} overlapTags={overlapTags} />
       <TuesdayInYourLife city={city} />
       <HonestTruth city={city} />

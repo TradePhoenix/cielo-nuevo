@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import DashboardShell from "../../dashboard/components/DashboardShell";
+import SEO from "../../../components/SEO";
 import DocumentCard from "../components/DocumentCard";
 import DocumentForm from "../components/DocumentForm";
 import DocumentFilters from "../components/DocumentFilters";
@@ -39,6 +40,11 @@ export default function DocumentVaultPage() {
 
   return (
     <DashboardShell backTo="/dashboard" backLabel="Back To Dashboard">
+      <SEO
+        title="Document Vault"
+        description="Everything important, organized in one calm place — passports, residency paperwork, insurance, and everything else worth keeping track of."
+        path="/dashboard/documents"
+      />
       <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Document Vault</p>
       <h1
         ref={headingRef}

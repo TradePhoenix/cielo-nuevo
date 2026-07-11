@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 import YourMexicoShell from "../../yourMexico/components/YourMexicoShell";
+import SEO from "../../../components/SEO";
 import { useTopMatches } from "../../yourMexico/hooks/useTopMatches";
+
+const PLAN_SETUP_SEO = (
+  <SEO
+    title="My Mexico Plan"
+    description="Turn your Blueprint answers into a real, dated 365-day sequence of next steps for your move to Mexico."
+    path="/my-mexico-plan"
+  />
+);
 
 // Routed /my-mexico-plan — confirms which city the plan is for. Defaults
 // to the visitor's top match with one click; the rest of their matches
@@ -11,6 +20,7 @@ export default function MyMexicoPlanSetupPage() {
   if (!hasCompletedBlueprint || matches.length === 0) {
     return (
       <YourMexicoShell backTo="/your-mexico" backLabel="Back To Your Mexico">
+        {PLAN_SETUP_SEO}
         <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">My Mexico Plan</p>
         <h1 className="mt-4 max-w-2xl text-4xl font-light leading-tight tracking-[-0.03em] sm:text-5xl">
           Complete your Blueprint to build your plan.
@@ -33,6 +43,7 @@ export default function MyMexicoPlanSetupPage() {
 
   return (
     <YourMexicoShell backTo="/your-mexico" backLabel="Back To Your Mexico">
+      {PLAN_SETUP_SEO}
       <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">My Mexico Plan</p>
       <h1 className="mt-4 max-w-2xl text-4xl font-light leading-tight tracking-[-0.03em] sm:text-5xl">
         Which city is this plan for?

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import SEO from "../components/SEO";
 
 const guides = [
   {
@@ -207,6 +208,11 @@ function GuidesPage() {
 
   return (
     <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
+      <SEO
+        title="Relocation Guides"
+        description="Practical, honest guides on cost of living, residency, healthcare, and daily life for people considering a move to Mexico."
+        path="/guides"
+      />
       <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-zinc-200 bg-[#f6f1e8]/85 px-4 py-4 backdrop-blur-md md:px-10">
         <Link
           to="/"
