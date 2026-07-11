@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Path To Mexico PT monogram">
+  <rect width="512" height="512" rx="72" fill="#0B0B0A"/>
+  <path d="
+M150 120
+H295
+C350 120 382 150 382 202
+C382 255 347 286 292 286
+H222
+V392
+H150
+Z
+M222 178
+V229
+H286
+C304 229 317 220 317 203
+C317 186 304 178 286 178
+Z
+M270 120
+H402
+V178
+H356
+V392
+H290
+V178
+H270
+Z
+" fill="#F6F1E8" fill-rule="evenodd"/>
+</svg>
