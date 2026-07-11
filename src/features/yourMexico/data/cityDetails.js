@@ -5,8 +5,10 @@
 // two. Fields are added sprint by sprint, only as each section is actually
 // built, rather than stubbed in ahead of time.
 //
-// heroImage reuses the site's existing hero photo, same as the Blueprint
-// intro screen — real per-city photography is a pure data swap later.
+// heroImage assigns each city one of the project's existing coastal photos
+// by visual fit (Playa's built-up beach town, Tulum's jungle-to-beach path,
+// Riviera Maya's quieter jungle/resort feel) — real per-city photography is
+// a pure data swap later.
 //
 // whyThisFeelsLikeYou.reasonsByTag is keyed by this city's own `tags` (see
 // cityProfiles.js) — CityDetailPage picks whichever entries overlap with the
@@ -126,7 +128,7 @@ export const CITY_DETAILS = {
 
   tulum: {
     tagline: "A slower rhythm on the water, built for people who want room to breathe.",
-    heroImage: "/hero.jpg",
+    heroImage: "/lifestyle.jpg",
 
     whyThisFeelsLikeYou: {
       intro:
@@ -227,7 +229,7 @@ export const CITY_DETAILS = {
 
   "riviera-maya": {
     tagline: "Quieter and more affordable than the postcards suggest — and closer to everyday life.",
-    heroImage: "/hero.jpg",
+    heroImage: "/sanctuary.jpg",
 
     whyThisFeelsLikeYou: {
       intro:
