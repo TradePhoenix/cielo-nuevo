@@ -448,6 +448,12 @@ function HomePage() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#f6f1e8] text-zinc-950 scroll-smooth">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-white focus:px-5 focus:py-3 focus:text-xs focus:font-semibold focus:uppercase focus:tracking-[0.2em] focus:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
+      >
+        Skip to content
+      </a>
       <SEO
         title="Path To Mexico | A Different Rhythm Of Life"
         description="Relocation guidance, trusted local connections, and lifestyle support for people considering a new life in Mexico."
@@ -564,7 +570,7 @@ function HomePage() {
           </div>
         </div>
 
-        <div className="relative z-10 flex min-h-[100svh] items-center px-6 pb-24 pt-32 md:px-16 md:pb-28 md:pt-28">
+        <div id="main-content" className="relative z-10 flex min-h-[100svh] items-center px-6 pb-24 pt-32 md:px-16 md:pb-28 md:pt-28">
           <motion.div initial="hidden" animate="show" variants={heroStagger} className="max-w-5xl">
             <motion.p
               variants={heroFadeUp}

@@ -12,6 +12,12 @@ function ArticleLayout({
 
   return (
     <main className="min-h-screen bg-[#f4f0e8] text-zinc-950">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-white focus:px-5 focus:py-3 focus:text-xs focus:font-semibold focus:uppercase focus:tracking-[0.2em] focus:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
+      >
+        Skip to content
+      </a>
       <SEO title={title} description={description} path={location.pathname} />
 
       <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/50 px-4 py-4 backdrop-blur-md md:px-10">
@@ -28,7 +34,7 @@ function ArticleLayout({
         </div>
       </nav>
 
-      <header className="bg-[#080807] px-6 pb-20 pt-36 text-white md:px-20 md:pb-28 md:pt-44">
+      <header id="main-content" className="bg-[#080807] px-6 pb-20 pt-36 text-white md:px-20 md:pb-28 md:pt-44">
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
