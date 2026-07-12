@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import YourMexicoShell from "../../yourMexico/components/YourMexicoShell";
 import TrustMoment from "../../yourMexico/components/TrustMoment";
@@ -8,8 +8,12 @@ import ChapterTracker from "../components/ChapterTracker";
 import NowNextLater from "../components/NowNextLater";
 import ReshuffleControl from "../components/ReshuffleControl";
 import PrintPlanButton from "../components/PrintPlanButton";
+import DecisionBrief from "../components/DecisionBrief";
 import { usePlanState } from "../state/usePlanState";
 import { PROLOGUE } from "../data/chapters";
+import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
+import { buildRecommendation } from "../../../decisionEngine/logic/recommendationEngine";
+import { buildDecisionBrief } from "../logic/buildDecisionBrief";
 
 // Routed /my-mexico-plan/:cityId — the plan itself. One continuous
 // document, not a multi-screen app: Now/Coming Up/Later, the honest
@@ -30,6 +34,16 @@ export default function MyMexicoPlanPage() {
     checkInResponses,
     respondToCheckIn,
   } = usePlanState(cityId);
+
+  const { answers, scores } = useBlueprintAnswers();
+  const recommendation = useMemo(() => buildRecommendation(scores, answers), [scores, answers]);
+  const decisionBrief = useMemo(
+    () =>
+      plan
+        ? buildDecisionBrief({ recommendation, answers, scores, city, plan, currentChapterIndex, taskState })
+        : null,
+    [recommendation, answers, scores, city, plan, currentChapterIndex, taskState]
+  );
 
   // The "Coming Up" chapter uses a native <details> disclosure, closed by
   // default on screen. A CSS override of that closed-state hiding isn't
@@ -90,6 +104,8 @@ export default function MyMexicoPlanPage() {
       <p className="mt-6 max-w-2xl border-l-2 border-zinc-300 pl-4 text-base italic leading-relaxed text-zinc-500">
         {PROLOGUE.framing}
       </p>
+
+      {decisionBrief && <DecisionBrief brief={decisionBrief} />}
 
       <div className="mt-8">
         <ChapterTracker chapters={plan.chapters} currentChapterIndex={currentChapterIndex} isUrgent={plan.isUrgent} />
