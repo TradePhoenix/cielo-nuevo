@@ -16,7 +16,7 @@ export const TESTIMONIALS = [
   {
     quote:
       "I was not looking for someone to sell me anything. I just wanted honest answers from someone who had actually lived the experience. Path To Mexico provided clarity and helped me slow down and make better decisions. It felt more like talking to a trusted friend than dealing with a company.",
-    name: "David — Calgary, Alberta",
+    name: "Client from Calgary, Alberta",
   },
   {
     quote:

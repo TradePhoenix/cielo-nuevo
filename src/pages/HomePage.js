@@ -95,7 +95,7 @@ const content = {
       ],
       [
         "I was not looking for someone to sell me anything. I just wanted honest answers from someone who had actually lived the experience. Path To Mexico provided clarity and helped me slow down and make better decisions. It felt more like talking to a trusted friend than dealing with a company.",
-        "David — Calgary, Alberta"
+        "Client from Calgary, Alberta"
       ],
       [
         "Moving countries can feel intimidating. Having someone who understood both the practical and emotional sides of relocation made the entire process feel much less overwhelming. I left our conversations feeling excited instead of anxious.",
