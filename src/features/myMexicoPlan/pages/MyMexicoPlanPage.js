@@ -10,12 +10,14 @@ import ReshuffleControl from "../components/ReshuffleControl";
 import PrintPlanButton from "../components/PrintPlanButton";
 import DecisionBrief from "../components/DecisionBrief";
 import CostPlanner from "../components/CostPlanner";
+import AdaptiveChecklist from "../components/AdaptiveChecklist";
 import { usePlanState } from "../state/usePlanState";
 import { PROLOGUE } from "../data/chapters";
 import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
 import { buildRecommendation } from "../../../decisionEngine/logic/recommendationEngine";
 import { buildDecisionBrief } from "../logic/buildDecisionBrief";
 import { buildCostPlanner } from "../logic/buildCostPlanner";
+import { buildAdaptiveChecklist } from "../logic/buildAdaptiveChecklist";
 
 // Routed /my-mexico-plan/:cityId — the plan itself. One continuous
 // document, not a multi-screen app: Now/Coming Up/Later, the honest
@@ -49,6 +51,10 @@ export default function MyMexicoPlanPage() {
   const costPlanner = useMemo(
     () => (plan ? buildCostPlanner({ answers, scores, city }) : null),
     [answers, scores, city, plan]
+  );
+  const adaptiveChecklist = useMemo(
+    () => (plan ? buildAdaptiveChecklist({ plan, recommendation, scores, taskState }) : null),
+    [plan, recommendation, scores, taskState]
   );
 
   // The "Coming Up" chapter uses a native <details> disclosure, closed by
@@ -114,6 +120,10 @@ export default function MyMexicoPlanPage() {
       {decisionBrief && <DecisionBrief brief={decisionBrief} />}
 
       {costPlanner && <CostPlanner planner={costPlanner} />}
+
+      {adaptiveChecklist && (
+        <AdaptiveChecklist checklist={adaptiveChecklist} taskState={taskState} onToggleTask={toggleTask} />
+      )}
 
       <div className="mt-8">
         <ChapterTracker chapters={plan.chapters} currentChapterIndex={currentChapterIndex} isUrgent={plan.isUrgent} />
