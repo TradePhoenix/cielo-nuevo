@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "../components/SEO";
+import ContinueYourJourney from "../components/ContinueYourJourney";
 
 function Section({ title, children }) {
   return (
@@ -171,6 +172,8 @@ function TemporaryResidencyPage() {
               Mexico does not solve every problem, but for many people it creates enough space to begin again.
             </p>
           </Section>
+
+          <ContinueYourJourney currentHref="/guides/temporary-residency-mexico" />
 
           <div className="mt-14 border border-zinc-300 bg-white p-8 text-center">
             <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "../components/SEO";
+import ContinueYourJourney from "../components/ContinueYourJourney";
 
 function Section({ title, children }) {
   return (
@@ -189,6 +190,8 @@ function HealthcareInMexicoForCanadiansPage() {
               Healthcare in Mexico is not perfect, but neither is healthcare anywhere else. What matters most is understanding your options and building a plan that fits your life.
             </p>
           </Section>
+
+          <ContinueYourJourney currentHref="/guides/healthcare-in-mexico-for-canadians" />
 
           <div className="mt-14 border border-zinc-300 bg-white p-8 text-center">
             <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">

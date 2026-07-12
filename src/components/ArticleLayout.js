@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "./SEO";
+import ContinueYourJourney from "./ContinueYourJourney";
 
 function ArticleLayout({
   category,
@@ -66,6 +67,8 @@ function ArticleLayout({
         <div className="mx-auto max-w-4xl">
 
           {children}
+
+          <ContinueYourJourney currentHref={location.pathname} />
 
           <div className="mt-14 border border-zinc-300 bg-white p-8 text-center">
             <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">
