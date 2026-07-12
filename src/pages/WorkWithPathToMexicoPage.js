@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import RelocationRoadmap from "../components/RelocationRoadmap";
 
 export default function WorkWithPathToMexicoPage() {
   const services = [
@@ -162,6 +163,8 @@ export default function WorkWithPathToMexicoPage() {
           </div>
         </div>
       </section>
+
+      <RelocationRoadmap />
 
       <section className="bg-[#efe7d8] px-6 py-20 md:px-20 md:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.8fr_1.2fr]">
