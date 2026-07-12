@@ -9,11 +9,13 @@ import NowNextLater from "../components/NowNextLater";
 import ReshuffleControl from "../components/ReshuffleControl";
 import PrintPlanButton from "../components/PrintPlanButton";
 import DecisionBrief from "../components/DecisionBrief";
+import CostPlanner from "../components/CostPlanner";
 import { usePlanState } from "../state/usePlanState";
 import { PROLOGUE } from "../data/chapters";
 import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
 import { buildRecommendation } from "../../../decisionEngine/logic/recommendationEngine";
 import { buildDecisionBrief } from "../logic/buildDecisionBrief";
+import { buildCostPlanner } from "../logic/buildCostPlanner";
 
 // Routed /my-mexico-plan/:cityId — the plan itself. One continuous
 // document, not a multi-screen app: Now/Coming Up/Later, the honest
@@ -43,6 +45,10 @@ export default function MyMexicoPlanPage() {
         ? buildDecisionBrief({ recommendation, answers, scores, city, plan, currentChapterIndex, taskState })
         : null,
     [recommendation, answers, scores, city, plan, currentChapterIndex, taskState]
+  );
+  const costPlanner = useMemo(
+    () => (plan ? buildCostPlanner({ answers, scores, city }) : null),
+    [answers, scores, city, plan]
   );
 
   // The "Coming Up" chapter uses a native <details> disclosure, closed by
@@ -106,6 +112,8 @@ export default function MyMexicoPlanPage() {
       </p>
 
       {decisionBrief && <DecisionBrief brief={decisionBrief} />}
+
+      {costPlanner && <CostPlanner planner={costPlanner} />}
 
       <div className="mt-8">
         <ChapterTracker chapters={plan.chapters} currentChapterIndex={currentChapterIndex} isUrgent={plan.isUrgent} />
