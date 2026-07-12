@@ -4,8 +4,8 @@
 // page can show a graceful "take the Blueprint first" fallback.
 
 import { useMemo } from "react";
-import { useBlueprintAnswers } from "../../blueprint/hooks/useBlueprintAnswers";
-import { buildRecommendation } from "../../blueprint/logic/recommendationEngine";
+import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
+import { buildRecommendation } from "../../../decisionEngine/logic/recommendationEngine";
 import { getMatchesWithDetails } from "../logic/cityLookup";
 
 const EMPTY_RESULT = { hasCompletedBlueprint: false, recommendation: null, matches: [], tagCounts: {} };

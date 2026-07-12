@@ -8,7 +8,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { QUESTIONS } from "../data/questions";
 import { computeScores } from "../logic/scoringEngine";
-import { buildRecommendation } from "../logic/recommendationEngine";
+import { buildRecommendation } from "../../../decisionEngine/logic/recommendationEngine";
 
 // Exported so other features (e.g. Your Mexico) can read the same saved
 // answers read-only, without duplicating this literal or its shape.

@@ -16,7 +16,7 @@ import {
   ROADMAP_TEMPLATES,
   CTA_COPY,
   TAG_LABELS,
-} from "../data/copy";
+} from "../../features/blueprint/data/copy";
 
 // scores: the object returned by scoringEngine.computeScores()
 // answers: { [questionId]: selectedOptionId } — used here only to read

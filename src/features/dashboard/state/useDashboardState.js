@@ -5,7 +5,7 @@
 // versioned-localStorage pattern used everywhere else in the product.
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { useBlueprintAnswers } from "../../blueprint/hooks/useBlueprintAnswers";
+import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
 import { useTopMatches } from "../../yourMexico/hooks/useTopMatches";
 import { getCityById } from "../../yourMexico/logic/cityLookup";
 import { buildPlan, getCurrentChapterIndex } from "../../myMexicoPlan/logic/buildPlan";

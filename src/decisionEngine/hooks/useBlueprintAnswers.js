@@ -5,9 +5,9 @@
 // read + scoring call.
 
 import { useMemo } from "react";
-import { QUESTIONS } from "../data/questions";
-import { computeScores } from "../logic/scoringEngine";
-import { STORAGE_KEY } from "../state/useBlueprintState";
+import { QUESTIONS } from "../../features/blueprint/data/questions";
+import { computeScores } from "../../features/blueprint/logic/scoringEngine";
+import { STORAGE_KEY } from "../../features/blueprint/state/useBlueprintState";
 
 const EMPTY = { hasCompletedBlueprint: false, answers: {}, scores: null };
 

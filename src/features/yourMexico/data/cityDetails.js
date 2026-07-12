@@ -1,5 +1,5 @@
-// Your Mexico — per-city content that extends the Blueprint's own
-// CITY_PROFILES (src/features/blueprint/data/cityProfiles.js).
+// Your Mexico — per-city content that extends the decision engine's own
+// CITY_PROFILES (src/decisionEngine/data/cityProfiles.js).
 //
 // Keyed by the same city ids as CITY_PROFILES so cityLookup.js can merge the
 // two. Fields are added sprint by sprint, only as each section is actually

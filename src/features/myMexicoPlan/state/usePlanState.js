@@ -6,7 +6,7 @@
 // than migrated if the shape ever changes.
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { useBlueprintAnswers } from "../../blueprint/hooks/useBlueprintAnswers";
+import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
 import { getCityById } from "../../yourMexico/logic/cityLookup";
 import { buildPlan, getCurrentChapterIndex } from "../logic/buildPlan";
 import { ANCHOR_PHRASES, DEFAULT_ANCHOR_PHRASE } from "../data/anchorPhrases";

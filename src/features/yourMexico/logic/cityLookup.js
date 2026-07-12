@@ -1,7 +1,7 @@
 // Your Mexico — pure helpers for combining the Blueprint's city profiles
 // with this feature's own richer content. No side effects, no state.
 
-import { CITY_PROFILES } from "../../blueprint/data/cityProfiles";
+import { CITY_PROFILES } from "../../../decisionEngine/data/cityProfiles";
 import { CITY_DETAILS } from "../data/cityDetails";
 
 // Full record for a single city, or null if the id isn't recognized by
