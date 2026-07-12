@@ -70,19 +70,29 @@ export default function MexicoFitCallPage() {
       </section>
 
       <section className="px-6 py-20 md:px-20 md:py-28">
-        <div className="mx-auto grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-3">
-          {[
-            ["Clarity", "Understand what moving to Mexico could realistically look like for your life, budget, and timeline."],
-            ["Direction", "Separate what matters now from what can wait, so you do not spiral through endless research."],
-            ["Next Steps", "Leave with a clearer sense of areas, costs, residency direction, and who you may need to speak with."]
-          ].map(([title, text]) => (
-            <div key={title} className="bg-[#f6f1e8] p-8 transition hover:bg-white">
-              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-zinc-500">
-                {title}
-              </p>
-              <p className="text-lg leading-relaxed text-zinc-700">{text}</p>
-            </div>
-          ))}
+        <div className="mx-auto max-w-6xl">
+          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
+            What Happens Next
+          </p>
+          <h2 className="mb-12 max-w-4xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
+            From your first message to your next step.
+          </h2>
+
+          <div className="grid gap-px bg-zinc-300 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["01 · Reach Out", "Message Path To Mexico on WhatsApp using the button above. It's a real conversation, not an automated booking system — Kalen replies personally to arrange a time."],
+              ["02 · Before The Call", "There is nothing you need to prepare. It helps to have a general sense of your timeline and budget, but showing up without every answer figured out is completely normal."],
+              ["03 · During The Call", "One focused, one-on-one conversation about your specific situation and questions — see exactly what's covered below."],
+              ["04 · After The Call", "You leave with a clearer next step, not a sales pitch. There is no obligation to book anything further — some people continue with the Relocation Roadmap or Guided Landing, many simply move forward with more clarity."]
+            ].map(([title, text]) => (
+              <div key={title} className="bg-[#f6f1e8] p-8 transition hover:bg-white">
+                <p className="mb-5 text-xs uppercase tracking-[0.3em] text-zinc-500">
+                  {title}
+                </p>
+                <p className="text-lg leading-relaxed text-zinc-700">{text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
