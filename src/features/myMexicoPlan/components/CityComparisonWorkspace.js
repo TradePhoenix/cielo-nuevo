@@ -32,7 +32,7 @@ export default function CityComparisonWorkspace({ comparison, matches }) {
         {cities.map((city) => (
           <div
             key={city.id}
-            className={`border bg-[#f4f0e8] p-6 ${city.isTopMatch ? "border-2 border-[#d8a15f]" : "border-zinc-200"}`}
+            className={`break-inside-avoid border bg-[#f4f0e8] p-6 ${city.isTopMatch ? "border-2 border-[#d8a15f]" : "border-zinc-200"}`}
           >
             {city.isTopMatch && (
               <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#d8a15f]">

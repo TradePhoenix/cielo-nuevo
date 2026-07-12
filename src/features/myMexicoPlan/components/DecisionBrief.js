@@ -21,7 +21,7 @@ export default function DecisionBrief({ brief }) {
       </h2>
 
       <div className="grid gap-8 sm:grid-cols-2">
-        <div>
+        <div className="break-inside-avoid">
           <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">Readiness</p>
           <p className="text-2xl font-light tracking-[-0.02em]">
             {readiness.score}/100 &middot; {readiness.label}
@@ -30,7 +30,7 @@ export default function DecisionBrief({ brief }) {
         </div>
 
         {topMatch && (
-          <div>
+          <div className="break-inside-avoid">
             <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">Leading City Match</p>
             <p className="text-2xl font-light tracking-[-0.02em]">{topMatch.name}</p>
             <p className="mt-2 text-sm leading-relaxed text-zinc-600">{topMatch.matchReason}</p>
@@ -38,7 +38,7 @@ export default function DecisionBrief({ brief }) {
         )}
 
         {priorities.length > 0 && (
-          <div>
+          <div className="break-inside-avoid">
             <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">Your Strongest Priorities</p>
             <ul className="space-y-1 text-sm leading-relaxed text-zinc-700">
               {priorities.map((priority) => (
@@ -48,7 +48,7 @@ export default function DecisionBrief({ brief }) {
           </div>
         )}
 
-        <div>
+        <div className="break-inside-avoid">
           <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">Worth A Closer Look</p>
           <ul className="space-y-2 text-sm leading-relaxed text-zinc-600">
             {considerations.map((consideration) => (

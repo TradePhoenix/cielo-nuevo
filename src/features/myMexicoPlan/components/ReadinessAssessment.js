@@ -35,7 +35,7 @@ export default function ReadinessAssessment({ assessment, taskState, onToggleTas
         comes directly from your own 6 Blueprint answers.
       </p>
 
-      <div className="border border-zinc-200 bg-[#f4f0e8] p-6">
+      <div className="break-inside-avoid border border-zinc-200 bg-[#f4f0e8] p-6">
         <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">Overall Readiness</p>
         <p className="mt-2 text-2xl font-light tracking-[-0.02em]">
           {readinessScore}/100 &middot; {readinessLabel}
@@ -48,7 +48,7 @@ export default function ReadinessAssessment({ assessment, taskState, onToggleTas
         <p className="mb-4 text-xs uppercase tracking-[0.25em] text-zinc-500">Your Readiness Breakdown</p>
         <div className="grid gap-px bg-zinc-300 sm:grid-cols-2 lg:grid-cols-3">
           {dimensions.map((dimension) => (
-            <div key={dimension.id} className="bg-white p-5">
+            <div key={dimension.id} className="break-inside-avoid bg-white p-5">
               <p className="text-sm font-medium text-zinc-950">{dimension.label}</p>
               <p className="mt-1 text-xs uppercase tracking-[0.15em] text-zinc-400">
                 {dimension.earnedPoints}/{dimension.maxPoints} points
@@ -98,7 +98,7 @@ export default function ReadinessAssessment({ assessment, taskState, onToggleTas
           <p className="mb-4 text-xs uppercase tracking-[0.25em] text-zinc-500">Top Opportunities To Improve</p>
           <div className="grid gap-4 sm:grid-cols-2">
             {opportunities.map((opportunity) => (
-              <div key={opportunity.dimension} className="border border-zinc-200 bg-[#f4f0e8] p-5">
+              <div key={opportunity.dimension} className="break-inside-avoid border border-zinc-200 bg-[#f4f0e8] p-5">
                 <p className="text-sm font-medium text-zinc-950">{opportunity.dimension}</p>
                 <p className="mt-2 text-xs leading-relaxed text-zinc-600">{opportunity.suggestion}</p>
                 {opportunity.guideLink && (

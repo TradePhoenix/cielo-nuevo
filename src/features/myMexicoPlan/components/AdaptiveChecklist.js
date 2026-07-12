@@ -44,7 +44,7 @@ export default function AdaptiveChecklist({ checklist, taskState, onToggleTask }
       </p>
 
       {nextHighestPriority.length > 0 && (
-        <div className="mb-8 border border-zinc-200 bg-[#f4f0e8] p-6">
+        <div className="break-inside-avoid mb-8 border border-zinc-200 bg-[#f4f0e8] p-6">
           <p className="mb-4 text-xs uppercase tracking-[0.25em] text-zinc-500">
             Your Next {nextHighestPriority.length} Highest-Priority Actions
           </p>

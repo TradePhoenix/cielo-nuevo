@@ -113,7 +113,34 @@ export default function MyMexicoPlanPage() {
         description={`Your 365-day relocation roadmap for ${city.name}, built from your Blueprint answers.`}
         path={`/my-mexico-plan/${cityId}`}
       />
-      <div className="print:hidden flex flex-wrap items-start justify-between gap-4">
+      {/*
+        Print/export only — the on-screen header below is print:hidden
+        together with its interactive controls, which would otherwise leave
+        a printed page with no Path To Mexico branding or plan context at
+        all. This is the standalone document header for the printed/saved
+        version: title, city, archetype, readiness, and a generation date,
+        all pulled from data already computed above — nothing new is
+        invented here.
+      */}
+      <div className="hidden print:block mb-8 border-b-2 border-zinc-950 pb-6">
+        <p className="text-xs uppercase tracking-[0.35em] text-zinc-500">Path To Mexico</p>
+        <p className="mt-2 text-2xl font-light tracking-[-0.02em]">My Mexico Plan — {city.name}</p>
+        <div className="mt-4 flex flex-wrap gap-x-8 gap-y-2 text-sm text-zinc-600">
+          <span>
+            <strong className="text-zinc-950">Archetype:</strong> {recommendation.archetype.title}
+          </span>
+          <span>
+            <strong className="text-zinc-950">Readiness:</strong> {recommendation.readinessScore}/100 &middot;{" "}
+            {recommendation.readinessLabel.label}
+          </span>
+          <span>
+            <strong className="text-zinc-950">Generated:</strong>{" "}
+            {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          </span>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">My Mexico Plan &middot; {city.name}</p>
         </div>
@@ -161,6 +188,18 @@ export default function MyMexicoPlanPage() {
         checkInResponses={checkInResponses}
         onRespondToCheckIn={respondToCheckIn}
       />
+
+      <div className="break-inside-avoid mt-10 border-t border-zinc-300 pt-6">
+        <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">Important Notes</p>
+        <p className="max-w-2xl text-sm leading-relaxed text-zinc-600">
+          This plan is a snapshot based on your own Blueprint answers as of the date above — retake
+          the Blueprint anytime for an updated version. Path To Mexico provides relocation guidance,
+          local insight, and trusted introductions. We are not a law firm, immigration agency, tax
+          advisor, financial advisor, or real estate brokerage. Legal, immigration, tax, financial,
+          and real estate services are provided by independent qualified professionals where
+          appropriate.
+        </p>
+      </div>
 
       <div className="print:hidden">
         <ReshuffleControl timelineShifts={timelineShifts} onReshuffle={reshuffleTimeline} />

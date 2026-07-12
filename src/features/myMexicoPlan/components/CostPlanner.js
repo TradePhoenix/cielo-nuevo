@@ -33,7 +33,7 @@ export default function CostPlanner({ planner }) {
         to plan around, not a quote.
       </p>
 
-      <div className="border border-zinc-200 bg-[#f4f0e8] p-6">
+      <div className="break-inside-avoid border border-zinc-200 bg-[#f4f0e8] p-6">
         <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">Estimated Monthly Total</p>
         <p className="mt-2 text-2xl font-light tracking-[-0.02em]">{formatRange(totalRange)}</p>
         <p className="mt-1 text-xs text-zinc-500">{totalRange.sourceLabel}</p>
@@ -41,7 +41,7 @@ export default function CostPlanner({ planner }) {
 
       <div className="mt-8 grid gap-px bg-zinc-300 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((category) => (
-          <div key={category.id} className="bg-white p-5">
+          <div key={category.id} className="break-inside-avoid bg-white p-5">
             <p className="mb-2 text-xs uppercase tracking-[0.25em] text-zinc-500">{category.label}</p>
             <p className="text-lg font-light tracking-[-0.01em]">
               {formatRange(category.range) || "Needs personal verification"}
