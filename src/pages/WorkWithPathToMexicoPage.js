@@ -31,7 +31,7 @@ export default function WorkWithPathToMexicoPage() {
         "Retirees",
         "Entrepreneurs"
       ],
-      cta: "Apply For Roadmap",
+      cta: "Discuss The Roadmap",
       href: "/mexico-fit-call"
     },
     {
@@ -46,7 +46,7 @@ export default function WorkWithPathToMexicoPage() {
         "Professional introductions",
         "Ongoing guidance"
       ],
-      cta: "Schedule A Conversation",
+      cta: "Discuss Guided Landing",
       href: "/mexico-fit-call"
     }
   ];

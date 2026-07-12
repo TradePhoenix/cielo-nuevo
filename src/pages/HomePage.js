@@ -56,16 +56,16 @@ const content = {
         "Starting at $499 USD",
         "A personalized relocation strategy built around your goals, timeline, budget, lifestyle preferences, and long-term vision for life in Mexico.",
         "Ideal for individuals, couples, families, retirees, entrepreneurs, and remote workers who want a clear roadmap before making major decisions.",
-        "Apply For Roadmap",
-        "#contact"
+        "Discuss The Roadmap",
+        "/mexico-fit-call"
       ],
       [
         "Guided Landing",
         "Custom Quote",
         "Private concierge-style relocation support for people who want hands-on guidance, trusted introductions, and ongoing assistance throughout the process.",
         "Best for families, professionals, investors, business owners, and anyone seeking a highly personalized relocation experience.",
-        "Schedule A Conversation",
-        "#contact"
+        "Discuss Guided Landing",
+        "/mexico-fit-call"
       ]
     ],
     bestFor: "Best For",
@@ -211,16 +211,16 @@ const content = {
         "Desde $499 USD",
         "Una estrategia personalizada construida alrededor de tus metas, tiempos, presupuesto, preferencias de vida y visión a largo plazo en México.",
         "Ideal para individuos, parejas, familias, jubilados, emprendedores y trabajadores remotos que quieren un plan claro.",
-        "Aplicar Al Roadmap",
-        "#contact"
+        "Hablar Sobre El Roadmap",
+        "/mexico-fit-call"
       ],
       [
         "Llegada Guiada",
         "Cotización Personalizada",
         "Apoyo privado estilo concierge para quienes quieren guía práctica, conexiones confiables y acompañamiento durante el proceso.",
         "Ideal para familias, profesionales, inversionistas, dueños de negocios y personas que buscan una experiencia personalizada.",
-        "Agendar Conversación",
-        "#contact"
+        "Hablar Sobre Llegada Guiada",
+        "/mexico-fit-call"
       ]
     ],
     bestFor: "Ideal Para",
