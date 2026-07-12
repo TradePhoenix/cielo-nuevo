@@ -11,6 +11,7 @@ import PrintPlanButton from "../components/PrintPlanButton";
 import DecisionBrief from "../components/DecisionBrief";
 import CostPlanner from "../components/CostPlanner";
 import AdaptiveChecklist from "../components/AdaptiveChecklist";
+import ReadinessAssessment from "../components/ReadinessAssessment";
 import { usePlanState } from "../state/usePlanState";
 import { PROLOGUE } from "../data/chapters";
 import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
@@ -18,6 +19,7 @@ import { buildRecommendation } from "../../../decisionEngine/logic/recommendatio
 import { buildDecisionBrief } from "../logic/buildDecisionBrief";
 import { buildCostPlanner } from "../logic/buildCostPlanner";
 import { buildAdaptiveChecklist } from "../logic/buildAdaptiveChecklist";
+import { buildReadinessAssessment } from "../logic/buildReadinessAssessment";
 
 // Routed /my-mexico-plan/:cityId — the plan itself. One continuous
 // document, not a multi-screen app: Now/Coming Up/Later, the honest
@@ -55,6 +57,10 @@ export default function MyMexicoPlanPage() {
   const adaptiveChecklist = useMemo(
     () => (plan ? buildAdaptiveChecklist({ plan, recommendation, scores, taskState }) : null),
     [plan, recommendation, scores, taskState]
+  );
+  const readinessAssessment = useMemo(
+    () => (plan ? buildReadinessAssessment({ answers, recommendation, plan, taskState }) : null),
+    [answers, recommendation, plan, taskState]
   );
 
   // The "Coming Up" chapter uses a native <details> disclosure, closed by
@@ -118,6 +124,10 @@ export default function MyMexicoPlanPage() {
       </p>
 
       {decisionBrief && <DecisionBrief brief={decisionBrief} />}
+
+      {readinessAssessment && (
+        <ReadinessAssessment assessment={readinessAssessment} taskState={taskState} onToggleTask={toggleTask} />
+      )}
 
       {costPlanner && <CostPlanner planner={costPlanner} />}
 
