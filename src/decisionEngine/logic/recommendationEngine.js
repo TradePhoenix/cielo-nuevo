@@ -17,6 +17,7 @@ import {
   CTA_COPY,
   TAG_LABELS,
 } from "../../features/blueprint/data/copy";
+import { buildReadinessTrace, buildCityMatchTrace } from "./buildDecisionTrace";
 
 // scores: the object returned by scoringEngine.computeScores()
 // answers: { [questionId]: selectedOptionId } — used here only to read
@@ -42,6 +43,11 @@ export function buildRecommendation(scores, answers) {
     roadmapSteps,
     ctaVariant,
     cta: CTA_COPY[ctaVariant],
+    // ENG-016 — Decision Intelligence Matrix: a purely additive reasoning
+    // trace (see buildDecisionTrace.js). Internal only, not rendered
+    // anywhere today; every field above this comment is computed exactly
+    // as before and unaffected by its presence.
+    readinessTrace: buildReadinessTrace(answers),
   };
 }
 
@@ -66,6 +72,10 @@ function rankCityMatches(tagCounts) {
       guideLink: city.guideLink,
       matchScore,
       matchReason: buildMatchReason(overlapTags),
+      // ENG-016 — Decision Intelligence Matrix: see buildDecisionTrace.js.
+      // Built from the same overlapTags/tagCounts already used for
+      // matchScore above, so it can never drift from the real score.
+      decisionTrace: buildCityMatchTrace(overlapTags, tagCounts, TAG_LABELS, city.name),
     };
   })
     .sort((a, b) => b.matchScore - a.matchScore)
