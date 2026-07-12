@@ -114,7 +114,9 @@ const content = {
       "It was not as simple or glamorous as social media makes it look. There were questions about residency, banking, healthcare, housing, paperwork, and figuring out who could actually be trusted.",
       "Some things were easier than I expected. Others were much harder. But somewhere along the way, life started to feel different.",
       "Mexico did not solve everything. No place can do that. But it gave me perspective and reminded me there is not only one way to live.",
-      "That is what eventually led to Path To Mexico: not a corporate relocation company, but a trusted guide built from real experience."
+      "That is what eventually led to Path To Mexico: not a corporate relocation company, but a trusted guide built from real experience.",
+      "Most relocation information online is scattered, impersonal, and disconnected from what it actually feels like to leave a country you have always known. Path To Mexico exists to close that gap — to help people make informed decisions, reduce uncertainty, and build their next chapter with more clarity than I had.",
+      "Path To Mexico is not a law firm, immigration agency, tax advisor, doctor, or real estate brokerage. What I can offer is honest guidance, real experience, and connections to trusted professionals when you need them."
     ],
     founderQuote:
       "Some people come to Mexico for a vacation. Others come here looking for a life that feels more like their own.",
@@ -269,7 +271,9 @@ const content = {
       "No fue tan simple ni glamuroso como parece en redes sociales. Había preguntas sobre residencia, bancos, salud, vivienda, documentos y cómo encontrar personas confiables.",
       "Algunas cosas fueron más fáciles de lo esperado. Otras fueron más difíciles. Pero en algún punto, la vida empezó a sentirse diferente.",
       "México no resolvió todo. Ningún lugar puede hacer eso. Pero me dio perspectiva y me recordó que no existe una sola forma de vivir.",
-      "Eso fue lo que llevó a Path To Mexico: no como una empresa corporativa de reubicación, sino como una guía confiable construida desde experiencia real."
+      "Eso fue lo que llevó a Path To Mexico: no como una empresa corporativa de reubicación, sino como una guía confiable construida desde experiencia real.",
+      "La mayoría de la información sobre reubicación en internet está dispersa, es impersonal y está desconectada de lo que realmente se siente dejar un país que siempre has conocido. Path To Mexico existe para cerrar esa brecha: ayudar a las personas a tomar decisiones informadas, reducir la incertidumbre y construir su próximo capítulo con más claridad de la que yo tuve.",
+      "Path To Mexico no es un despacho legal, una agencia de inmigración, un asesor fiscal, un médico ni una inmobiliaria. Lo que puedo ofrecer es orientación honesta, experiencia real y conexiones con profesionales confiables cuando los necesites."
     ],
     founderQuote:
       "Algunas personas vienen a México de vacaciones. Otras vienen buscando una vida que se sienta más propia.",

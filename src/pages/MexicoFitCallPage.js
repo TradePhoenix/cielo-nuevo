@@ -179,6 +179,15 @@ export default function MexicoFitCallPage() {
               </p>
             </div>
           </div>
+
+          <p className="mt-8 text-sm text-zinc-500">
+            <a
+              href="/#about"
+              className="underline decoration-zinc-300 underline-offset-4 transition hover:text-zinc-950 hover:decoration-zinc-950"
+            >
+              Read why Kalen built Path To Mexico
+            </a>
+          </p>
         </div>
       </section>
 
