@@ -12,6 +12,7 @@ import DecisionBrief from "../components/DecisionBrief";
 import CostPlanner from "../components/CostPlanner";
 import AdaptiveChecklist from "../components/AdaptiveChecklist";
 import ReadinessAssessment from "../components/ReadinessAssessment";
+import CityComparisonWorkspace from "../components/CityComparisonWorkspace";
 import { usePlanState } from "../state/usePlanState";
 import { PROLOGUE } from "../data/chapters";
 import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
@@ -20,6 +21,8 @@ import { buildDecisionBrief } from "../logic/buildDecisionBrief";
 import { buildCostPlanner } from "../logic/buildCostPlanner";
 import { buildAdaptiveChecklist } from "../logic/buildAdaptiveChecklist";
 import { buildReadinessAssessment } from "../logic/buildReadinessAssessment";
+import { buildCityComparison } from "../logic/buildCityComparison";
+import { getMatchesWithDetails } from "../../yourMexico/logic/cityLookup";
 
 // Routed /my-mexico-plan/:cityId — the plan itself. One continuous
 // document, not a multi-screen app: Now/Coming Up/Later, the honest
@@ -62,6 +65,11 @@ export default function MyMexicoPlanPage() {
     () => (plan ? buildReadinessAssessment({ answers, recommendation, plan, taskState }) : null),
     [answers, recommendation, plan, taskState]
   );
+  const topMatches = useMemo(
+    () => getMatchesWithDetails(recommendation.topCityMatches),
+    [recommendation]
+  );
+  const cityComparison = useMemo(() => buildCityComparison(topMatches), [topMatches]);
 
   // The "Coming Up" chapter uses a native <details> disclosure, closed by
   // default on screen. A CSS override of that closed-state hiding isn't
@@ -124,6 +132,10 @@ export default function MyMexicoPlanPage() {
       </p>
 
       {decisionBrief && <DecisionBrief brief={decisionBrief} />}
+
+      {cityComparison.cities.length > 0 && (
+        <CityComparisonWorkspace comparison={cityComparison} matches={topMatches} />
+      )}
 
       {readinessAssessment && (
         <ReadinessAssessment assessment={readinessAssessment} taskState={taskState} onToggleTask={toggleTask} />
