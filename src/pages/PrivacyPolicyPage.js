@@ -18,6 +18,10 @@ function PrivacyPolicyPage() {
           Privacy Policy
         </h1>
 
+        <p className="mt-6 text-sm uppercase tracking-[0.2em] text-zinc-400">
+          Last updated: July 12, 2026
+        </p>
+
         <div className="mt-10 space-y-6 text-lg leading-relaxed text-zinc-600">
           <p>
             Path To Mexico respects your privacy. Information submitted through this website may be used to respond to inquiries, provide relocation guidance, share requested resources, and improve our services.
@@ -32,7 +36,7 @@ function PrivacyPolicyPage() {
           </p>
 
           <p>
-            This website may use analytics and tracking tools to understand visitor behavior and improve the site experience.
+            This website does not currently use analytics or tracking tools. If that changes in the future, this policy will be updated to reflect it.
           </p>
 
           <p>

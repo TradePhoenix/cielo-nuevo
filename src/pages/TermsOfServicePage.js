@@ -18,6 +18,10 @@ function TermsOfServicePage() {
           Terms Of Service
         </h1>
 
+        <p className="mt-6 text-sm uppercase tracking-[0.2em] text-zinc-400">
+          Last updated: July 12, 2026
+        </p>
+
         <div className="mt-10 space-y-6 text-lg leading-relaxed text-zinc-600">
           <p>
             Path To Mexico provides relocation guidance, local insight, educational content, and introductions to independent professionals.
