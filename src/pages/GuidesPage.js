@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "../components/SEO";
+import RelocationRoadmap from "../components/RelocationRoadmap";
 
 const guides = [
   {
@@ -318,6 +319,13 @@ function GuidesPage() {
           </div>
         </motion.div>
       </section>
+
+      <div className="border-t border-zinc-300">
+        <RelocationRoadmap
+          eyebrow="Guides By Stage"
+          title="Every guide fits somewhere in your journey."
+        />
+      </div>
 
       <section className="bg-[#0b0b0a] px-6 py-24 text-center text-white md:py-32">
         <div className="mx-auto max-w-4xl">
