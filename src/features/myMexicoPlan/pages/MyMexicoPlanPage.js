@@ -13,6 +13,7 @@ import CostPlanner from "../components/CostPlanner";
 import AdaptiveChecklist from "../components/AdaptiveChecklist";
 import ReadinessAssessment from "../components/ReadinessAssessment";
 import CityComparisonWorkspace from "../components/CityComparisonWorkspace";
+import ResponsibilityWorkspace from "../components/ResponsibilityWorkspace";
 import { usePlanState } from "../state/usePlanState";
 import { PROLOGUE } from "../data/chapters";
 import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
@@ -22,6 +23,7 @@ import { buildCostPlanner } from "../logic/buildCostPlanner";
 import { buildAdaptiveChecklist } from "../logic/buildAdaptiveChecklist";
 import { buildReadinessAssessment } from "../logic/buildReadinessAssessment";
 import { buildCityComparison } from "../logic/buildCityComparison";
+import { buildResponsibilityWorkspace } from "../logic/buildResponsibilityWorkspace";
 import { getMatchesWithDetails } from "../../yourMexico/logic/cityLookup";
 
 // Routed /my-mexico-plan/:cityId — the plan itself. One continuous
@@ -70,6 +72,10 @@ export default function MyMexicoPlanPage() {
     [recommendation]
   );
   const cityComparison = useMemo(() => buildCityComparison(topMatches), [topMatches]);
+  const responsibilityWorkspace = useMemo(
+    () => (plan ? buildResponsibilityWorkspace({ plan }) : null),
+    [plan]
+  );
 
   // The "Coming Up" chapter uses a native <details> disclosure, closed by
   // default on screen. A CSS override of that closed-state hiding isn't
@@ -169,6 +175,14 @@ export default function MyMexicoPlanPage() {
       )}
 
       {costPlanner && <CostPlanner planner={costPlanner} />}
+
+      {responsibilityWorkspace && (
+        <ResponsibilityWorkspace
+          workspace={responsibilityWorkspace}
+          taskState={taskState}
+          onToggleTask={toggleTask}
+        />
+      )}
 
       {adaptiveChecklist && (
         <AdaptiveChecklist checklist={adaptiveChecklist} taskState={taskState} onToggleTask={toggleTask} />
