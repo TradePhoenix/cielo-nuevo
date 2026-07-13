@@ -13,7 +13,7 @@ import CostPlanner from "../components/CostPlanner";
 import AdaptiveChecklist from "../components/AdaptiveChecklist";
 import ReadinessAssessment from "../components/ReadinessAssessment";
 import CityComparisonWorkspace from "../components/CityComparisonWorkspace";
-import ResponsibilityWorkspace from "../components/ResponsibilityWorkspace";
+import ConciergeWorkspace from "../components/ConciergeWorkspace";
 import { usePlanState } from "../state/usePlanState";
 import { PROLOGUE } from "../data/chapters";
 import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
@@ -23,7 +23,7 @@ import { buildCostPlanner } from "../logic/buildCostPlanner";
 import { buildAdaptiveChecklist } from "../logic/buildAdaptiveChecklist";
 import { buildReadinessAssessment } from "../logic/buildReadinessAssessment";
 import { buildCityComparison } from "../logic/buildCityComparison";
-import { buildResponsibilityWorkspace } from "../logic/buildResponsibilityWorkspace";
+import { buildConciergeWorkspace } from "../logic/buildConciergeWorkspace";
 import { getMatchesWithDetails } from "../../yourMexico/logic/cityLookup";
 
 // Routed /my-mexico-plan/:cityId — the plan itself. One continuous
@@ -72,9 +72,9 @@ export default function MyMexicoPlanPage() {
     [recommendation]
   );
   const cityComparison = useMemo(() => buildCityComparison(topMatches), [topMatches]);
-  const responsibilityWorkspace = useMemo(
-    () => (plan ? buildResponsibilityWorkspace({ plan }) : null),
-    [plan]
+  const conciergeWorkspace = useMemo(
+    () => (plan ? buildConciergeWorkspace({ plan, adaptiveChecklist, readinessAssessment }) : null),
+    [plan, adaptiveChecklist, readinessAssessment]
   );
 
   // The "Coming Up" chapter uses a native <details> disclosure, closed by
@@ -176,16 +176,12 @@ export default function MyMexicoPlanPage() {
 
       {costPlanner && <CostPlanner planner={costPlanner} />}
 
-      {responsibilityWorkspace && (
-        <ResponsibilityWorkspace
-          workspace={responsibilityWorkspace}
-          taskState={taskState}
-          onToggleTask={toggleTask}
-        />
-      )}
-
       {adaptiveChecklist && (
         <AdaptiveChecklist checklist={adaptiveChecklist} taskState={taskState} onToggleTask={toggleTask} />
+      )}
+
+      {conciergeWorkspace && (
+        <ConciergeWorkspace workspace={conciergeWorkspace} taskState={taskState} onToggleTask={toggleTask} />
       )}
 
       <div className="mt-8">
