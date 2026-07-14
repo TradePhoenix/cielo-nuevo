@@ -14,6 +14,7 @@ import AdaptiveChecklist from "../components/AdaptiveChecklist";
 import ReadinessAssessment from "../components/ReadinessAssessment";
 import CityComparisonWorkspace from "../components/CityComparisonWorkspace";
 import ConciergeWorkspace from "../components/ConciergeWorkspace";
+import RelocationTimeline from "../components/RelocationTimeline";
 import { usePlanState } from "../state/usePlanState";
 import { PROLOGUE } from "../data/chapters";
 import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintAnswers";
@@ -24,6 +25,7 @@ import { buildAdaptiveChecklist } from "../logic/buildAdaptiveChecklist";
 import { buildReadinessAssessment } from "../logic/buildReadinessAssessment";
 import { buildCityComparison } from "../logic/buildCityComparison";
 import { buildConciergeWorkspace } from "../logic/buildConciergeWorkspace";
+import { buildRelocationTimeline } from "../logic/buildRelocationTimeline";
 import { getMatchesWithDetails } from "../../yourMexico/logic/cityLookup";
 
 // Routed /my-mexico-plan/:cityId — the plan itself. One continuous
@@ -75,6 +77,10 @@ export default function MyMexicoPlanPage() {
   const conciergeWorkspace = useMemo(
     () => (plan ? buildConciergeWorkspace({ plan, adaptiveChecklist, readinessAssessment }) : null),
     [plan, adaptiveChecklist, readinessAssessment]
+  );
+  const relocationTimeline = useMemo(
+    () => (plan ? buildRelocationTimeline({ plan, recommendation, answers, taskState }) : null),
+    [plan, recommendation, answers, taskState]
   );
 
   // The "Coming Up" chapter uses a native <details> disclosure, closed by
@@ -182,6 +188,10 @@ export default function MyMexicoPlanPage() {
 
       {conciergeWorkspace && (
         <ConciergeWorkspace workspace={conciergeWorkspace} taskState={taskState} onToggleTask={toggleTask} />
+      )}
+
+      {relocationTimeline && (
+        <RelocationTimeline timeline={relocationTimeline} taskState={taskState} onToggleTask={toggleTask} />
       )}
 
       <div className="mt-8">
