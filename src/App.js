@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ScrollToTop from "./ScrollToTop";
+import RouteLoadingFallback from "./components/RouteLoadingFallback";
 
 // Every other route is code-split: the single main bundle previously shipped
 // all 21 guide articles' full text plus every feature (Blueprint, Your
@@ -51,7 +52,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Suspense fallback={null}>
+      <Suspense fallback={<RouteLoadingFallback />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
 
