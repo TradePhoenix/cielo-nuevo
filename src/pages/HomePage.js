@@ -25,17 +25,20 @@ const content = {
     explore: "Explore Relocation Support",
 
     servicesLabel: "Relocation Support",
-    servicesTitle: "Practical guidance for moving to Mexico without guessing your way through it.",
+    servicesTitle: "What Path To Mexico actually helps you with.",
     servicesText:
-      "From early research to trusted introductions, Path To Mexico helps you understand your options and make clearer decisions before you move.",
+      "Personalized relocation planning, city and area guidance, housing and residency support, and introductions to trusted local professionals — all built around your own goals, budget, timeline, and lifestyle.",
     services: [
-      ["Relocation Support", "Step-by-step support for understanding your move, priorities, timeline, and next best decisions."],
-      ["Residency Direction", "Guidance on the general residency path and introductions to qualified professionals when needed."],
-      ["Housing Connections", "Support understanding areas, rentals, real estate options, and trusted local contacts."],
+      ["Relocation Support", "Personalized planning built around your goals, budget, timeline, and lifestyle — not a generic checklist."],
+      ["Residency Direction", "Education on the general residency process, plus introductions to qualified professionals where required."],
+      ["Housing Connections", "Help understanding neighborhoods and rentals, with introductions to local real estate contacts where available."],
       ["Lifestyle Planning", "Clear insight into cost of living, healthcare, banking, transportation, pets, and daily life."],
-      ["Trusted Local Network", "Introductions to local professionals across relocation, legal, real estate, insurance, and services."],
-      ["Guided Landing", "More personalized support for people who want help before, during, and after arrival."]
+      ["Trusted Local Network", "Coordination and introductions to local professionals — legal, accounting, insurance, healthcare, and more — where we have a genuine connection to offer."],
+      ["Guided Landing", "Practical preparation, arrival planning, and settling-in support — before, during, and after your move."]
     ],
+    employmentClarifier:
+      "Path To Mexico is not a recruitment or job-placement agency. We provide relocation planning for remote workers, entrepreneurs, retirees, and others building a life in Mexico — but we cannot promise employment or work authorization.",
+    servicesCta: "See your next step — Build Your Mexico Blueprint",
 
     workLabel: "Work With Me",
     workTitle1: "Moving countries is a big decision.",
@@ -182,17 +185,20 @@ const content = {
     explore: "Explorar Reubicación",
 
     servicesLabel: "Apoyo De Reubicación",
-    servicesTitle: "Guía práctica para mudarte a México sin adivinar cada paso.",
+    servicesTitle: "En qué te ayuda realmente Path To Mexico.",
     servicesText:
-      "Desde la investigación inicial hasta conexiones confiables, Path To Mexico te ayuda a entender tus opciones y tomar mejores decisiones antes de mudarte.",
+      "Planeación personalizada de tu mudanza, orientación sobre ciudad y zona, apoyo con vivienda y residencia, y conexiones con profesionales locales de confianza — todo basado en tus propias metas, presupuesto, tiempos y estilo de vida.",
     services: [
-      ["Apoyo De Reubicación", "Apoyo paso a paso para entender tu mudanza, prioridades, tiempos y próximas decisiones."],
-      ["Orientación De Residencia", "Guía general sobre el camino de residencia y conexiones con profesionales calificados cuando sea necesario."],
-      ["Conexiones De Vivienda", "Apoyo para entender zonas, rentas, opciones inmobiliarias y contactos locales confiables."],
+      ["Apoyo De Reubicación", "Planeación personalizada basada en tus metas, presupuesto, tiempos y estilo de vida — no una lista genérica."],
+      ["Orientación De Residencia", "Educación sobre el proceso general de residencia, más conexiones con profesionales calificados cuando sea necesario."],
+      ["Conexiones De Vivienda", "Apoyo para entender colonias y rentas, con conexiones a contactos inmobiliarios locales cuando estén disponibles."],
       ["Planeación De Estilo De Vida", "Claridad sobre costo de vida, salud, bancos, transporte, mascotas y vida diaria."],
-      ["Red Local Confiable", "Introducciones a profesionales locales en reubicación, legal, bienes raíces, seguros y servicios."],
-      ["Llegada Guiada", "Apoyo más personalizado para quienes quieren ayuda antes, durante y después de llegar."]
+      ["Red Local Confiable", "Coordinación y conexiones con profesionales locales — legal, contable, seguros, salud y más — donde tengamos una conexión genuina que ofrecer."],
+      ["Llegada Guiada", "Preparación práctica, planeación de llegada y apoyo para instalarte — antes, durante y después de tu mudanza."]
     ],
+    employmentClarifier:
+      "Path To Mexico no es una agencia de reclutamiento ni de colocación laboral. Ofrecemos planeación de reubicación para trabajadores remotos, emprendedores, jubilados y quienes construyen una vida en México — pero no podemos garantizar empleo ni autorización de trabajo.",
+    servicesCta: "Descubre tu próximo paso — Construye Tu Mexico Blueprint",
 
     workLabel: "Trabaja Conmigo",
     workTitle1: "Mudarse de país es una gran decisión.",
@@ -659,6 +665,19 @@ function HomePage() {
               <p className="leading-relaxed text-zinc-600">{text}</p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mx-auto mt-12 max-w-3xl text-center">
+          <p className="text-sm leading-relaxed text-zinc-500">{t.employmentClarifier}</p>
+          <a
+            href="/my-mexico-blueprint"
+            className="group mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-700 transition hover:text-zinc-950"
+          >
+            {t.servicesCta}
+            <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </a>
         </div>
       </section>
 
