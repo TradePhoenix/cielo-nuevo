@@ -10,6 +10,7 @@ import ResultsCityMatch from "./components/ResultsCityMatch";
 import ResultsRoadmap from "./components/ResultsRoadmap";
 import ResultsCTA from "./components/ResultsCTA";
 import { useBlueprintState } from "./state/useBlueprintState";
+import { useCinematicMotion } from "../../components/cinematicMotion";
 
 const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2";
@@ -17,15 +18,24 @@ const FOCUS_RING =
 // Cascading reveal for the results screen — the score appears first, then
 // city matches, then the roadmap, then the CTA, so results feel like a
 // build rather than one flat block popping in after the loading sequence.
-const resultsStagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
-};
+// CX-003: both variants degrade under reduced motion — no stagger delay
+// (every item appears together) and opacity-only, no y-offset.
+function getResultsStagger(prefersReducedMotion) {
+  return {
+    hidden: {},
+    show: { transition: { staggerChildren: prefersReducedMotion ? 0 : 0.15, delayChildren: prefersReducedMotion ? 0 : 0.1 } },
+  };
+}
 
-const resultsItem = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-};
+function getResultsItem(prefersReducedMotion) {
+  if (prefersReducedMotion) {
+    return { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.12 } } };
+  }
+  return {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  };
+}
 
 // Orchestrates the full step machine: intro -> question -> loading -> results.
 export default function BlueprintApp() {
@@ -46,6 +56,9 @@ export default function BlueprintApp() {
   } = useBlueprintState();
 
   const resultsRef = useRef(null);
+  const prefersReducedMotion = useCinematicMotion();
+  const resultsStagger = getResultsStagger(prefersReducedMotion);
+  const resultsItem = getResultsItem(prefersReducedMotion);
 
   // Moves focus to the results region as soon as it appears, so screen
   // reader users land there directly instead of needing to re-explore the page.
@@ -74,9 +87,9 @@ export default function BlueprintApp() {
 
           <motion.div
             key={currentQuestion.id}
-            initial={{ opacity: 0, y: 16 }}
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: prefersReducedMotion ? 0.12 : 0.4 }}
           >
             <QuestionCard
               question={currentQuestion}

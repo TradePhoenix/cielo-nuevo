@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
+import { useCinematicMotion } from "./cinematicMotion";
 
+// CX-003: retrofitted for reduced-motion — this whileInView reveal is
+// reused by ~20 guide article pages via ArticleLayout.js, so fixing it
+// here fixes reduced-motion for all of them at once.
 export default function SectionHeader({
   label,
   title,
@@ -9,11 +13,13 @@ export default function SectionHeader({
   center = false,
   className = "",
 }) {
+  const prefersReducedMotion = useCinematicMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 35 }}
+      initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 35 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: prefersReducedMotion ? 0.12 : 0.8 }}
       viewport={{ once: true }}
       className={`${center ? "mx-auto text-center" : ""} max-w-6xl ${className}`}
     >

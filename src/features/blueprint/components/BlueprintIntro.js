@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
+import { useCinematicMotion } from "../../../components/cinematicMotion";
 
 // Full-bleed cinematic intro — reuses the same hero photo and dark-overlay
 // language as the homepage hero (src/pages/HomePage.js) so this feels like
 // a signature Path To Mexico moment, not a generic quiz landing screen.
 export default function BlueprintIntro({ onStart, totalQuestions }) {
+  const prefersReducedMotion = useCinematicMotion();
+
   return (
     <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 py-24 text-center text-white">
       <div className="absolute inset-0">
@@ -17,9 +20,9 @@ export default function BlueprintIntro({ onStart, totalQuestions }) {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: prefersReducedMotion ? 0.12 : 0.8 }}
         className="relative z-10 mx-auto max-w-2xl"
       >
         <p className="mb-6 text-xs uppercase tracking-[0.4em] text-white/60">

@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "./SEO";
 import ContinueYourJourney from "./ContinueYourJourney";
+import { useCinematicMotion } from "./cinematicMotion";
 
 function ArticleLayout({
   category,
@@ -10,6 +11,7 @@ function ArticleLayout({
   children
 }) {
   const location = useLocation();
+  const prefersReducedMotion = useCinematicMotion();
 
   return (
     <main className="min-h-screen bg-[#f4f0e8] text-zinc-950">
@@ -37,9 +39,9 @@ function ArticleLayout({
 
       <header id="main-content" className="bg-[#080807] px-6 pb-20 pt-36 text-white md:px-20 md:pb-28 md:pt-44">
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
+          transition={{ duration: prefersReducedMotion ? 0.12 : 0.9 }}
           className="mx-auto max-w-5xl"
         >
           <Link

@@ -4,10 +4,24 @@ import { Link } from "react-router-dom";
 // YourMexicoShell's `hero` slot, outside the padded content column) using
 // the same existing hero photo as everywhere else in Your Mexico. Carries
 // its own back-link overlay since it sits outside the shell's own.
+//
+// CX-003: reuses the exact ambient-drift + light-movement treatment already
+// proven on the Homepage hero and CityCard.js — same keyframes, same
+// motion-safe:/md: gating, so it's inert on mobile and under
+// prefers-reduced-motion with zero JS check needed here. Drift lives on a
+// wrapper around the <img>, never the image itself, matching the same
+// no-transform-conflict rule used everywhere else in the system.
 export default function CityHero({ city, backTo, backLabel }) {
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-auto sm:h-[60vh] sm:min-h-[420px]">
-      <img src={city.heroImage} alt={city.name} className="absolute inset-0 h-full w-full object-cover" />
+      <div className="h-full w-full motion-safe:md:animate-[cinematic-drift_10s_ease-in-out_infinite]">
+        <img src={city.heroImage} alt={city.name} className="absolute inset-0 h-full w-full object-cover" />
+      </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 motion-safe:md:animate-[cinematic-light_10s_ease-in-out_infinite]"
+        style={{ backgroundImage: "radial-gradient(circle, rgba(216,161,95,0.18), transparent 60%)" }}
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/35" />
 
       {backTo && (

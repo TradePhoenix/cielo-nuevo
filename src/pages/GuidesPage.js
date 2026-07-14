@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import SEO from "../components/SEO";
 import RelocationRoadmap from "../components/RelocationRoadmap";
 import { GUIDES as guides } from "../data/guides";
+import { useCinematicMotion } from "../components/cinematicMotion";
 
 const content = {
   en: {
@@ -59,6 +60,7 @@ const content = {
 function GuidesPage() {
   const [lang, setLang] = useState("en");
   const t = content[lang];
+  const prefersReducedMotion = useCinematicMotion();
 
   return (
     <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
@@ -99,9 +101,9 @@ function GuidesPage() {
 
       <section className="px-6 pb-20 pt-36 md:px-20 md:pb-28 md:pt-44">
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
+          initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
+          transition={{ duration: prefersReducedMotion ? 0.12 : 0.9 }}
           className="mx-auto max-w-6xl"
         >
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">

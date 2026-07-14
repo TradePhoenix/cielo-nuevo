@@ -367,8 +367,20 @@ function LeadForm({ t }) {
 }
 
 function SectionHeader({ label, title, text, light = false }) {
+  // CX-003: this local component (not the shared ArticleSection.js) is
+  // reused by every Homepage section header (Relocation, Work, Process,
+  // Testimonials, Network, Trust, FAQ) — it had no reduced-motion handling
+  // at all until now, despite being the single most-repeated whileInView
+  // usage on the page.
+  const prefersReducedMotion = useCinematicMotion();
   return (
-    <motion.div initial={{ opacity: 0, y: 45 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="mx-auto max-w-6xl">
+    <motion.div
+      initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 45 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: prefersReducedMotion ? 0.12 : 0.8 }}
+      viewport={{ once: true }}
+      className="mx-auto max-w-6xl"
+    >
       <p className={`mb-6 text-xs uppercase tracking-[0.35em] ${light ? "text-white/40" : "text-zinc-500"}`}>
         {label}
       </p>
@@ -824,15 +836,20 @@ function HomePage() {
       <section id="process" className="bg-[#0b0b0a] px-6 py-20 text-white md:px-20 md:py-28">
         <SectionHeader label={t.processLabel} title={t.processTitle} light />
 
-        <div className="mx-auto mt-14 grid max-w-6xl gap-px bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+        <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-px bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
           {t.process.map(([number, title, text]) => (
-            <motion.div key={title} whileHover={{ y: -6 }} className="bg-[#0b0b0a] p-7 transition hover:bg-white hover:text-zinc-950">
+            <motion.div
+              key={title}
+              variants={CinematicReveal.itemVariants(prefersReducedMotion)}
+              whileHover={{ y: -6 }}
+              className="bg-[#0b0b0a] p-7 transition hover:bg-white hover:text-zinc-950"
+            >
               <p className="mb-8 text-xs font-semibold uppercase tracking-[0.3em] opacity-40">{number}</p>
               <h3 className="mb-5 text-2xl font-medium tracking-[-0.03em]">{title}</h3>
               <p className="leading-relaxed opacity-65">{text}</p>
             </motion.div>
           ))}
-        </div>
+        </CinematicReveal>
       </section>
 
       <section className="bg-[#efe7d8] px-6 py-20 md:px-20 md:py-28">
@@ -853,7 +870,7 @@ function HomePage() {
       </section>
 
       <section id="about" className="bg-[#f6f1e8] px-6 py-20 md:px-20 md:py-28">
-        <div className="mx-auto grid max-w-6xl gap-12 border-t border-zinc-300 pt-12 md:grid-cols-[0.85fr_1.15fr]">
+        <CinematicReveal className="mx-auto grid max-w-6xl gap-12 border-t border-zinc-300 pt-12 md:grid-cols-[0.85fr_1.15fr]">
           <div>
             <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{t.founderLabel}</p>
             <h2 className="text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">{t.founderTitle}</h2>
@@ -879,35 +896,43 @@ function HomePage() {
               {t.founderRole}
             </p>
           </div>
-        </div>
+        </CinematicReveal>
       </section>
 
       <section id="network" className="bg-white px-6 py-20 md:px-20 md:py-28">
         <SectionHeader label={t.networkLabel} title={t.networkTitle} text={t.networkText} />
 
-        <div className="mx-auto mt-14 grid max-w-6xl gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-4 sm:grid-cols-2 md:grid-cols-3">
           {t.network.map((item) => (
-            <div key={item} className="border border-zinc-200 bg-white p-8 text-lg text-zinc-700 transition hover:bg-[#f6f1e8]">
+            <motion.div
+              key={item}
+              variants={CinematicReveal.itemVariants(prefersReducedMotion)}
+              className="border border-zinc-200 bg-white p-8 text-lg text-zinc-700 transition hover:bg-[#f6f1e8]"
+            >
               {item}
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </CinematicReveal>
       </section>
 
       <section id="trust" className="bg-[#efe7d8] px-6 py-20 md:px-20 md:py-28">
         <SectionHeader label={t.trustLabel} title={t.trustTitle} />
 
-        <div className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 sm:grid-cols-2 lg:grid-cols-4">
+        <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 sm:grid-cols-2 lg:grid-cols-4">
           {t.trustPoints.map((point) => (
-            <div key={point} className="bg-[#efe7d8] p-8 text-lg text-zinc-700 transition hover:bg-white">
+            <motion.div
+              key={point}
+              variants={CinematicReveal.itemVariants(prefersReducedMotion)}
+              className="bg-[#efe7d8] p-8 text-lg text-zinc-700 transition hover:bg-white"
+            >
               {point}
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </CinematicReveal>
       </section>
 
       <section className="bg-[#f6f1e8] px-6 py-20 md:px-20 md:py-28">
-        <div className="mx-auto max-w-6xl">
+        <CinematicReveal className="mx-auto max-w-6xl">
           <h2 className="mb-7 max-w-5xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.whoTitle}</h2>
           <p className="mb-12 max-w-3xl text-lg leading-relaxed text-zinc-600 sm:text-xl">{t.whoText}</p>
 
@@ -918,20 +943,24 @@ function HomePage() {
               </span>
             ))}
           </div>
-        </div>
+        </CinematicReveal>
       </section>
 
       <section id="faq" className="bg-white px-6 py-20 md:px-20 md:py-28">
         <SectionHeader label={t.faqLabel} title={t.faqTitle} />
 
-        <div className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-2">
+        <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-2">
           {t.faqs.map(([question, answer]) => (
-            <div key={question} className="bg-white p-7 transition hover:bg-[#f6f1e8]">
+            <motion.div
+              key={question}
+              variants={CinematicReveal.itemVariants(prefersReducedMotion)}
+              className="bg-white p-7 transition hover:bg-[#f6f1e8]"
+            >
               <h3 className="mb-4 text-2xl font-medium tracking-[-0.03em]">{question}</h3>
               <p className="leading-relaxed text-zinc-600">{answer}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </CinematicReveal>
       </section>
 
       <section id="contact" ref={contactRef} className="bg-[#0b0b0a] px-6 py-20 text-center text-white md:py-28">

@@ -22,8 +22,12 @@ export default function RouteLoadingFallback() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#f5f5f4]" role="status" aria-live="polite">
       <div className="flex flex-col items-center gap-4">
+        {/* CX-003: motion-safe: means this pulses only when the visitor
+            hasn't asked for reduced motion — under prefers-reduced-motion,
+            it's simply a static line, still legible as "something is
+            loading" without any animation. */}
         <div className="h-px w-16 overflow-hidden bg-zinc-300">
-          <div className="h-px w-16 animate-pulse bg-zinc-950" />
+          <div className="h-px w-16 motion-safe:animate-pulse bg-zinc-950" />
         </div>
         <p className="text-xs uppercase tracking-[0.35em] text-zinc-400">Loading</p>
       </div>
