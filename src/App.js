@@ -1,8 +1,10 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import HomePage from "./pages/HomePage";
 import ScrollToTop from "./ScrollToTop";
 import RouteLoadingFallback from "./components/RouteLoadingFallback";
+import { ROUTE_TRANSITION, routeTransitionDuration, useCinematicMotion, EASE } from "./components/cinematicMotion";
 
 // Every other route is code-split: the single main bundle previously shipped
 // all 21 guide articles' full text plus every feature (Blueprint, Your
@@ -48,13 +50,31 @@ const DashboardPage = lazy(() => import("./features/dashboard/pages/DashboardPag
 const DocumentVaultPage = lazy(() => import("./features/documentVault/pages/DocumentVaultPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
-function App() {
+// CX-002 route-transition treatment: a single opacity-only fade-in, keyed
+// on the top-level path segment rather than the full pathname — see
+// cinematicMotion.js's ROUTE_TRANSITION comment for why (it means
+// navigating between two cities on /your-mexico/:cityId or
+// /my-mexico-plan/:cityId never remounts those stateful feature pages on
+// their own param changes; only genuine cross-section navigation
+// transitions). No exit animation, no AnimatePresence — mount-triggered
+// initial/animate only, so a navigation is never held up waiting on a
+// previous page to finish leaving. useLocation() must live inside
+// BrowserRouter, hence this is its own component rather than inline in App.
+function AnimatedRoutes() {
+  const location = useLocation();
+  const prefersReducedMotion = useCinematicMotion();
+  const transitionKey = location.pathname.split("/").slice(0, 2).join("/") || "/";
+
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Suspense fallback={<RouteLoadingFallback />}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+    <motion.div
+      key={transitionKey}
+      initial="hidden"
+      animate="show"
+      variants={ROUTE_TRANSITION}
+      transition={{ duration: routeTransitionDuration(prefersReducedMotion), ease: EASE.standard }}
+    >
+      <Routes>
+        <Route path="/" element={<HomePage />} />
 
           <Route path="/developer-dashboard" element={<DeveloperDashboardPage />} />
 
@@ -98,6 +118,16 @@ function App() {
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+      </motion.div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Suspense fallback={<RouteLoadingFallback />}>
+        <AnimatedRoutes />
       </Suspense>
     </BrowserRouter>
   );

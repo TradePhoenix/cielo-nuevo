@@ -192,6 +192,64 @@ export function ambientDrift(index = 0) {
   };
 }
 
+// ============================================================================
+// CX-002 ADDITIONS — cinematic depth & page flow
+// ============================================================================
+//
+// Reusable section-reveal pattern: see CinematicReveal.js. It wraps
+// entryReveal/entryRevealReduced (single element) or REVEAL_STAGGER
+// (immediate grid of children) so no section re-derives the reduced-motion
+// branch itself. Applied to the highest-value Homepage sections that
+// previously had no entrance treatment at all (the Blueprint teaser, and
+// the Services/Work/Testimonials card grids, whose SectionHeader already
+// faded in while the cards beneath it appeared instantly — an
+// inconsistency flagged in CX-001's own roadmap).
+//
+// REVEAL_STAGGER (0.12s) is deliberately much quicker than HEARTBEAT.stagger
+// (2.4s) — entrance choreography and ambient idle rhythm are different
+// concerns with different appropriate cadences. A row of cards should
+// reveal itself briskly; ambient breathing should feel unhurried.
+//
+// Pointer depth (Homepage hero only, per this ticket's "one approved
+// surface" scope): a small, transform-only translate driven by cursor
+// position, applied to a dedicated wrapper layer that sits *outside* the
+// CX-001 ambient-drift wrapper — never the same element, so the two
+// transforms compose instead of fighting (same rule as CX-001's ambient
+// vs. hover layering). Gated on `(hover: hover) and (pointer: fine)`,
+// checked once on mount, not on every pointer event — this is the correct
+// signal for "has a real cursor," stronger than a width breakpoint, since
+// a touch-capable laptop with a mouse attached should still get it, and a
+// wide-viewport tablet in landscape should not. Resets to POINTER_DEPTH.rest
+// on pointer-leave via the same tween, so it can never get stuck offset.
+export const POINTER_DEPTH = {
+  maxOffset: 10,
+  rest: { x: 0, y: 0 },
+  transition: { duration: DURATION.quick, ease: EASE.standard },
+};
+
+// Route transitions: a single opacity-only fade-in, keyed on the top-level
+// path segment (not the full pathname) so navigating between two pages
+// that share one dynamic-segment route (e.g. /your-mexico/:cityId,
+// /my-mexico-plan/:cityId) never forces those stateful feature pages to
+// remount on their own internal param changes — only genuine cross-section
+// navigation gets the transition. No exit animation and no AnimatePresence
+// — mount-triggered initial/animate only, so a navigation is never held up
+// waiting for a previous page to finish leaving. This runs *after*
+// RouteLoadingFallback resolves (Suspense fully replaces its subtree while
+// a lazy chunk loads), never alongside it.
+export const ROUTE_TRANSITION = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+};
+
+export function routeTransitionDuration(prefersReducedMotion) {
+  return prefersReducedMotion ? DURATION.instant : DURATION.quick;
+}
+
+// The stagger amount for CinematicReveal's `stagger` mode — see
+// CinematicReveal.js.
+export const REVEAL_STAGGER = 0.12;
+
 // import { useReducedMotion } from "framer-motion" directly in components —
 // this thin wrapper exists so every cinematic component asks the same
 // question the same way, and so the "what do we do when true" policy (see

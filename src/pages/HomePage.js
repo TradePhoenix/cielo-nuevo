@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
 import SEO from "../components/SEO";
+import CinematicReveal from "../components/CinematicReveal";
+import { useCinematicMotion, POINTER_DEPTH } from "../components/cinematicMotion";
 
 const heroFadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -388,6 +390,23 @@ function HomePage() {
   const [scrolled, setScrolled] = useState(false);
   const [nearContact, setNearContact] = useState(false);
   const t = content[lang];
+  const prefersReducedMotion = useCinematicMotion();
+
+  // CX-002 hero pointer depth — desktop-only (a real cursor, not a touch
+  // guess from viewport width), reduced-motion-aware, resets to POINTER_DEPTH.rest
+  // whenever the pointer leaves so it can never get stuck offset.
+  const [hasFinePointer, setHasFinePointer] = useState(false);
+  const [pointerOffset, setPointerOffset] = useState(POINTER_DEPTH.rest);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setHasFinePointer(mediaQuery.matches);
+    const handleChange = (event) => setHasFinePointer(event.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  const heroPointerActive = hasFinePointer && !prefersReducedMotion;
 
   const navLinks = ["#home", "/my-mexico-blueprint", "#relocation", "#services", "/guides", "#about", "#faq", "#contact"];
 
@@ -396,6 +415,16 @@ function HomePage() {
   const menuTriggerRef = useRef(null);
   const firstMenuLinkRef = useRef(null);
   const menuHasOpenedRef = useRef(false);
+
+  const handleHeroPointerMove = (event) => {
+    if (!heroPointerActive || !heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
+    const relX = (event.clientX - rect.left) / rect.width - 0.5;
+    const relY = (event.clientY - rect.top) / rect.height - 0.5;
+    setPointerOffset({ x: relX * -POINTER_DEPTH.maxOffset, y: relY * -POINTER_DEPTH.maxOffset });
+  };
+
+  const handleHeroPointerLeave = () => setPointerOffset(POINTER_DEPTH.rest);
 
   useEffect(() => {
     const node = heroRef.current;
@@ -469,7 +498,13 @@ function HomePage() {
         description="Relocation guidance, trusted local connections, and lifestyle support for people considering a new life in Mexico."
         path="/"
       />
-      <section id="home" ref={heroRef} className="relative min-h-[100svh] overflow-hidden text-white">
+      <section
+        id="home"
+        ref={heroRef}
+        onMouseMove={handleHeroPointerMove}
+        onMouseLeave={handleHeroPointerLeave}
+        className="relative min-h-[100svh] overflow-hidden text-white"
+      >
         <div className="absolute inset-0">
           {/* CX-001: the hero's own restrained cinematic prototype — reuses
               the exact same tokens/keyframes proven on CityCard.js, applied
@@ -481,10 +516,25 @@ function HomePage() {
               only ever adds a faint warm glow to the photo -- the gradients
               (and the text contrast they preserve) are completely
               untouched. Both effects are motion-safe + md:-gated: fully
-              inert under prefers-reduced-motion and on mobile. */}
-          <div className="h-full w-full motion-safe:md:animate-[cinematic-drift_10s_ease-in-out_infinite]">
-            <img src="/hero.jpg" alt="Riviera Maya relocation lifestyle" className="h-full w-full object-cover" />
-          </div>
+              inert under prefers-reduced-motion and on mobile.
+
+              CX-002 adds one more layer: a desktop-only pointer-depth
+              translate on a dedicated outer wrapper, so it composes with
+              (rather than fights) the CX-001 ambient-drift wrapper nested
+              inside it — same rule as CityCard's ambient/hover layering.
+              heroPointerActive is false on touch devices and under
+              prefers-reduced-motion, so this motion.div's animate target
+              never leaves POINTER_DEPTH.rest for those visitors, and
+              onMouseLeave above always resets it cleanly. */}
+          <motion.div
+            animate={pointerOffset}
+            transition={POINTER_DEPTH.transition}
+            className="h-full w-full"
+          >
+            <div className="h-full w-full motion-safe:md:animate-[cinematic-drift_10s_ease-in-out_infinite]">
+              <img src="/hero.jpg" alt="Riviera Maya relocation lifestyle" className="h-full w-full object-cover" />
+            </div>
+          </motion.div>
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 motion-safe:md:animate-[cinematic-light_10s_ease-in-out_infinite]"
@@ -648,7 +698,7 @@ function HomePage() {
       </section>
 
       <section id="blueprint" className="bg-[#0b0b0a] px-6 py-20 text-center text-white md:py-28">
-        <div className="mx-auto max-w-3xl">
+        <CinematicReveal className="mx-auto max-w-3xl">
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
             My Mexico Blueprint
           </p>
@@ -668,7 +718,7 @@ function HomePage() {
           <p className="mt-6 text-xs uppercase tracking-[0.25em] text-white/40">
             Free &middot; Takes About 2 Minutes
           </p>
-        </div>
+        </CinematicReveal>
       </section>
 
       <section id="relocation" className="bg-[#f6f1e8] px-6 py-20 md:px-20 md:py-28">
@@ -676,14 +726,19 @@ function HomePage() {
       </section>
 
       <section id="services" className="bg-[#efe7d8] px-6 py-20 md:px-20 md:py-28">
-        <div className="mx-auto grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-3">
+        <CinematicReveal stagger className="mx-auto grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-3">
           {t.services.map(([title, text]) => (
-            <motion.div key={title} whileHover={{ y: -6 }} className="bg-[#efe7d8] p-8 transition hover:bg-white">
+            <motion.div
+              key={title}
+              variants={CinematicReveal.itemVariants(prefersReducedMotion)}
+              whileHover={{ y: -6 }}
+              className="bg-[#efe7d8] p-8 transition hover:bg-white"
+            >
               <h3 className="mb-5 text-3xl font-light tracking-[-0.04em]">{title}</h3>
               <p className="leading-relaxed text-zinc-600">{text}</p>
             </motion.div>
           ))}
-        </div>
+        </CinematicReveal>
 
         <div className="mx-auto mt-12 max-w-3xl text-center">
           <p className="text-sm leading-relaxed text-zinc-500">{t.employmentClarifier}</p>
@@ -702,12 +757,13 @@ function HomePage() {
       <section id="work" className="bg-white px-6 py-20 md:px-20 md:py-28">
         <SectionHeader label={t.workLabel} title={`${t.workTitle1} ${t.workTitle2}`} text={t.workText} />
 
-        <div className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-3">
+        <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-3">
           {t.workOffers.map(([title, price, text, bestFor, cta, href], index) => {
             const isPrimary = index === 0;
             return (
               <motion.div
                 key={title}
+                variants={CinematicReveal.itemVariants(prefersReducedMotion)}
                 whileHover={{ y: -6 }}
                 className={`flex min-h-[500px] flex-col justify-between p-7 transition ${
                   isPrimary ? "bg-zinc-950 text-white hover:bg-zinc-900" : "bg-white text-zinc-950 hover:bg-[#f6f1e8]"
@@ -746,7 +802,7 @@ function HomePage() {
               </motion.div>
             );
           })}
-        </div>
+        </CinematicReveal>
       </section>
 
       <section id="free-guide" className="bg-[#f6f1e8] px-6 py-20 md:px-20 md:py-28">
@@ -782,14 +838,18 @@ function HomePage() {
       <section className="bg-[#efe7d8] px-6 py-20 md:px-20 md:py-28">
         <SectionHeader label={t.testimonialsLabel} title={`${t.testimonialsTitle1} ${t.testimonialsTitle2}`} />
 
-        <div className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3">
+        <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3">
           {t.testimonials.map(([quote, name]) => (
-            <div key={quote} className="border border-zinc-200 bg-white/70 p-8 shadow-sm transition hover:bg-white">
+            <motion.div
+              key={quote}
+              variants={CinematicReveal.itemVariants(prefersReducedMotion)}
+              className="border border-zinc-200 bg-white/70 p-8 shadow-sm transition hover:bg-white"
+            >
               <p className="mb-8 text-lg leading-relaxed text-zinc-700">“{quote}”</p>
               <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">{name}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </CinematicReveal>
       </section>
 
       <section id="about" className="bg-[#f6f1e8] px-6 py-20 md:px-20 md:py-28">
