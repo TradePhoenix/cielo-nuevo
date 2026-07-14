@@ -471,7 +471,25 @@ function HomePage() {
       />
       <section id="home" ref={heroRef} className="relative min-h-[100svh] overflow-hidden text-white">
         <div className="absolute inset-0">
-          <img src="/hero.jpg" alt="Riviera Maya relocation lifestyle" className="h-full w-full object-cover" />
+          {/* CX-001: the hero's own restrained cinematic prototype — reuses
+              the exact same tokens/keyframes proven on CityCard.js, applied
+              here instead of a new section. Drift lives on this wrapper,
+              never the <img> itself, so nothing here fights a transform;
+              the section's own overflow-hidden clips the drift exactly like
+              CityCard's aspect-ratio container does. The light-movement
+              overlay sits beneath the existing dark gradients below, so it
+              only ever adds a faint warm glow to the photo -- the gradients
+              (and the text contrast they preserve) are completely
+              untouched. Both effects are motion-safe + md:-gated: fully
+              inert under prefers-reduced-motion and on mobile. */}
+          <div className="h-full w-full motion-safe:md:animate-[cinematic-drift_10s_ease-in-out_infinite]">
+            <img src="/hero.jpg" alt="Riviera Maya relocation lifestyle" className="h-full w-full object-cover" />
+          </div>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 motion-safe:md:animate-[cinematic-light_10s_ease-in-out_infinite]"
+            style={{ backgroundImage: "radial-gradient(circle, rgba(216,161,95,0.18), transparent 60%)" }}
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-black/10"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#f6f1e8]"></div>
         </div>

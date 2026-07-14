@@ -13,8 +13,8 @@ export default function KeepExploring({ cities, personalized }) {
       title={personalized ? "Your other matches" : "Other cities worth a look"}
     >
       <div className="grid gap-8 sm:grid-cols-2">
-        {cities.map((city) => (
-          <CityCard key={city.id} city={city} />
+        {cities.map((city, index) => (
+          <CityCard key={city.id} city={city} index={index} />
         ))}
       </div>
     </CitySection>

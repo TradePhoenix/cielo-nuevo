@@ -43,3 +43,31 @@ img {
     margin: 0.75in;
   }
 }
+
+/* Path Cinematic Motion System (CX-001) — shared ambient keyframes for
+   living-environment effects. See src/components/cinematicMotion.js for
+   the full system (tokens, entry/hover rules, reduced-motion policy).
+   Referenced only via Tailwind's `motion-safe:` variant, which maps to
+   `@media (prefers-reduced-motion: no-preference)` — under `reduce`,
+   these never apply, no JS check required. */
+@keyframes cinematic-drift {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+@keyframes cinematic-light {
+  0%,
+  100% {
+    background-position: 20% 30%;
+    opacity: 0.5;
+  }
+  50% {
+    background-position: 80% 70%;
+    opacity: 0.75;
+  }
+}

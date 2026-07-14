@@ -55,8 +55,8 @@ export default function YourMexicoPage() {
       </p>
 
       <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {matches.map((city) => (
-          <CityCard key={city.id} city={city} />
+        {matches.map((city, index) => (
+          <CityCard key={city.id} city={city} index={index} />
         ))}
       </div>
 
