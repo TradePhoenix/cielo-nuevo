@@ -4,6 +4,12 @@ import SEO from "../components/SEO";
 export default function DeveloperDashboardPage() {
   const sections = [
     {
+      title: "Internal Tools",
+      links: [
+        ["🗂️ CRM Dashboard", "/developer/crm"],
+      ],
+    },
+    {
       title: "Website",
       links: [
         ["🏠 Home", "/"],

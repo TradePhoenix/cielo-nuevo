@@ -56,6 +56,12 @@ const PartnerNotificationsPage = lazy(() => import("./features/partner/pages/Par
 const PartnerProfilePage = lazy(() => import("./features/partner/pages/PartnerProfilePage"));
 const PartnerPerformancePage = lazy(() => import("./features/partner/pages/PartnerPerformancePage"));
 const PartnerAnalyticsPage = lazy(() => import("./features/partner/pages/PartnerAnalyticsPage"));
+const CrmDashboardPage = lazy(() => import("./features/crm/pages/CrmDashboardPage"));
+const CrmLeadsPage = lazy(() => import("./features/crm/pages/CrmLeadsPage"));
+const CrmLeadDetailPage = lazy(() => import("./features/crm/pages/CrmLeadDetailPage"));
+const CrmPipelinePage = lazy(() => import("./features/crm/pages/CrmPipelinePage"));
+const CrmTasksPage = lazy(() => import("./features/crm/pages/CrmTasksPage"));
+const CrmAnalyticsPage = lazy(() => import("./features/crm/pages/CrmAnalyticsPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 // Client Dashboard V2 — a separate, premium client-services portal (post-
@@ -157,6 +163,13 @@ function AnimatedRoutes() {
           <Route path="/partner/performance" element={<PartnerPerformancePage />} />
           <Route path="/partner/analytics" element={<PartnerAnalyticsPage />} />
           <Route path="/partner/profile" element={<PartnerProfilePage />} />
+
+          <Route path="/developer/crm" element={<CrmDashboardPage />} />
+          <Route path="/developer/crm/leads" element={<CrmLeadsPage />} />
+          <Route path="/developer/crm/leads/:leadId" element={<CrmLeadDetailPage />} />
+          <Route path="/developer/crm/pipeline" element={<CrmPipelinePage />} />
+          <Route path="/developer/crm/tasks" element={<CrmTasksPage />} />
+          <Route path="/developer/crm/analytics" element={<CrmAnalyticsPage />} />
 
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
