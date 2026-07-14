@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import HomePage from "./pages/HomePage";
 import ScrollToTop from "./ScrollToTop";
@@ -48,6 +48,14 @@ const MyMexicoPlanSetupPage = lazy(() => import("./features/myMexicoPlan/pages/M
 const MyMexicoPlanPage = lazy(() => import("./features/myMexicoPlan/pages/MyMexicoPlanPage"));
 const DashboardPage = lazy(() => import("./features/dashboard/pages/DashboardPage"));
 const DocumentVaultPage = lazy(() => import("./features/documentVault/pages/DocumentVaultPage"));
+const PartnerDashboardPage = lazy(() => import("./features/partner/pages/PartnerDashboardPage"));
+const PartnerClientsPage = lazy(() => import("./features/partner/pages/PartnerClientsPage"));
+const PartnerReferralsPage = lazy(() => import("./features/partner/pages/PartnerReferralsPage"));
+const PartnerMessagesPage = lazy(() => import("./features/partner/pages/PartnerMessagesPage"));
+const PartnerNotificationsPage = lazy(() => import("./features/partner/pages/PartnerNotificationsPage"));
+const PartnerProfilePage = lazy(() => import("./features/partner/pages/PartnerProfilePage"));
+const PartnerPerformancePage = lazy(() => import("./features/partner/pages/PartnerPerformancePage"));
+const PartnerAnalyticsPage = lazy(() => import("./features/partner/pages/PartnerAnalyticsPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 // Client Dashboard V2 — a separate, premium client-services portal (post-
@@ -139,6 +147,16 @@ function AnimatedRoutes() {
           <Route path="/client-dashboard/emergency-contacts" element={<EmergencyContactsPage />} />
           <Route path="/client-dashboard/profile" element={<ClientDashboardProfilePage />} />
           <Route path="/client-dashboard/settings" element={<ClientDashboardSettingsPage />} />
+
+          <Route path="/partner" element={<Navigate to="/partner/dashboard" replace />} />
+          <Route path="/partner/dashboard" element={<PartnerDashboardPage />} />
+          <Route path="/partner/clients" element={<PartnerClientsPage />} />
+          <Route path="/partner/referrals" element={<PartnerReferralsPage />} />
+          <Route path="/partner/messages" element={<PartnerMessagesPage />} />
+          <Route path="/partner/notifications" element={<PartnerNotificationsPage />} />
+          <Route path="/partner/performance" element={<PartnerPerformancePage />} />
+          <Route path="/partner/analytics" element={<PartnerAnalyticsPage />} />
+          <Route path="/partner/profile" element={<PartnerProfilePage />} />
 
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
