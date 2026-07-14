@@ -50,6 +50,21 @@ const DashboardPage = lazy(() => import("./features/dashboard/pages/DashboardPag
 const DocumentVaultPage = lazy(() => import("./features/documentVault/pages/DocumentVaultPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
+// Client Dashboard V2 — a separate, premium client-services portal (post-
+// signup account experience) from the existing Blueprint-driven /dashboard
+// above. Entirely mock-data-driven, no auth, no backend.
+const ClientDashboardHomePage = lazy(() => import("./features/client-dashboard/pages/ClientDashboardHomePage"));
+const RelocationTimelinePage = lazy(() => import("./features/client-dashboard/pages/RelocationTimelinePage"));
+const MovingChecklistPage = lazy(() => import("./features/client-dashboard/pages/MovingChecklistPage"));
+const ClientDashboardDocumentsPage = lazy(() => import("./features/client-dashboard/pages/DocumentVaultPage"));
+const ClientDashboardAppointmentsPage = lazy(() => import("./features/client-dashboard/pages/AppointmentsPage"));
+const PartnerDirectoryPage = lazy(() => import("./features/client-dashboard/pages/PartnerDirectoryPage"));
+const ClientDashboardMessagesPage = lazy(() => import("./features/client-dashboard/pages/MessagesPage"));
+const ClientDashboardPaymentsPage = lazy(() => import("./features/client-dashboard/pages/PaymentsPage"));
+const EmergencyContactsPage = lazy(() => import("./features/client-dashboard/pages/EmergencyContactsPage"));
+const ClientDashboardProfilePage = lazy(() => import("./features/client-dashboard/pages/ProfilePage"));
+const ClientDashboardSettingsPage = lazy(() => import("./features/client-dashboard/pages/SettingsPage"));
+
 // CX-002 route-transition treatment: a single opacity-only fade-in, keyed
 // on the top-level path segment rather than the full pathname — see
 // cinematicMotion.js's ROUTE_TRANSITION comment for why (it means
@@ -112,6 +127,18 @@ function AnimatedRoutes() {
           <Route path="/my-mexico-plan/:cityId" element={<MyMexicoPlanPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/documents" element={<DocumentVaultPage />} />
+
+          <Route path="/client-dashboard" element={<ClientDashboardHomePage />} />
+          <Route path="/client-dashboard/timeline" element={<RelocationTimelinePage />} />
+          <Route path="/client-dashboard/checklist" element={<MovingChecklistPage />} />
+          <Route path="/client-dashboard/documents" element={<ClientDashboardDocumentsPage />} />
+          <Route path="/client-dashboard/appointments" element={<ClientDashboardAppointmentsPage />} />
+          <Route path="/client-dashboard/partners" element={<PartnerDirectoryPage />} />
+          <Route path="/client-dashboard/messages" element={<ClientDashboardMessagesPage />} />
+          <Route path="/client-dashboard/payments" element={<ClientDashboardPaymentsPage />} />
+          <Route path="/client-dashboard/emergency-contacts" element={<EmergencyContactsPage />} />
+          <Route path="/client-dashboard/profile" element={<ClientDashboardProfilePage />} />
+          <Route path="/client-dashboard/settings" element={<ClientDashboardSettingsPage />} />
 
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />

@@ -1,0 +1,60 @@
+export const TIMELINE_STAGES = [
+  {
+    id: "application-started",
+    title: "Application Started",
+    status: "completed",
+    date: "2026-02-10",
+    description: "You signed on with Path To Mexico and your file was opened.",
+  },
+  {
+    id: "blueprint-complete",
+    title: "Blueprint Complete",
+    status: "completed",
+    date: "2026-02-14",
+    description: "Your readiness score, city matches, and 30/60/90-day roadmap were generated.",
+  },
+  {
+    id: "consultation-scheduled",
+    title: "Consultation Scheduled",
+    status: "completed",
+    date: "2026-03-02",
+    description: "Your first call with your concierge to confirm goals, timeline, and budget.",
+  },
+  {
+    id: "documents-uploaded",
+    title: "Documents Uploaded",
+    status: "current",
+    date: "2026-07-14",
+    description: "Passport, financials, and residency paperwork are being collected and verified.",
+  },
+  {
+    id: "partner-introductions",
+    title: "Partner Introductions",
+    status: "upcoming",
+    description: "You'll be introduced to your lawyer, realtor, and other vetted local partners.",
+  },
+  {
+    id: "residency-process",
+    title: "Residency Process",
+    status: "upcoming",
+    description: "Your temporary residency application is filed and tracked through approval.",
+  },
+  {
+    id: "travel-preparation",
+    title: "Travel Preparation",
+    status: "upcoming",
+    description: "Flights, shipping, pet travel, and a pre-departure checklist come together.",
+  },
+  {
+    id: "arrival",
+    title: "Arrival",
+    status: "upcoming",
+    description: "Landing day logistics, airport pickup, and first-week orientation.",
+  },
+  {
+    id: "settled",
+    title: "Settled",
+    status: "upcoming",
+    description: "Home, bank account, healthcare, and routines are all in place.",
+  },
+];
