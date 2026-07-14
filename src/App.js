@@ -48,6 +48,12 @@ const MyMexicoPlanSetupPage = lazy(() => import("./features/myMexicoPlan/pages/M
 const MyMexicoPlanPage = lazy(() => import("./features/myMexicoPlan/pages/MyMexicoPlanPage"));
 const DashboardPage = lazy(() => import("./features/dashboard/pages/DashboardPage"));
 const DocumentVaultPage = lazy(() => import("./features/documentVault/pages/DocumentVaultPage"));
+const CrmDashboardPage = lazy(() => import("./features/crm/pages/CrmDashboardPage"));
+const CrmLeadsPage = lazy(() => import("./features/crm/pages/CrmLeadsPage"));
+const CrmLeadDetailPage = lazy(() => import("./features/crm/pages/CrmLeadDetailPage"));
+const CrmPipelinePage = lazy(() => import("./features/crm/pages/CrmPipelinePage"));
+const CrmTasksPage = lazy(() => import("./features/crm/pages/CrmTasksPage"));
+const CrmAnalyticsPage = lazy(() => import("./features/crm/pages/CrmAnalyticsPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 // CX-002 route-transition treatment: a single opacity-only fade-in, keyed
@@ -112,6 +118,13 @@ function AnimatedRoutes() {
           <Route path="/my-mexico-plan/:cityId" element={<MyMexicoPlanPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/documents" element={<DocumentVaultPage />} />
+
+          <Route path="/developer/crm" element={<CrmDashboardPage />} />
+          <Route path="/developer/crm/leads" element={<CrmLeadsPage />} />
+          <Route path="/developer/crm/leads/:leadId" element={<CrmLeadDetailPage />} />
+          <Route path="/developer/crm/pipeline" element={<CrmPipelinePage />} />
+          <Route path="/developer/crm/tasks" element={<CrmTasksPage />} />
+          <Route path="/developer/crm/analytics" element={<CrmAnalyticsPage />} />
 
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
