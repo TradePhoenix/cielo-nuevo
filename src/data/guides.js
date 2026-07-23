@@ -112,6 +112,34 @@ export const GUIDES = [
     category: "Relocation",
   },
   {
+    title: "Moving to Mérida",
+    description:
+      "Colonial architecture, healthcare, cost of living, remote work, climate, and coastal access to Progreso.",
+    href: "/guides/moving-to-merida",
+    category: "Relocation",
+  },
+  {
+    title: "Moving to Progreso",
+    description:
+      "The Gulf Coast's most established beach town, its proximity to Mérida, cost of living, and daily life.",
+    href: "/guides/moving-to-progreso",
+    category: "Relocation",
+  },
+  {
+    title: "Moving to Chicxulub Puerto",
+    description:
+      "Quieter residential beach living next to Progreso, with easy access to Mérida.",
+    href: "/guides/moving-to-chicxulub-puerto",
+    category: "Relocation",
+  },
+  {
+    title: "Moving to Telchac Puerto",
+    description:
+      "A small, secluded Gulf Coast community suited to privacy, nature, and a genuinely slower pace of life.",
+    href: "/guides/moving-to-telchac-puerto",
+    category: "Relocation",
+  },
+  {
     title: "Canada to Mexico Relocation",
     description:
       "Residency, healthcare, banking, taxes, lifestyle, and what Canadians should know before moving.",

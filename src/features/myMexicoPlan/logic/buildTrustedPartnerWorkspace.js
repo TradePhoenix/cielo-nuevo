@@ -54,16 +54,29 @@ const OWNERSHIP_SECTIONS = [
 // evaluated here; "universal" categories are relevant to every visitor
 // relocating to Mexico by definition (residency status, housing,
 // banking, and so on) and always included.
+// DEST-001: the Yucatán Gulf coast towns (Progreso, Chicxulub Puerto,
+// Telchac Puerto) are as spread-out and car-dependent as Riviera Maya —
+// Mérida itself is deliberately excluded, since it's a real city with
+// taxis and rideshare, not a driving-only town like its coastal
+// neighbors.
+const CAR_DEPENDENT_CITY_IDS = new Set(["riviera-maya", "progreso", "chicxulub-puerto", "telchac-puerto"]);
+
 const RELEVANCE_RULES = {
   insurance: ({ tagCounts }) => Boolean(tagCounts.comfortable || tagCounts.premium || tagCounts.retirement),
   "accounting-tax": ({ tagCounts }) => Boolean(tagCounts.retirement),
-  "vehicle-transportation": ({ plan }) => plan.cityId === "riviera-maya",
+  "vehicle-transportation": ({ plan }) => CAR_DEPENDENT_CITY_IDS.has(plan.cityId),
+};
+
+const VEHICLE_TRANSPORTATION_REASONS = {
+  "riviera-maya": "Riviera Maya's day-to-day life mostly assumes you're driving.",
+  progreso: "Progreso is spread out enough that day-to-day life mostly assumes you're driving.",
+  "chicxulub-puerto": "Chicxulub Puerto's small, spread-out layout mostly assumes you're driving.",
+  "telchac-puerto": "Telchac Puerto's seclusion means day-to-day life mostly assumes you're driving.",
 };
 
 const RELEVANCE_REASONS = {
   insurance: "Your budget and situation suggest private coverage is worth comparing.",
   "accounting-tax": "Retirement and pension income usually means this is worth confirming with a professional.",
-  "vehicle-transportation": "Riviera Maya's day-to-day life mostly assumes you're driving.",
 };
 
 const UNIVERSAL_REASON = "Common for nearly every relocation to Mexico, regardless of your specific answers.";
@@ -74,8 +87,11 @@ function isRelevant(category, context) {
   return rule ? rule(context) : false;
 }
 
-function relevanceReason(category) {
+function relevanceReason(category, context) {
   if (category.relevance === "universal") return UNIVERSAL_REASON;
+  if (category.id === "vehicle-transportation") {
+    return VEHICLE_TRANSPORTATION_REASONS[context.plan.cityId] || "Relevant based on your own Blueprint answers.";
+  }
   return RELEVANCE_REASONS[category.id] || "Relevant based on your own Blueprint answers.";
 }
 
@@ -89,7 +105,7 @@ export function buildTrustedPartnerWorkspace({ plan, scores }) {
   const relevantCategories = PARTNER_CATEGORIES.filter((category) => isRelevant(category, context)).map(
     (category) => ({
       ...category,
-      relevanceReason: relevanceReason(category),
+      relevanceReason: relevanceReason(category, context),
       canIntroduce: category.ownership !== "self",
     })
   );

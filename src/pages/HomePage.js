@@ -173,7 +173,7 @@ const content = {
       "Send a few details about your timeline, goals, and questions. We’ll help you understand the clearest next step toward relocation, residency, lifestyle, real estate, or trusted local support in Mexico.",
     formSuccess: "Thanks — your inquiry was sent. We’ll be in touch soon.",
     footerLine: "A different rhythm of life.",
-    footer: "Playa del Carmen • Tulum • Riviera Maya • Mexico"
+    footer: "Playa del Carmen • Tulum • Riviera Maya • Mérida • Mexico"
   },
 
   es: {
@@ -333,7 +333,7 @@ const content = {
       "Envía algunos detalles sobre tus tiempos, metas y preguntas. Te ayudaremos a entender el próximo paso más claro hacia reubicación, residencia, estilo de vida, bienes raíces o apoyo local confiable en México.",
     formSuccess: "Gracias — tu consulta fue enviada. Te contactaremos pronto.",
     footerLine: "Un ritmo de vida diferente.",
-    footer: "Playa del Carmen • Tulum • Riviera Maya • México"
+    footer: "Playa del Carmen • Tulum • Riviera Maya • Mérida • México"
   }
 };
 

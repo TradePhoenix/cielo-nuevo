@@ -131,6 +131,26 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pathtomexico.com/guides/moving-to-merida</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pathtomexico.com/guides/moving-to-progreso</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pathtomexico.com/guides/moving-to-chicxulub-puerto</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pathtomexico.com/guides/moving-to-telchac-puerto</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pathtomexico.com/your-mexico/playa-del-carmen</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -142,6 +162,26 @@
   </url>
   <url>
     <loc>https://pathtomexico.com/your-mexico/riviera-maya</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pathtomexico.com/your-mexico/merida</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pathtomexico.com/your-mexico/progreso</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pathtomexico.com/your-mexico/chicxulub-puerto</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://pathtomexico.com/your-mexico/telchac-puerto</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
