@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import YourMexicoShell from "../../yourMexico/components/YourMexicoShell";
+import PlanRecovery from "../components/PlanRecovery";
 import TrustMoment from "../../yourMexico/components/TrustMoment";
 import FitCallBar from "../../yourMexico/components/FitCallBar";
 import SEO from "../../../components/SEO";
@@ -51,7 +52,15 @@ export default function MyMexicoPlanPage() {
   } = usePlanState(cityId);
 
   const { answers, scores } = useBlueprintAnswers();
-  const recommendation = useMemo(() => buildRecommendation(scores, answers), [scores, answers]);
+  // ENG-023: scores is null whenever no completed Blueprint session exists
+  // (missing, malformed, or outdated localStorage — useBlueprintAnswers()
+  // already collapses all of those to this same safe null). buildRecommendation
+  // dereferences scores.readinessMax unconditionally, so calling it with a
+  // null scores previously crashed the whole page before the recovery check
+  // below ever ran. Every downstream consumer of `recommendation` is either
+  // already gated behind `plan` (null in the same circumstances) or reads
+  // `recommendation` directly and must tolerate null itself (see `topMatches`).
+  const recommendation = useMemo(() => (scores ? buildRecommendation(scores, answers) : null), [scores, answers]);
   const decisionBrief = useMemo(
     () =>
       plan
@@ -72,7 +81,7 @@ export default function MyMexicoPlanPage() {
     [answers, recommendation, plan, taskState]
   );
   const topMatches = useMemo(
-    () => getMatchesWithDetails(recommendation.topCityMatches),
+    () => (recommendation ? getMatchesWithDetails(recommendation.topCityMatches) : []),
     [recommendation]
   );
   const cityComparison = useMemo(() => buildCityComparison(topMatches), [topMatches]);
@@ -120,8 +129,18 @@ export default function MyMexicoPlanPage() {
     };
   }, []);
 
-  if (!hasCompletedBlueprint || !city || !plan) {
-    return <Navigate to="/my-mexico-plan" replace />;
+  // ENG-023: two distinct recovery states rather than one blind redirect —
+  // an unrecognized city id in the URL is a different problem (and a
+  // different message) than a real city with no completed Blueprint yet.
+  // `city` comes from usePlanState's getCityById(cityId) lookup; `plan` is
+  // null whenever either condition holds, so checking `!city` first keeps
+  // the more fundamental problem in front.
+  if (!city) {
+    return <PlanRecovery variant="invalid-city" cityId={cityId} />;
+  }
+
+  if (!hasCompletedBlueprint || !plan) {
+    return <PlanRecovery variant="no-blueprint" cityId={cityId} />;
   }
 
   return (

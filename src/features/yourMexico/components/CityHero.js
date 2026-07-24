@@ -17,6 +17,15 @@ import { Link } from "react-router-dom";
 // mobile vs. desktop crop, and WebP-preferred/JPEG-fallback per crop — no JS
 // viewport check. Cities still on the older single-image shared stock photo
 // (`city.heroImage`) keep the plain <img> path unchanged.
+//
+// ENG-023: the back link and the "Path To Mexico" wordmark used to be two
+// independently absolute-positioned elements sharing the same top-6 row —
+// at narrow widths the longer back-link label had nothing keeping it clear
+// of the wordmark, so they visually overlapped. Both now live in one flex
+// container: stacked (flex-col) below sm:, so there's no shared row to
+// collide on; back to the original side-by-side single row at sm: and up,
+// with inset-x-10 + justify-between reproducing the exact prior left-10/
+// right-10 corner positions pixel-for-pixel.
 export default function CityHero({ city, backTo, backLabel }) {
   const heroAlt = city.heroAlt?.en || city.name;
 
@@ -53,22 +62,24 @@ export default function CityHero({ city, backTo, backLabel }) {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/35" />
 
-      {backTo && (
-        <Link
-          to={backTo}
-          className="absolute left-6 top-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/70 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b0a] sm:left-10 sm:top-10"
-        >
-          <span aria-hidden="true">←</span>
-          {backLabel}
-        </Link>
-      )}
+      <div className="absolute inset-x-6 top-6 flex flex-col items-start gap-3 sm:inset-x-10 sm:top-10 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        {backTo && (
+          <Link
+            to={backTo}
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/70 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b0a]"
+          >
+            <span aria-hidden="true">←</span>
+            {backLabel}
+          </Link>
+        )}
 
-      <Link
-        to="/"
-        className="absolute right-6 top-6 text-xs font-semibold uppercase tracking-[0.3em] text-white/70 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b0a] sm:right-10 sm:top-10"
-      >
-        Path To Mexico
-      </Link>
+        <Link
+          to="/"
+          className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b0a]"
+        >
+          Path To Mexico
+        </Link>
+      </div>
 
       <div className="absolute inset-x-0 bottom-0 p-6 sm:p-12">
         <p className="text-xs uppercase tracking-[0.3em] text-white/60">Your Mexico</p>
