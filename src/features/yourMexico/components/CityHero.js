@@ -11,11 +11,40 @@ import { Link } from "react-router-dom";
 // prefers-reduced-motion with zero JS check needed here. Drift lives on a
 // wrapper around the <img>, never the image itself, matching the same
 // no-transform-conflict rule used everywhere else in the system.
+//
+// CX-007: cities with dedicated regional photography (`city.heroImages`)
+// render a <picture> with a CSS-media-query breakpoint (767px) choosing the
+// mobile vs. desktop crop, and WebP-preferred/JPEG-fallback per crop — no JS
+// viewport check. Cities still on the older single-image shared stock photo
+// (`city.heroImage`) keep the plain <img> path unchanged.
 export default function CityHero({ city, backTo, backLabel }) {
+  const heroAlt = city.heroAlt?.en || city.name;
+
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-auto sm:h-[60vh] sm:min-h-[420px]">
       <div className="h-full w-full motion-safe:md:animate-[cinematic-drift_10s_ease-in-out_infinite]">
-        <img src={city.heroImage} alt={city.name} className="absolute inset-0 h-full w-full object-cover" />
+        {city.heroImages ? (
+          <picture className="contents">
+            <source
+              media="(max-width: 767px)"
+              srcSet={city.heroImages.mobile.webp}
+              type="image/webp"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcSet={city.heroImages.mobile.jpg}
+              type="image/jpeg"
+            />
+            <source srcSet={city.heroImages.desktop.webp} type="image/webp" />
+            <img
+              src={city.heroImages.desktop.jpg}
+              alt={heroAlt}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </picture>
+        ) : (
+          <img src={city.heroImage} alt={city.name} className="absolute inset-0 h-full w-full object-cover" />
+        )}
       </div>
       <div
         aria-hidden="true"

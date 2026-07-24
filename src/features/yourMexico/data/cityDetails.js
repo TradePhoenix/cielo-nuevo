@@ -330,21 +330,17 @@ export const CITY_DETAILS = {
 
   // ---------------------------------------------------------------------
   // Mérida & the Yucatán Coast (DEST-001) — a distinct corridor from the
-  // Caribbean coast above. Two content notes for whoever picks this up
+  // Caribbean coast above. One content note for whoever picks this up
   // next:
   //
-  // 1. heroImage: none of the three existing stock photos (hero.jpg =
-  //    aerial Caribbean coastline, lifestyle.jpg = jungle-to-beach path,
-  //    sanctuary.jpg = covered terrace/pool) is a genuine match for
-  //    inland, colonial Mérida — there is no colonial-architecture asset
-  //    in this project yet. sanctuary.jpg was chosen for Mérida as the
-  //    least-wrong option (the most "architectural/interior" of the
-  //    three) rather than using a beach photo for an inland city, which
-  //    would misrepresent the destination. Treat this as a placeholder
-  //    pending real Mérida photography, not a finished choice. The three
-  //    Gulf coast towns reuse hero.jpg/lifestyle.jpg — genuinely
-  //    coastal, so the mismatch risk is lower, but they're still shared
-  //    with existing Caribbean-coast cities rather than unique images.
+  // 1. heroImages: CX-007 replaced the DEST-001 placeholder stock photos
+  //    (shared Caribbean-coast hero.jpg/lifestyle.jpg/sanctuary.jpg) with
+  //    dedicated regional photography for all four destinations, stored
+  //    under public/regions/<city-id>/ per the CX-006 manifest's naming
+  //    convention. These four cities use the richer `heroImages` shape
+  //    (desktop + mobile crop, WebP + JPEG) instead of the single
+  //    `heroImage` string the three Caribbean cities above still use —
+  //    see CityHero.js/CityCard.js for how each shape is rendered.
   //
   // 2. monthlyBudget: these figures are directional estimates only,
   //    grounded in the well-established general reputation of Mérida and
@@ -360,7 +356,20 @@ export const CITY_DETAILS = {
 
   merida: {
     tagline: "Colonial architecture, healthcare, and city life — with the coast a short trip away, not the whole point.",
-    heroImage: "/sanctuary.jpg",
+    heroImages: {
+      desktop: {
+        webp: "/regions/merida/merida-hero-desktop.webp",
+        jpg: "/regions/merida/merida-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/merida/merida-hero-mobile.webp",
+        jpg: "/regions/merida/merida-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "A quiet colonial street in Mérida with limestone façades and tropical greenery",
+      es: "Una tranquila calle colonial de Mérida con fachadas de piedra caliza y vegetación tropical",
+    },
 
     whyThisFeelsLikeYou: {
       intro:
@@ -461,7 +470,20 @@ export const CITY_DETAILS = {
 
   progreso: {
     tagline: "The Gulf Coast's most established beach town — accessible, social, and close to Mérida.",
-    heroImage: "/hero.jpg",
+    heroImages: {
+      desktop: {
+        webp: "/regions/progreso/progreso-hero-desktop.webp",
+        jpg: "/regions/progreso/progreso-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/progreso/progreso-hero-mobile.webp",
+        jpg: "/regions/progreso/progreso-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "Progreso's Gulf waterfront, wide beach, and long pier in soft morning light",
+      es: "La costa del Golfo en Progreso, su amplia playa y largo muelle bajo la suave luz de la mañana",
+    },
 
     whyThisFeelsLikeYou: {
       intro:
@@ -560,7 +582,20 @@ export const CITY_DETAILS = {
 
   "chicxulub-puerto": {
     tagline: "Quieter residential beach living next to Progreso, with easy access to Mérida.",
-    heroImage: "/lifestyle.jpg",
+    heroImages: {
+      desktop: {
+        webp: "/regions/chicxulub-puerto/chicxulub-puerto-hero-desktop.webp",
+        jpg: "/regions/chicxulub-puerto/chicxulub-puerto-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/chicxulub-puerto/chicxulub-puerto-hero-mobile.webp",
+        jpg: "/regions/chicxulub-puerto/chicxulub-puerto-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "A peaceful residential lane beside the Gulf in Chicxulub Puerto",
+      es: "Una tranquila calle residencial junto al Golfo en Chicxulub Puerto",
+    },
 
     whyThisFeelsLikeYou: {
       intro:
@@ -652,7 +687,20 @@ export const CITY_DETAILS = {
 
   "telchac-puerto": {
     tagline: "A smaller, more secluded Gulf Coast community for people who genuinely want privacy and space.",
-    heroImage: "/hero.jpg",
+    heroImages: {
+      desktop: {
+        webp: "/regions/telchac-puerto/telchac-puerto-hero-desktop.webp",
+        jpg: "/regions/telchac-puerto/telchac-puerto-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/telchac-puerto/telchac-puerto-hero-mobile.webp",
+        jpg: "/regions/telchac-puerto/telchac-puerto-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "Small fishing boats resting on calm Gulf water at dawn in Telchac Puerto",
+      es: "Pequeñas embarcaciones pesqueras sobre las tranquilas aguas del Golfo al amanecer en Telchac Puerto",
+    },
 
     whyThisFeelsLikeYou: {
       intro:

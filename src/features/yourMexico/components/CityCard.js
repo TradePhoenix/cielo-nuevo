@@ -17,9 +17,16 @@ import { entryReveal, entryRevealReduced, useCinematicMotion, HEARTBEAT } from "
 // sits only over the photo, never the text below, so readability is
 // never at risk. `index` staggers the ambient rhythm across a row of
 // cards so they breathe together, not in mechanical unison.
+//
+// CX-007: cities with dedicated regional photography (`city.heroImages`)
+// render the same <picture> breakpoint pattern as CityHero.js (mobile crop
+// ≤767px, desktop crop above, WebP-preferred/JPEG-fallback). Cities still on
+// the shared single-image stock photo (`city.heroImage`) keep the plain
+// <img> path unchanged.
 export default function CityCard({ city, index = 0 }) {
   const prefersReducedMotion = useCinematicMotion();
   const staggerDelay = `${index * HEARTBEAT.stagger}s`;
+  const heroAlt = city.heroAlt?.en || city.name;
 
   return (
     <motion.div
@@ -37,12 +44,34 @@ export default function CityCard({ city, index = 0 }) {
             className="relative h-full w-full motion-safe:md:animate-[cinematic-drift_10s_ease-in-out_infinite]"
             style={{ animationDelay: staggerDelay }}
           >
-            <img
-              src={city.heroImage}
-              alt={city.name}
-              loading="lazy"
-              className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-            />
+            {city.heroImages ? (
+              <picture className="contents">
+                <source
+                  media="(max-width: 767px)"
+                  srcSet={city.heroImages.mobile.webp}
+                  type="image/webp"
+                />
+                <source
+                  media="(max-width: 767px)"
+                  srcSet={city.heroImages.mobile.jpg}
+                  type="image/jpeg"
+                />
+                <source srcSet={city.heroImages.desktop.webp} type="image/webp" />
+                <img
+                  src={city.heroImages.desktop.jpg}
+                  alt={heroAlt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+              </picture>
+            ) : (
+              <img
+                src={city.heroImage}
+                alt={city.name}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              />
+            )}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 motion-safe:md:animate-[cinematic-light_10s_ease-in-out_infinite]"
