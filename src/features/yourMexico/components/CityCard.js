@@ -23,10 +23,20 @@ import { entryReveal, entryRevealReduced, useCinematicMotion, HEARTBEAT } from "
 // ≤767px, desktop crop above, WebP-preferred/JPEG-fallback). Cities still on
 // the shared single-image stock photo (`city.heroImage`) keep the plain
 // <img> path unchanged.
-export default function CityCard({ city, index = 0 }) {
+//
+// CX-008 — four new optional props for the Living Destination Atlas, every
+// one defaulted so every existing caller (KeepExploring.js, the old
+// top-matches grid) renders byte-for-byte as before: `lang` selects the ES
+// hero alt text when present; `region`/`signals` render a small metadata
+// line already derived from this same city's own canonical tags/region
+// (atlasGroups.js) — this component never invents or duplicates that data,
+// only displays what's passed in; `isRecommended` adds a quiet badge for a
+// visitor's own Blueprint matches, reusing the existing `matchReason` line
+// below it rather than adding a second explanation.
+export default function CityCard({ city, index = 0, lang = "en", region, signals, isRecommended, recommendedLabel }) {
   const prefersReducedMotion = useCinematicMotion();
   const staggerDelay = `${index * HEARTBEAT.stagger}s`;
-  const heroAlt = city.heroAlt?.en || city.name;
+  const heroAlt = (lang === "es" ? city.heroAlt?.es : city.heroAlt?.en) || city.heroAlt?.en || city.name;
 
   return (
     <motion.div
@@ -67,7 +77,7 @@ export default function CityCard({ city, index = 0 }) {
             ) : (
               <img
                 src={city.heroImage}
-                alt={city.name}
+                alt={heroAlt}
                 loading="lazy"
                 className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
               />
@@ -84,8 +94,23 @@ export default function CityCard({ city, index = 0 }) {
         </div>
 
         <div className="p-6">
-          <h3 className="text-2xl font-light tracking-[-0.02em]">{city.name}</h3>
+          <div className="flex flex-wrap items-center gap-2">
+            {isRecommended && (
+              <span className="border border-[#d8a15f] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#a97a3f]">
+                {recommendedLabel}
+              </span>
+            )}
+            {region && <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400">{region}</span>}
+          </div>
+          <h3 className="mt-2 text-2xl font-light tracking-[-0.02em]">{city.name}</h3>
           <p className="mt-2 text-sm leading-relaxed text-zinc-600">{city.tagline}</p>
+          {signals && signals.length > 0 && (
+            <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.12em] text-zinc-500">
+              {signals.map((signal) => (
+                <li key={signal}>{signal}</li>
+              ))}
+            </ul>
+          )}
           {city.matchReason && (
             <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
               {city.matchReason}

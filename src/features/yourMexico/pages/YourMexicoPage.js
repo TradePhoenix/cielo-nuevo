@@ -1,71 +1,162 @@
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import YourMexicoShell from "../components/YourMexicoShell";
-import CityCard from "../components/CityCard";
+import AtlasIntro from "../components/AtlasIntro";
+import AtlasFilters from "../components/AtlasFilters";
+import AtlasGrid from "../components/AtlasGrid";
 import TrustMoment from "../components/TrustMoment";
 import FitCallBar from "../components/FitCallBar";
 import SEO from "../../../components/SEO";
 import { useTopMatches } from "../hooks/useTopMatches";
+import { getAllCities } from "../logic/cityLookup";
+import { filterAtlasCities, prioritizeAtlasCities } from "../data/atlasGroups";
 
-const YOUR_MEXICO_SEO = (
-  <SEO
-    title="Your Mexico — City Matches"
-    description="See where your next chapter could begin, based on your Blueprint answers."
-    path="/your-mexico"
-  />
-);
+// CX-008 — Living Destination Atlas. Local EN/ES content object + toggle,
+// matching the exact established pattern GuidesPage.js already uses (no
+// shared i18n library exists in this codebase — see CLAUDE.md). Only this
+// page's own interface copy is translated; individual destinations' own
+// names/taglines/content stay English-only (translating those would mean
+// inventing Spanish destination copy that doesn't exist in the canonical
+// data source, which is explicitly out of scope).
+const content = {
+  en: {
+    toggle: "ES",
+    eyebrow: "Your Mexico",
+    title: "Eleven places to actually build a life.",
+    intro:
+      "Every destination Path To Mexico covers, in one place — coastal towns, colonial cities, and quiet corners of the Yucatán. Filter by region or lifestyle, or just start exploring.",
+    regionGroupLabel: "Filter by region",
+    lifestyleGroupLabel: "Filter by lifestyle",
+    allDestinations: "All Destinations",
+    resetFilters: "Reset Filters",
+    resultCount: (count, total) => `Showing ${count} of ${total} destinations`,
+    noResults: "No destinations match this combination of filters yet — try removing one.",
+    recommendedBadge: "Matches Your Blueprint",
+    blueprintDoneBanner: "Based on your Blueprint, your top matches are highlighted below.",
+    blueprintCta: "Want matches built around your own answers?",
+    blueprintCtaButton: "Start Your Blueprint",
+    compareText: "Ready to compare a few side by side?",
+    compareButton: "Compare Destinations",
+  },
+  es: {
+    toggle: "EN",
+    eyebrow: "Tu México",
+    title: "Once lugares para construir una vida real.",
+    intro:
+      "Cada destino que cubre Path To Mexico, en un solo lugar — pueblos costeros, ciudades coloniales y rincones tranquilos de Yucatán. Filtra por región o estilo de vida, o simplemente empieza a explorar.",
+    regionGroupLabel: "Filtrar por región",
+    lifestyleGroupLabel: "Filtrar por estilo de vida",
+    allDestinations: "Todos Los Destinos",
+    resetFilters: "Restablecer Filtros",
+    resultCount: (count, total) => `Mostrando ${count} de ${total} destinos`,
+    noResults: "Ningún destino coincide con esta combinación de filtros — intenta quitar uno.",
+    recommendedBadge: "Coincide Con Tu Blueprint",
+    blueprintDoneBanner: "Según tu Blueprint, tus mejores coincidencias están resaltadas abajo.",
+    blueprintCta: "¿Quieres coincidencias basadas en tus propias respuestas?",
+    blueprintCtaButton: "Comienza Tu Blueprint",
+    compareText: "¿Listo para comparar algunos lado a lado?",
+    compareButton: "Comparar Destinos",
+  },
+};
 
-// Welcome to Your Mexico + Your Top Matches — the threshold screen reached
-// from Blueprint Results. Foundation only: later sprints deepen each city's
-// own detail page, not this overview.
 export default function YourMexicoPage() {
-  const { hasCompletedBlueprint, matches } = useTopMatches();
+  const [lang, setLang] = useState("en");
+  const [regionId, setRegionId] = useState("all");
+  const [lifestyleIds, setLifestyleIds] = useState([]);
+  const t = content[lang];
 
-  if (!hasCompletedBlueprint || matches.length === 0) {
-    return (
-      <YourMexicoShell>
-        {YOUR_MEXICO_SEO}
-        <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Your Mexico</p>
-        <h1 className="mt-4 max-w-2xl text-4xl font-light leading-tight tracking-[-0.03em] sm:text-5xl">
-          Complete your Blueprint to see your matches.
-        </h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600">
-          Your Mexico is built from your Blueprint answers. Take a few minutes to answer six
-          questions, and we'll show you where your next chapter could begin.
-        </p>
-        <Link
-          to="/my-mexico-blueprint"
-          className="mt-8 inline-flex items-center gap-2 bg-zinc-950 px-9 py-4 text-xs font-semibold uppercase tracking-[0.22em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#d8a15f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
-        >
-          Start Your Blueprint
-        </Link>
-      </YourMexicoShell>
+  const { hasCompletedBlueprint, matches } = useTopMatches();
+  const allCities = useMemo(() => getAllCities(), []);
+  const matchedIds = useMemo(() => (hasCompletedBlueprint ? matches.map((match) => match.id) : []), [
+    hasCompletedBlueprint,
+    matches,
+  ]);
+
+  const orderedCities = useMemo(
+    () => prioritizeAtlasCities(allCities, matchedIds),
+    [allCities, matchedIds]
+  );
+  const filteredCities = useMemo(
+    () => filterAtlasCities(orderedCities, { regionId, lifestyleIds }),
+    [orderedCities, regionId, lifestyleIds]
+  );
+
+  function toggleLifestyle(filterId) {
+    setLifestyleIds((prev) =>
+      prev.includes(filterId) ? prev.filter((id) => id !== filterId) : [...prev, filterId]
     );
+  }
+
+  function resetFilters() {
+    setRegionId("all");
+    setLifestyleIds([]);
   }
 
   return (
     <YourMexicoShell>
-      {YOUR_MEXICO_SEO}
-      <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Welcome To Your Mexico</p>
-      <h1 className="mt-4 max-w-2xl text-4xl font-light leading-tight tracking-[-0.03em] sm:text-5xl">
-        Based on your Blueprint, here's where your next chapter could begin.
-      </h1>
-      <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-600">
-        These are your top matches. Take your time and explore what life could actually look
-        like in each one.
-      </p>
+      <SEO
+        title="Your Mexico — Living Destination Atlas"
+        description="Explore all eleven Path To Mexico destinations — coastal towns, colonial cities, and quiet corners of the Yucatán — filtered by region or lifestyle."
+        path="/your-mexico"
+      />
 
-      <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {matches.map((city, index) => (
-          <CityCard key={city.id} city={city} index={index} />
-        ))}
+      <div className="flex justify-end">
+        <button
+          type="button"
+          onClick={() => setLang((prev) => (prev === "en" ? "es" : "en"))}
+          className="border border-zinc-300 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-zinc-700 transition hover:bg-zinc-950 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
+        >
+          {t.toggle}
+        </button>
       </div>
 
-      <Link
-        to="/your-mexico/compare"
-        className="mt-8 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 underline underline-offset-4 transition hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
-      >
-        Compare Your Matches
-      </Link>
+      <AtlasIntro eyebrow={t.eyebrow} title={t.title} intro={t.intro} />
+
+      {hasCompletedBlueprint ? (
+        <p className="mt-6 max-w-xl border-l-2 border-[#d8a15f] pl-4 text-sm leading-relaxed text-zinc-600">
+          {t.blueprintDoneBanner}
+        </p>
+      ) : (
+        <div className="mt-6 flex flex-wrap items-center gap-4 border-l-2 border-zinc-300 pl-4">
+          <p className="max-w-md text-sm leading-relaxed text-zinc-600">{t.blueprintCta}</p>
+          <Link
+            to="/my-mexico-blueprint"
+            className="inline-flex items-center gap-2 bg-zinc-950 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#d8a15f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
+          >
+            {t.blueprintCtaButton}
+          </Link>
+        </div>
+      )}
+
+      <AtlasFilters
+        t={t}
+        lang={lang}
+        regionId={regionId}
+        onRegionChange={setRegionId}
+        lifestyleIds={lifestyleIds}
+        onToggleLifestyle={toggleLifestyle}
+        onReset={resetFilters}
+        resultCount={filteredCities.length}
+        totalCount={allCities.length}
+      />
+
+      <AtlasGrid
+        cities={filteredCities}
+        matchedIds={matchedIds}
+        lang={lang}
+        t={t}
+        onReset={resetFilters}
+      />
+
+      <div className="mt-12 flex flex-wrap items-center gap-4">
+        <p className="text-sm text-zinc-600">{t.compareText}</p>
+        <Link
+          to="/your-mexico/compare"
+          className="inline-flex items-center gap-2 border border-zinc-950 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition duration-300 hover:bg-zinc-950 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
+        >
+          {t.compareButton}
+        </Link>
+      </div>
 
       <TrustMoment />
 
