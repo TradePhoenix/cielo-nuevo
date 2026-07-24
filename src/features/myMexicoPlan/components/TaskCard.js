@@ -1,5 +1,8 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import Checkbox from "../../../components/Checkbox";
+import { DURATION, EASE, useCinematicMotion } from "../../../components/cinematicMotion";
 
 const OWNERSHIP_LABELS = {
   self: "You handle this",
@@ -10,10 +13,47 @@ const OWNERSHIP_LABELS = {
 // A single task — never just a checkbox and a title. The reality note is
 // the point: an honest line on what this actually takes, extending the
 // Honest Truth pattern down to individual tasks.
+//
+// CX-004: a one-shot "confirmation wash" plays only on a genuine
+// incomplete->complete transition (never on mount, even when `done` starts
+// true from a saved plan) and never on un-completing. `previousDoneRef`
+// captures the prop's value at first render, so the mount-time comparison
+// in the effect below always reads "no change" for an already-completed
+// task. `pulseKey` increments on each qualifying transition and is used as
+// the overlay's React key, so rapid toggling always remounts a fresh
+// animation instead of fighting a stuck/half-finished one.
 export default function TaskCard({ task, done, onToggle }) {
+  const prefersReducedMotion = useCinematicMotion();
+  const previousDoneRef = useRef(done);
+  const [pulseKey, setPulseKey] = useState(0);
+
+  useEffect(() => {
+    if (!previousDoneRef.current && done) {
+      setPulseKey((key) => key + 1);
+    }
+    previousDoneRef.current = done;
+  }, [done]);
+
+  const pulseDuration = prefersReducedMotion ? DURATION.instant : DURATION.quick;
+
   return (
-    <div className={`break-inside-avoid border border-zinc-200 bg-white p-5 transition ${done ? "opacity-60" : ""}`}>
-      <div className="flex items-start gap-3">
+    <div
+      className={`relative overflow-hidden break-inside-avoid border border-zinc-200 bg-white p-5 transition-opacity duration-300 ${
+        done ? "opacity-60" : ""
+      }`}
+    >
+      {pulseKey > 0 && (
+        <motion.span
+          key={pulseKey}
+          aria-hidden="true"
+          data-testid="task-completion-pulse"
+          className="pointer-events-none absolute inset-0 bg-zinc-950/[0.05]"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 0 }}
+          transition={{ duration: pulseDuration, ease: EASE.standard }}
+        />
+      )}
+      <div className="relative flex items-start gap-3">
         <Checkbox
           checked={done}
           onToggle={onToggle}

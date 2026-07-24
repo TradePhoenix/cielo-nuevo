@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import CinematicReveal from "../../../components/CinematicReveal";
 
 const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2";
@@ -12,7 +13,8 @@ export default function DecisionBrief({ brief }) {
   const { priorities, readiness, topMatch, considerations, nextActions } = brief;
 
   return (
-    <div className="mt-10 border border-zinc-300 bg-white p-8 print:mt-6">
+    <CinematicReveal className="mt-10 print:mt-6">
+    <div className="border border-zinc-300 bg-white p-8">
       <p className="mb-2 text-xs uppercase tracking-[0.3em] text-zinc-500">
         Your Mexico Decision Brief
       </p>
@@ -87,5 +89,6 @@ export default function DecisionBrief({ brief }) {
         </div>
       )}
     </div>
+    </CinematicReveal>
   );
 }
