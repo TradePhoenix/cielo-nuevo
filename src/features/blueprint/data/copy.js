@@ -137,4 +137,9 @@ export const TAG_LABELS = {
   retirement: "retirement lifestyle",
   urgent: "readiness to move soon",
   exploratory: "still-exploring mindset",
+  // BP-002 — added alongside the placeCharacter question (questions.js);
+  // see docs/decision-engine/BLUEPRINT_11_DESTINATION_SEPARABILITY_AUDIT.md.
+  heritage: "interest in local culture and history",
+  natureFirst: "pull toward nature and wildlife",
+  remote: "desire for true remoteness",
 };

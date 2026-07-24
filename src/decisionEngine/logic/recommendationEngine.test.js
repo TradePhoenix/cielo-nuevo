@@ -14,6 +14,7 @@
 import { buildRecommendation } from "./recommendationEngine";
 import { computeScores } from "../../features/blueprint/logic/scoringEngine";
 import { QUESTIONS } from "../../features/blueprint/data/questions";
+import { CITY_PROFILES } from "../data/cityProfiles";
 
 function topMatchIds(scores, answers = { lifeStage: "freshStart" }) {
   return buildRecommendation(scores, answers).topCityMatches.map((match) => match.id);
@@ -143,5 +144,219 @@ describe("DEST-001 — existing destination results are unchanged", () => {
     const recommendation = buildRecommendation(scoresFromAnswers(answers), answers);
     expect(recommendation.topCityMatches[0].id).toBe("riviera-maya");
     expect(recommendation.readinessScore).toBe(70);
+  });
+});
+
+// BP-002 — permanent reachability guard, added per
+// docs/decision-engine/BLUEPRINT_11_DESTINATION_SEPARABILITY_AUDIT.md.
+//
+// Unlike the synthetic scoresWithTags() cases above (which only prove a
+// city's tag SET isn't a strict subset of another's — necessary but not
+// sufficient), every profile below is a real, complete answer to all 7
+// live questions, run through the real computeScores()/buildRecommendation()
+// pipeline exactly as a visitor's browser would. Each was found by
+// exhaustively enumerating all 15,360 real combinations of the current
+// questionnaire and is asserted to win strict #1 (matchScore strictly
+// greater than every other city's, not just tied) — the same standard
+// BP-001's audit used to prove Sisal's OLD profile could never win.
+//
+// If the questionnaire, a city's tags, or the tag vocabulary ever changes
+// in a way that breaks one of these, that's a real reachability regression
+// this guard is designed to catch — it should not be "fixed" by weakening
+// the assertion back to a tie or a synthetic tagCounts object.
+describe("BP-002 — every one of the 11 destinations is reachable via real questionnaire answers", () => {
+  function scoresFromAnswers(answers) {
+    return computeScores(answers, QUESTIONS);
+  }
+
+  function assertStrictWin(answers, expectedId) {
+    const scores = scoresFromAnswers(answers);
+    const recommendation = buildRecommendation(scores, answers);
+    const winner = recommendation.topCityMatches[0];
+    expect(winner.id).toBe(expectedId);
+    // Strict, not tied: the #2 match's score must be genuinely lower.
+    expect(winner.matchScore).toBeGreaterThan(recommendation.topCityMatches[1].matchScore);
+    return { scores, recommendation, winner };
+  }
+
+  test("Playa del Carmen", () => {
+    assertStrictWin(
+      {
+        timeline: "asap",
+        lifeStage: "remote",
+        budget: "premium",
+        lifestyle: "beachTown",
+        placeCharacter: "establishedCoastal",
+        household: "solo",
+        residencyFamiliarity: "researched",
+      },
+      "playa-del-carmen"
+    );
+  });
+
+  test("Tulum", () => {
+    assertStrictWin(
+      {
+        timeline: "exploring",
+        lifeStage: "entrepreneur",
+        budget: "premium",
+        lifestyle: "beachTown",
+        placeCharacter: "cultureHeritage",
+        household: "solo",
+        residencyFamiliarity: "none",
+      },
+      "tulum"
+    );
+  });
+
+  test("Riviera Maya", () => {
+    assertStrictWin(
+      {
+        timeline: "asap",
+        lifeStage: "retiree",
+        budget: "lean",
+        lifestyle: "cityEnergy",
+        placeCharacter: "cultureHeritage",
+        household: "familyKids",
+        residencyFamiliarity: "researched",
+      },
+      "riviera-maya"
+    );
+  });
+
+  test("Mérida", () => {
+    assertStrictWin(
+      {
+        timeline: "asap",
+        lifeStage: "remote",
+        budget: "lean",
+        lifestyle: "cityEnergy",
+        placeCharacter: "cultureHeritage",
+        household: "solo",
+        residencyFamiliarity: "researched",
+      },
+      "merida"
+    );
+  });
+
+  test("Progreso", () => {
+    assertStrictWin(
+      {
+        timeline: "asap",
+        lifeStage: "family",
+        budget: "comfortable",
+        lifestyle: "cityEnergy",
+        placeCharacter: "establishedCoastal",
+        household: "familyKids",
+        residencyFamiliarity: "researched",
+      },
+      "progreso"
+    );
+  });
+
+  test("Chicxulub Puerto", () => {
+    assertStrictWin(
+      {
+        timeline: "asap",
+        lifeStage: "family",
+        budget: "comfortable",
+        lifestyle: "beachTown",
+        placeCharacter: "natureWildlife",
+        household: "familyKids",
+        residencyFamiliarity: "researched",
+      },
+      "chicxulub-puerto"
+    );
+  });
+
+  test("Telchac Puerto", () => {
+    assertStrictWin(
+      {
+        timeline: "asap",
+        lifeStage: "remote",
+        budget: "lean",
+        lifestyle: "beachTown",
+        placeCharacter: "trueRemote",
+        household: "solo",
+        residencyFamiliarity: "none",
+      },
+      "telchac-puerto"
+    );
+  });
+
+  test("Celestún", () => {
+    assertStrictWin(
+      {
+        timeline: "asap",
+        lifeStage: "retiree",
+        budget: "lean",
+        lifestyle: "beachTown",
+        placeCharacter: "natureWildlife",
+        household: "solo",
+        residencyFamiliarity: "researched",
+      },
+      "celestun"
+    );
+  });
+
+  // Sisal — the whole reason BP-001/BP-002 exist. BP-001 proved this
+  // destination's pre-BP-002 tag set could win 0 of 3,840 real
+  // combinations. This profile is real, complete, and wins strict #1 —
+  // the reachability gap is closed.
+  test("Sisal", () => {
+    const { recommendation, winner } = (() => {
+      const answers = {
+        timeline: "asap",
+        lifeStage: "retiree",
+        budget: "comfortable",
+        lifestyle: "beachTown",
+        placeCharacter: "cultureHeritage",
+        household: "solo",
+        residencyFamiliarity: "researched",
+      };
+      return assertStrictWin(answers, "sisal");
+    })();
+    // Personalized-reason honesty check: the shown matchReason must be
+    // built from tags this exact answer profile actually produced (beach,
+    // quiet, comfortable, heritage all fire from real selected options
+    // above — none of it is invented).
+    expect(winner.matchReason).toMatch(/beach|slower pace|comfortable budget|local culture and history/);
+    expect(recommendation.topCityMatches[0].decisionTrace.length).toBeGreaterThan(0);
+  });
+
+  test("Dzilam de Bravo", () => {
+    assertStrictWin(
+      {
+        timeline: "asap",
+        lifeStage: "remote",
+        budget: "lean",
+        lifestyle: "notSure",
+        placeCharacter: "natureWildlife",
+        household: "familyKids",
+        residencyFamiliarity: "none",
+      },
+      "dzilam-de-bravo"
+    );
+  });
+
+  test("Santa Elena", () => {
+    assertStrictWin(
+      {
+        timeline: "asap",
+        lifeStage: "family",
+        budget: "notSure",
+        lifestyle: "quietNature",
+        placeCharacter: "cultureHeritage",
+        household: "familyKids",
+        residencyFamiliarity: "none",
+      },
+      "santa-elena"
+    );
+  });
+
+  test("all 11 destinations are covered above (guards against a silently-skipped case)", () => {
+    // If a future CITY_PROFILES entry is added without a matching test
+    // above, this fails loudly instead of the coverage gap going unnoticed.
+    expect(CITY_PROFILES.length).toBe(11);
   });
 });

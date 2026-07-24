@@ -58,6 +58,36 @@ export const QUESTIONS = [
       { id: "notSure", label: "Not sure yet — open to guidance", scores: { readiness: 5 }, tags: ["exploratory"] },
     ],
   },
+  // BP-002 — added per docs/decision-engine/BLUEPRINT_11_DESTINATION_SEPARABILITY_AUDIT.md's
+  // recommended solution: the audit's exhaustive enumeration of the prior
+  // 6-question space found several destinations (Sisal most severely —
+  // 0 of 3,840 real combinations) structurally unreachable as the #1
+  // match, because the existing tag vocabulary has no way to express
+  // heritage/culture, nature-first orientation, or genuine remoteness as
+  // positive pulls.
+  //
+  // readiness: 0 on every option, deliberately — this question exists
+  // purely to carry place-fit tags, not to measure moving-readiness. Any
+  // nonzero value here would raise readinessMax for every visitor,
+  // including ones who never see this question (a returning visitor's
+  // saved 6-answer session), which would silently shift the readinessScore
+  // BP-001's own established Playa/Tulum/Riviera Maya regression profiles
+  // assert exact values for. Keeping this question's readiness weight at
+  // zero keeps readinessMax = 90 exactly as it was before BP-002, so those
+  // three profiles — and every returning visitor's already-computed
+  // readiness — are provably unaffected by this question's addition.
+  {
+    id: "placeCharacter",
+    question: "Beyond the basics, what pulls you most toward a specific place?",
+    helper: "This helps us understand what actually makes somewhere feel right to you.",
+    type: "single-select",
+    options: [
+      { id: "cultureHeritage", label: "Immersing in local culture, history, and tradition", scores: { readiness: 0 }, tags: ["heritage"] },
+      { id: "natureWildlife", label: "Access to nature, wildlife, and conservation areas", scores: { readiness: 0 }, tags: ["natureFirst"] },
+      { id: "establishedCoastal", label: "A well-known, well-connected coastal town", scores: { readiness: 0 }, tags: ["comfortable"] },
+      { id: "trueRemote", label: "True remoteness, away from almost everything", scores: { readiness: 0 }, tags: ["remote"] },
+    ],
+  },
   {
     id: "household",
     question: "Who's making this move?",
