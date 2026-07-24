@@ -41,6 +41,7 @@ const BringingPetsToMexicoPage = lazy(() => import("./pages/BringingPetsToMexico
 const RentingVsBuyingInMexicoPage = lazy(() => import("./pages/RentingVsBuyingInMexicoPage"));
 const DeveloperDashboardPage = lazy(() => import("./pages/DeveloperDashboardPage"));
 const MyMexicoBlueprintPage = lazy(() => import("./pages/MyMexicoBlueprintPage"));
+const PricingPage = lazy(() => import("./pages/PricingPage"));
 const YourMexicoPage = lazy(() => import("./features/yourMexico/pages/YourMexicoPage"));
 const ComparePage = lazy(() => import("./features/yourMexico/pages/ComparePage"));
 const CityDetailPage = lazy(() => import("./features/yourMexico/pages/CityDetailPage"));
@@ -134,6 +135,7 @@ function AnimatedRoutes() {
           <Route path="/work-with-path-to-mexico" element={<WorkWithPathToMexicoPage />} />
           <Route path="/free-guide" element={<FreeGuidePage />} />
           <Route path="/my-mexico-blueprint" element={<MyMexicoBlueprintPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
           <Route path="/your-mexico" element={<YourMexicoPage />} />
           <Route path="/your-mexico/compare" element={<ComparePage />} />
           <Route path="/your-mexico/:cityId" element={<CityDetailPage />} />
