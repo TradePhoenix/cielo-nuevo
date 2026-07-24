@@ -30,6 +30,10 @@ const MovingToMeridaPage = lazy(() => import("./pages/MovingToMeridaPage"));
 const MovingToProgresoPage = lazy(() => import("./pages/MovingToProgresoPage"));
 const MovingToChicxulubPuertoPage = lazy(() => import("./pages/MovingToChicxulubPuertoPage"));
 const MovingToTelchacPuertoPage = lazy(() => import("./pages/MovingToTelchacPuertoPage"));
+const MovingToCelestunPage = lazy(() => import("./pages/MovingToCelestunPage"));
+const MovingToSisalPage = lazy(() => import("./pages/MovingToSisalPage"));
+const MovingToDzilamDeBravoPage = lazy(() => import("./pages/MovingToDzilamDeBravoPage"));
+const MovingToSantaElenaPage = lazy(() => import("./pages/MovingToSantaElenaPage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 const MexicoFitCallPage = lazy(() => import("./pages/MexicoFitCallPage"));
@@ -108,6 +112,10 @@ function AnimatedRoutes() {
           <Route path="/guides/moving-to-progreso" element={<MovingToProgresoPage />} />
           <Route path="/guides/moving-to-chicxulub-puerto" element={<MovingToChicxulubPuertoPage />} />
           <Route path="/guides/moving-to-telchac-puerto" element={<MovingToTelchacPuertoPage />} />
+          <Route path="/guides/moving-to-celestun" element={<MovingToCelestunPage />} />
+          <Route path="/guides/moving-to-sisal" element={<MovingToSisalPage />} />
+          <Route path="/guides/moving-to-dzilam-de-bravo" element={<MovingToDzilamDeBravoPage />} />
+          <Route path="/guides/moving-to-santa-elena" element={<MovingToSantaElenaPage />} />
 
           <Route path="/mexico-fit-call" element={<MexicoFitCallPage />} />
           <Route path="/work-with-path-to-mexico" element={<WorkWithPathToMexicoPage />} />

@@ -203,6 +203,52 @@ export const TASK_BANK = [
     estimate: { time: "10 minutes", cost: null },
     guideLink: "/guides/moving-to-telchac-puerto",
   },
+  // DEST-002 per-city reality checks — same one-task-per-city pattern as
+  // the DEST-001 entries above.
+  {
+    id: "celestun-wildlife-seasonality-reality",
+    chapterId: "getting-ready",
+    title: "Get realistic about the seasonal nature of Celestún's wildlife",
+    realityNote: "Flamingos and other wildlife are seasonal, not guaranteed on any given day — worth knowing before you build expectations around them.",
+    tags: [],
+    cityIds: ["celestun"],
+    ownership: "self",
+    estimate: { time: "10 minutes", cost: null },
+    guideLink: "/guides/moving-to-celestun",
+  },
+  {
+    id: "sisal-services-vs-merida-reality",
+    chapterId: "getting-ready",
+    title: "Map out which errands stay local in Sisal and which mean a trip to Mérida",
+    realityNote: "Sisal's Pueblo Mágico investment has improved its streets and pier, but services and employment are still meaningfully more limited than in Mérida.",
+    tags: [],
+    cityIds: ["sisal"],
+    ownership: "self",
+    estimate: { time: "10 minutes", cost: null },
+    guideLink: "/guides/moving-to-sisal",
+  },
+  {
+    id: "dzilam-remoteness-reality",
+    chapterId: "getting-ready",
+    title: "Get honest about how remote and service-light Dzilam de Bravo really is",
+    realityNote: "This is one of the most independent, least tourism-built destinations on this site — worth testing in person before committing, not assuming.",
+    tags: [],
+    cityIds: ["dzilam-de-bravo"],
+    ownership: "self",
+    estimate: { time: "10 minutes", cost: null },
+    guideLink: "/guides/moving-to-dzilam-de-bravo",
+  },
+  {
+    id: "santa-elena-inland-rural-reality",
+    chapterId: "getting-ready",
+    title: "Spend real time in Santa Elena's inland heat and rural pace before you commit",
+    realityNote: "This is a genuinely rural, inland village — no coast, no sea breeze, and healthcare relies on Mérida. Go in with that clearly understood, not assumed.",
+    tags: [],
+    cityIds: ["santa-elena"],
+    ownership: "self",
+    estimate: { time: "15 minutes", cost: null },
+    guideLink: "/guides/moving-to-santa-elena",
+  },
 
   // ---------- Making It Real (Days 31-60) ----------
   {

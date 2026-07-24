@@ -140,6 +140,34 @@ export const GUIDES = [
     category: "Relocation",
   },
   {
+    title: "Moving to Celestún",
+    description:
+      "A mangrove-fringed fishing village on the Ría Celestún Biosphere Reserve, built around nature, quiet, and seasonal flamingo habitat.",
+    href: "/guides/moving-to-celestun",
+    category: "Relocation",
+  },
+  {
+    title: "Moving to Sisal",
+    description:
+      "A historic Gulf port and Pueblo Mágico — a quiet beach, a restored pier, and real maritime heritage without resort intensity.",
+    href: "/guides/moving-to-sisal",
+    category: "Relocation",
+  },
+  {
+    title: "Moving to Dzilam de Bravo",
+    description:
+      "A working fishing port on the edge of a vast mangrove reserve — the most remote and independent Gulf coast destination on this site.",
+    href: "/guides/moving-to-dzilam-de-bravo",
+    category: "Relocation",
+  },
+  {
+    title: "Moving to Santa Elena",
+    description:
+      "An inland Puuc-region village built around living Maya and Yucatecan culture — not a beach destination.",
+    href: "/guides/moving-to-santa-elena",
+    category: "Relocation",
+  },
+  {
     title: "Canada to Mexico Relocation",
     description:
       "Residency, healthcare, banking, taxes, lifestyle, and what Canadians should know before moving.",

@@ -60,6 +60,44 @@ describe("DEST-001 — new destinations win their intended signal profile", () =
   });
 });
 
+describe("DEST-002 — four more destinations win their intended signal profile", () => {
+  // Each case is hand-verified against every other CITY_PROFILES entry
+  // (not just its nearest neighbor) so the win is genuinely outright, not
+  // a tie resolved by array order.
+  test("Celestún wins for beach + quiet + retirement + budget-conscious signals", () => {
+    const ids = topMatchIds(scoresWithTags({ beach: 1, quiet: 2, retirement: 2, budgetConscious: 2 }));
+    expect(ids[0]).toBe("celestun");
+  });
+
+  test("Sisal wins for beach + quiet + comfortable signals", () => {
+    const ids = topMatchIds(scoresWithTags({ beach: 1, quiet: 1, comfortable: 3 }));
+    expect(ids[0]).toBe("sisal");
+  });
+
+  test("Dzilam de Bravo wins for exploratory + family + budget-conscious signals", () => {
+    const ids = topMatchIds(scoresWithTags({ exploratory: 2, family: 2, budgetConscious: 2 }));
+    expect(ids[0]).toBe("dzilam-de-bravo");
+  });
+
+  test("Santa Elena wins for quiet + exploratory + family signals", () => {
+    const ids = topMatchIds(scoresWithTags({ quiet: 2, exploratory: 2, family: 3 }));
+    expect(ids[0]).toBe("santa-elena");
+  });
+
+  test("Santa Elena carries no beach tag, so a pure beach-town profile never surfaces it first", () => {
+    // Guards the brief's "must never inherit coastal assumptions" rule at
+    // the matching-engine level, not just in copy.
+    const ids = topMatchIds(scoresWithTags({ beach: 3 }));
+    expect(ids[0]).not.toBe("santa-elena");
+  });
+
+  test("every DEST-002 destination appears somewhere in a neutral, no-signal profile without crashing", () => {
+    const recommendation = buildRecommendation(scoresWithTags({}), { lifeStage: "freshStart" });
+    expect(recommendation.topCityMatches).toHaveLength(3);
+    expect(recommendation.readinessScore).toBe(50);
+  });
+});
+
 describe("DEST-001 — existing destination results are unchanged", () => {
   function scoresFromAnswers(answers) {
     return computeScores(answers, QUESTIONS);

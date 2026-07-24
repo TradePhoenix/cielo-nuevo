@@ -59,7 +59,22 @@ const OWNERSHIP_SECTIONS = [
 // Mérida itself is deliberately excluded, since it's a real city with
 // taxis and rideshare, not a driving-only town like its coastal
 // neighbors.
-const CAR_DEPENDENT_CITY_IDS = new Set(["riviera-maya", "progreso", "chicxulub-puerto", "telchac-puerto"]);
+//
+// DEST-002: all four new destinations are car-dependent too, each for its
+// own honest reason (see VEHICLE_TRANSPORTATION_REASONS below) — three
+// smaller, more remote Gulf towns than any DEST-001 town, plus Santa
+// Elena, an inland rural village with no rideshare/taxi infrastructure of
+// its own. None of the four get Mérida's "real city" exception.
+const CAR_DEPENDENT_CITY_IDS = new Set([
+  "riviera-maya",
+  "progreso",
+  "chicxulub-puerto",
+  "telchac-puerto",
+  "celestun",
+  "sisal",
+  "dzilam-de-bravo",
+  "santa-elena",
+]);
 
 const RELEVANCE_RULES = {
   insurance: ({ tagCounts }) => Boolean(tagCounts.comfortable || tagCounts.premium || tagCounts.retirement),
@@ -72,6 +87,10 @@ const VEHICLE_TRANSPORTATION_REASONS = {
   progreso: "Progreso is spread out enough that day-to-day life mostly assumes you're driving.",
   "chicxulub-puerto": "Chicxulub Puerto's small, spread-out layout mostly assumes you're driving.",
   "telchac-puerto": "Telchac Puerto's seclusion means day-to-day life mostly assumes you're driving.",
+  celestun: "Celestún's small scale and distance from Mérida mean day-to-day life mostly assumes you're driving.",
+  sisal: "Sisal's connection to Mérida and everyday errands beyond the village mostly assume you're driving.",
+  "dzilam-de-bravo": "Dzilam de Bravo's remoteness means day-to-day life mostly assumes you're driving.",
+  "santa-elena": "Santa Elena is an inland rural village with no local rideshare or taxi infrastructure — day-to-day life mostly assumes you're driving.",
 };
 
 const RELEVANCE_REASONS = {

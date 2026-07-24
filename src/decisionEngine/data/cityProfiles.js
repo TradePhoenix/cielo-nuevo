@@ -63,4 +63,40 @@ export const CITY_PROFILES = [
     teaser: "A smaller, more secluded Gulf Coast community for people who genuinely want privacy and space.",
     guideLink: "/guides/moving-to-telchac-puerto",
   },
+  // Celestún, Sisal, Dzilam de Bravo & Santa Elena (DEST-002) — four more
+  // Yucatán destinations distinct from both the Caribbean coast and the
+  // DEST-001 Gulf towns above: three smaller, more remote/nature-first Gulf
+  // coast communities plus one inland Puuc-region cultural village. Tag
+  // combinations again reuse the exact shared vocabulary (no new tags
+  // added) but each was deliberately chosen so its tag set is never a
+  // strict subset of any other city's — see recommendationEngine.test.js's
+  // DEST-002 cases for the hand-verified profile each city can win.
+  {
+    id: "celestun",
+    name: "Celestún",
+    tags: ["beach", "quiet", "retirement", "budgetConscious"],
+    teaser: "A mangrove-fringed fishing village on the western Gulf, built around nature, quiet, and a genuinely unhurried pace.",
+    guideLink: "/guides/moving-to-celestun",
+  },
+  {
+    id: "sisal",
+    name: "Sisal",
+    tags: ["beach", "quiet", "comfortable"],
+    teaser: "A historic Gulf port turned Pueblo Mágico — quiet and walkable, with real infrastructure and an easy trip to Mérida.",
+    guideLink: "/guides/moving-to-sisal",
+  },
+  {
+    id: "dzilam-de-bravo",
+    name: "Dzilam de Bravo",
+    tags: ["exploratory", "family", "budgetConscious"],
+    teaser: "A working fishing port on the edge of a vast mangrove reserve — remote, independent, and unmistakably real.",
+    guideLink: "/guides/moving-to-dzilam-de-bravo",
+  },
+  {
+    id: "santa-elena",
+    name: "Santa Elena",
+    tags: ["quiet", "exploratory", "family"],
+    teaser: "An inland Puuc-region village built around living Maya and Yucatecan culture — not a beach destination, and proud of it.",
+    guideLink: "/guides/moving-to-santa-elena",
+  },
 ];

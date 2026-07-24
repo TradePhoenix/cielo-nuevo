@@ -791,4 +791,451 @@ export const CITY_DETAILS = {
       "Least developed internet infrastructure — verify before relying on it",
     ],
   },
+
+  // ---------------------------------------------------------------------
+  // Celestún, Sisal, Dzilam de Bravo & Santa Elena (DEST-002) — four more
+  // Yucatán destinations, distinct from both the Caribbean coast and the
+  // DEST-001 towns above. Three are smaller, more remote, more nature-first
+  // Gulf coast communities than any DEST-001 town; Santa Elena is the
+  // site's first genuinely inland, non-beach destination.
+  //
+  // heroImages: real regional photography from launch (public/regions/),
+  // using the same {desktop,mobile}{webp,jpg} shape CX-007 established —
+  // these four never carry a placeholder heroImage string.
+  //
+  // monthlyBudget: directional estimates only, grounded in these towns'
+  // well-established general reputation (smaller/more remote than Progreso,
+  // Chicxulub Puerto and Telchac Puerto) — not sourced from verified local
+  // listings. Same caveat as the DEST-001 note above, carried forward with
+  // the same "confirm before treating as more than a starting estimate"
+  // limitation. Celestún, Sisal and Dzilam de Bravo's figures sit near or
+  // below Telchac Puerto's (the smallest DEST-001 town); Santa Elena's are
+  // estimated independently since it's inland, not on this coast at all.
+  //
+  // Wildlife (Celestún's flamingos, Dzilam de Bravo's mangrove birdlife) is
+  // real but seasonal and never guaranteed — honestTruth sections below say
+  // so explicitly, per DEST-002-BRIEF.md's guardrail.
+  // ---------------------------------------------------------------------
+
+  celestun: {
+    tagline: "A mangrove-fringed fishing village built around nature, not tourism.",
+    heroImages: {
+      desktop: {
+        webp: "/regions/celestun/celestun-hero-desktop.webp",
+        jpg: "/regions/celestun/celestun-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/celestun/celestun-hero-mobile.webp",
+        jpg: "/regions/celestun/celestun-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "Flamingos feeding in the calm mangrove estuary at Celestún",
+      es: "Flamencos alimentándose en el tranquilo estuario de manglares de Celestún",
+    },
+
+    whyThisFeelsLikeYou: {
+      intro:
+        "Celestún tends to fit people who want their daily life built around nature first — a real fishing village on the edge of a biosphere reserve, not a beach town with wildlife as a side attraction.",
+      reasonsByTag: {
+        beach:
+          "Beach life matters to you, and Celestún's coastline sits right alongside the Ría Celestún estuary — quieter and wilder than a typical beach town.",
+        quiet:
+          "You want quiet over noise, and Celestún is built around a biosphere reserve, not a tourist strip — this is about as unhurried as the Gulf coast gets.",
+        retirement:
+          "You're thinking about this as your next long chapter, and Celestún's slow, nature-centered pace suits people who've stopped needing everything to be convenient.",
+        budgetConscious:
+          "You're being realistic about budget, and Celestún's small scale and modest infrastructure generally keep costs lower than the more developed Gulf towns.",
+      },
+    },
+
+    tuesdayInYourLife: [
+      {
+        time: "Morning",
+        vignette:
+          "The estuary is glassy and still before the wind picks up, and a walk along the water means passing fishing boats heading out for the day. Flamingos are a real possibility here in season — never a guarantee, and locals will tell you the same.",
+      },
+      {
+        time: "Afternoon",
+        vignette:
+          "Lunch is fresh, simple, and usually whatever came off a boat that morning. Errands beyond the basics mean a drive — Celestún's own services are modest, and everyone here has made peace with that trade.",
+      },
+      {
+        time: "Evening",
+        vignette:
+          "The light over the mangroves turns everything gold for a few minutes most evenings, and there's rarely a crowd to share it with. The quiet isn't a marketing line — it's just what the town actually is.",
+      },
+    ],
+
+    honestTruth: {
+      intro: "Celestún's nature is genuinely special, and its trade-offs are genuinely real.",
+      points: [
+        "Urban services and healthcare are limited locally — plan around trips to Mérida for anything beyond the basics.",
+        "It's a real drive from Mérida, not a quick errand — factor that into daily life, not just moving day.",
+        "Flamingos and other wildlife are seasonal and never guaranteed — don't move here expecting a daily sighting.",
+      ],
+    },
+
+    lifestyleSnapshot: {
+      pace: { value: "Slow and nature-centered", detail: "Life here follows the estuary and the fishing fleet more than a clock." },
+      walkability: { value: "Small and walkable", detail: "The village core is compact; most everyday needs are a short walk." },
+      internet: { value: "Basic, developing", detail: "Coverage exists but is less consistent than Mérida or Progreso — test your specific address." },
+      healthcare: { value: "Minimal locally", detail: "Basic care only; anything serious means a drive to Mérida." },
+      airportAccess: { value: "Drive to Mérida International", detail: "A genuine drive along the coast and inland — not a short hop." },
+      climate: { value: "Coastal Gulf breeze", detail: "Estuary and mangrove humidity alongside the usual Yucatán coast heat pattern." },
+      community: { value: "Small and close-knit", detail: "A modest, long-settled fishing community rather than a growing expat scene." },
+    },
+
+    monthlyBudget: {
+      housing: "$250–$550",
+      groceries: "$160–$280",
+      dining: "$80–$180",
+      transportation: "$40–$90",
+      utilities: "$50–$110",
+      internet: "$35–$75",
+      estimatedTotal: "$450–$950",
+      note: "Directional estimate, not verified local data — see this file's DEST-002 note above.",
+    },
+
+    neighborhoods: [
+      {
+        name: "Coastal Celestún",
+        description: "The streets closest to the estuary and beach — fishing boats, modest homes, the town's real daily life.",
+        bestFor: "People who came for the nature and the water and want to live inside both.",
+        tradeoff: "The furthest from what little town center exists.",
+      },
+      {
+        name: "Town Center",
+        description: "The small cluster of streets with Celestún's shops, market, and church.",
+        bestFor: "People who want to be as close as possible to local services, modest as they are.",
+        tradeoff: "Still minimal by any larger town's standard.",
+      },
+    ],
+
+    pros: [
+      "A real biosphere reserve at your doorstep, not a manufactured nature experience",
+      "Genuine quiet and a slower pace than any DEST-001 Gulf town",
+      "Lower cost of living than the more developed coastal towns",
+    ],
+    tradeoffs: [
+      "Limited urban services and healthcare — real planning required",
+      "A genuine drive from Mérida, not a quick trip",
+      "Wildlife sightings are seasonal and never guaranteed",
+    ],
+  },
+
+  sisal: {
+    tagline: "A historic Gulf port and Pueblo Mágico, quiet without being remote.",
+    heroImages: {
+      desktop: {
+        webp: "/regions/sisal/sisal-hero-desktop.webp",
+        jpg: "/regions/sisal/sisal-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/sisal/sisal-hero-mobile.webp",
+        jpg: "/regions/sisal/sisal-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "Sisal's quiet Gulf beach and historic pier in soft morning light",
+      es: "La tranquila playa del Golfo y el histórico muelle de Sisal bajo la suave luz de la mañana",
+    },
+
+    whyThisFeelsLikeYou: {
+      intro:
+        "Sisal tends to fit people who want a quiet coastal village with real history and real infrastructure — not the deepest seclusion on this coast, but a genuinely peaceful place that still feels connected to Mérida.",
+      reasonsByTag: {
+        beach:
+          "Beach life matters to you, and Sisal's calm Gulf beach and historic pier are the heart of daily life here.",
+        quiet:
+          "You want quiet over noise, and Sisal — a small Pueblo Mágico, not a resort town — delivers that without feeling cut off.",
+        comfortable:
+          "You're looking for a comfortable, well-supported lifestyle, and Sisal's Pueblo Mágico status has brought real investment in its streets, pier, and services relative to its smaller neighbors.",
+      },
+    },
+
+    tuesdayInYourLife: [
+      {
+        time: "Morning",
+        vignette:
+          "The old pier catches the first light before anyone's really out, and a walk to the end of it is most people's version of a morning coffee ritual. The town wakes up slowly, not all at once.",
+      },
+      {
+        time: "Afternoon",
+        vignette:
+          "Lunch is something simple near the water, and an afternoon errand run covers most of what Sisal itself offers — anything bigger means the drive to Mérida, close enough to not feel like a project.",
+      },
+      {
+        time: "Evening",
+        vignette:
+          "The restored streets near the pier light up gently after dark, and the pace stays unhurried — Sisal was never built to be loud, and its Pueblo Mágico recognition hasn't changed that.",
+      },
+    ],
+
+    honestTruth: {
+      intro: "Sisal's history and quiet are real, and so are the limits of a small town.",
+      points: [
+        "Services, employment, and healthcare are meaningfully more limited here than in Mérida — plan around that, not against it.",
+        "This is a quiet historic port, not the Riviera Maya — don't come expecting resort-scale amenities or nightlife.",
+        "Transport planning matters — Sisal rewards people who've already made peace with needing a car.",
+      ],
+    },
+
+    lifestyleSnapshot: {
+      pace: { value: "Quiet and unhurried", detail: "A genuinely calm coastal pace, helped rather than disrupted by its Pueblo Mágico status." },
+      walkability: { value: "Small and walkable", detail: "The village center and pier are an easy walk; outer streets favor a car or bike." },
+      internet: { value: "Developing, more consistent than the smallest towns", detail: "Benefiting from Pueblo Mágico investment, but still worth testing your specific address." },
+      healthcare: { value: "Basic locally, Mérida nearby", detail: "Local clinics for everyday needs; anything serious means a trip to Mérida." },
+      airportAccess: { value: "Manageable drive to Mérida International", detail: "A single road connects Sisal to Mérida and its airport." },
+      climate: { value: "Open Gulf breeze", detail: "The same coastal climate pattern as the rest of the Yucatán Gulf coast." },
+      community: { value: "Small and settled", detail: "A modest local community, with growing outside interest since its 2020 Pueblo Mágico designation." },
+    },
+
+    monthlyBudget: {
+      housing: "$300–$650",
+      groceries: "$180–$300",
+      dining: "$100–$220",
+      transportation: "$40–$90",
+      utilities: "$55–$120",
+      internet: "$35–$80",
+      estimatedTotal: "$500–$1,100",
+      note: "Directional estimate, not verified local data — see this file's DEST-002 note above.",
+    },
+
+    neighborhoods: [
+      {
+        name: "Around The Pier",
+        description: "The restored heart of Sisal — the historic pier, the malecón, and the streets that see the most local life.",
+        bestFor: "People who want to be in the middle of Sisal's history and its daily rhythm.",
+        tradeoff: "The most visited part of a still genuinely small town.",
+      },
+      {
+        name: "Village Center",
+        description: "The residential streets a few blocks back from the water — quieter, more local, an easy walk to the pier.",
+        bestFor: "People who want Sisal's pace without being in its busiest few blocks.",
+        tradeoff: "Fewer amenities directly on-site than right at the waterfront.",
+      },
+    ],
+
+    pros: [
+      "Real Pueblo Mágico investment in streets, pier, and public spaces",
+      "Quiet coastal living without feeling as remote as the smaller Gulf towns",
+      "A manageable, direct connection to Mérida",
+    ],
+    tradeoffs: [
+      "Services, employment, and healthcare remain meaningfully limited compared with Mérida",
+      "Not a resort town — no Riviera Maya-style amenities or nightlife",
+      "Transport planning matters — daily life mostly assumes a car",
+    ],
+  },
+
+  "dzilam-de-bravo": {
+    tagline: "A working fishing port on a vast mangrove reserve — remote, independent, and real.",
+    heroImages: {
+      desktop: {
+        webp: "/regions/dzilam-de-bravo/dzilam-de-bravo-hero-desktop.webp",
+        jpg: "/regions/dzilam-de-bravo/dzilam-de-bravo-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/dzilam-de-bravo/dzilam-de-bravo-hero-mobile.webp",
+        jpg: "/regions/dzilam-de-bravo/dzilam-de-bravo-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "Working fishing boats beside mangroves in Dzilam de Bravo",
+      es: "Embarcaciones pesqueras junto a los manglares de Dzilam de Bravo",
+    },
+
+    whyThisFeelsLikeYou: {
+      intro:
+        "Dzilam de Bravo tends to fit people who want the most remote, most self-sufficient version of Gulf coast life on this site — a genuine working fishing port, not a destination built for visitors.",
+      reasonsByTag: {
+        exploratory:
+          "You're still figuring out exactly what fits, and Dzilam de Bravo rewards people willing to explore a place that isn't packaged for tourism at all.",
+        family:
+          "You're thinking about this as a family, and Dzilam de Bravo's tight-knit, unhurried community can suit a family that values simplicity over amenities.",
+        budgetConscious:
+          "You're being realistic about budget, and Dzilam de Bravo's modest scale and working-town character generally keep costs low.",
+      },
+    },
+
+    tuesdayInYourLife: [
+      {
+        time: "Morning",
+        vignette:
+          "The working fleet heads out early, and the mangrove-lined water past the edge of town stays still until the boats stir it. This is a fishing port first — everything else fits around that rhythm.",
+      },
+      {
+        time: "Afternoon",
+        vignette:
+          "Errands mean a real drive, and most residents have learned to batch them rather than make separate trips. What Dzilam de Bravo has locally is genuine, if modest — what it doesn't have means planning ahead.",
+      },
+      {
+        time: "Evening",
+        vignette:
+          "The estuary and the open Gulf beyond it turn quiet and still, and the loudest thing most nights is the wind through the mangroves. There's no boardwalk scene here, and nobody who lives here is looking for one.",
+      },
+    ],
+
+    honestTruth: {
+      intro: "Dzilam de Bravo's remoteness and independence are genuine, and so is what that costs day to day.",
+      points: [
+        "Car dependence is real — daily life here assumes you're driving, with limited exceptions.",
+        "Services and healthcare are very limited locally — this is one of the most remote destinations on this site.",
+        "It's a working fishing town, not a luxury marina — don't come expecting polished tourism infrastructure.",
+      ],
+    },
+
+    lifestyleSnapshot: {
+      pace: { value: "Remote and self-directed", detail: "Among the most independent, least tourism-oriented paces of any destination on this site." },
+      walkability: { value: "Small, car-recommended", detail: "The town itself is walkable, but reaching anything beyond it means driving." },
+      internet: { value: "Limited, least developed of the four DEST-002 towns", detail: "Reliability varies significantly by address — test thoroughly before relying on it." },
+      healthcare: { value: "Very limited locally", detail: "Minimal local services; anything beyond the basics means a real trip to Mérida." },
+      airportAccess: { value: "Longer drive to Mérida International", detail: "Manageable but genuinely further than the more established Gulf towns." },
+      climate: { value: "Open Gulf coastline and mangrove estuary", detail: "The same coastal heat pattern, with more humidity near the mangroves." },
+      community: { value: "Small, working, self-sufficient", detail: "A real fishing community rather than a curated small-town scene." },
+    },
+
+    monthlyBudget: {
+      housing: "$250–$550",
+      groceries: "$160–$280",
+      dining: "$80–$180",
+      transportation: "$45–$100",
+      utilities: "$50–$110",
+      internet: "$35–$75",
+      estimatedTotal: "$450–$950",
+      note: "Directional estimate, not verified local data — see this file's DEST-002 note above.",
+    },
+
+    neighborhoods: [
+      {
+        name: "Along The Waterfront",
+        description: "The streets closest to the working port and estuary — modest homes, the fishing fleet, the town's real center of gravity.",
+        bestFor: "People who want to live inside the town's actual working identity.",
+        tradeoff: "Very few amenities on-site — plan around trips elsewhere for most needs.",
+      },
+      {
+        name: "Inland Dzilam de Bravo",
+        description: "A few streets back from the water, slightly more affordable, still a short distance from the port.",
+        bestFor: "Budget-conscious movers who still want to be close to town.",
+        tradeoff: "Marginally less of the direct waterfront feel.",
+      },
+    ],
+
+    pros: [
+      "The most remote, most independent Gulf coast destination on this site",
+      "A genuine working fishing community, not a tourism construction",
+      "Low cost of living relative to the more developed Gulf towns",
+    ],
+    tradeoffs: [
+      "Real car dependence — daily life assumes you're driving",
+      "Very limited local services and healthcare",
+      "Not a polished tourism destination — infrastructure is genuinely modest",
+    ],
+  },
+
+  "santa-elena": {
+    tagline: "An inland Puuc-region village built around living Maya and Yucatecan culture.",
+    heroImages: {
+      desktop: {
+        webp: "/regions/santa-elena/santa-elena-hero-desktop.webp",
+        jpg: "/regions/santa-elena/santa-elena-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/santa-elena/santa-elena-hero-mobile.webp",
+        jpg: "/regions/santa-elena/santa-elena-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "A quiet village street and traditional Yucatecan home in Santa Elena",
+      es: "Una tranquila calle de pueblo y una casa tradicional yucateca en Santa Elena",
+    },
+
+    whyThisFeelsLikeYou: {
+      intro:
+        "Santa Elena tends to fit people who want inland, rural, living Maya and Yucatecan culture — not a beach, not a resort, and not a museum piece, but an actual community in the Puuc region's cultural landscape.",
+      reasonsByTag: {
+        quiet:
+          "You want quiet over noise, and Santa Elena's rural, inland pace is about as calm and low-nightlife as this site's destinations get.",
+        exploratory:
+          "You're still figuring out exactly what fits, and Santa Elena rewards people genuinely curious about Maya and Yucatecan culture, not just a resort with a cultural theme.",
+        family:
+          "You're thinking about this as a family, and Santa Elena's small, community-centered village life offers a different, more rooted kind of daily rhythm.",
+      },
+    },
+
+    tuesdayInYourLife: [
+      {
+        time: "Morning",
+        vignette:
+          "The village is quiet and inland — no ocean, no sea breeze, just low Yucatecan homes, gardens, and the sound of the town waking up slowly under a still-cool sky.",
+      },
+      {
+        time: "Afternoon",
+        vignette:
+          "The heat builds the way it does across inland Yucatán, and the day slows with it — errands and outdoor tasks happen early or late, not through the middle of the day.",
+      },
+      {
+        time: "Evening",
+        vignette:
+          "The village settles early, and the loudest thing most nights is genuinely just the neighborhood. This is rural, community-centered life, not a curated cultural experience — and that's the actual appeal.",
+      },
+    ],
+
+    honestTruth: {
+      intro: "Santa Elena's culture and calm are genuine, and so is its fundamentally rural reality.",
+      points: [
+        "Healthcare and services are limited locally — plan around trips to Mérida for anything beyond the basics.",
+        "Inland heat is real and can feel more intense than the coast's — worth experiencing before committing.",
+        "This is a rural, transport-dependent lifestyle, not a curated cultural attraction — daily life here is genuinely ordinary, not staged for visitors.",
+      ],
+    },
+
+    lifestyleSnapshot: {
+      pace: { value: "Rural and unhurried", detail: "A genuinely slow, community-centered pace — among the lowest-nightlife destinations on this site." },
+      walkability: { value: "Small and walkable", detail: "The village itself is compact and easy to walk; anything beyond it means a drive." },
+      internet: { value: "Basic, developing", detail: "Coverage exists but is inconsistent — test your specific address before relying on it." },
+      healthcare: { value: "Minimal locally, Mérida for anything serious", detail: "Basic local care only; the Puuc region relies on Mérida as its healthcare hub." },
+      airportAccess: { value: "Drive to Mérida International", detail: "A genuine inland drive along Highway 261 — not a coastal route." },
+      climate: { value: "Hot, dry inland heat", detail: "No sea breeze here — the dry-season heat is more intense than on the coast." },
+      community: { value: "Small, rooted, Maya and Yucatecan", detail: "A living local community with deep cultural continuity, not a foreign enclave." },
+    },
+
+    monthlyBudget: {
+      housing: "$250–$500",
+      groceries: "$150–$260",
+      dining: "$70–$160",
+      transportation: "$45–$100",
+      utilities: "$50–$100",
+      internet: "$35–$75",
+      estimatedTotal: "$400–$900",
+      note: "Directional estimate, not verified local data — see this file's DEST-002 note above.",
+    },
+
+    neighborhoods: [
+      {
+        name: "Village Center",
+        description: "The streets around Santa Elena's church and main square — the most walkable, most community-facing part of town.",
+        bestFor: "People who want to be inside the village's actual daily life.",
+        tradeoff: "Very few amenities beyond what a small rural village genuinely offers.",
+      },
+      {
+        name: "Outskirts Toward The Puuc Route",
+        description: "The quieter edges of town, closer to the highway that connects Santa Elena to Uxmal, Kabáh, and the rest of the Puuc region — real archaeological sites nearby, not inside the village itself.",
+        bestFor: "People who want a little more space and don't mind a short drive to the village center.",
+        tradeoff: "Less immediate access to what local services exist.",
+      },
+    ],
+
+    pros: [
+      "Genuine, living Maya and Yucatecan culture, not a staged version of it",
+      "The lowest-nightlife, most rural pace of any destination on this site",
+      "Real proximity to the Puuc region's cultural landscape without being inside a tourist zone",
+    ],
+    tradeoffs: [
+      "Minimal local healthcare and services — real planning required",
+      "Inland dry-season heat, without any coastal relief",
+      "A genuinely rural, transport-dependent lifestyle — not for anyone expecting beach or resort amenities",
+    ],
+  },
 };
