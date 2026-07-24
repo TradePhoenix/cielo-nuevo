@@ -5,10 +5,13 @@
 // two. Fields are added sprint by sprint, only as each section is actually
 // built, rather than stubbed in ahead of time.
 //
-// heroImage assigns each city one of the project's existing coastal photos
-// by visual fit (Playa's built-up beach town, Tulum's jungle-to-beach path,
-// Riviera Maya's quieter jungle/resort feel) — real per-city photography is
-// a pure data swap later.
+// heroImages carries each city's own dedicated regional photography (the
+// CX-007 {desktop,mobile}{webp,jpg} shape) plus heroAlt EN/ES text — every
+// one of the 11 destinations now has this (MEDIA-002 completed the last
+// three: Playa del Carmen, Tulum, Riviera Maya, which previously shared
+// hero.jpg/lifestyle.jpg/sanctuary.jpg as placeholders). Those three shared
+// files are still used elsewhere (BlueprintIntro.js, HomePage.js's own
+// hero section) and were intentionally left in place, not deleted.
 //
 // whyThisFeelsLikeYou.reasonsByTag is keyed by this city's own `tags` (see
 // cityProfiles.js) — CityDetailPage picks whichever entries overlap with the
@@ -25,7 +28,20 @@
 export const CITY_DETAILS = {
   "playa-del-carmen": {
     tagline: "Walkable streets, ocean air, and a life that still feels social.",
-    heroImage: "/hero.jpg",
+    heroImages: {
+      desktop: {
+        webp: "/regions/playa-del-carmen/playa-del-carmen-hero-desktop.webp",
+        jpg: "/regions/playa-del-carmen/playa-del-carmen-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/playa-del-carmen/playa-del-carmen-hero-mobile.webp",
+        jpg: "/regions/playa-del-carmen/playa-del-carmen-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "Leafy Playa del Carmen street leading toward the Caribbean Sea at sunrise",
+      es: "Calle arbolada de Playa del Carmen que conduce al mar Caribe al amanecer",
+    },
 
     whyThisFeelsLikeYou: {
       intro:
@@ -128,7 +144,20 @@ export const CITY_DETAILS = {
 
   tulum: {
     tagline: "A slower rhythm on the water, built for people who want room to breathe.",
-    heroImage: "/lifestyle.jpg",
+    heroImages: {
+      desktop: {
+        webp: "/regions/tulum/tulum-hero-desktop.webp",
+        jpg: "/regions/tulum/tulum-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/tulum/tulum-hero-mobile.webp",
+        jpg: "/regions/tulum/tulum-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "Quiet Tulum residential street with limestone homes and tropical jungle at sunrise",
+      es: "Tranquila calle residencial de Tulum con casas de piedra caliza y selva tropical al amanecer",
+    },
 
     whyThisFeelsLikeYou: {
       intro:
@@ -229,7 +258,20 @@ export const CITY_DETAILS = {
 
   "riviera-maya": {
     tagline: "Quieter and more affordable than the postcards suggest — and closer to everyday life.",
-    heroImage: "/sanctuary.jpg",
+    heroImages: {
+      desktop: {
+        webp: "/regions/riviera-maya/riviera-maya-hero-desktop.webp",
+        jpg: "/regions/riviera-maya/riviera-maya-hero-desktop.jpg",
+      },
+      mobile: {
+        webp: "/regions/riviera-maya/riviera-maya-hero-mobile.webp",
+        jpg: "/regions/riviera-maya/riviera-maya-hero-mobile.jpg",
+      },
+    },
+    heroAlt: {
+      en: "Caribbean coastline and coastal jungle across the Riviera Maya in morning light",
+      es: "Costa caribeña y selva litoral de la Riviera Maya bajo la luz de la mañana",
+    },
 
     whyThisFeelsLikeYou: {
       intro:
