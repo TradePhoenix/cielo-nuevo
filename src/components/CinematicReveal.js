@@ -15,7 +15,15 @@ import { entryReveal, entryRevealReduced, useCinematicMotion, REVEAL_STAGGER } f
 //     CinematicReveal.itemVariants below. Framer Motion propagates this
 //     wrapper's "hidden"/"show" state to those children automatically; the
 //     children don't need their own `initial`/`whileInView`.
-export default function CinematicReveal({ children, stagger = false, className }) {
+//
+// CX-005: `skipReveal` (default false, every existing call site
+// unaffected) renders content already in its final "show" state instead
+// of animating from "hidden" — for content that was already seen in a
+// previous visit (e.g. the Blueprint results screen on a page refresh),
+// where replaying the entry animation would read as a repeated, fake
+// "theatrical" reveal rather than the honest one-time discovery it's meant
+// to be.
+export default function CinematicReveal({ children, stagger = false, skipReveal = false, className }) {
   const prefersReducedMotion = useCinematicMotion();
 
   const variants = stagger
@@ -23,6 +31,14 @@ export default function CinematicReveal({ children, stagger = false, className }
     : prefersReducedMotion
     ? entryRevealReduced
     : entryReveal;
+
+  if (skipReveal) {
+    return (
+      <motion.div initial="show" animate="show" variants={variants} className={className}>
+        {children}
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div

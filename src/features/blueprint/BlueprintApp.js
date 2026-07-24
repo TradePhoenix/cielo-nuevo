@@ -5,37 +5,17 @@ import BlueprintIntro from "./components/BlueprintIntro";
 import QuestionCard from "./components/QuestionCard";
 import ProgressBar from "./components/ProgressBar";
 import BlueprintLoading from "./components/BlueprintLoading";
+import ResultsDiscovery from "./components/ResultsDiscovery";
 import ResultsSummary from "./components/ResultsSummary";
 import ResultsCityMatch from "./components/ResultsCityMatch";
 import ResultsRoadmap from "./components/ResultsRoadmap";
 import ResultsCTA from "./components/ResultsCTA";
+import CinematicReveal from "../../components/CinematicReveal";
 import { useBlueprintState } from "./state/useBlueprintState";
-import { useCinematicMotion } from "../../components/cinematicMotion";
+import { DURATION, EASE, useCinematicMotion } from "../../components/cinematicMotion";
 
 const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2";
-
-// Cascading reveal for the results screen — the score appears first, then
-// city matches, then the roadmap, then the CTA, so results feel like a
-// build rather than one flat block popping in after the loading sequence.
-// CX-003: both variants degrade under reduced motion — no stagger delay
-// (every item appears together) and opacity-only, no y-offset.
-function getResultsStagger(prefersReducedMotion) {
-  return {
-    hidden: {},
-    show: { transition: { staggerChildren: prefersReducedMotion ? 0 : 0.15, delayChildren: prefersReducedMotion ? 0 : 0.1 } },
-  };
-}
-
-function getResultsItem(prefersReducedMotion) {
-  if (prefersReducedMotion) {
-    return { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.12 } } };
-  }
-  return {
-    hidden: { opacity: 0, y: 24 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-  };
-}
 
 // Orchestrates the full step machine: intro -> question -> loading -> results.
 export default function BlueprintApp() {
@@ -53,15 +33,17 @@ export default function BlueprintApp() {
     goPrevious,
     completeLoading,
     restart,
+    skipResultsReveal,
   } = useBlueprintState();
 
   const resultsRef = useRef(null);
   const prefersReducedMotion = useCinematicMotion();
-  const resultsStagger = getResultsStagger(prefersReducedMotion);
-  const resultsItem = getResultsItem(prefersReducedMotion);
 
   // Moves focus to the results region as soon as it appears, so screen
-  // reader users land there directly instead of needing to re-explore the page.
+  // reader users land there directly instead of needing to re-explore the
+  // page. Fires identically whether results just arrived live or were
+  // loaded directly from a previous session — only the *visual* reveal
+  // (see skipResultsReveal below) differs between those two cases.
   useEffect(() => {
     if (screen === "results" && resultsRef.current) {
       resultsRef.current.focus();
@@ -89,7 +71,7 @@ export default function BlueprintApp() {
             key={currentQuestion.id}
             initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0.12 : 0.4 }}
+            transition={{ duration: prefersReducedMotion ? DURATION.instant : DURATION.quick, ease: EASE.standard }}
           >
             <QuestionCard
               question={currentQuestion}
@@ -126,36 +108,51 @@ export default function BlueprintApp() {
       {screen === "loading" && <BlueprintLoading onComplete={completeLoading} />}
 
       {screen === "results" && recommendation && (
-        <motion.div
+        <div
           ref={resultsRef}
           tabIndex={-1}
-          initial="hidden"
-          animate="show"
-          variants={resultsStagger}
           className="mx-auto max-w-3xl px-6 py-16 outline-none sm:py-24"
           aria-label="Your Mexico Blueprint results"
         >
-          <motion.div variants={resultsItem}>
+          {/*
+            CX-005 — reveal order: primary destination, then the
+            personalized reason + supporting fit factors (both inside
+            ResultsDiscovery), then supplementary readiness context, then
+            secondary destinations, then the 90-day roadmap, then the
+            closing CTA. Each section owns its own CinematicReveal instead
+            of one hand-tuned local stagger (the previous
+            getResultsStagger/getResultsItem), so it reveals as the
+            visitor actually scrolls to it rather than as one fixed-timed
+            cascade — closer to "discovered" than "announced." skipReveal
+            renders everything already-settled for a visitor returning to
+            results they've already seen (a refresh), so nothing replays
+            as a repeated theatrical reveal.
+          */}
+          <CinematicReveal skipReveal={skipResultsReveal}>
+            <ResultsDiscovery topMatch={recommendation.topCityMatches[0]} />
+          </CinematicReveal>
+
+          <CinematicReveal skipReveal={skipResultsReveal}>
             <ResultsSummary recommendation={recommendation} />
-          </motion.div>
+          </CinematicReveal>
 
-          <motion.div variants={resultsItem}>
-            <ResultsCityMatch cityMatches={recommendation.topCityMatches} />
-          </motion.div>
+          <CinematicReveal skipReveal={skipResultsReveal}>
+            <ResultsCityMatch cityMatches={recommendation.topCityMatches.slice(1)} />
+          </CinematicReveal>
 
-          <motion.div variants={resultsItem}>
+          <CinematicReveal skipReveal={skipResultsReveal}>
             <ResultsRoadmap roadmapSteps={recommendation.roadmapSteps} />
-          </motion.div>
+          </CinematicReveal>
 
-          <motion.div variants={resultsItem}>
+          <CinematicReveal skipReveal={skipResultsReveal}>
             <ResultsCTA
               cta={recommendation.cta}
               readinessScore={recommendation.readinessScore}
               archetypeTitle={recommendation.archetype.title}
             />
-          </motion.div>
+          </CinematicReveal>
 
-          <motion.div variants={resultsItem} className="mt-10 text-center">
+          <CinematicReveal skipReveal={skipResultsReveal} className="mt-10 text-center">
             <button
               type="button"
               onClick={restart}
@@ -163,8 +160,8 @@ export default function BlueprintApp() {
             >
               Retake The Blueprint
             </button>
-          </motion.div>
-        </motion.div>
+          </CinematicReveal>
+        </div>
       )}
     </main>
   );

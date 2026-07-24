@@ -5,7 +5,7 @@
 // resumes exactly where the visitor left off. No backend, no auth — the
 // entire session lives in the browser.
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { QUESTIONS } from "../data/questions";
 import { computeScores } from "../logic/scoringEngine";
 import { buildRecommendation } from "../../../decisionEngine/logic/recommendationEngine";
@@ -45,6 +45,18 @@ function loadInitialState() {
 export function useBlueprintState() {
   const totalQuestions = QUESTIONS.length;
   const [{ screen, questionIndex, answers }, setState] = useState(loadInitialState);
+
+  // CX-005 — Blueprint Discovery Experience: true only when this mount
+  // loaded straight into "results" from a previous session (a refresh or
+  // a return visit) rather than arriving there live in this session. The
+  // initial argument to useRef is only read on the very first render, so
+  // this captures exactly that "did we start on results?" fact once and
+  // never re-derives it from a later render. completeLoading() (below)
+  // explicitly flips it back to false the moment a real, live
+  // loading->results transition happens — including a retake — so a
+  // returning visitor never replays the discovery reveal, but any genuine
+  // fresh completion always does. See BlueprintApp.js / CinematicReveal.js.
+  const skipResultsRevealRef = useRef(screen === "results");
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -98,6 +110,7 @@ export function useBlueprintState() {
   // BlueprintLoading calls this once its staged sequence finishes — this is
   // the only way "loading" transitions to "results".
   const completeLoading = useCallback(() => {
+    skipResultsRevealRef.current = false;
     setState((prev) => (prev.screen === "loading" ? { ...prev, screen: "results" } : prev));
   }, []);
 
@@ -131,5 +144,6 @@ export function useBlueprintState() {
     goPrevious,
     completeLoading,
     restart,
+    skipResultsReveal: skipResultsRevealRef.current,
   };
 }

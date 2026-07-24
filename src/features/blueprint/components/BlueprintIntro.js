@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
-import { useCinematicMotion } from "../../../components/cinematicMotion";
+import { entryReveal, entryRevealReduced, useCinematicMotion } from "../../../components/cinematicMotion";
 
 // Full-bleed cinematic intro — reuses the same hero photo and dark-overlay
 // language as the homepage hero (src/pages/HomePage.js) so this feels like
 // a signature Path To Mexico moment, not a generic quiz landing screen.
+//
+// CX-005: drives its on-mount fade directly from the shared entryReveal /
+// entryRevealReduced variants instead of a hand-rolled transition object —
+// this screen is visible immediately on mount (not scroll-triggered), so
+// CinematicReveal's own whileInView contract isn't the right fit, but the
+// same timing/easing tokens are.
 export default function BlueprintIntro({ onStart, totalQuestions }) {
   const prefersReducedMotion = useCinematicMotion();
+  const revealVariants = prefersReducedMotion ? entryRevealReduced : entryReveal;
 
   return (
     <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 py-24 text-center text-white">
@@ -20,9 +27,9 @@ export default function BlueprintIntro({ onStart, totalQuestions }) {
       </div>
 
       <motion.div
-        initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: prefersReducedMotion ? 0.12 : 0.8 }}
+        initial="hidden"
+        animate="show"
+        variants={revealVariants}
         className="relative z-10 mx-auto max-w-2xl"
       >
         <p className="mb-6 text-xs uppercase tracking-[0.4em] text-white/60">
