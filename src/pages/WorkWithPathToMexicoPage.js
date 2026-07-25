@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import RelocationRoadmap from "../components/RelocationRoadmap";
+import { trackEvent, ANALYTICS_EVENTS } from "../utils/analytics";
 
+// CONV-001 — this page is the site's existing, canonical services/pricing
+// surface (already had real tiers/prices/CTAs; nothing here was rebuilt).
+// It was previously only reachable from the footer and an internal dev
+// dashboard — completely disconnected from the personalized Blueprint /
+// Living Destination Atlas / My Mexico Plan journey. FitCallBar and the
+// Mexico Fit Call page now both link here; this file's only changes are
+// the pricing_viewed/service_tier_cta_clicked analytics calls below.
 export default function WorkWithPathToMexicoPage() {
+  useEffect(() => {
+    trackEvent(ANALYTICS_EVENTS.PRICING_VIEWED, { source: "work_with_path_to_mexico" });
+  }, []);
+
   const services = [
     {
       title: "Mexico Fit Call",
@@ -78,6 +90,7 @@ export default function WorkWithPathToMexicoPage() {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Link
               to="/mexico-fit-call"
+              onClick={() => trackEvent(ANALYTICS_EVENTS.FIT_CALL_CTA_CLICKED, { source: "work_with_us_hero", cityId: null })}
               className="bg-white px-8 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f]"
             >
               Start With A Fit Call
@@ -125,6 +138,7 @@ export default function WorkWithPathToMexicoPage() {
 
               <Link
                 to={service.href}
+                onClick={() => trackEvent(ANALYTICS_EVENTS.SERVICE_TIER_CTA_CLICKED, { tier: service.title })}
                 className="mt-10 inline-block border border-zinc-950 px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-zinc-950 hover:text-white"
               >
                 {service.cta}
@@ -216,6 +230,7 @@ export default function WorkWithPathToMexicoPage() {
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               to="/mexico-fit-call"
+              onClick={() => trackEvent(ANALYTICS_EVENTS.FIT_CALL_CTA_CLICKED, { source: "work_with_us_closing", cityId: null })}
               className="bg-white px-8 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f]"
             >
               Book A Mexico Fit Call

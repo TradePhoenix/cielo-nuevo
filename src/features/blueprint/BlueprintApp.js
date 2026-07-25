@@ -141,7 +141,10 @@ export default function BlueprintApp() {
           </CinematicReveal>
 
           <CinematicReveal skipReveal={skipResultsReveal}>
-            <ResultsRoadmap roadmapSteps={recommendation.roadmapSteps} />
+            <ResultsRoadmap
+              roadmapSteps={recommendation.roadmapSteps}
+              topCityId={recommendation.topCityMatches[0]?.id}
+            />
           </CinematicReveal>
 
           <CinematicReveal skipReveal={skipResultsReveal}>
@@ -149,6 +152,7 @@ export default function BlueprintApp() {
               cta={recommendation.cta}
               readinessScore={recommendation.readinessScore}
               archetypeTitle={recommendation.archetype.title}
+              topCityId={recommendation.topCityMatches[0]?.id}
             />
           </CinematicReveal>
 

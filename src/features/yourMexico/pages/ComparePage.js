@@ -33,7 +33,7 @@ export default function ComparePage() {
         <CompareYourMatches cities={cities} />
       </CitySection>
 
-      <FitCallBar />
+      <FitCallBar source="compare" />
     </YourMexicoShell>
   );
 }

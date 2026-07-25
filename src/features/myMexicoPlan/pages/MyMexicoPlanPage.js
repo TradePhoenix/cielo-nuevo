@@ -251,7 +251,12 @@ export default function MyMexicoPlanPage() {
       <div className="print:hidden">
         <ReshuffleControl timelineShifts={timelineShifts} onReshuffle={reshuffleTimeline} />
         <TrustMoment />
-        <FitCallBar cityName={city.name} message={`Refine your ${city.name} plan with a real person.`} />
+        <FitCallBar
+          cityName={city.name}
+          cityId={city.id}
+          message={`Refine your ${city.name} plan with a real person.`}
+          source="my_mexico_plan"
+        />
       </div>
     </YourMexicoShell>
   );

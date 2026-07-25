@@ -1,11 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { FOUNDER, TESTIMONIALS, FIT_CALL_PRICE } from "../data/trustContent";
 import SEO from "../components/SEO";
+import { buildFitCallContext } from "./mexicoFitCallContext";
+import { trackEvent, ANALYTICS_EVENTS } from "../utils/analytics";
 
+// CONV-001 — Fit Call continuity: a visitor arriving from a specific
+// destination (FitCallBar/ResultsCTA now link here as
+// /mexico-fit-call?city=<id>) sees that context reflected in both the
+// headline and the WhatsApp message, instead of landing on an identical
+// generic page regardless of where they came from. Arriving with no
+// `city` param (e.g. from the homepage or footer) is unaffected — every
+// string below falls back to the exact original generic copy.
 export default function MexicoFitCallPage() {
-  const whatsapp =
-    "https://wa.me/16043154625?text=Hi%20Kalen,%20I%20found%20Path%20To%20Mexico%20and%20would%20like%20to%20book%20a%20Mexico%20Fit%20Call.";
+  const [searchParams] = useSearchParams();
+  const { cityName, whatsappUrl: whatsapp } = buildFitCallContext(searchParams.get("city"));
+
+  function handleBookClick(source) {
+    trackEvent(ANALYTICS_EVENTS.FIT_CALL_CTA_CLICKED, { source, cityName: cityName || null });
+  }
 
   return (
     <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
@@ -21,13 +34,13 @@ export default function MexicoFitCallPage() {
           </p>
 
           <h1 className="max-w-5xl text-5xl font-light leading-[0.95] tracking-[-0.06em] md:text-8xl">
-            Get clear before you move to Mexico.
+            {cityName ? `Get clear about ${cityName} before you move.` : "Get clear before you move to Mexico."}
           </h1>
 
           <p className="mt-8 max-w-3xl text-lg leading-relaxed text-white/65 md:text-xl">
-            A private one-on-one relocation call for people considering life in Mexico.
-            We’ll talk through your goals, timeline, budget, preferred areas, residency
-            questions, lifestyle needs, and the smartest next step.
+            {cityName
+              ? `A private one-on-one relocation call, starting with ${cityName}. We'll talk through your goals, timeline, budget, residency questions, lifestyle needs, and the smartest next step.`
+              : "A private one-on-one relocation call for people considering life in Mexico. We'll talk through your goals, timeline, budget, preferred areas, residency questions, lifestyle needs, and the smartest next step."}
           </p>
 
           <p className="mt-8 text-xs uppercase tracking-[0.3em] text-white/50">
@@ -39,6 +52,7 @@ export default function MexicoFitCallPage() {
               href={whatsapp}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => handleBookClick("hero")}
               className="bg-white px-8 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f]"
             >
               Book The Call
@@ -214,6 +228,7 @@ export default function MexicoFitCallPage() {
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => handleBookClick("closing")}
             className="mt-8 inline-block bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f]"
           >
             Book Your Mexico Fit Call
@@ -222,9 +237,13 @@ export default function MexicoFitCallPage() {
           <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-white/40">
             Want more than a single call? The Relocation Roadmap and Guided Landing options go
             further —{" "}
-            <a href="/#work" className="underline underline-offset-4 hover:text-white">
+            <Link
+              to="/work-with-path-to-mexico"
+              onClick={() => trackEvent(ANALYTICS_EVENTS.SERVICES_CTA_CLICKED, { source: "mexico_fit_call_page" })}
+              className="underline underline-offset-4 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b0a]"
+            >
               see what's available
-            </a>
+            </Link>
             .
           </p>
 

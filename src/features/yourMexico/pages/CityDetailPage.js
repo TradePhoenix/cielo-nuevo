@@ -55,7 +55,7 @@ export default function CityDetailPage() {
       <WhereYoudLive city={city} />
       <ProsAndTradeoffs city={city} />
       {hasCompletedBlueprint && <PlanEntryCTA city={city} />}
-      <MidPageCTA cityName={city.name} />
+      <MidPageCTA cityName={city.name} cityId={city.id} />
       <KeepExploring cities={otherCities} personalized={hasCompletedBlueprint} />
 
       <CitySection eyebrow="Compare Your Matches" title="How your matches stack up">
@@ -70,7 +70,7 @@ export default function CityDetailPage() {
 
       <TrustMoment />
 
-      <FitCallBar cityName={city.name} />
+      <FitCallBar cityName={city.name} cityId={city.id} source="city_detail" />
     </YourMexicoShell>
   );
 }

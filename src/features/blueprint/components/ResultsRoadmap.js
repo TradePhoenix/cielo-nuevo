@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { trackEvent, ANALYTICS_EVENTS } from "../../../utils/analytics";
 
 const PHASES = [
   { range: "Days 1–30", label: "Get Clear" },
@@ -24,17 +25,23 @@ function chunkIntoThree(items) {
   return buckets;
 }
 
-export default function ResultsRoadmap({ roadmapSteps }) {
+export default function ResultsRoadmap({ roadmapSteps, topCityId }) {
   const nextStep = roadmapSteps[0];
   // Excludes nextStep from the day-by-day breakdown below so it isn't
   // repeated verbatim right under its own highlighted callout.
   const remainingSteps = roadmapSteps.slice(1);
   const buckets = chunkIntoThree(remainingSteps);
+  // CONV-001 — matches ResultsCTA.js's fit-call continuity: this is the
+  // Blueprint results page's other (mid-roadmap) link into the same
+  // /mexico-fit-call route, so it needs the same ?city=<id> destination
+  // context rather than silently dropping it partway down the page.
+  const fitCallHref = topCityId ? `/mexico-fit-call?city=${topCityId}` : "/mexico-fit-call";
 
   return (
     <div className="border-b border-zinc-300 py-14">
       <Link
-        to="/mexico-fit-call"
+        to={fitCallHref}
+        onClick={() => trackEvent(ANALYTICS_EVENTS.FIT_CALL_CTA_CLICKED, { source: "blueprint_results_roadmap", cityId: topCityId || null })}
         className="group mx-auto block max-w-xl border border-zinc-950 bg-zinc-950 p-8 text-center text-white transition duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b0a]"
       >
         <p className="mb-3 text-xs uppercase tracking-[0.3em] text-white/50">

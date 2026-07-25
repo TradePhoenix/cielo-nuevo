@@ -160,7 +160,7 @@ export default function YourMexicoPage() {
 
       <TrustMoment />
 
-      <FitCallBar />
+      <FitCallBar source="atlas" lang={lang} />
     </YourMexicoShell>
   );
 }
