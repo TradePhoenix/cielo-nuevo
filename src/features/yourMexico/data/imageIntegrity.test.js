@@ -1,14 +1,25 @@
 // Destination image integrity — added after a DEST-003 release review flagged
-// Cozumel's hero as "not displaying." Root cause: no real photography exists
-// yet for any of the 14 new destinations (by design — see
-// DEST-003-PHOTOGRAPHY-ASSET-MANIFEST.md), so they intentionally render
-// DestinationImageFallback.js instead of an <img>. That audit also confirmed
-// the original 11's real image references are all still valid. This test
-// makes both facts permanent and automatic, so a future regression — a
-// renamed/moved file, a case-mismatch that works on a case-insensitive local
-// filesystem but 404s on Vercel's case-sensitive one, or a half-added
-// heroImages entry — fails CI instead of only being caught by eyeballing a
-// preview.
+// Cozumel's hero as "not displaying" (root cause at the time: no photography
+// of any kind existed yet for the 14 new destinations, so they intentionally
+// rendered DestinationImageFallback.js instead of an <img>).
+//
+// A corrected DEST-003 image pack has since been installed: all 14 new
+// destinations now carry a single 1600x900 `heroImage` (the codebase's
+// existing legacy single-image shape) pointing at temporary AI-created
+// editorial concept imagery — not verified photographs of the real place.
+// Each of those 14 entries also carries `imageStatus: "illustrative"`, the
+// one centralized field IllustrativeImageBadge.js keys off of to render its
+// "Illustrative image" / "Imagen ilustrativa" disclosure. Replacing an
+// illustrative image with real photography later is a two-step, no-other-code
+// change: swap the `heroImage` path and delete that city's `imageStatus`
+// field — the badge stops rendering automatically.
+//
+// This test makes all of the above permanent and automatic, so a future
+// regression — a renamed/moved file, a case-mismatch that works on a
+// case-insensitive local filesystem but 404s on Vercel's case-sensitive one,
+// an illustrative image missing its disclosure flag, or real photography left
+// incorrectly flagged as illustrative — fails CI instead of only being caught
+// by eyeballing a preview.
 import fs from "fs";
 import path from "path";
 import { CITY_PROFILES } from "../../../decisionEngine/data/cityProfiles";
@@ -36,13 +47,13 @@ describe("Every destination has a details record", () => {
   });
 });
 
-describe("Destinations with real photography: every referenced file exists, exact case, non-empty", () => {
-  const withRealPhoto = CITY_PROFILES.filter(({ id }) => {
+describe("Every destination's image asset: file exists, exact case, non-empty", () => {
+  const withAnyImage = CITY_PROFILES.filter(({ id }) => {
     const details = CITY_DETAILS[id];
     return Boolean(details?.heroImages || details?.heroImage);
   });
 
-  withRealPhoto.forEach(({ id, name }) => {
+  withAnyImage.forEach(({ id, name }) => {
     const details = CITY_DETAILS[id];
 
     if (details.heroImage) {
@@ -71,28 +82,57 @@ describe("Destinations with real photography: every referenced file exists, exac
   });
 });
 
-describe("Destinations without real photography intentionally have no image reference at all", () => {
-  const withoutRealPhoto = CITY_PROFILES.filter(({ id }) => {
+describe("Every destination now has some image reference — no partial/broken entries", () => {
+  const withoutAnyImage = CITY_PROFILES.filter(({ id }) => {
     const details = CITY_DETAILS[id];
     return !details?.heroImages && !details?.heroImage;
   });
 
-  withoutRealPhoto.forEach(({ id, name }) => {
-    test(`${name} (${id}) — no partial/broken image reference`, () => {
+  test("no destination is missing both heroImages and heroImage", () => {
+    expect(withoutAnyImage.length).toBe(0);
+  });
+
+  test("the destination system contains exactly 25 approved destinations", () => {
+    expect(CITY_PROFILES.length).toBe(25);
+  });
+
+  test("Motul is not present anywhere in the destination system", () => {
+    const motulPresent = CITY_PROFILES.some(({ id, name }) => id === "motul" || /motul/i.test(name));
+    expect(motulPresent).toBe(false);
+    expect(CITY_DETAILS.motul).toBeUndefined();
+  });
+});
+
+describe("Illustrative (AI-generated, temporary) images are correctly flagged and scoped", () => {
+  const illustrativeSlugs = [
+    "akumal", "bacalar", "cancun", "chelem", "chuburna-puerto", "cozumel",
+    "el-cuyo", "izamal", "mahahual", "puerto-morelos", "rio-lagartos",
+    "tekax", "tizimin", "valladolid",
+  ];
+  const original11 = [
+    "playa-del-carmen", "tulum", "riviera-maya", "merida", "progreso",
+    "chicxulub-puerto", "telchac-puerto", "celestun", "sisal",
+    "dzilam-de-bravo", "santa-elena",
+  ];
+
+  illustrativeSlugs.forEach((id) => {
+    test(`${id} is flagged imageStatus: "illustrative" and uses the legacy single-image shape`, () => {
       const details = CITY_DETAILS[id];
+      expect(details.imageStatus).toBe("illustrative");
+      expect(typeof details.heroImage).toBe("string");
       expect(details.heroImages).toBeUndefined();
-      expect(details.heroImage).toBeUndefined();
     });
   });
 
-  test("this list is exactly DEST-003's 14 new destinations (no regression among the original 11)", () => {
-    const original11 = new Set([
-      "playa-del-carmen", "tulum", "riviera-maya", "merida", "progreso",
-      "chicxulub-puerto", "telchac-puerto", "celestun", "sisal",
-      "dzilam-de-bravo", "santa-elena",
-    ]);
-    const anyOriginalMissingPhoto = withoutRealPhoto.some(({ id }) => original11.has(id));
-    expect(anyOriginalMissingPhoto).toBe(false);
-    expect(withoutRealPhoto.length).toBe(14);
+  test("exactly 14 destinations are flagged illustrative — no more, no fewer", () => {
+    const flagged = CITY_PROFILES.filter(({ id }) => CITY_DETAILS[id]?.imageStatus === "illustrative");
+    expect(flagged.length).toBe(14);
+    expect(flagged.map(({ id }) => id).sort()).toEqual([...illustrativeSlugs].sort());
+  });
+
+  original11.forEach((id) => {
+    test(`${id} (original 11, real photography) is never flagged illustrative`, () => {
+      expect(CITY_DETAILS[id].imageStatus).toBeUndefined();
+    });
   });
 });

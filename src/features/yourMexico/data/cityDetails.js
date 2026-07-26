@@ -1788,6 +1788,8 @@ export const CITY_DETAILS = {
   // ---------------------------------------------------------------------
 
   "puerto-morelos": {
+    heroImage: "/regions/puerto-morelos/puerto-morelos-hero.webp",
+    imageStatus: "illustrative",
     tagline: "A protected-reef fishing town between Cancún and Playa del Carmen — smaller, calmer, and deliberately less built-up than its neighbors.",
     heroAlt: {
       en: "A quiet fishing pier and leaning lighthouse in Puerto Morelos at sunrise",
@@ -1927,6 +1929,8 @@ export const CITY_DETAILS = {
   },
 
   cozumel: {
+    heroImage: "/regions/cozumel/cozumel-hero.webp",
+    imageStatus: "illustrative",
     tagline: "An island apart — literally — with a slower island rhythm, world-class diving, and a real year-round community distinct from the mainland coast.",
     heroAlt: {
       en: "A quiet waterfront street on Cozumel island facing the Caribbean Sea",
@@ -2066,6 +2070,8 @@ export const CITY_DETAILS = {
   },
 
   bacalar: {
+    heroImage: "/regions/bacalar/bacalar-hero.webp",
+    imageStatus: "illustrative",
     tagline: "Built entirely around its famous seven-color lagoon — a small, laid-back town for people who want nature first and nightlife never.",
     heroAlt: {
       en: "The multi-toned blue waters of Bacalar's lagoon at midday",
@@ -2205,6 +2211,8 @@ export const CITY_DETAILS = {
   },
 
   mahahual: {
+    heroImage: "/regions/mahahual/mahahual-hero.webp",
+    imageStatus: "illustrative",
     tagline: "A tiny Costa Maya beach village hours south of the Riviera Maya crowds — genuinely undeveloped, genuinely quiet.",
     heroAlt: {
       en: "An empty stretch of Costa Maya beach near Mahahual at dusk",
@@ -2344,6 +2352,8 @@ export const CITY_DETAILS = {
   },
 
   akumal: {
+    heroImage: "/regions/akumal/akumal-hero.webp",
+    imageStatus: "illustrative",
     tagline: "A small, protected bay between Playa del Carmen and Tulum, known for its sea turtles and a noticeably calmer pace than either neighbor.",
     heroAlt: {
       en: "The calm, shallow waters of Akumal Bay with sea turtles visible near shore",
@@ -2483,6 +2493,8 @@ export const CITY_DETAILS = {
   },
 
   cancun: {
+    heroImage: "/regions/cancun/cancun-hero.webp",
+    imageStatus: "illustrative",
     tagline: "The region's real infrastructure hub — separate from the tourist Hotel Zone, El Centro is where residents actually live, work, and rely on the peninsula's biggest airport.",
     heroAlt: {
       en: "A residential street in downtown Cancún, away from the hotel zone",
@@ -2622,6 +2634,8 @@ export const CITY_DETAILS = {
   },
 
   valladolid: {
+    heroImage: "/regions/valladolid/valladolid-hero.webp",
+    imageStatus: "illustrative",
     tagline: "A colonial Pueblo Mágico squarely between Mérida and the Caribbean coast — increasingly popular with remote workers who want culture and connectivity together.",
     heroAlt: {
       en: "Valladolid's colorful colonial street with a colonial church in the background",
@@ -2761,6 +2775,8 @@ export const CITY_DETAILS = {
   },
 
   izamal: {
+    heroImage: "/regions/izamal/izamal-hero.webp",
+    imageStatus: "illustrative",
     tagline: "The \"Yellow City\" — a small, deeply Maya and colonial Pueblo Mágico built for people who want culture and quiet over beach or bustle.",
     heroAlt: {
       en: "Izamal's yellow colonial buildings and a Franciscan convent under a bright sky",
@@ -2900,6 +2916,8 @@ export const CITY_DETAILS = {
   },
 
   tekax: {
+    heroImage: "/regions/tekax/tekax-hero.webp",
+    imageStatus: "illustrative",
     tagline: "A working agricultural town in the Puuc region's south — genuinely local, genuinely quiet, and not built with visitors in mind.",
     heroAlt: {
       en: "A quiet residential street in Tekax with traditional Yucatecan homes",
@@ -3039,6 +3057,8 @@ export const CITY_DETAILS = {
   },
 
   tizimin: {
+    heroImage: "/regions/tizimin/tizimin-hero.webp",
+    imageStatus: "illustrative",
     tagline: "A working cattle-ranching hub in the state's north — practical rather than picturesque, and the real supply town for the coast nearby.",
     heroAlt: {
       en: "A quiet street in Tizimín with its colonial church and ranching-town character",
@@ -3178,6 +3198,8 @@ export const CITY_DETAILS = {
   },
 
   chelem: {
+    heroImage: "/regions/chelem/chelem-hero.webp",
+    imageStatus: "illustrative",
     tagline: "A small, quiet beach community just west of Progreso — a slower, more residential alternative on the same stretch of Gulf coast.",
     heroAlt: {
       en: "A quiet residential beach street in Chelem on the Yucatán Gulf coast",
@@ -3317,6 +3339,8 @@ export const CITY_DETAILS = {
   },
 
   "chuburna-puerto": {
+    heroImage: "/regions/chuburna-puerto/chuburna-puerto-hero.webp",
+    imageStatus: "illustrative",
     tagline: "A quiet Gulf beach town further west of Progreso, with fewer services and a genuinely slower, more local pace.",
     heroAlt: {
       en: "A quiet Gulf coast beach at Chuburná Puerto with fishing boats offshore",
@@ -3456,6 +3480,8 @@ export const CITY_DETAILS = {
   },
 
   "el-cuyo": {
+    heroImage: "/regions/el-cuyo/el-cuyo-hero.webp",
+    imageStatus: "illustrative",
     tagline: "A remote fishing village on the state's northern tip, drawing a small but growing wave of people who want unspoiled coast over convenience.",
     heroAlt: {
       en: "A quiet, undeveloped beach at El Cuyo on Yucatán's northern coast",
@@ -3597,6 +3623,8 @@ export const CITY_DETAILS = {
   },
 
   "rio-lagartos": {
+    heroImage: "/regions/rio-lagartos/rio-lagartos-hero.webp",
+    imageStatus: "illustrative",
     tagline: "A small fishing village on the edge of a vast flamingo-filled biosphere reserve — built around nature and little else.",
     heroAlt: {
       en: "Flamingos in the shallow waters of the Ría Lagartos biosphere reserve",

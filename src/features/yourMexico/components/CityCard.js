@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { entryReveal, entryRevealReduced, useCinematicMotion, HEARTBEAT } from "../../../components/cinematicMotion";
 import DestinationImageFallback from "./DestinationImageFallback";
+import IllustrativeImageBadge from "./IllustrativeImageBadge";
 import { getRegionIdForCity } from "../data/atlasGroups";
 
 // Your Top Matches gallery card — always represents one of the visitor's
@@ -86,6 +87,7 @@ export default function CityCard({ city, index = 0, lang = "en", region, signals
             ) : (
               <DestinationImageFallback name={city.name} regionId={getRegionIdForCity(city.id)} lang={lang} />
             )}
+            {city.imageStatus === "illustrative" && <IllustrativeImageBadge lang={lang} />}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 motion-safe:md:animate-[cinematic-light_10s_ease-in-out_infinite]"
