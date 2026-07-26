@@ -39,6 +39,18 @@ function resolveActiveContent(city, lang) {
   return city.content[lang] || city.content.en;
 }
 
+function resolveTagline(city, lang) {
+  const tagline = city.tagline;
+  if (!tagline) return "";
+  return typeof tagline === "string" ? tagline : tagline[lang] || tagline.en;
+}
+
+const BACK_LABEL = { en: "Back To Your Top Matches", es: "Volver A Tus Mejores Coincidencias" };
+const COMPARE_SECTION = {
+  en: { eyebrow: "Compare Your Matches", title: "How your matches stack up", link: "See The Full Comparison" },
+  es: { eyebrow: "Compara Tus Coincidencias", title: "Cómo se comparan tus coincidencias", link: "Ver La Comparación Completa" },
+};
+
 // City Detail — emotional-first order: cinematic hero, the emotional arc
 // (Why This Feels Like You, A Tuesday In Your New Life, The Honest Truth),
 // the practical decision layer (Lifestyle Snapshot, What Life Costs, Where
@@ -72,13 +84,16 @@ export default function CityDetailPage() {
     return aSameRegion - bSameRegion;
   });
 
+  const compareText = COMPARE_SECTION[lang] || COMPARE_SECTION.en;
+
   return (
     <YourMexicoShell
-      hero={<CityHero city={displayCity} backTo="/your-mexico" backLabel="Back To Your Top Matches" lang={lang} />}
+      lang={lang}
+      hero={<CityHero city={displayCity} backTo="/your-mexico" backLabel={BACK_LABEL[lang] || BACK_LABEL.en} lang={lang} />}
     >
       <SEO
         title={`${city.name} — Your Mexico`}
-        description={city.tagline}
+        description={resolveTagline(city, lang)}
         path={`/your-mexico/${cityId}`}
       />
 
@@ -94,34 +109,34 @@ export default function CityDetailPage() {
         </div>
       )}
 
-      <WhyThisFeelsLikeYou city={displayCity} overlapTags={overlapTags} />
-      <TuesdayInYourLife city={displayCity} />
-      <HonestTruth city={displayCity} />
-      <LifestyleSnapshot city={displayCity} />
-      <WhatLifeCosts city={displayCity} />
-      <WhereYoudLive city={displayCity} />
-      <ProsAndTradeoffs city={displayCity} />
-      <RealEstateContext city={displayCity} />
-      <InvestmentOutlook city={displayCity} />
+      <WhyThisFeelsLikeYou city={displayCity} overlapTags={overlapTags} lang={lang} />
+      <TuesdayInYourLife city={displayCity} lang={lang} />
+      <HonestTruth city={displayCity} lang={lang} />
+      <LifestyleSnapshot city={displayCity} lang={lang} />
+      <WhatLifeCosts city={displayCity} lang={lang} />
+      <WhereYoudLive city={displayCity} lang={lang} />
+      <ProsAndTradeoffs city={displayCity} lang={lang} />
+      <RealEstateContext city={displayCity} lang={lang} />
+      <InvestmentOutlook city={displayCity} lang={lang} />
       <PTMScoreCard city={city} lang={lang} />
-      <DestinationFAQ city={displayCity} />
-      {hasCompletedBlueprint && <PlanEntryCTA city={city} />}
-      <MidPageCTA cityName={city.name} cityId={city.id} />
+      <DestinationFAQ city={displayCity} lang={lang} />
+      {hasCompletedBlueprint && <PlanEntryCTA city={city} lang={lang} />}
+      <MidPageCTA cityName={city.name} cityId={city.id} lang={lang} />
       <KeepExploring cities={sameRegionFirst} personalized={hasCompletedBlueprint} lang={lang} />
 
-      <CitySection eyebrow="Compare Your Matches" title="How your matches stack up">
-        <CompareYourMatches cities={allCities} />
+      <CitySection eyebrow={compareText.eyebrow} title={compareText.title}>
+        <CompareYourMatches cities={allCities} lang={lang} />
         <Link
           to="/your-mexico/compare"
           className="mt-6 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 underline underline-offset-4 transition hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
         >
-          See The Full Comparison
+          {compareText.link}
         </Link>
       </CitySection>
 
-      <TrustMoment />
+      <TrustMoment lang={lang} />
 
-      <FitCallBar cityName={city.name} cityId={city.id} source="city_detail" />
+      <FitCallBar cityName={city.name} cityId={city.id} source="city_detail" lang={lang} />
     </YourMexicoShell>
   );
 }

@@ -146,21 +146,21 @@ function GuidesPage() {
           <div className="mt-16 grid gap-px bg-zinc-300 md:grid-cols-3">
             {guides.map((guide) => (
               <Link
-                key={guide.title}
+                key={guide.href}
                 to={guide.href}
                 className="flex min-h-[340px] flex-col justify-between bg-[#f6f1e8] p-7 transition hover:bg-white"
               >
                 <div>
                   <p className="mb-8 text-[10px] uppercase tracking-[0.28em] text-zinc-500">
-                    {guide.category}
+                    {guide.category[lang] || guide.category.en}
                   </p>
 
                   <h2 className="mb-6 text-3xl font-light leading-tight tracking-[-0.04em]">
-                    {guide.title}
+                    {guide.title[lang] || guide.title.en}
                   </h2>
 
                   <p className="leading-relaxed text-zinc-600">
-                    {guide.description}
+                    {guide.description[lang] || guide.description.en}
                   </p>
                 </div>
 
@@ -175,8 +175,9 @@ function GuidesPage() {
 
       <div className="border-t border-zinc-300">
         <RelocationRoadmap
-          eyebrow="Guides By Stage"
-          title="Every guide fits somewhere in your journey."
+          eyebrow={lang === "es" ? "Guías Por Etapa" : "Guides By Stage"}
+          title={lang === "es" ? "Cada guía encaja en algún punto de tu camino." : "Every guide fits somewhere in your journey."}
+          lang={lang}
         />
       </div>
 

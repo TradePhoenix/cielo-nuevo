@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
 import SEO from "../components/SEO";
 import CinematicReveal from "../components/CinematicReveal";
+import FAQAccordion from "../components/FAQAccordion";
 import { useCinematicMotion, POINTER_DEPTH } from "../components/cinematicMotion";
 
 const heroFadeUp = {
@@ -18,6 +19,27 @@ const heroStagger = {
 const content = {
   en: {
     nav: ["Home", "Blueprint", "Relocation", "Services", "Guides", "About", "FAQ", "Contact"],
+    seoTitle: "Path To Mexico | A Different Rhythm Of Life",
+    seoDescription: "Relocation guidance, trusted local connections, and lifestyle support for people considering a new life in Mexico.",
+    skipToContent: "Skip to content",
+    heroAlt: "Riviera Maya relocation lifestyle",
+    menuLabel: "Menu",
+    closeLabel: "Close",
+    openMenuAria: "Open menu",
+    closeMenuAria: "Close menu",
+    mobileNavAria: "Mobile navigation",
+    startHereBadge: "Start Here",
+    blueprintEyebrow: "My Mexico Blueprint",
+    blueprintTitle: "See what your move to Mexico could actually look like.",
+    blueprintText: "Answer 6 quick questions and get your personalized city matches, readiness score, and 30/60/90-day roadmap.",
+    blueprintCta: "Build My Mexico Blueprint",
+    blueprintFreeNote: "Free · Takes About 2 Minutes",
+    founderPhotoAlt: "Kalen Enns, founder of Path To Mexico",
+    whatsappCta: "Prefer WhatsApp? Message Directly",
+    disclaimerLabel: "Important Note",
+    disclaimerText:
+      "Path To Mexico provides relocation guidance, local insight, and trusted introductions. We are not a law firm, immigration agency, tax advisor, financial advisor, or real estate brokerage. Legal, immigration, tax, financial, and real estate services are provided by independent qualified professionals where appropriate.",
+    footerTagline2: "Not everyone is meant to stay where they started.",
     heroLocation: "Riviera Maya • Mexico",
     heroSignal: "[ CIELO NUEVO ]",
     heroTitle: "Move to Mexico with confidence.",
@@ -159,12 +181,24 @@ const content = {
     tags: ["Canadians", "Americans", "Remote Professionals", "Retirees", "Investors", "Families", "Remote Workers", "Entrepreneurs"],
 
     faqLabel: "Common Questions",
-    faqTitle: "Before you make the move.",
+    faqTitle: "Questions worth answering before you move.",
     faqs: [
-      ["Do you only help Canadians?", "No. We mainly support Canadians and Americans, but we can help people from anywhere explore relocation to Mexico."],
-      ["Do you sell real estate directly?", "No. We provide guidance and introductions to trusted local professionals. Real estate transactions are handled by qualified experts."],
-      ["Can you help with residency?", "Yes. We can help you understand the general path and connect you with qualified professionals for immigration and paperwork."],
-      ["Is this only for retirees?", "No. We support retirees, investors, remote workers, digital nomads, families, entrepreneurs, and people looking for a different lifestyle."]
+      ["What does Path To Mexico actually help with?", "We help you get from “thinking about Mexico” to a clear, confident plan — matching you to the right region or city, mapping out a realistic 30/60/90-day path, and connecting you with the trusted local professionals (legal, real estate, insurance, and more) you'll actually need along the way. We don't sell real estate, process legal paperwork, or replace licensed advisors ourselves — we coordinate and guide."],
+      ["How does the relocation process begin?", "Most people start with a free Mexico Fit Call, a short conversation about your timeline, goals, and questions. From there, our My Mexico Blueprint questionnaire can help narrow down where in Mexico might genuinely fit your life, and we build out next steps from what we learn."],
+      ["Can you help me determine where in Mexico I should live?", "Yes — that's exactly what My Mexico Blueprint is built for. It asks about your priorities (pace of life, budget, climate, community, and more) and matches you against real destinations across the Yucatán Peninsula, with an honest look at trade-offs, not just highlights."],
+      ["Should I rent before buying?", "In most cases, yes. Renting for a season or a year gives you a real feel for a place before committing — weather patterns, commute, noise, community — in a way research alone can't. We generally encourage this, though your own timeline and goals may point elsewhere."],
+      ["Can foreigners legally buy property in Mexico?", "Yes, foreigners can own property in Mexico, including within the restricted coastal and border zones, through a bank trust (fideicomiso) or a Mexican corporation, depending on the situation. The exact structure and requirements depend on your circumstances and the property itself, so we connect you with a qualified real estate attorney or notario to confirm what applies to you — we don't handle the transaction ourselves."],
+      ["Can you help with temporary or permanent residency?", "Yes. We can help you understand the general path — temporary versus permanent residency, income and financial requirements, and what to expect — and connect you with qualified immigration professionals to handle your actual application. Requirements and eligibility can change and vary by consulate, so we always point you to current, qualified guidance rather than guessing."],
+      ["How long does the residency process usually take?", "It varies — by consulate, by residency type, and by your own paperwork readiness. Some people move through it in a few months; others take longer, especially if documents need translation, apostille, or additional review. We help you plan around realistic timelines rather than promise a fixed number."],
+      ["How much money should I budget for relocating?", "It depends heavily on where you land and how you live — a quiet interior town and a Caribbean coast city can have very different costs. Beyond day-to-day living, plan for moving costs, initial housing deposits, residency fees, and a comfortable buffer for the unexpected. We can walk through realistic ranges for your specific destinations once we know more about your situation."],
+      ["Can you help me open a bank account or obtain insurance?", "Yes — we can point you toward trusted local banks and insurance providers and explain generally what to expect (documentation, residency status requirements, and typical timelines). Actual account opening and policy underwriting are handled directly by those institutions, since requirements and offerings change and vary by provider."],
+      ["Do I need to speak Spanish?", "Not to get started, and plenty of people build a good life in Mexico with limited Spanish, especially in more international areas. That said, learning even conversational Spanish tends to noticeably deepen the experience and day-to-day ease — we generally encourage it as an ongoing goal, not a prerequisite."],
+      ["Is Mexico safe for foreigners?", "Safety varies significantly by region and city, much like anywhere in the world, and conditions can change over time. Many of the areas we focus on have strong track records with foreign residents. We share what we honestly know about each destination, including trade-offs, and always recommend checking current government travel advisories for your own country as part of your research."],
+      ["Can you help with healthcare and private insurance?", "Yes. We can explain the general landscape — public healthcare (IMSS), private hospitals, and private insurance options — and connect you with providers and brokers to review your specific situation. Coverage, cost, and eligibility depend on your age, health, and residency status, so we leave the specifics to licensed providers."],
+      ["Can I bring my pets to Mexico?", "Generally, yes — Mexico's import requirements for pets are more straightforward than many countries, typically a health certificate and up-to-date vaccinations. Requirements can shift, so we recommend confirming current rules with a vet and your airline shortly before travel, and we're happy to point you to that current guidance."],
+      ["Do you support families, remote workers, retirees, and entrepreneurs?", "Yes, and beyond that — we work with people from many countries and life stages, not just retirees or one nationality. Whatever brings you to Mexico, our job is to understand your specific situation and point you toward what actually fits it."],
+      ["What happens after I arrive?", "That depends on what you've already set up before landing, but we stay involved — helping with local orientation, connecting you to community, and following up on the practical threads (banking, residency, housing) that are often still in motion after the move itself."],
+      ["How much do your services cost?", "It depends on the level of support you need, from a single Mexico Fit Call to a fully guided relocation. We'll walk through pricing clearly during your first conversation, with no obligation — start with a free Fit Call and we'll go from there."]
     ],
 
     contactLabel: "Start Here",
@@ -172,12 +206,41 @@ const content = {
     contactText:
       "Send a few details about your timeline, goals, and questions. We’ll help you understand the clearest next step toward relocation, residency, lifestyle, real estate, or trusted local support in Mexico.",
     formSuccess: "Thanks — your inquiry was sent. We’ll be in touch soon.",
+    formSuccessTitle: "Message Sent",
+    formNamePlaceholder: "Full Name",
+    formEmailPlaceholder: "Email Address",
+    formCountryPlaceholder: "Current Country",
+    formTimelinePlaceholder: "Ideal Timeline",
+    formMessagePlaceholder: "What do you need help with?",
+    formSubmitting: "Sending...",
+    formSubmit: "Send Relocation Inquiry",
     footerLine: "A different rhythm of life.",
     footer: "25 Destinations Across The Yucatán Peninsula"
   },
 
   es: {
     nav: ["Inicio", "Blueprint", "Reubicación", "Servicios", "Guías", "Historia", "FAQ", "Contacto"],
+    seoTitle: "Path To Mexico | Un Ritmo De Vida Diferente",
+    seoDescription: "Guía de reubicación, conexiones locales de confianza y apoyo de estilo de vida para quienes consideran una nueva vida en México.",
+    skipToContent: "Saltar al contenido",
+    heroAlt: "Estilo de vida de reubicación en la Riviera Maya",
+    menuLabel: "Menú",
+    closeLabel: "Cerrar",
+    openMenuAria: "Abrir menú",
+    closeMenuAria: "Cerrar menú",
+    mobileNavAria: "Navegación móvil",
+    startHereBadge: "Empieza Aquí",
+    blueprintEyebrow: "My Mexico Blueprint",
+    blueprintTitle: "Descubre cómo podría verse realmente tu mudanza a México.",
+    blueprintText: "Responde 6 preguntas rápidas y obtén tus coincidencias personalizadas de ciudad, tu puntaje de preparación y una hoja de ruta de 30/60/90 días.",
+    blueprintCta: "Construir Mi Mexico Blueprint",
+    blueprintFreeNote: "Gratis · Toma Alrededor De 2 Minutos",
+    founderPhotoAlt: "Kalen Enns, fundador de Path To Mexico",
+    whatsappCta: "¿Prefieres WhatsApp? Escríbenos Directamente",
+    disclaimerLabel: "Nota Importante",
+    disclaimerText:
+      "Path To Mexico ofrece orientación de reubicación, conocimiento local e introducciones de confianza. No somos un despacho legal, una agencia de inmigración, un asesor fiscal, un asesor financiero ni una correduría inmobiliaria. Los servicios legales, de inmigración, fiscales, financieros e inmobiliarios los brindan profesionales calificados e independientes cuando corresponde.",
+    footerTagline2: "No todos están destinados a quedarse donde empezaron.",
     heroLocation: "Riviera Maya • México",
     heroSignal: "[ CIELO NUEVO ]",
     heroTitle: "Múdate a México con más claridad.",
@@ -319,12 +382,24 @@ const content = {
     tags: ["Canadienses", "Americanos", "Profesionales Remotos", "Jubilados", "Inversionistas", "Familias", "Trabajadores Remotos", "Emprendedores"],
 
     faqLabel: "Preguntas Comunes",
-    faqTitle: "Antes de mudarte.",
+    faqTitle: "Preguntas que vale la pena responder antes de mudarte.",
     faqs: [
-      ["¿Solo ayudan a canadienses?", "No. Principalmente apoyamos a canadienses y estadounidenses, pero también podemos ayudar a personas de otros países."],
-      ["¿Venden bienes raíces directamente?", "No. Ofrecemos guía e introducciones a profesionales locales confiables. Las transacciones se manejan con expertos calificados."],
-      ["¿Pueden ayudar con residencia?", "Sí. Podemos ayudarte a entender el camino general y conectarte con profesionales calificados."],
-      ["¿Es solo para jubilados?", "No. Apoyamos jubilados, inversionistas, trabajadores remotos, nómadas digitales, familias, emprendedores y personas buscando otro estilo de vida."]
+      ["¿En qué ayuda realmente Path To Mexico?", "Te ayudamos a pasar de “estar pensando en México” a tener un plan claro y con confianza: te orientamos hacia la región o ciudad adecuada, trazamos una ruta realista a 30/60/90 días y te conectamos con los profesionales locales de confianza (legales, inmobiliarios, de seguros y más) que realmente necesitarás en el camino. No vendemos bienes raíces ni tramitamos documentos legales nosotros mismos — coordinamos y te acompañamos."],
+      ["¿Cómo comienza el proceso de reubicación?", "La mayoría empieza con una Llamada de Compatibilidad con México gratuita, una conversación breve sobre tu cronograma, objetivos y dudas. A partir de ahí, nuestro cuestionario My Mexico Blueprint puede ayudarte a definir en qué parte de México encajaría realmente tu vida, y construimos los siguientes pasos según lo que descubramos."],
+      ["¿Pueden ayudarme a determinar en qué parte de México debería vivir?", "Sí — para eso está diseñado My Mexico Blueprint. Te pregunta sobre tus prioridades (ritmo de vida, presupuesto, clima, comunidad y más) y te compara con destinos reales de la Península de Yucatán, con una mirada honesta de los pros y contras, no solo lo atractivo."],
+      ["¿Debería rentar antes de comprar?", "En la mayoría de los casos, sí. Rentar durante una temporada o un año te permite conocer realmente un lugar antes de comprometerte — el clima, los traslados, el ruido, la comunidad — de una forma que la investigación por sí sola no logra. Por lo general lo recomendamos, aunque tu propio cronograma y objetivos podrían indicar algo distinto."],
+      ["¿Pueden los extranjeros comprar propiedades legalmente en México?", "Sí, los extranjeros pueden ser propietarios en México, incluso dentro de las zonas restringidas costeras y fronterizas, mediante un fideicomiso bancario o una sociedad mexicana, según el caso. La estructura y los requisitos exactos dependen de tu situación y de la propiedad en cuestión, así que te conectamos con un abogado inmobiliario calificado o un notario para confirmar lo que aplica en tu caso — nosotros no gestionamos la transacción directamente."],
+      ["¿Pueden ayudar con la residencia temporal o permanente?", "Sí. Podemos ayudarte a entender el camino general — residencia temporal frente a permanente, requisitos de ingresos y financieros, y qué esperar — y conectarte con profesionales de inmigración calificados para gestionar tu solicitud. Los requisitos y la elegibilidad pueden cambiar y variar según el consulado, así que siempre te dirigimos a orientación actual y calificada en lugar de suponer."],
+      ["¿Cuánto suele tardar el proceso de residencia?", "Varía — según el consulado, el tipo de residencia y qué tan listos estén tus documentos. Algunas personas lo resuelven en pocos meses; otras tardan más, especialmente si los documentos requieren traducción, apostilla o revisión adicional. Te ayudamos a planear con cronogramas realistas en lugar de prometer una cifra fija."],
+      ["¿Cuánto dinero debería presupuestar para mudarme?", "Depende mucho de dónde te instales y de cómo vivas — un pueblo tranquilo del interior y una ciudad costera del Caribe pueden tener costos muy distintos. Más allá del día a día, considera los costos de la mudanza, los depósitos iniciales de vivienda, los trámites de residencia y un colchón cómodo para lo inesperado. Podemos revisar rangos realistas para tus destinos específicos una vez que conozcamos más sobre tu situación."],
+      ["¿Pueden ayudarme a abrir una cuenta bancaria u obtener un seguro?", "Sí — podemos orientarte hacia bancos y aseguradoras locales de confianza y explicarte en términos generales qué esperar (documentación, requisitos según tu estatus migratorio y plazos típicos). La apertura de cuentas y la contratación de pólizas las gestionan directamente esas instituciones, ya que los requisitos y las ofertas cambian y varían según el proveedor."],
+      ["¿Necesito hablar español?", "No para empezar, y muchas personas construyen una buena vida en México con un español limitado, especialmente en zonas más internacionales. Dicho esto, aprender aunque sea un español conversacional suele profundizar notablemente la experiencia y la facilidad del día a día — generalmente lo recomendamos como una meta continua, no como un requisito previo."],
+      ["¿Es México seguro para los extranjeros?", "La seguridad varía significativamente según la región y la ciudad, como en cualquier parte del mundo, y las condiciones pueden cambiar con el tiempo. Muchas de las zonas en las que nos enfocamos tienen un buen historial con residentes extranjeros. Compartimos lo que honestamente sabemos de cada destino, incluyendo sus contras, y siempre recomendamos revisar las advertencias de viaje vigentes de tu propio gobierno como parte de tu investigación."],
+      ["¿Pueden ayudar con la atención médica y el seguro privado?", "Sí. Podemos explicarte el panorama general — el sistema público de salud (IMSS), los hospitales privados y las opciones de seguro privado — y conectarte con proveedores y agentes para revisar tu situación específica. La cobertura, el costo y la elegibilidad dependen de tu edad, tu salud y tu estatus migratorio, así que dejamos los detalles a los proveedores autorizados."],
+      ["¿Puedo llevar a mis mascotas a México?", "Por lo general, sí — los requisitos de México para importar mascotas son más sencillos que en muchos países, normalmente un certificado de salud y vacunas al día. Los requisitos pueden cambiar, así que recomendamos confirmar las reglas vigentes con un veterinario y tu aerolínea poco antes de viajar, y con gusto te orientamos hacia esa información actual."],
+      ["¿Apoyan a familias, trabajadores remotos, jubilados y emprendedores?", "Sí, y más allá de eso — trabajamos con personas de muchos países y etapas de vida, no solo con jubilados o una nacionalidad en particular. Sea lo que sea lo que te traiga a México, nuestro trabajo es entender tu situación específica y orientarte hacia lo que realmente encaja con ella."],
+      ["¿Qué pasa después de que llego?", "Depende de lo que ya hayas resuelto antes de llegar, pero seguimos presentes — ayudándote con la orientación local, conectándote con la comunidad y dando seguimiento a los asuntos prácticos (cuentas bancarias, residencia, vivienda) que muchas veces siguen en proceso después de la mudanza."],
+      ["¿Cuánto cuestan sus servicios?", "Depende del nivel de apoyo que necesites, desde una sola Llamada de Compatibilidad hasta una reubicación totalmente acompañada. Te explicaremos los costos con claridad desde la primera conversación, sin ningún compromiso — empieza con una Llamada de Compatibilidad gratuita y avanzamos desde ahí."]
     ],
 
     contactLabel: "Empieza Aquí",
@@ -332,6 +407,14 @@ const content = {
     contactText:
       "Envía algunos detalles sobre tus tiempos, metas y preguntas. Te ayudaremos a entender el próximo paso más claro hacia reubicación, residencia, estilo de vida, bienes raíces o apoyo local confiable en México.",
     formSuccess: "Gracias — tu consulta fue enviada. Te contactaremos pronto.",
+    formSuccessTitle: "Mensaje Enviado",
+    formNamePlaceholder: "Nombre Completo",
+    formEmailPlaceholder: "Correo Electrónico",
+    formCountryPlaceholder: "País Actual",
+    formTimelinePlaceholder: "Cronograma Ideal",
+    formMessagePlaceholder: "¿En qué necesitas ayuda?",
+    formSubmitting: "Enviando...",
+    formSubmit: "Enviar Consulta De Reubicación",
     footerLine: "Un ritmo de vida diferente.",
     footer: "25 Destinos En La Península De Yucatán"
   }
@@ -343,7 +426,7 @@ function LeadForm({ t }) {
   if (state.succeeded) {
     return (
       <div className="border border-zinc-200 bg-white p-8 text-center text-zinc-950 shadow-sm">
-        <h3 className="mb-4 text-3xl font-light tracking-[-0.04em]">Message Sent</h3>
+        <h3 className="mb-4 text-3xl font-light tracking-[-0.04em]">{t.formSuccessTitle}</h3>
         <p className="text-zinc-600">{t.formSuccess}</p>
       </div>
     );
@@ -351,16 +434,16 @@ function LeadForm({ t }) {
 
   return (
     <form onSubmit={handleSubmit} className="mx-auto mt-10 grid max-w-3xl gap-5 text-left">
-      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="name" placeholder="Full Name" required />
-      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="email" name="email" placeholder="Email Address" required />
+      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="name" placeholder={t.formNamePlaceholder} required />
+      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="email" name="email" placeholder={t.formEmailPlaceholder} required />
       <ValidationError field="email" errors={state.errors} />
-      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="country" placeholder="Current Country" />
-      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="timeline" placeholder="Ideal Timeline" />
-      <textarea className="min-h-36 border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" name="message" placeholder="What do you need help with?" required />
+      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="country" placeholder={t.formCountryPlaceholder} />
+      <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="timeline" placeholder={t.formTimelinePlaceholder} />
+      <textarea className="min-h-36 border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" name="message" placeholder={t.formMessagePlaceholder} required />
       <ValidationError field="message" errors={state.errors} />
 
       <button disabled={state.submitting} className="bg-zinc-950 px-8 py-5 text-sm font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-zinc-800 disabled:opacity-60">
-        {state.submitting ? "Sending..." : "Send Relocation Inquiry"}
+        {state.submitting ? t.formSubmitting : t.formSubmit}
       </button>
     </form>
   );
@@ -503,11 +586,11 @@ function HomePage() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-white focus:px-5 focus:py-3 focus:text-xs focus:font-semibold focus:uppercase focus:tracking-[0.2em] focus:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
       >
-        Skip to content
+        {t.skipToContent}
       </a>
       <SEO
-        title="Path To Mexico | A Different Rhythm Of Life"
-        description="Relocation guidance, trusted local connections, and lifestyle support for people considering a new life in Mexico."
+        title={t.seoTitle}
+        description={t.seoDescription}
         path="/"
       />
       <section
@@ -544,7 +627,7 @@ function HomePage() {
             className="h-full w-full"
           >
             <div className="h-full w-full motion-safe:md:animate-[cinematic-drift_10s_ease-in-out_infinite]">
-              <img src="/hero.jpg" alt="Riviera Maya relocation lifestyle" className="h-full w-full object-cover" />
+              <img src="/hero.jpg" alt={t.heroAlt} className="h-full w-full object-cover" />
             </div>
           </motion.div>
           <div
@@ -602,14 +685,14 @@ function HomePage() {
               ref={menuTriggerRef}
               onClick={() => setMenuOpen(true)}
               onMouseDown={(event) => event.preventDefault()}
-              aria-label="Open menu"
+              aria-label={t.openMenuAria}
               aria-expanded={menuOpen}
               aria-haspopup="dialog"
               className={`text-[10px] font-semibold uppercase tracking-[0.3em] transition-colors duration-300 lg:hidden ${
                 scrolled ? "text-zinc-950" : "text-white"
               }`}
             >
-              Menu
+              {t.menuLabel}
             </button>
           </div>
         </nav>
@@ -620,7 +703,7 @@ function HomePage() {
           }`}
           role="dialog"
           aria-modal="true"
-          aria-label="Mobile navigation"
+          aria-label={t.mobileNavAria}
           aria-hidden={!menuOpen}
         >
           <div className="flex items-center justify-between px-4 py-4 md:px-10">
@@ -631,11 +714,11 @@ function HomePage() {
             <button
               onClick={() => setMenuOpen(false)}
               onMouseDown={(event) => event.preventDefault()}
-              aria-label="Close menu"
+              aria-label={t.closeMenuAria}
               tabIndex={menuOpen ? 0 : -1}
               className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white transition hover:text-white/70"
             >
-              Close
+              {t.closeLabel}
             </button>
           </div>
 
@@ -712,23 +795,22 @@ function HomePage() {
       <section id="blueprint" className="bg-[#0b0b0a] px-6 py-20 text-center text-white md:py-28">
         <CinematicReveal className="mx-auto max-w-3xl">
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
-            My Mexico Blueprint
+            {t.blueprintEyebrow}
           </p>
           <h2 className="mb-7 text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
-            See what your move to Mexico could actually look like.
+            {t.blueprintTitle}
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-white/60 sm:text-xl">
-            Answer 6 quick questions and get your personalized city matches, readiness score, and
-            30/60/90-day roadmap.
+            {t.blueprintText}
           </p>
           <a
             href="/my-mexico-blueprint"
             className="inline-block bg-white px-9 py-4 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-950 transition duration-300 hover:bg-[#d8a15f]"
           >
-            Build My Mexico Blueprint
+            {t.blueprintCta}
           </a>
           <p className="mt-6 text-xs uppercase tracking-[0.25em] text-white/40">
-            Free &middot; Takes About 2 Minutes
+            {t.blueprintFreeNote}
           </p>
         </CinematicReveal>
       </section>
@@ -784,7 +866,7 @@ function HomePage() {
                 <div>
                   {isPrimary && (
                     <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-white/50">
-                      Start Here
+                      {t.startHereBadge}
                     </p>
                   )}
                   <h3 className="mb-3 text-3xl font-light tracking-[-0.04em]">{title}</h3>
@@ -877,7 +959,7 @@ function HomePage() {
             <p className="mt-7 max-w-md text-lg leading-relaxed text-zinc-600 sm:text-xl">{t.founderIntro}</p>
 
             <div className="mt-10 max-w-sm overflow-hidden border border-zinc-200 bg-white p-3 shadow-sm">
-              <img src="/kalen.jpg" alt="Kalen Enns, founder of Path To Mexico" loading="lazy" className="aspect-[4/5] h-full w-full object-cover" />
+              <img src="/kalen.jpg" alt={t.founderPhotoAlt} loading="lazy" className="aspect-[4/5] h-full w-full object-cover" />
             </div>
           </div>
 
@@ -948,19 +1030,7 @@ function HomePage() {
 
       <section id="faq" className="bg-white px-6 py-20 md:px-20 md:py-28">
         <SectionHeader label={t.faqLabel} title={t.faqTitle} />
-
-        <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 md:grid-cols-2">
-          {t.faqs.map(([question, answer]) => (
-            <motion.div
-              key={question}
-              variants={CinematicReveal.itemVariants(prefersReducedMotion)}
-              className="bg-white p-7 transition hover:bg-[#f6f1e8]"
-            >
-              <h3 className="mb-4 text-2xl font-medium tracking-[-0.03em]">{question}</h3>
-              <p className="leading-relaxed text-zinc-600">{answer}</p>
-            </motion.div>
-          ))}
-        </CinematicReveal>
+        <FAQAccordion items={t.faqs} />
       </section>
 
       <section id="contact" ref={contactRef} className="bg-[#0b0b0a] px-6 py-20 text-center text-white md:py-28">
@@ -978,7 +1048,7 @@ function HomePage() {
               rel="noreferrer"
               className="inline-block border border-white/30 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-white hover:text-black"
             >
-              Prefer WhatsApp? Message Directly
+              {t.whatsappCta}
             </a>
           </div>
         </div>
@@ -999,9 +1069,9 @@ function HomePage() {
 
       <section id="disclaimer" className="bg-[#f6f1e8] px-6 py-12 text-zinc-950 md:px-20">
         <div className="mx-auto max-w-6xl border-t border-zinc-300 pt-8">
-          <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">Important Note</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">{t.disclaimerLabel}</p>
           <p className="max-w-4xl text-sm leading-relaxed text-zinc-600">
-            Path To Mexico provides relocation guidance, local insight, and trusted introductions. We are not a law firm, immigration agency, tax advisor, financial advisor, or real estate brokerage. Legal, immigration, tax, financial, and real estate services are provided by independent qualified professionals where appropriate.
+            {t.disclaimerText}
           </p>
         </div>
       </section>
@@ -1012,7 +1082,7 @@ function HomePage() {
         <p className="mt-6 italic text-zinc-400">{t.footerLine}</p>
         <p className="mt-6 text-zinc-600">{t.footer}</p>
         <p className="mt-8 text-xs uppercase tracking-[0.3em] text-zinc-700">
-          Not everyone is meant to stay where they started.
+          {t.footerTagline2}
         </p>
       </footer>
     </main>

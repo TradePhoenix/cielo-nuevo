@@ -12,10 +12,21 @@ const FOCUS_RING =
 // caller (e.g. ranking recommendations from a visitor's actual Blueprint
 // answers) to swap in different guides without any change to this
 // component's markup.
+const TEXT = {
+  en: { eyebrow: "Continue Your Journey", stagePrefix: (title) => `You're in the ${title} stage.` },
+  es: { eyebrow: "Continúa Tu Camino", stagePrefix: (title) => `Estás en la etapa de ${title}.` },
+};
+
+function resolveField(field, lang) {
+  if (!field) return "";
+  return typeof field === "string" ? field : field[lang] || field.en;
+}
+
 export default function ContinueYourJourney({
   currentHref,
   stage: stageOverride,
   recommendations: recommendationsOverride,
+  lang = "en",
 }) {
   const computed = currentHref ? getGuideJourney(currentHref) : { stage: null, recommendations: [] };
   const stage = stageOverride || computed.stage;
@@ -23,33 +34,36 @@ export default function ContinueYourJourney({
 
   if (!stage || recommendations.length === 0) return null;
 
+  const t = TEXT[lang] || TEXT.en;
+  const stageTitle = resolveField(stage.title, lang);
+
   return (
     <div className="mt-14 border border-zinc-300 bg-white p-8">
       <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">
-        Continue Your Journey
+        {t.eyebrow}
       </p>
 
       <h2 className="mb-3 text-3xl font-light tracking-[-0.04em] md:text-5xl">
-        You're in the {stage.title} stage.
+        {t.stagePrefix(stageTitle)}
       </h2>
 
-      <p className="mb-8 max-w-2xl leading-relaxed text-zinc-600">{stage.description}</p>
+      <p className="mb-8 max-w-2xl leading-relaxed text-zinc-600">{resolveField(stage.description, lang)}</p>
 
       <div className="grid gap-4 sm:grid-cols-3">
-        {recommendations.map((guide) => (
-          <Link
-            key={guide.href}
-            to={guide.href}
-            className={`block border border-zinc-200 bg-[#f4f0e8] p-5 transition hover:bg-white ${FOCUS_RING}`}
-          >
-            <p className="mb-2 text-[10px] uppercase tracking-[0.25em] text-zinc-500">
-              {guide.category}
-            </p>
-            <p className="text-lg font-light leading-tight tracking-[-0.02em] text-zinc-950">
-              {guide.title}
-            </p>
-          </Link>
-        ))}
+        {recommendations.map((guide) => {
+          const category = typeof guide.category === "string" ? guide.category : guide.category[lang] || guide.category.en;
+          const title = typeof guide.title === "string" ? guide.title : guide.title[lang] || guide.title.en;
+          return (
+            <Link
+              key={guide.href}
+              to={guide.href}
+              className={`block border border-zinc-200 bg-[#f4f0e8] p-5 transition hover:bg-white ${FOCUS_RING}`}
+            >
+              <p className="mb-2 text-[10px] uppercase tracking-[0.25em] text-zinc-500">{category}</p>
+              <p className="text-lg font-light leading-tight tracking-[-0.02em] text-zinc-950">{title}</p>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

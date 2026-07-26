@@ -8,14 +8,18 @@ import { Link } from "react-router-dom";
 // `hero`, when passed, renders full-width as the first child of <main>,
 // outside the padded content column — the shell then assumes that hero
 // carries its own back-navigation (see CityHero) and suppresses its own.
+const DEFAULT_BACK_LABEL = { en: "Back To Your Blueprint Results", es: "Volver A Tus Resultados Del Blueprint" };
+
 export default function YourMexicoShell({
   children,
   hero,
   background = "cream",
   backTo = "/my-mexico-blueprint",
-  backLabel = "Back To Your Blueprint Results",
+  backLabel,
+  lang = "en",
 }) {
   const isDark = background === "dark";
+  const resolvedBackLabel = backLabel || DEFAULT_BACK_LABEL[lang] || DEFAULT_BACK_LABEL.en;
 
   return (
     <main className={isDark ? "min-h-screen bg-[#0b0b0a] text-white" : "min-h-screen bg-[#f6f1e8] text-zinc-950"}>
@@ -38,7 +42,7 @@ export default function YourMexicoShell({
               }`}
             >
               <span aria-hidden="true">←</span>
-              {backLabel}
+              {resolvedBackLabel}
             </Link>
           </div>
         )}

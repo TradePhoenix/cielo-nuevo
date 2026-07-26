@@ -1,19 +1,25 @@
 import CitySection from "./CitySection";
 
+const TEXT = {
+  en: { eyebrow: "Pros And Trade-offs", title: (name) => `${name}, weighed`, pros: "Pros", tradeoffs: "Trade-offs" },
+  es: { eyebrow: "Pros Y Contras", title: (name) => `${name}, en balance`, pros: "Pros", tradeoffs: "Contras" },
+};
+
 // The structured counterpart to The Honest Truth — short, comparison-ready
 // bullets rather than narrative sentences. Stays within the site's
 // monochrome palette (darker dot = pro, lighter dot = trade-off) rather
 // than introducing a new green/red semantic accent.
-export default function ProsAndTradeoffs({ city }) {
+export default function ProsAndTradeoffs({ city, lang = "en" }) {
   const pros = city.pros;
   const tradeoffs = city.tradeoffs;
   if (!pros || !tradeoffs) return null;
+  const t = TEXT[lang] || TEXT.en;
 
   return (
-    <CitySection eyebrow="Pros And Trade-offs" title={`${city.name}, weighed`}>
+    <CitySection eyebrow={t.eyebrow} title={t.title(city.name)}>
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="border border-zinc-200 bg-white p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Pros</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">{t.pros}</p>
           <ul className="mt-4 space-y-3">
             {pros.map((pro) => (
               <li key={pro} className="flex gap-3 text-sm leading-relaxed text-zinc-700">
@@ -25,7 +31,7 @@ export default function ProsAndTradeoffs({ city }) {
         </div>
 
         <div className="border border-zinc-200 bg-white p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">Trade-offs</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">{t.tradeoffs}</p>
           <ul className="mt-4 space-y-3">
             {tradeoffs.map((tradeoff) => (
               <li key={tradeoff} className="flex gap-3 text-sm leading-relaxed text-zinc-700">

@@ -31,6 +31,7 @@ import { getRegionIdForCity } from "../data/atlasGroups";
 // right-10 corner positions pixel-for-pixel.
 export default function CityHero({ city, backTo, backLabel, lang = "en" }) {
   const heroAlt = (lang === "es" ? city.heroAlt?.es : city.heroAlt?.en) || city.heroAlt?.en || city.name;
+  const tagline = (lang === "es" ? city.tagline?.es : city.tagline?.en) || city.tagline?.en || city.tagline;
 
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-auto sm:h-[60vh] sm:min-h-[420px]">
@@ -88,11 +89,11 @@ export default function CityHero({ city, backTo, backLabel, lang = "en" }) {
       </div>
 
       <div className="absolute inset-x-0 bottom-0 p-6 sm:p-12">
-        <p className="text-xs uppercase tracking-[0.3em] text-white/60">Your Mexico</p>
+        <p className="text-xs uppercase tracking-[0.3em] text-white/60">{lang === "es" ? "Tu México" : "Your Mexico"}</p>
         <h1 className="mt-3 text-4xl font-light leading-tight tracking-[-0.03em] text-white sm:text-6xl">
           {city.name}
         </h1>
-        <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">{city.tagline}</p>
+        <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">{tagline}</p>
       </div>
     </div>
   );

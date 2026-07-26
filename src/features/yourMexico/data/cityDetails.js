@@ -27,7 +27,7 @@
 
 export const CITY_DETAILS = {
   "playa-del-carmen": {
-    tagline: "Walkable streets, ocean air, and a life that still feels social.",
+    tagline: { en: "Walkable streets, ocean air, and a life that still feels social.", es: "Calles para caminar, aire de mar y una vida que sigue sintiéndose social." },
     heroImages: {
       desktop: {
         webp: "/regions/playa-del-carmen/playa-del-carmen-hero-desktop.webp",
@@ -187,7 +187,7 @@ export const CITY_DETAILS = {
   },
 
   tulum: {
-    tagline: "A slower rhythm on the water, built for people who want room to breathe.",
+    tagline: { en: "A slower rhythm on the water, built for people who want room to breathe.", es: "Un ritmo más lento junto al agua, pensado para quienes necesitan espacio para respirar." },
     heroImages: {
       desktop: {
         webp: "/regions/tulum/tulum-hero-desktop.webp",
@@ -345,7 +345,7 @@ export const CITY_DETAILS = {
   },
 
   "riviera-maya": {
-    tagline: "Quieter and more affordable than the postcards suggest — and closer to everyday life.",
+    tagline: { en: "Quieter and more affordable than the postcards suggest — and closer to everyday life.", es: "Más tranquilo y más asequible de lo que sugieren las postales — y más cerca de la vida cotidiana." },
     heroImages: {
       desktop: {
         webp: "/regions/riviera-maya/riviera-maya-hero-desktop.webp",
@@ -529,7 +529,7 @@ export const CITY_DETAILS = {
   // ---------------------------------------------------------------------
 
   merida: {
-    tagline: "Colonial architecture, healthcare, and city life — with the coast a short trip away, not the whole point.",
+    tagline: { en: "Colonial architecture, healthcare, and city life — with the coast a short trip away, not the whole point.", es: "Arquitectura colonial, salud y vida de ciudad — con la costa a poca distancia, no como el objetivo principal." },
     heroImages: {
       desktop: {
         webp: "/regions/merida/merida-hero-desktop.webp",
@@ -687,7 +687,7 @@ export const CITY_DETAILS = {
   },
 
   progreso: {
-    tagline: "The Gulf Coast's most established beach town — accessible, social, and close to Mérida.",
+    tagline: { en: "The Gulf Coast's most established beach town — accessible, social, and close to Mérida.", es: "El pueblo de playa más consolidado de la Costa del Golfo — accesible, social y cerca de Mérida." },
     heroImages: {
       desktop: {
         webp: "/regions/progreso/progreso-hero-desktop.webp",
@@ -843,7 +843,7 @@ export const CITY_DETAILS = {
   },
 
   "chicxulub-puerto": {
-    tagline: "Quieter residential beach living next to Progreso, with easy access to Mérida.",
+    tagline: { en: "Quieter residential beach living next to Progreso, with easy access to Mérida.", es: "Vida de playa residencial y tranquila junto a Progreso, con fácil acceso a Mérida." },
     heroImages: {
       desktop: {
         webp: "/regions/chicxulub-puerto/chicxulub-puerto-hero-desktop.webp",
@@ -992,7 +992,7 @@ export const CITY_DETAILS = {
   },
 
   "telchac-puerto": {
-    tagline: "A smaller, more secluded Gulf Coast community for people who genuinely want privacy and space.",
+    tagline: { en: "A smaller, more secluded Gulf Coast community for people who genuinely want privacy and space.", es: "Una comunidad más pequeña y apartada en la Costa del Golfo, para quienes realmente buscan privacidad y espacio." },
     heroImages: {
       desktop: {
         webp: "/regions/telchac-puerto/telchac-puerto-hero-desktop.webp",
@@ -1168,7 +1168,7 @@ export const CITY_DETAILS = {
   // ---------------------------------------------------------------------
 
   celestun: {
-    tagline: "A mangrove-fringed fishing village built around nature, not tourism.",
+    tagline: { en: "A mangrove-fringed fishing village built around nature, not tourism.", es: "Un pueblo pesquero bordeado de manglares, construido en torno a la naturaleza, no al turismo." },
     heroImages: {
       desktop: {
         webp: "/regions/celestun/celestun-hero-desktop.webp",
@@ -1319,7 +1319,7 @@ export const CITY_DETAILS = {
   },
 
   sisal: {
-    tagline: "A historic Gulf port and Pueblo Mágico, quiet without being remote.",
+    tagline: { en: "A historic Gulf port and Pueblo Mágico, quiet without being remote.", es: "Un histórico puerto del Golfo y Pueblo Mágico, tranquilo sin ser remoto." },
     heroImages: {
       desktop: {
         webp: "/regions/sisal/sisal-hero-desktop.webp",
@@ -1468,7 +1468,7 @@ export const CITY_DETAILS = {
   },
 
   "dzilam-de-bravo": {
-    tagline: "A working fishing port on a vast mangrove reserve — remote, independent, and real.",
+    tagline: { en: "A working fishing port on a vast mangrove reserve — remote, independent, and real.", es: "Un puerto pesquero activo junto a una vasta reserva de manglares — remoto, independiente y auténtico." },
     heroImages: {
       desktop: {
         webp: "/regions/dzilam-de-bravo/dzilam-de-bravo-hero-desktop.webp",
@@ -1617,7 +1617,7 @@ export const CITY_DETAILS = {
   },
 
   "santa-elena": {
-    tagline: "An inland Puuc-region village built around living Maya and Yucatecan culture.",
+    tagline: { en: "An inland Puuc-region village built around living Maya and Yucatecan culture.", es: "Un pueblo del interior en la región Puuc, construido en torno a la cultura maya y yucateca viva." },
     heroImages: {
       desktop: {
         webp: "/regions/santa-elena/santa-elena-hero-desktop.webp",
@@ -1790,7 +1790,7 @@ export const CITY_DETAILS = {
   "puerto-morelos": {
     heroImage: "/regions/puerto-morelos/puerto-morelos-hero.webp",
     imageStatus: "illustrative",
-    tagline: "A protected-reef fishing town between Cancún and Playa del Carmen — smaller, calmer, and deliberately less built-up than its neighbors.",
+    tagline: { en: "A protected-reef fishing town between Cancún and Playa del Carmen — smaller, calmer, and deliberately less built-up than its neighbors.", es: "Un pueblo pesquero de arrecife protegido entre Cancún y Playa del Carmen — más pequeño, más tranquilo y deliberadamente menos construido que sus vecinos." },
     heroAlt: {
       en: "A quiet fishing pier and leaning lighthouse in Puerto Morelos at sunrise",
       es: "Un tranquilo muelle pesquero y el faro inclinado de Puerto Morelos al amanecer",
@@ -1931,7 +1931,7 @@ export const CITY_DETAILS = {
   cozumel: {
     heroImage: "/regions/cozumel/cozumel-hero.webp",
     imageStatus: "illustrative",
-    tagline: "An island apart — literally — with a slower island rhythm, world-class diving, and a real year-round community distinct from the mainland coast.",
+    tagline: { en: "An island apart — literally — with a slower island rhythm, world-class diving, and a real year-round community distinct from the mainland coast.", es: "Una isla aparte — literalmente — con un ritmo isleño más lento, buceo de talla mundial y una comunidad real todo el año, distinta de la costa continental." },
     heroAlt: {
       en: "A quiet waterfront street on Cozumel island facing the Caribbean Sea",
       es: "Una tranquila calle frente al mar en la isla de Cozumel, mirando al Caribe",
@@ -2072,7 +2072,7 @@ export const CITY_DETAILS = {
   bacalar: {
     heroImage: "/regions/bacalar/bacalar-hero.webp",
     imageStatus: "illustrative",
-    tagline: "Built entirely around its famous seven-color lagoon — a small, laid-back town for people who want nature first and nightlife never.",
+    tagline: { en: "Built entirely around its famous seven-color lagoon — a small, laid-back town for people who want nature first and nightlife never.", es: "Construido enteramente alrededor de su famosa laguna de siete colores — un pueblo pequeño y relajado para quienes quieren naturaleza primero y vida nocturna nunca." },
     heroAlt: {
       en: "The multi-toned blue waters of Bacalar's lagoon at midday",
       es: "Las aguas de tonos azules de la laguna de Bacalar al mediodía",
@@ -2213,7 +2213,7 @@ export const CITY_DETAILS = {
   mahahual: {
     heroImage: "/regions/mahahual/mahahual-hero.webp",
     imageStatus: "illustrative",
-    tagline: "A tiny Costa Maya beach village hours south of the Riviera Maya crowds — genuinely undeveloped, genuinely quiet.",
+    tagline: { en: "A tiny Costa Maya beach village hours south of the Riviera Maya crowds — genuinely undeveloped, genuinely quiet.", es: "Un pequeño pueblo de playa en Costa Maya, a horas al sur de las multitudes de la Riviera Maya — genuinamente sin desarrollar, genuinamente tranquilo." },
     heroAlt: {
       en: "An empty stretch of Costa Maya beach near Mahahual at dusk",
       es: "Un tramo vacío de playa de Costa Maya cerca de Mahahual al atardecer",
@@ -2354,7 +2354,7 @@ export const CITY_DETAILS = {
   akumal: {
     heroImage: "/regions/akumal/akumal-hero.webp",
     imageStatus: "illustrative",
-    tagline: "A small, protected bay between Playa del Carmen and Tulum, known for its sea turtles and a noticeably calmer pace than either neighbor.",
+    tagline: { en: "A small, protected bay between Playa del Carmen and Tulum, known for its sea turtles and a noticeably calmer pace than either neighbor.", es: "Una pequeña bahía protegida entre Playa del Carmen y Tulum, conocida por sus tortugas marinas y un ritmo notablemente más tranquilo que el de sus vecinos." },
     heroAlt: {
       en: "The calm, shallow waters of Akumal Bay with sea turtles visible near shore",
       es: "Las aguas tranquilas y poco profundas de la bahía de Akumal con tortugas marinas visibles cerca de la orilla",
@@ -2495,7 +2495,7 @@ export const CITY_DETAILS = {
   cancun: {
     heroImage: "/regions/cancun/cancun-hero.webp",
     imageStatus: "illustrative",
-    tagline: "The region's real infrastructure hub — separate from the tourist Hotel Zone, El Centro is where residents actually live, work, and rely on the peninsula's biggest airport.",
+    tagline: { en: "The region's real infrastructure hub — separate from the tourist Hotel Zone, El Centro is where residents actually live, work, and rely on the peninsula's biggest airport.", es: "El verdadero centro de infraestructura de la región — separado de la Zona Hotelera turística, El Centro es donde los residentes realmente viven, trabajan y dependen del aeropuerto más grande de la península." },
     heroAlt: {
       en: "A residential street in downtown Cancún, away from the hotel zone",
       es: "Una calle residencial en el centro de Cancún, lejos de la zona hotelera",
@@ -2636,7 +2636,7 @@ export const CITY_DETAILS = {
   valladolid: {
     heroImage: "/regions/valladolid/valladolid-hero.webp",
     imageStatus: "illustrative",
-    tagline: "A colonial Pueblo Mágico squarely between Mérida and the Caribbean coast — increasingly popular with remote workers who want culture and connectivity together.",
+    tagline: { en: "A colonial Pueblo Mágico squarely between Mérida and the Caribbean coast — increasingly popular with remote workers who want culture and connectivity together.", es: "Un Pueblo Mágico colonial justo entre Mérida y la costa caribeña — cada vez más popular entre trabajadores remotos que buscan cultura y conectividad juntas." },
     heroAlt: {
       en: "Valladolid's colorful colonial street with a colonial church in the background",
       es: "Una colorida calle colonial de Valladolid con una iglesia colonial de fondo",
@@ -2777,7 +2777,7 @@ export const CITY_DETAILS = {
   izamal: {
     heroImage: "/regions/izamal/izamal-hero.webp",
     imageStatus: "illustrative",
-    tagline: "The \"Yellow City\" — a small, deeply Maya and colonial Pueblo Mágico built for people who want culture and quiet over beach or bustle.",
+    tagline: { en: "The \"Yellow City\" — a small, deeply Maya and colonial Pueblo Mágico built for people who want culture and quiet over beach or bustle.", es: "La \"Ciudad Amarilla\" — un pequeño Pueblo Mágico profundamente maya y colonial, pensado para quienes prefieren cultura y tranquilidad antes que playa o bullicio." },
     heroAlt: {
       en: "Izamal's yellow colonial buildings and a Franciscan convent under a bright sky",
       es: "Los edificios coloniales amarillos de Izamal y un convento franciscano bajo un cielo brillante",
@@ -2918,7 +2918,7 @@ export const CITY_DETAILS = {
   tekax: {
     heroImage: "/regions/tekax/tekax-hero.webp",
     imageStatus: "illustrative",
-    tagline: "A working agricultural town in the Puuc region's south — genuinely local, genuinely quiet, and not built with visitors in mind.",
+    tagline: { en: "A working agricultural town in the Puuc region's south — genuinely local, genuinely quiet, and not built with visitors in mind.", es: "Un pueblo agrícola activo en el sur de la región Puuc — genuinamente local, genuinamente tranquilo, y no construido pensando en visitantes." },
     heroAlt: {
       en: "A quiet residential street in Tekax with traditional Yucatecan homes",
       es: "Una tranquila calle residencial en Tekax con casas tradicionales yucatecas",
@@ -3059,7 +3059,7 @@ export const CITY_DETAILS = {
   tizimin: {
     heroImage: "/regions/tizimin/tizimin-hero.webp",
     imageStatus: "illustrative",
-    tagline: "A working cattle-ranching hub in the state's north — practical rather than picturesque, and the real supply town for the coast nearby.",
+    tagline: { en: "A working cattle-ranching hub in the state's north — practical rather than picturesque, and the real supply town for the coast nearby.", es: "Un centro ganadero activo en el norte del estado — práctico más que pintoresco, y el verdadero pueblo de abastecimiento para la costa cercana." },
     heroAlt: {
       en: "A quiet street in Tizimín with its colonial church and ranching-town character",
       es: "Una tranquila calle en Tizimín con su iglesia colonial y carácter de pueblo ganadero",
@@ -3200,7 +3200,7 @@ export const CITY_DETAILS = {
   chelem: {
     heroImage: "/regions/chelem/chelem-hero.webp",
     imageStatus: "illustrative",
-    tagline: "A small, quiet beach community just west of Progreso — a slower, more residential alternative on the same stretch of Gulf coast.",
+    tagline: { en: "A small, quiet beach community just west of Progreso — a slower, more residential alternative on the same stretch of Gulf coast.", es: "Una pequeña y tranquila comunidad de playa justo al oeste de Progreso — una alternativa más lenta y residencial en el mismo tramo de costa del Golfo." },
     heroAlt: {
       en: "A quiet residential beach street in Chelem on the Yucatán Gulf coast",
       es: "Una tranquila calle residencial de playa en Chelem, en la costa del Golfo de Yucatán",
@@ -3341,7 +3341,7 @@ export const CITY_DETAILS = {
   "chuburna-puerto": {
     heroImage: "/regions/chuburna-puerto/chuburna-puerto-hero.webp",
     imageStatus: "illustrative",
-    tagline: "A quiet Gulf beach town further west of Progreso, with fewer services and a genuinely slower, more local pace.",
+    tagline: { en: "A quiet Gulf beach town further west of Progreso, with fewer services and a genuinely slower, more local pace.", es: "Un tranquilo pueblo de playa del Golfo más al oeste de Progreso, con menos servicios y un ritmo genuinamente más lento y local." },
     heroAlt: {
       en: "A quiet Gulf coast beach at Chuburná Puerto with fishing boats offshore",
       es: "Una tranquila playa de la costa del Golfo en Chuburná Puerto con barcos pesqueros mar adentro",
@@ -3482,7 +3482,7 @@ export const CITY_DETAILS = {
   "el-cuyo": {
     heroImage: "/regions/el-cuyo/el-cuyo-hero.webp",
     imageStatus: "illustrative",
-    tagline: "A remote fishing village on the state's northern tip, drawing a small but growing wave of people who want unspoiled coast over convenience.",
+    tagline: { en: "A remote fishing village on the state's northern tip, drawing a small but growing wave of people who want unspoiled coast over convenience.", es: "Un remoto pueblo pesquero en la punta norte del estado, que atrae a una ola pequeña pero creciente de personas que prefieren una costa virgen antes que la conveniencia." },
     heroAlt: {
       en: "A quiet, undeveloped beach at El Cuyo on Yucatán's northern coast",
       es: "Una tranquila playa sin desarrollar en El Cuyo, en la costa norte de Yucatán",
@@ -3625,7 +3625,7 @@ export const CITY_DETAILS = {
   "rio-lagartos": {
     heroImage: "/regions/rio-lagartos/rio-lagartos-hero.webp",
     imageStatus: "illustrative",
-    tagline: "A small fishing village on the edge of a vast flamingo-filled biosphere reserve — built around nature and little else.",
+    tagline: { en: "A small fishing village on the edge of a vast flamingo-filled biosphere reserve — built around nature and little else.", es: "Un pequeño pueblo pesquero al borde de una vasta reserva de biosfera llena de flamencos — construido en torno a la naturaleza y poco más." },
     heroAlt: {
       en: "Flamingos in the shallow waters of the Ría Lagartos biosphere reserve",
       es: "Flamencos en las aguas poco profundas de la reserva de biosfera Ría Lagartos",

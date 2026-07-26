@@ -113,7 +113,7 @@ export default function RegionPage() {
       </CitySection>
 
       <CitySection eyebrow={lang === "es" ? "Comparación Regional" : "Regional Comparison"} title={lang === "es" ? "Cómo se comparan estos destinos" : "How these destinations compare"}>
-        <CompareYourMatches cities={regionCities} />
+        <CompareYourMatches cities={regionCities} lang={lang} />
       </CitySection>
 
       <CitySection eyebrow={lang === "es" ? "Cómo Moverse" : "Getting Around"} title={lang === "es" ? "Tiempos de viaje de referencia" : "Reference travel times"}>

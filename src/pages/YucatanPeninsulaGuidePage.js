@@ -190,7 +190,7 @@ export default function YucatanPeninsulaGuidePage() {
   const t = content[lang];
 
   return (
-    <ArticleLayout title={t.title} description={t.description} category="2026 Guide">
+    <ArticleLayout title={t.title} description={t.description} category="2026 Guide" lang={lang}>
       <div className="mb-10 flex justify-end">
         <button
           type="button"

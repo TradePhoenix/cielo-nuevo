@@ -27,20 +27,35 @@ const FOCUS_RING =
 // Every prop defaults to a no-op value, so a caller that passes nothing
 // (both current usages, Work With Path To Mexico's default instance and
 // Guides) renders identically to before this ticket.
+const DEFAULT_TEXT = {
+  en: { eyebrow: "The Relocation Journey", title: "Every move follows the same shape.", youAreHere: "You're Here", completed: "Completed" },
+  es: { eyebrow: "El Camino De Reubicación", title: "Toda mudanza sigue la misma forma.", youAreHere: "Estás Aquí", completed: "Completado" },
+};
+
+function resolveField(field, lang) {
+  if (!field) return "";
+  return typeof field === "string" ? field : field[lang] || field.en;
+}
+
 export default function RelocationRoadmap({
   stages = RELOCATION_ROADMAP_STAGES,
-  eyebrow = "The Relocation Journey",
-  title = "Every move follows the same shape.",
+  eyebrow,
+  title,
   activeStageId = null,
   completedStageIds = [],
   nextActionLabel = null,
+  lang = "en",
 }) {
+  const defaults = DEFAULT_TEXT[lang] || DEFAULT_TEXT.en;
+  const resolvedEyebrow = eyebrow || defaults.eyebrow;
+  const resolvedTitle = title || defaults.title;
+
   return (
     <section className="px-6 py-20 md:px-20 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{eyebrow}</p>
+        <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">{resolvedEyebrow}</p>
         <h2 className="mb-12 max-w-4xl text-4xl font-light leading-tight tracking-[-0.05em] md:text-7xl">
-          {title}
+          {resolvedTitle}
         </h2>
 
         <div className="grid gap-px bg-zinc-300 sm:grid-cols-2 lg:grid-cols-5">
@@ -57,23 +72,23 @@ export default function RelocationRoadmap({
               >
                 <div>
                   <p className="mb-2 text-xs uppercase tracking-[0.3em] text-zinc-500">
-                    {stage.number} &middot; {stage.title}
+                    {stage.number} &middot; {resolveField(stage.title, lang)}
                   </p>
 
                   {isActive && (
                     <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#d8a15f]">
-                      You're Here
+                      {defaults.youAreHere}
                     </p>
                   )}
 
                   {isCompleted && !isActive && (
                     <p className="mb-4 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
                       <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-zinc-400" />
-                      Completed
+                      {defaults.completed}
                     </p>
                   )}
 
-                  <p className="text-base leading-relaxed text-zinc-700">{stage.description}</p>
+                  <p className="text-base leading-relaxed text-zinc-700">{resolveField(stage.description, lang)}</p>
                 </div>
 
                 <div className="mt-6 space-y-2 border-t border-zinc-300 pt-5">
@@ -81,7 +96,7 @@ export default function RelocationRoadmap({
                     to={stage.action.href}
                     className={`block text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 underline decoration-zinc-300 underline-offset-4 transition hover:decoration-zinc-950 ${FOCUS_RING}`}
                   >
-                    {isActive && nextActionLabel ? nextActionLabel : stage.action.label}
+                    {isActive && nextActionLabel ? nextActionLabel : resolveField(stage.action.label, lang)}
                   </Link>
                   {(stage.links || []).map((link) => (
                     <Link

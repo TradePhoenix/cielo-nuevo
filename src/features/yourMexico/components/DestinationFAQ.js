@@ -1,14 +1,20 @@
 import CitySection from "./CitySection";
 
+const TEXT = {
+  en: { eyebrow: "Frequently Asked", title: (name) => `Questions people ask about ${name}` },
+  es: { eyebrow: "Preguntas Frecuentes", title: (name) => `Preguntas que hace la gente sobre ${name}` },
+};
+
 // DEST-003 — plain <details>/<summary> disclosure: no JS state needed, fully
 // keyboard-operable and screen-reader-friendly by default, matching the
 // print-friendly <details> pattern already established in MyMexicoPlanPage.js.
-export default function DestinationFAQ({ city }) {
+export default function DestinationFAQ({ city, lang = "en" }) {
   const faq = city.faq;
   if (!faq || faq.length === 0) return null;
+  const t = TEXT[lang] || TEXT.en;
 
   return (
-    <CitySection eyebrow="Frequently Asked" title={`Questions people ask about ${city.name}`}>
+    <CitySection eyebrow={t.eyebrow} title={t.title(city.name)}>
       <div className="divide-y divide-zinc-200 border border-zinc-200 bg-white">
         {faq.map(({ question, answer }) => (
           <details key={question} className="group p-6">

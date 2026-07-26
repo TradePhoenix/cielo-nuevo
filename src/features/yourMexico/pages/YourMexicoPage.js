@@ -100,7 +100,7 @@ export default function YourMexicoPage() {
   }
 
   return (
-    <YourMexicoShell>
+    <YourMexicoShell lang={lang}>
       <SEO
         title="Your Mexico — Living Destination Atlas"
         description="Explore all 25 Path To Mexico destinations across the Yucatán Peninsula — coastal towns, colonial cities, and quiet corners — searchable and filterable by region or lifestyle."
@@ -180,7 +180,7 @@ export default function YourMexicoPage() {
         </Link>
       </div>
 
-      <TrustMoment />
+      <TrustMoment lang={lang} />
 
       <FitCallBar source="atlas" lang={lang} />
     </YourMexicoShell>

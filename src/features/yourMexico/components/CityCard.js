@@ -36,13 +36,32 @@ import { getRegionIdForCity } from "../data/atlasGroups";
 // only displays what's passed in; `isRecommended` adds a quiet badge for a
 // visitor's own Blueprint matches, reusing the existing `matchReason` line
 // below it rather than adding a second explanation.
+//
+// ENG-004 — card grid alignment fix: every grid that renders this card
+// (AtlasGrid, RegionPage, KeepExploring) uses CSS grid's default per-row
+// stretch, but a bare `block` Link with auto-height content doesn't fill
+// that stretched cell — so cards in the same row still ended at their own
+// content height, not the row's. `motion.div` now carries `h-full` and the
+// `Link` is a `flex h-full flex-col` column, so the card genuinely fills its
+// grid cell. The `p-6` body is itself `flex flex-1 flex-col`, so a variable
+// number of signal chips or an absent `matchReason` doesn't reflow the
+// layout — `matchReason` (when present) is pinned to the bottom of the body
+// via `mt-auto` instead of just trailing whatever content happened to be
+// above it. The tagline is `line-clamp-3` so wildly different description
+// lengths stop being the dominant source of uneven card height (the full
+// text stays in the DOM for screen readers — line-clamp is purely visual
+// truncation, not a content removal). On mobile the grid is single-column,
+// so there's never a sibling in the same row to stretch to — cards stay as
+// compact as their own content, unchanged from before.
 export default function CityCard({ city, index = 0, lang = "en", region, signals, isRecommended, recommendedLabel }) {
   const prefersReducedMotion = useCinematicMotion();
   const staggerDelay = `${index * HEARTBEAT.stagger}s`;
   const heroAlt = (lang === "es" ? city.heroAlt?.es : city.heroAlt?.en) || city.heroAlt?.en || city.name;
+  const tagline = (lang === "es" ? city.tagline?.es : city.tagline?.en) || city.tagline?.en || city.tagline;
 
   return (
     <motion.div
+      className="h-full"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-80px" }}
@@ -50,9 +69,9 @@ export default function CityCard({ city, index = 0, lang = "en", region, signals
     >
       <Link
         to={`/your-mexico/${city.id}`}
-        className="group block overflow-hidden border border-zinc-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
+        className="group flex h-full flex-col overflow-hidden border border-zinc-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
       >
-        <div className="aspect-[4/3] overflow-hidden">
+        <div className="aspect-[4/3] shrink-0 overflow-hidden">
           <div
             className="relative h-full w-full motion-safe:md:animate-[cinematic-drift_10s_ease-in-out_infinite]"
             style={{ animationDelay: staggerDelay }}
@@ -99,7 +118,7 @@ export default function CityCard({ city, index = 0, lang = "en", region, signals
           </div>
         </div>
 
-        <div className="p-6">
+        <div className="flex flex-1 flex-col p-6">
           <div className="flex flex-wrap items-center gap-2">
             {isRecommended && (
               <span className="border border-[#d8a15f] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#a97a3f]">
@@ -109,7 +128,7 @@ export default function CityCard({ city, index = 0, lang = "en", region, signals
             {region && <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400">{region}</span>}
           </div>
           <h3 className="mt-2 text-2xl font-light tracking-[-0.02em]">{city.name}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-zinc-600">{city.tagline}</p>
+          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-600">{tagline}</p>
           {signals && signals.length > 0 && (
             <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.12em] text-zinc-500">
               {signals.map((signal) => (
@@ -118,7 +137,7 @@ export default function CityCard({ city, index = 0, lang = "en", region, signals
             </ul>
           )}
           {city.matchReason && (
-            <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
+            <p className="mt-auto pt-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
               {city.matchReason}
             </p>
           )}

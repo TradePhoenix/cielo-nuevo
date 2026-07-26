@@ -4,14 +4,47 @@ import SEO from "./SEO";
 import ContinueYourJourney from "./ContinueYourJourney";
 import { useCinematicMotion } from "./cinematicMotion";
 
+const TEXT = {
+  en: {
+    skipToContent: "Skip to content",
+    home: "Home",
+    guides: "Guides",
+    backToGuides: "← Back To Guides",
+    ctaLabel: "Thinking About Moving To Mexico?",
+    ctaTitle: "You do not have to figure it out alone.",
+    ctaText:
+      "Path To Mexico helps individuals, couples, families, retirees, entrepreneurs, and remote workers navigate life in Mexico through trusted local resources and honest on-the-ground insight.",
+    ctaBlueprintButton: "Build My Mexico Blueprint",
+    ctaFitCallButton: "Book A Mexico Fit Call",
+    footerTagline: "A different rhythm of life.",
+    footerLine: "25 Destinations Across The Yucatán Peninsula",
+  },
+  es: {
+    skipToContent: "Saltar al contenido",
+    home: "Inicio",
+    guides: "Guías",
+    backToGuides: "← Volver A Guías",
+    ctaLabel: "¿Piensas Mudarte A México?",
+    ctaTitle: "No tienes que resolverlo solo.",
+    ctaText:
+      "Path To Mexico ayuda a personas, parejas, familias, jubilados, emprendedores y trabajadores remotos a navegar la vida en México a través de recursos locales de confianza e ideas honestas sobre el terreno.",
+    ctaBlueprintButton: "Construir Mi Mexico Blueprint",
+    ctaFitCallButton: "Agendar Una Llamada De Compatibilidad",
+    footerTagline: "Un ritmo de vida diferente.",
+    footerLine: "25 Destinos En La Península De Yucatán",
+  },
+};
+
 function ArticleLayout({
   category,
   title,
   description,
-  children
+  children,
+  lang = "en",
 }) {
   const location = useLocation();
   const prefersReducedMotion = useCinematicMotion();
+  const t = TEXT[lang] || TEXT.en;
 
   return (
     <main className="min-h-screen bg-[#f4f0e8] text-zinc-950">
@@ -19,7 +52,7 @@ function ArticleLayout({
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-white focus:px-5 focus:py-3 focus:text-xs focus:font-semibold focus:uppercase focus:tracking-[0.2em] focus:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
       >
-        Skip to content
+        {t.skipToContent}
       </a>
       <SEO title={title} description={description} path={location.pathname} />
 
@@ -32,8 +65,8 @@ function ArticleLayout({
         </Link>
 
         <div className="flex items-center gap-6 text-[10px] uppercase tracking-[0.25em] text-white/50">
-          <Link to="/">Home</Link>
-          <Link to="/guides">Guides</Link>
+          <Link to="/">{t.home}</Link>
+          <Link to="/guides">{t.guides}</Link>
         </div>
       </nav>
 
@@ -48,7 +81,7 @@ function ArticleLayout({
             to="/guides"
             className="mb-10 inline-block text-xs uppercase tracking-[0.28em] text-white/45 transition hover:text-white"
           >
-            ← Back To Guides
+            {t.backToGuides}
           </Link>
 
           <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
@@ -70,21 +103,19 @@ function ArticleLayout({
 
           {children}
 
-          <ContinueYourJourney currentHref={location.pathname} />
+          <ContinueYourJourney currentHref={location.pathname} lang={lang} />
 
           <div className="mt-14 border border-zinc-300 bg-white p-8 text-center">
             <p className="mb-4 text-xs uppercase tracking-[0.3em] text-zinc-500">
-              Thinking About Moving To Mexico?
+              {t.ctaLabel}
             </p>
 
             <h2 className="mx-auto mb-5 max-w-2xl text-3xl font-light tracking-[-0.04em] md:text-5xl">
-              You do not have to figure it out alone.
+              {t.ctaTitle}
             </h2>
 
             <p className="mx-auto mb-8 max-w-2xl leading-relaxed text-zinc-600">
-              Path To Mexico helps individuals, couples, families, retirees,
-              entrepreneurs, and remote workers navigate life in Mexico
-              through trusted local resources and honest on-the-ground insight.
+              {t.ctaText}
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -92,13 +123,13 @@ function ArticleLayout({
                 to="/my-mexico-blueprint"
                 className="inline-block bg-zinc-950 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#d8a15f]"
               >
-                Build My Mexico Blueprint
+                {t.ctaBlueprintButton}
               </Link>
               <Link
                 to="/mexico-fit-call"
                 className="inline-block border border-zinc-950 px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-zinc-950 hover:text-white"
               >
-                Book A Mexico Fit Call
+                {t.ctaFitCallButton}
               </Link>
             </div>
           </div>
@@ -112,11 +143,11 @@ function ArticleLayout({
         </p>
 
         <p className="mt-6 italic text-zinc-400">
-          A different rhythm of life.
+          {t.footerTagline}
         </p>
 
         <p className="mt-6 text-zinc-600">
-          25 Destinations Across The Yucatán Peninsula
+          {t.footerLine}
         </p>
       </footer>
 

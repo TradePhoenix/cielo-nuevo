@@ -16,36 +16,41 @@ export const PTM_SCORE_FACTORS = [
   {
     key: "infrastructure",
     label: "Infrastructure & Connectivity",
+    labelEs: "Infraestructura Y Conectividad",
     description: "Road access, utilities, and internet reliability for daily life and remote work.",
   },
   {
     key: "healthcare",
     label: "Healthcare Access",
+    labelEs: "Acceso A Salud",
     description: "Proximity and quality of medical care, from routine visits to real emergencies.",
   },
   {
     key: "community",
     label: "Community & Integration",
+    labelEs: "Comunidad E Integración",
     description: "How readily newcomers can build both local and expat community ties.",
   },
   {
     key: "livability",
     label: "Long-Term Livability",
+    labelEs: "Habitabilidad A Largo Plazo",
     description: "Day-to-day sustainability — cost stability, services, and resilience to development pressure.",
   },
   {
     key: "readiness",
     label: "Readiness For Newcomers",
+    labelEs: "Preparación Para Recién Llegados",
     description: "How much local support and orientation infrastructure already exists versus how much self-sufficiency the move demands.",
   },
 ];
 
 const TIERS = [
-  { min: 4.5, label: "Highly Established" },
-  { min: 3.5, label: "Well-Established" },
-  { min: 2.5, label: "Developing Steadily" },
-  { min: 1.5, label: "Early-Stage" },
-  { min: 0, label: "Frontier" },
+  { min: 4.5, key: "highlyEstablished", label: "Highly Established", labelEs: "Altamente Establecido" },
+  { min: 3.5, key: "wellEstablished", label: "Well-Established", labelEs: "Bien Establecido" },
+  { min: 2.5, key: "developingSteadily", label: "Developing Steadily", labelEs: "En Desarrollo Constante" },
+  { min: 1.5, key: "earlyStage", label: "Early-Stage", labelEs: "Etapa Temprana" },
+  { min: 0, key: "frontier", label: "Frontier", labelEs: "Frontera" },
 ];
 
 export function computePtmScore(factors) {
@@ -55,8 +60,8 @@ export function computePtmScore(factors) {
   if (values.length === 0) return null;
 
   const overall = Math.round((values.reduce((sum, n) => sum + n, 0) / values.length) * 10) / 10;
-  const tier = TIERS.find((t) => overall >= t.min)?.label || "Frontier";
-  return { overall, tier };
+  const matchedTier = TIERS.find((t) => overall >= t.min) || TIERS[TIERS.length - 1];
+  return { overall, tier: matchedTier.label, tierEs: matchedTier.labelEs };
 }
 
 export const PTM_SCORE_METHODOLOGY_NOTE =

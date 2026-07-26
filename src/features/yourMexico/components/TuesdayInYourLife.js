@@ -1,13 +1,19 @@
 import CitySection from "./CitySection";
 
+const TEXT = {
+  en: { eyebrow: "A Tuesday In Your New Life", title: (name) => `An ordinary day in ${name}` },
+  es: { eyebrow: "Un Martes En Tu Nueva Vida", title: (name) => `Un día común en ${name}` },
+};
+
 // Deliberately an ordinary weekday, not a highlight reel — the goal is a
 // visitor picturing routine life here, not a vacation.
-export default function TuesdayInYourLife({ city }) {
+export default function TuesdayInYourLife({ city, lang = "en" }) {
   const beats = city.tuesdayInYourLife;
   if (!beats || beats.length === 0) return null;
+  const t = TEXT[lang] || TEXT.en;
 
   return (
-    <CitySection eyebrow="A Tuesday In Your New Life" title={`An ordinary day in ${city.name}`}>
+    <CitySection eyebrow={t.eyebrow} title={t.title(city.name)}>
       <div className="grid gap-8 sm:grid-cols-3">
         {beats.map((beat) => (
           <div key={beat.time}>
