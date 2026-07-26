@@ -4,7 +4,7 @@ import CityCard from "./CityCard";
 // Always offers somewhere to go next — the visitor's other matches in their
 // existing personalized order, or (for a direct visit with no completed
 // Blueprint) the other two cities unranked. Reuses CityCard as-is.
-export default function KeepExploring({ cities, personalized }) {
+export default function KeepExploring({ cities, personalized, lang = "en" }) {
   if (!cities || cities.length === 0) return null;
 
   return (
@@ -14,7 +14,7 @@ export default function KeepExploring({ cities, personalized }) {
     >
       <div className="grid gap-8 sm:grid-cols-2">
         {cities.map((city, index) => (
-          <CityCard key={city.id} city={city} index={index} />
+          <CityCard key={city.id} city={city} index={index} lang={lang} />
         ))}
       </div>
     </CitySection>

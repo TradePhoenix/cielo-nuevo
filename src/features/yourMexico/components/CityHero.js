@@ -28,8 +28,8 @@ import { getRegionIdForCity } from "../data/atlasGroups";
 // collide on; back to the original side-by-side single row at sm: and up,
 // with inset-x-10 + justify-between reproducing the exact prior left-10/
 // right-10 corner positions pixel-for-pixel.
-export default function CityHero({ city, backTo, backLabel }) {
-  const heroAlt = city.heroAlt?.en || city.name;
+export default function CityHero({ city, backTo, backLabel, lang = "en" }) {
+  const heroAlt = (lang === "es" ? city.heroAlt?.es : city.heroAlt?.en) || city.heroAlt?.en || city.name;
 
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-auto sm:h-[60vh] sm:min-h-[420px]">
@@ -56,7 +56,7 @@ export default function CityHero({ city, backTo, backLabel }) {
         ) : city.heroImage ? (
           <img src={city.heroImage} alt={city.name} className="absolute inset-0 h-full w-full object-cover" />
         ) : (
-          <DestinationImageFallback name={city.name} regionId={getRegionIdForCity(city.id)} />
+          <DestinationImageFallback name={city.name} regionId={getRegionIdForCity(city.id)} lang={lang} />
         )}
       </div>
       <div

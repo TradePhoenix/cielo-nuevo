@@ -74,7 +74,7 @@ export default function CityDetailPage() {
 
   return (
     <YourMexicoShell
-      hero={<CityHero city={displayCity} backTo="/your-mexico" backLabel="Back To Your Top Matches" />}
+      hero={<CityHero city={displayCity} backTo="/your-mexico" backLabel="Back To Your Top Matches" lang={lang} />}
     >
       <SEO
         title={`${city.name} — Your Mexico`}
@@ -107,7 +107,7 @@ export default function CityDetailPage() {
       <DestinationFAQ city={displayCity} />
       {hasCompletedBlueprint && <PlanEntryCTA city={city} />}
       <MidPageCTA cityName={city.name} cityId={city.id} />
-      <KeepExploring cities={sameRegionFirst} personalized={hasCompletedBlueprint} />
+      <KeepExploring cities={sameRegionFirst} personalized={hasCompletedBlueprint} lang={lang} />
 
       <CitySection eyebrow="Compare Your Matches" title="How your matches stack up">
         <CompareYourMatches cities={allCities} />

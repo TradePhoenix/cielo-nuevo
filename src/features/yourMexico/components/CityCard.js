@@ -84,7 +84,7 @@ export default function CityCard({ city, index = 0, lang = "en", region, signals
                 className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
               />
             ) : (
-              <DestinationImageFallback name={city.name} regionId={getRegionIdForCity(city.id)} />
+              <DestinationImageFallback name={city.name} regionId={getRegionIdForCity(city.id)} lang={lang} />
             )}
             <div
               aria-hidden="true"

@@ -41,7 +41,7 @@ export default function RegionPage() {
     <YourMexicoShell
       hero={
         <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-auto sm:h-[45vh] sm:min-h-[320px]">
-          <DestinationImageFallback name={label} regionId={regionId} className="absolute inset-0" />
+          <DestinationImageFallback name={label} regionId={regionId} className="absolute inset-0" lang={lang} />
           <div className="absolute inset-x-6 top-6 flex items-center justify-between sm:inset-x-10 sm:top-10">
             <Link
               to="/your-mexico"
