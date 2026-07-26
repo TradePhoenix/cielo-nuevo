@@ -52,6 +52,8 @@ const MyMexicoBlueprintPage = lazy(() => import("./pages/MyMexicoBlueprintPage")
 const YourMexicoPage = lazy(() => import("./features/yourMexico/pages/YourMexicoPage"));
 const ComparePage = lazy(() => import("./features/yourMexico/pages/ComparePage"));
 const CityDetailPage = lazy(() => import("./features/yourMexico/pages/CityDetailPage"));
+const RegionPage = lazy(() => import("./features/yourMexico/pages/RegionPage"));
+const YucatanPeninsulaGuidePage = lazy(() => import("./pages/YucatanPeninsulaGuidePage"));
 const MyMexicoPlanSetupPage = lazy(() => import("./features/myMexicoPlan/pages/MyMexicoPlanSetupPage"));
 const MyMexicoPlanPage = lazy(() => import("./features/myMexicoPlan/pages/MyMexicoPlanPage"));
 const DashboardPage = lazy(() => import("./features/dashboard/pages/DashboardPage"));
@@ -123,7 +125,9 @@ function AnimatedRoutes() {
           <Route path="/my-mexico-blueprint" element={<MyMexicoBlueprintPage />} />
           <Route path="/your-mexico" element={<YourMexicoPage />} />
           <Route path="/your-mexico/compare" element={<ComparePage />} />
+          <Route path="/your-mexico/region/:regionId" element={<RegionPage />} />
           <Route path="/your-mexico/:cityId" element={<CityDetailPage />} />
+          <Route path="/guides/living-in-the-yucatan-peninsula" element={<YucatanPeninsulaGuidePage />} />
           <Route path="/my-mexico-plan" element={<MyMexicoPlanSetupPage />} />
           <Route path="/my-mexico-plan/:cityId" element={<MyMexicoPlanPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />

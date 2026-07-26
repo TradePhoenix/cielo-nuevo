@@ -106,4 +106,123 @@ export const CITY_PROFILES = [
     teaser: "An inland Puuc-region village built around living Maya and Yucatecan culture — not a beach destination, and proud of it.",
     guideLink: "/guides/moving-to-santa-elena",
   },
+  // DEST-003 — 14 new destinations completing the Yucatán Peninsula library
+  // (25 total). guideLink points to each city's own City Detail page
+  // (/your-mexico/<id>) rather than a separate /guides/moving-to-<id>
+  // article: that per-destination article pattern requires one hand-built
+  // page component + manual route per guide (see App.js's 27 individual
+  // /guides/* routes) with no dynamic route, and this file's own header
+  // comment requires guideLink to resolve to "real, substantial content"
+  // rather than a dead end. The City Detail page already IS the full
+  // destination guide (see cityDetails.js's DEST-003 entries) — pointing
+  // guideLink at a second, thinner article would either duplicate that
+  // content or under-deliver on the "real, substantial content" promise.
+  // Tags reuse the exact existing vocabulary only, no new tags added.
+  //
+  // Region assignment (see atlasGroups.js REGION_GROUPS) follows the same
+  // methodology already established there: each city's own regional
+  // identity as stated in its cityDetails.js content, not an invented
+  // classification. Sisal/Telchac Puerto stay in Gulf Coast (accessible,
+  // established) while Celestún/Dzilam de Bravo move to Hidden Gems
+  // alongside El Cuyo/Río Lagartos (remote, nature-first, off the main
+  // Progreso corridor) — a reclassification of existing cities' *region*
+  // only, not their Blueprint tags/matching behavior, which are unchanged.
+  {
+    id: "puerto-morelos",
+    name: "Puerto Morelos",
+    tags: ["beach", "quiet", "comfortable", "budgetConscious", "remoteWork"],
+    teaser: "A protected-reef fishing town between Cancún and Playa del Carmen — smaller, calmer, and deliberately less built-up than its neighbors.",
+    guideLink: "/your-mexico/puerto-morelos",
+  },
+  {
+    id: "cozumel",
+    name: "Cozumel",
+    tags: ["beach", "premium", "retirement", "exploratory", "comfortable"],
+    teaser: "An island apart — literally — with a slower island rhythm, world-class diving, and a real year-round community distinct from the mainland coast.",
+    guideLink: "/your-mexico/cozumel",
+  },
+  {
+    id: "bacalar",
+    name: "Bacalar",
+    tags: ["quiet", "natureFirst", "exploratory", "budgetConscious", "remote"],
+    teaser: "Built entirely around its famous seven-color lagoon — a small, laid-back town for people who want nature first and nightlife never.",
+    guideLink: "/your-mexico/bacalar",
+  },
+  {
+    id: "mahahual",
+    name: "Mahahual",
+    tags: ["beach", "remote", "exploratory", "natureFirst", "frontier"],
+    teaser: "A tiny Costa Maya beach village hours south of the Riviera Maya crowds — genuinely undeveloped, genuinely quiet.",
+    guideLink: "/your-mexico/mahahual",
+  },
+  {
+    id: "akumal",
+    name: "Akumal",
+    tags: ["beach", "quiet", "premium", "natureFirst"],
+    teaser: "A small, protected bay between Playa del Carmen and Tulum, known for its sea turtles and a noticeably calmer pace than either neighbor.",
+    guideLink: "/your-mexico/akumal",
+  },
+  {
+    id: "cancun",
+    name: "Cancún",
+    tags: ["urban", "budgetConscious", "family"],
+    teaser: "The region's real infrastructure hub — separate from the tourist Hotel Zone, El Centro is where residents actually live, work, and rely on the peninsula's biggest airport.",
+    guideLink: "/your-mexico/cancun",
+  },
+  {
+    id: "valladolid",
+    name: "Valladolid",
+    tags: ["heritage", "budgetConscious", "remoteWork", "exploratory", "comfortable"],
+    teaser: "A colonial Pueblo Mágico squarely between Mérida and the Caribbean coast — increasingly popular with remote workers who want culture and connectivity together.",
+    guideLink: "/your-mexico/valladolid",
+  },
+  {
+    id: "izamal",
+    name: "Izamal",
+    tags: ["quiet", "heritage", "exploratory", "budgetConscious"],
+    teaser: "The \"Yellow City\" — a small, deeply Maya and colonial Pueblo Mágico built for people who want culture and quiet over beach or bustle.",
+    guideLink: "/your-mexico/izamal",
+  },
+  {
+    id: "tekax",
+    name: "Tekax",
+    tags: ["exploratory", "remote", "budgetConscious", "frontier"],
+    teaser: "A working agricultural town in the Puuc region's south — genuinely local, genuinely quiet, and not built with visitors in mind.",
+    guideLink: "/your-mexico/tekax",
+  },
+  {
+    id: "tizimin",
+    name: "Tizimín",
+    tags: ["quiet", "budgetConscious", "family", "remote", "frontier"],
+    teaser: "A working cattle-ranching hub in the state's north — practical rather than picturesque, and the real supply town for the coast nearby.",
+    guideLink: "/your-mexico/tizimin",
+  },
+  {
+    id: "chelem",
+    name: "Chelem",
+    tags: ["beach", "quiet", "budgetConscious", "comfortable", "exploratory"],
+    teaser: "A small, quiet beach community just west of Progreso — a slower, more residential alternative on the same stretch of Gulf coast.",
+    guideLink: "/your-mexico/chelem",
+  },
+  {
+    id: "chuburna-puerto",
+    name: "Chuburná Puerto",
+    tags: ["beach", "remote", "frontier", "quiet"],
+    teaser: "A quiet Gulf beach town further west of Progreso, with fewer services and a genuinely slower, more local pace.",
+    guideLink: "/your-mexico/chuburna-puerto",
+  },
+  {
+    id: "el-cuyo",
+    name: "El Cuyo",
+    tags: ["beach", "quiet", "natureFirst", "exploratory", "remote"],
+    teaser: "A remote fishing village on the state's northern tip, drawing a small but growing wave of people who want unspoiled coast over convenience.",
+    guideLink: "/your-mexico/el-cuyo",
+  },
+  {
+    id: "rio-lagartos",
+    name: "Río Lagartos",
+    tags: ["natureFirst", "remote", "exploratory", "frontier", "quiet"],
+    teaser: "A small fishing village on the edge of a vast flamingo-filled biosphere reserve — built around nature and little else.",
+    guideLink: "/your-mexico/rio-lagartos",
+  },
 ];

@@ -17,6 +17,8 @@ export default function Footer() {
 
           <Link to="/">Home</Link>
 
+          <Link to="/your-mexico">Your Mexico</Link>
+
           <Link to="/guides">Guides</Link>
 
           <Link to="/free-guide">Free Guide</Link>
@@ -30,7 +32,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 text-sm text-zinc-600">
-          Playa del Carmen • Tulum • Riviera Maya • Mexico
+          25 Destinations Across The Yucatán Peninsula
         </div>
 
         <div className="mt-4 text-xs text-zinc-700">

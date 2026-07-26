@@ -10,6 +10,7 @@ import SEO from "../../../components/SEO";
 import { useTopMatches } from "../hooks/useTopMatches";
 import { getAllCities } from "../logic/cityLookup";
 import { filterAtlasCities, prioritizeAtlasCities } from "../data/atlasGroups";
+import { searchDestinations } from "../data/destinationSearch";
 
 // CX-008 — Living Destination Atlas. Local EN/ES content object + toggle,
 // matching the exact established pattern GuidesPage.js already uses (no
@@ -22,9 +23,11 @@ const content = {
   en: {
     toggle: "ES",
     eyebrow: "Your Mexico",
-    title: "Eleven places to actually build a life.",
+    title: "Twenty-five places to actually build a life.",
     intro:
-      "Every destination Path To Mexico covers, in one place — coastal towns, colonial cities, and quiet corners of the Yucatán. Filter by region or lifestyle, or just start exploring.",
+      "Every destination Path To Mexico covers, in one place — coastal towns, colonial cities, and quiet corners of the Yucatán Peninsula. Search by name, or filter by region or lifestyle.",
+    searchLabel: "Search destinations",
+    searchPlaceholder: "Search by name, region, or lifestyle…",
     regionGroupLabel: "Filter by region",
     lifestyleGroupLabel: "Filter by lifestyle",
     allDestinations: "All Destinations",
@@ -41,9 +44,11 @@ const content = {
   es: {
     toggle: "EN",
     eyebrow: "Tu México",
-    title: "Once lugares para construir una vida real.",
+    title: "Veinticinco lugares para construir una vida real.",
     intro:
-      "Cada destino que cubre Path To Mexico, en un solo lugar — pueblos costeros, ciudades coloniales y rincones tranquilos de Yucatán. Filtra por región o estilo de vida, o simplemente empieza a explorar.",
+      "Cada destino que cubre Path To Mexico, en un solo lugar — pueblos costeros, ciudades coloniales y rincones tranquilos de la Península de Yucatán. Busca por nombre, o filtra por región o estilo de vida.",
+    searchLabel: "Buscar destinos",
+    searchPlaceholder: "Busca por nombre, región o estilo de vida…",
     regionGroupLabel: "Filtrar por región",
     lifestyleGroupLabel: "Filtrar por estilo de vida",
     allDestinations: "Todos Los Destinos",
@@ -63,6 +68,7 @@ export default function YourMexicoPage() {
   const [lang, setLang] = useState("en");
   const [regionId, setRegionId] = useState("all");
   const [lifestyleIds, setLifestyleIds] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const t = content[lang];
 
   const { hasCompletedBlueprint, matches } = useTopMatches();
@@ -77,8 +83,8 @@ export default function YourMexicoPage() {
     [allCities, matchedIds]
   );
   const filteredCities = useMemo(
-    () => filterAtlasCities(orderedCities, { regionId, lifestyleIds }),
-    [orderedCities, regionId, lifestyleIds]
+    () => searchDestinations(filterAtlasCities(orderedCities, { regionId, lifestyleIds }), searchQuery),
+    [orderedCities, regionId, lifestyleIds, searchQuery]
   );
 
   function toggleLifestyle(filterId) {
@@ -90,13 +96,14 @@ export default function YourMexicoPage() {
   function resetFilters() {
     setRegionId("all");
     setLifestyleIds([]);
+    setSearchQuery("");
   }
 
   return (
     <YourMexicoShell>
       <SEO
         title="Your Mexico — Living Destination Atlas"
-        description="Explore all eleven Path To Mexico destinations — coastal towns, colonial cities, and quiet corners of the Yucatán — filtered by region or lifestyle."
+        description="Explore all 25 Path To Mexico destinations across the Yucatán Peninsula — coastal towns, colonial cities, and quiet corners — searchable and filterable by region or lifestyle."
         path="/your-mexico"
       />
 
@@ -128,6 +135,20 @@ export default function YourMexicoPage() {
         </div>
       )}
 
+      <div className="mt-8 max-w-md">
+        <label htmlFor="destination-search" className="sr-only">
+          {t.searchLabel}
+        </label>
+        <input
+          id="destination-search"
+          type="search"
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          placeholder={t.searchPlaceholder}
+          className="w-full border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
+        />
+      </div>
+
       <AtlasFilters
         t={t}
         lang={lang}
@@ -138,6 +159,7 @@ export default function YourMexicoPage() {
         onReset={resetFilters}
         resultCount={filteredCities.length}
         totalCount={allCities.length}
+        hasSearchQuery={Boolean(searchQuery.trim())}
       />
 
       <AtlasGrid

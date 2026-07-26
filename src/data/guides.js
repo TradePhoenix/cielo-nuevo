@@ -168,6 +168,13 @@ export const GUIDES = [
     category: "Relocation",
   },
   {
+    title: "The Complete Guide to Living in the Yucatán Peninsula",
+    description:
+      "How to choose between all four Yucatán Peninsula regions Path To Mexico covers, and what responsible relocation here actually looks like.",
+    href: "/guides/living-in-the-yucatan-peninsula",
+    category: "Relocation",
+  },
+  {
     title: "Canada to Mexico Relocation",
     description:
       "Residency, healthcare, banking, taxes, lifestyle, and what Canadians should know before moving.",

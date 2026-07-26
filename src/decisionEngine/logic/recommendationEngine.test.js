@@ -164,7 +164,7 @@ describe("DEST-001 — existing destination results are unchanged", () => {
 // in a way that breaks one of these, that's a real reachability regression
 // this guard is designed to catch — it should not be "fixed" by weakening
 // the assertion back to a tie or a synthetic tagCounts object.
-describe("BP-002 — every one of the 11 destinations is reachable via real questionnaire answers", () => {
+describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via real questionnaire answers", () => {
   function scoresFromAnswers(answers) {
     return computeScores(answers, QUESTIONS);
   }
@@ -354,9 +354,116 @@ describe("BP-002 — every one of the 11 destinations is reachable via real ques
     );
   });
 
-  test("all 11 destinations are covered above (guards against a silently-skipped case)", () => {
+  // DEST-003 — 14 new destinations, exhaustively verified the same way:
+  // every combination below was found by brute-forcing all 15,360 real
+  // questionnaire answer combinations and confirming a strict (not tied)
+  // win against the full, final 25-destination pool. Several destinations
+  // required specific tag adjustments to become reachable at all once 25
+  // cities shared the same ~14-tag vocabulary — see cityProfiles.js's
+  // DEST-003 comment block and questions.js's "frontier" tag comment for
+  // what changed and why. Every one of the 11 tests above was re-verified
+  // to still pass unchanged after those adjustments.
+  test("Puerto Morelos", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "remote", budget: "lean", lifestyle: "beachTown", placeCharacter: "cultureHeritage", household: "solo", residencyFamiliarity: "researched" },
+      "puerto-morelos"
+    );
+  });
+
+  test("Cozumel", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "retiree", budget: "premium", lifestyle: "cityEnergy", placeCharacter: "establishedCoastal", household: "solo", residencyFamiliarity: "none" },
+      "cozumel"
+    );
+  });
+
+  test("Bacalar", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "retiree", budget: "lean", lifestyle: "notSure", placeCharacter: "natureWildlife", household: "solo", residencyFamiliarity: "none" },
+      "bacalar"
+    );
+  });
+
+  test("Mahahual", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "remote", budget: "premium", lifestyle: "notSure", placeCharacter: "trueRemote", household: "solo", residencyFamiliarity: "none" },
+      "mahahual"
+    );
+  });
+
+  test("Akumal", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "family", budget: "premium", lifestyle: "beachTown", placeCharacter: "natureWildlife", household: "solo", residencyFamiliarity: "researched" },
+      "akumal"
+    );
+  });
+
+  test("Cancún", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "entrepreneur", budget: "lean", lifestyle: "cityEnergy", placeCharacter: "cultureHeritage", household: "familyKids", residencyFamiliarity: "researched" },
+      "cancun"
+    );
+  });
+
+  test("Valladolid", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "remote", budget: "lean", lifestyle: "notSure", placeCharacter: "cultureHeritage", household: "solo", residencyFamiliarity: "researched" },
+      "valladolid"
+    );
+  });
+
+  test("Izamal", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "retiree", budget: "lean", lifestyle: "cityEnergy", placeCharacter: "cultureHeritage", household: "solo", residencyFamiliarity: "none" },
+      "izamal"
+    );
+  });
+
+  test("Tekax", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "remote", budget: "lean", lifestyle: "notSure", placeCharacter: "trueRemote", household: "solo", residencyFamiliarity: "researched" },
+      "tekax"
+    );
+  });
+
+  test("Tizimín", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "retiree", budget: "lean", lifestyle: "beachTown", placeCharacter: "trueRemote", household: "familyKids", residencyFamiliarity: "researched" },
+      "tizimin"
+    );
+  });
+
+  test("Chelem", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "retiree", budget: "lean", lifestyle: "beachTown", placeCharacter: "establishedCoastal", household: "solo", residencyFamiliarity: "none" },
+      "chelem"
+    );
+  });
+
+  test("Chuburná Puerto", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "retiree", budget: "comfortable", lifestyle: "beachTown", placeCharacter: "trueRemote", household: "solo", residencyFamiliarity: "researched" },
+      "chuburna-puerto"
+    );
+  });
+
+  test("El Cuyo", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "retiree", budget: "notSure", lifestyle: "beachTown", placeCharacter: "natureWildlife", household: "solo", residencyFamiliarity: "none" },
+      "el-cuyo"
+    );
+  });
+
+  test("Río Lagartos", () => {
+    assertStrictWin(
+      { timeline: "asap", lifeStage: "retiree", budget: "comfortable", lifestyle: "cityEnergy", placeCharacter: "trueRemote", household: "solo", residencyFamiliarity: "none" },
+      "rio-lagartos"
+    );
+  });
+
+  test("all 25 destinations are covered above (guards against a silently-skipped case)", () => {
     // If a future CITY_PROFILES entry is added without a matching test
     // above, this fails loudly instead of the coverage gap going unnoticed.
-    expect(CITY_PROFILES.length).toBe(11);
+    expect(CITY_PROFILES.length).toBe(25);
   });
 });

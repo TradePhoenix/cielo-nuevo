@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { entryReveal, entryRevealReduced, useCinematicMotion, HEARTBEAT } from "../../../components/cinematicMotion";
+import DestinationImageFallback from "./DestinationImageFallback";
+import { getRegionIdForCity } from "../data/atlasGroups";
 
 // Your Top Matches gallery card — always represents one of the visitor's
 // own matched cities, never a generic "browse all cities" tile.
@@ -74,13 +76,15 @@ export default function CityCard({ city, index = 0, lang = "en", region, signals
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
               </picture>
-            ) : (
+            ) : city.heroImage ? (
               <img
                 src={city.heroImage}
                 alt={heroAlt}
                 loading="lazy"
                 className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
               />
+            ) : (
+              <DestinationImageFallback name={city.name} regionId={getRegionIdForCity(city.id)} />
             )}
             <div
               aria-hidden="true"

@@ -3,46 +3,72 @@
 // CITY_PROFILES/CITY_DETAILS) — this file only ever consumes that already-
 // merged city shape, it never reads the raw data sources itself.
 //
-// REGION_GROUPS is not a new data field on any city — it's a small, fixed
-// mapping derived from facts every affected city's own cityDetails.js
-// content already states in plain language (Caribbean Sea / Gulf coast /
-// inland, no sea breeze). Nothing here asserts a geographic relationship
-// that isn't already written into the destination's own published content:
-//   - Caribbean Coast: Playa del Carmen, Tulum, Riviera Maya — Quintana Roo's
-//     Caribbean side (see e.g. each city's own tagline/heroAlt referencing
-//     the Caribbean Sea).
-//   - Yucatán Gulf Coast: Progreso, Chicxulub Puerto, Telchac Puerto,
-//     Celestún, Sisal, Dzilam de Bravo — all explicitly Gulf-coast towns in
-//     their own honestTruth/lifestyleSnapshot text ("Gulf breeze", "Gulf
-//     coast climate").
-//   - Inland & Culture: Mérida, Santa Elena — the only two destinations on
-//     the site that are not coastal at all (Mérida's own cityDetails.js
-//     note: "inland... less sea breeze"; Santa Elena's: "no sea breeze at
-//     all").
+// DEST-003 — REGION_GROUPS rewritten from 3 groups (11 destinations) to the
+// locked 4-region taxonomy (25 destinations). This supersedes the old
+// Caribbean Coast / Yucatán Gulf Coast / Inland & Culture scheme entirely —
+// those ids no longer exist. Every one of the original 11 destinations is
+// reassigned below; none are dropped, and this is a *region* reassignment
+// only — Blueprint tags/matching (cityProfiles.js) are untouched.
+//
+// Still not a new data field on any city — a small, fixed, hand-maintained
+// mapping, same as before, following the same "already stated in the
+// destination's own content" methodology:
+//   - Riviera Maya & Caribbean: the Quintana Roo Caribbean coast, from the
+//     original three through the six DEST-003 additions (Puerto Morelos,
+//     Cozumel, Bacalar, Mahahual, Akumal, Cancún).
+//   - Yucatán Interior: inland, non-coastal, cultural destinations — Mérida
+//     and Santa Elena plus DEST-003's Valladolid, Izamal, Tekax, Tizimín.
+//   - Gulf Coast: the established, accessible Yucatán Gulf towns — Progreso,
+//     Chicxulub Puerto, Telchac Puerto and Sisal (all explicitly describe
+//     "real infrastructure"/"easy trip to Mérida" in their own content) plus
+//     DEST-003's Chelem and Chuburná Puerto, both on the same corridor.
+//   - Hidden Gems: the remote, nature-first, off-the-main-corridor towns —
+//     Celestún and Dzilam de Bravo (both already describe themselves as
+//     "the most remote"/"unhurried" in their own honestTruth text) move here
+//     from the old Gulf Coast grouping, joined by DEST-003's El Cuyo and
+//     Río Lagartos.
 export const REGION_GROUPS = [
   {
-    id: "caribbean-coast",
-    labelEn: "Caribbean Coast",
-    labelEs: "Costa Caribe",
-    descriptionEn: "Quintana Roo's Caribbean Sea towns.",
-    descriptionEs: "Los pueblos de Quintana Roo sobre el mar Caribe.",
-    cityIds: ["playa-del-carmen", "tulum", "riviera-maya"],
+    id: "riviera-maya-caribbean",
+    labelEn: "Riviera Maya & Caribbean",
+    labelEs: "Riviera Maya Y Caribe",
+    descriptionEn: "Quintana Roo's Caribbean Sea coast, from established beach towns to a quiet island and a lagoon town inland.",
+    descriptionEs: "La costa caribeña de Quintana Roo, desde pueblos de playa establecidos hasta una isla tranquila y un pueblo de laguna en el interior.",
+    cityIds: [
+      "playa-del-carmen",
+      "tulum",
+      "riviera-maya",
+      "puerto-morelos",
+      "cozumel",
+      "bacalar",
+      "mahahual",
+      "akumal",
+      "cancun",
+    ],
   },
   {
-    id: "yucatan-gulf-coast",
-    labelEn: "Yucatán Gulf Coast",
-    labelEs: "Costa del Golfo de Yucatán",
-    descriptionEn: "The Gulf towns near Mérida, from established to secluded.",
-    descriptionEs: "Los pueblos del Golfo cerca de Mérida, de establecidos a apartados.",
-    cityIds: ["progreso", "chicxulub-puerto", "telchac-puerto", "celestun", "sisal", "dzilam-de-bravo"],
+    id: "yucatan-interior",
+    labelEn: "Yucatán Interior",
+    labelEs: "Interior De Yucatán",
+    descriptionEn: "Inland colonial cities and villages built around culture, not beaches.",
+    descriptionEs: "Ciudades y pueblos coloniales del interior, construidos alrededor de la cultura, no de la playa.",
+    cityIds: ["merida", "santa-elena", "valladolid", "izamal", "tekax", "tizimin"],
   },
   {
-    id: "inland-culture",
-    labelEn: "Inland & Culture",
-    labelEs: "Interior Y Cultura",
-    descriptionEn: "Mérida and Santa Elena — inland, cultural, not beach destinations.",
-    descriptionEs: "Mérida y Santa Elena — destinos del interior y culturales, no de playa.",
-    cityIds: ["merida", "santa-elena"],
+    id: "gulf-coast",
+    labelEn: "Gulf Coast",
+    labelEs: "Costa Del Golfo",
+    descriptionEn: "The established, accessible Gulf towns near Mérida.",
+    descriptionEs: "Los pueblos establecidos y accesibles del Golfo cerca de Mérida.",
+    cityIds: ["progreso", "chicxulub-puerto", "telchac-puerto", "sisal", "chelem", "chuburna-puerto"],
+  },
+  {
+    id: "hidden-gems",
+    labelEn: "Hidden Gems",
+    labelEs: "Joyas Escondidas",
+    descriptionEn: "Remote, nature-first towns off the main coastal corridor.",
+    descriptionEs: "Pueblos remotos y centrados en la naturaleza, fuera del corredor costero principal.",
+    cityIds: ["celestun", "dzilam-de-bravo", "el-cuyo", "rio-lagartos"],
   },
 ];
 

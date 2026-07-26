@@ -37,7 +37,7 @@ describe("REGION_GROUPS covers every real destination exactly once", () => {
   });
 
   test("getRegionGroup resolves a real region id and returns null for an invalid one", () => {
-    expect(getRegionGroup("caribbean-coast")).not.toBeNull();
+    expect(getRegionGroup("riviera-maya-caribbean")).not.toBeNull();
     expect(getRegionGroup("nonexistent")).toBeNull();
   });
 });
@@ -60,8 +60,10 @@ describe("filterAtlasCities — region + lifestyle combine predictably", () => {
   });
 
   test("a region filter returns only that region's cities", () => {
-    const result = filterAtlasCities(allCities, { regionId: "caribbean-coast", lifestyleIds: [] });
-    expect(result.map((c) => c.id).sort()).toEqual(["playa-del-carmen", "riviera-maya", "tulum"].sort());
+    const result = filterAtlasCities(allCities, { regionId: "yucatan-interior", lifestyleIds: [] });
+    expect(result.map((c) => c.id).sort()).toEqual(
+      ["merida", "santa-elena", "valladolid", "izamal", "tekax", "tizimin"].sort()
+    );
   });
 
   test("a single lifestyle filter returns only cities carrying that tag", () => {
@@ -81,24 +83,24 @@ describe("filterAtlasCities — region + lifestyle combine predictably", () => {
   });
 
   test("region + lifestyle combine together (both must match)", () => {
-    const result = filterAtlasCities(allCities, { regionId: "inland-culture", lifestyleIds: ["heritage"] });
+    const result = filterAtlasCities(allCities, { regionId: "yucatan-interior", lifestyleIds: ["heritage"] });
     result.forEach((city) => {
-      expect(["merida", "santa-elena"]).toContain(city.id);
+      expect(["merida", "santa-elena", "valladolid", "izamal", "tekax", "tizimin"]).toContain(city.id);
       expect(city.tags).toContain("heritage");
     });
   });
 
   test("an impossible combination safely returns an empty array, never throws", () => {
-    // Santa Elena/Mérida (inland-culture) never carry "beach".
+    // Yucatán Interior destinations never carry "beach".
     expect(() =>
-      filterAtlasCities(allCities, { regionId: "inland-culture", lifestyleIds: ["beach"] })
+      filterAtlasCities(allCities, { regionId: "yucatan-interior", lifestyleIds: ["beach"] })
     ).not.toThrow();
-    const result = filterAtlasCities(allCities, { regionId: "inland-culture", lifestyleIds: ["beach"] });
+    const result = filterAtlasCities(allCities, { regionId: "yucatan-interior", lifestyleIds: ["beach"] });
     expect(result).toEqual([]);
   });
 
   test("resetting to {regionId: 'all', lifestyleIds: []} is equivalent to no filtering at all", () => {
-    const filtered = filterAtlasCities(allCities, { regionId: "yucatan-gulf-coast", lifestyleIds: ["quiet"] });
+    const filtered = filterAtlasCities(allCities, { regionId: "gulf-coast", lifestyleIds: ["quiet"] });
     expect(filtered.length).toBeLessThan(allCities.length);
 
     const reset = filterAtlasCities(allCities, { regionId: "all", lifestyleIds: [] });
@@ -134,10 +136,10 @@ describe("prioritizeAtlasCities — Blueprint-aware ordering without re-scoring"
   });
 });
 
-describe("all 11 destinations are reachable through the Atlas's own data path", () => {
+describe("all 25 destinations are reachable through the Atlas's own data path", () => {
   test("getAllCities() × REGION_GROUPS × LIFESTYLE_FILTERS never lose a destination", () => {
     const allCities = getAllCities();
-    expect(allCities.length).toBe(11);
+    expect(allCities.length).toBe(25);
     allCities.forEach((city) => {
       const inSomeRegion = REGION_GROUPS.some((group) => group.cityIds.includes(city.id));
       expect(inSomeRegion).toBe(true);

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { REGION_GROUPS, LIFESTYLE_FILTERS } from "../data/atlasGroups";
 
 const CHIP_BASE =
@@ -23,12 +24,14 @@ export default function AtlasFilters({
   onReset,
   resultCount,
   totalCount,
+  hasSearchQuery = false,
 }) {
-  const hasActiveFilters = (regionId && regionId !== "all") || lifestyleIds.length > 0;
+  const hasActiveFilters = (regionId && regionId !== "all") || lifestyleIds.length > 0 || hasSearchQuery;
+  const activeRegionGroup = regionId && regionId !== "all" ? REGION_GROUPS.find((group) => group.id === regionId) : null;
 
   return (
     <div className="mt-12">
-      <div role="group" aria-label={t.regionGroupLabel} className="flex flex-wrap gap-2">
+      <div role="group" aria-label={t.regionGroupLabel} className="flex flex-wrap items-center gap-2">
         <button
           type="button"
           aria-pressed={!regionId || regionId === "all"}
@@ -48,6 +51,14 @@ export default function AtlasFilters({
             {lang === "es" ? group.labelEs : group.labelEn}
           </button>
         ))}
+        {activeRegionGroup && (
+          <Link
+            to={`/your-mexico/region/${activeRegionGroup.id}`}
+            className="text-xs font-semibold uppercase tracking-[0.15em] text-zinc-500 underline underline-offset-4 transition hover:text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
+          >
+            {lang === "es" ? "Ver Guía Completa De La Región →" : "View Full Region Guide →"}
+          </Link>
+        )}
       </div>
 
       <div role="group" aria-label={t.lifestyleGroupLabel} className="mt-4 flex flex-wrap gap-2">

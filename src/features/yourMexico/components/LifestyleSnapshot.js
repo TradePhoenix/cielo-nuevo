@@ -7,6 +7,8 @@ const CATEGORIES = [
   { key: "walkability", label: "Walkability" },
   { key: "internet", label: "Internet Reliability" },
   { key: "healthcare", label: "Healthcare Access" },
+  { key: "safety", label: "Safety" },
+  { key: "transportation", label: "Getting Around" },
   { key: "airportAccess", label: "Airport Access" },
   { key: "climate", label: "Climate" },
   { key: "community", label: "Community Style" },

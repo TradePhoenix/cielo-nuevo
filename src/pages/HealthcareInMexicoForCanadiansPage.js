@@ -229,7 +229,7 @@ function HealthcareInMexicoForCanadiansPage() {
       <footer className="bg-zinc-950 px-8 py-14 text-center text-sm text-zinc-500">
         <p className="text-xs uppercase tracking-[0.38em] text-zinc-200">PATH TO MEXICO</p>
         <p className="mt-6 italic text-zinc-400">A different rhythm of life.</p>
-        <p className="mt-6 text-zinc-600">Playa del Carmen • Riviera Maya • Mexico</p>
+        <p className="mt-6 text-zinc-600">25 Destinations Across The Yucatán Peninsula</p>
       </footer>
 
 

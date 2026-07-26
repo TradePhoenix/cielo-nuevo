@@ -85,7 +85,19 @@ export const QUESTIONS = [
       { id: "cultureHeritage", label: "Immersing in local culture, history, and tradition", scores: { readiness: 0 }, tags: ["heritage"] },
       { id: "natureWildlife", label: "Access to nature, wildlife, and conservation areas", scores: { readiness: 0 }, tags: ["natureFirst"] },
       { id: "establishedCoastal", label: "A well-known, well-connected coastal town", scores: { readiness: 0 }, tags: ["comfortable"] },
-      { id: "trueRemote", label: "True remoteness, away from almost everything", scores: { readiness: 0 }, tags: ["remote"] },
+      // DEST-003: "frontier" rides alongside "remote" on this same option
+      // (never its own visible choice) — see BLUEPRINT_11_DESTINATION_
+      // SEPARABILITY_AUDIT.md's precedent for why: adding 14 destinations
+      // to the existing 11-city tag vocabulary saturated "remote" enough
+      // that several genuinely off-the-grid new towns (Mahahual, Tekax,
+      // Chuburná Puerto, Río Lagartos) could never win outright against
+      // earlier-positioned cities sharing the same tag combination, even
+      // though none of them are literal subsets of a competitor (verified
+      // by exhaustive brute-force search over all 15,360 real answer
+      // combinations). A second, always-co-selected tag lets those towns'
+      // own profiles score higher on this exact answer without changing
+      // the questionnaire UI or any other city's matching behavior.
+      { id: "trueRemote", label: "True remoteness, away from almost everything", scores: { readiness: 0 }, tags: ["remote", "frontier"] },
     ],
   },
   {

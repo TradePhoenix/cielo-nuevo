@@ -65,6 +65,12 @@ const OWNERSHIP_SECTIONS = [
 // smaller, more remote Gulf towns than any DEST-001 town, plus Santa
 // Elena, an inland rural village with no rideshare/taxi infrastructure of
 // its own. None of the four get Mérida's "real city" exception.
+// DEST-003: of the 14 new destinations, Cancún (real city, rideshare
+// available, same exception as Mérida), Puerto Morelos and Cozumel
+// (walkable cores with real local infrastructure) and Valladolid (a real
+// small city with growing infrastructure, same exception as Mérida) are
+// deliberately excluded — everything else genuinely assumes driving, each
+// for its own reason documented in VEHICLE_TRANSPORTATION_REASONS below.
 const CAR_DEPENDENT_CITY_IDS = new Set([
   "riviera-maya",
   "progreso",
@@ -74,6 +80,16 @@ const CAR_DEPENDENT_CITY_IDS = new Set([
   "sisal",
   "dzilam-de-bravo",
   "santa-elena",
+  "bacalar",
+  "mahahual",
+  "akumal",
+  "izamal",
+  "tekax",
+  "tizimin",
+  "chelem",
+  "chuburna-puerto",
+  "el-cuyo",
+  "rio-lagartos",
 ]);
 
 const RELEVANCE_RULES = {
@@ -91,6 +107,16 @@ const VEHICLE_TRANSPORTATION_REASONS = {
   sisal: "Sisal's connection to Mérida and everyday errands beyond the village mostly assume you're driving.",
   "dzilam-de-bravo": "Dzilam de Bravo's remoteness means day-to-day life mostly assumes you're driving.",
   "santa-elena": "Santa Elena is an inland rural village with no local rideshare or taxi infrastructure — day-to-day life mostly assumes you're driving.",
+  bacalar: "Bacalar's lagoon-centered town means errands beyond the basics mostly assume you're driving.",
+  mahahual: "Mahahual's remote Costa Maya location mostly assumes you're driving for anything beyond the village itself.",
+  akumal: "Akumal's small scale means errands beyond the immediate bay area mostly assume you're driving.",
+  izamal: "Izamal is a small Pueblo Mágico with no local rideshare or taxi infrastructure — day-to-day life mostly assumes you're driving.",
+  tekax: "Tekax's working agricultural-town layout mostly assumes you're driving.",
+  tizimin: "Tizimín's role as a spread-out regional hub mostly assumes you're driving.",
+  chelem: "Chelem's small, spread-out layout mostly assumes you're driving.",
+  "chuburna-puerto": "Chuburná Puerto's remoteness from Progreso mostly assumes you're driving.",
+  "el-cuyo": "El Cuyo's remote northern-coast location mostly assumes you're driving.",
+  "rio-lagartos": "Río Lagartos's remoteness means day-to-day life mostly assumes you're driving.",
 };
 
 const RELEVANCE_REASONS = {

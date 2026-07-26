@@ -116,7 +116,7 @@ function ArticleLayout({
         </p>
 
         <p className="mt-6 text-zinc-600">
-          Playa del Carmen • Riviera Maya • Mexico
+          25 Destinations Across The Yucatán Peninsula
         </p>
       </footer>
 

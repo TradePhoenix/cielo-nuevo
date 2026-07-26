@@ -142,4 +142,8 @@ export const TAG_LABELS = {
   heritage: "interest in local culture and history",
   natureFirst: "pull toward nature and wildlife",
   remote: "desire for true remoteness",
+  // DEST-003 — always co-selected with "remote" on the same placeCharacter
+  // option (questions.js); see that file's comment for why. Never its own
+  // visible questionnaire choice.
+  frontier: "pull toward genuinely off-the-grid places",
 };

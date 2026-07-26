@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import DestinationImageFallback from "./DestinationImageFallback";
+import { getRegionIdForCity } from "../data/atlasGroups";
 
 // City Detail's cinematic arrival moment — full-bleed (rendered via
 // YourMexicoShell's `hero` slot, outside the padded content column) using
@@ -51,8 +53,10 @@ export default function CityHero({ city, backTo, backLabel }) {
               className="absolute inset-0 h-full w-full object-cover"
             />
           </picture>
-        ) : (
+        ) : city.heroImage ? (
           <img src={city.heroImage} alt={city.name} className="absolute inset-0 h-full w-full object-cover" />
+        ) : (
+          <DestinationImageFallback name={city.name} regionId={getRegionIdForCity(city.id)} />
         )}
       </div>
       <div

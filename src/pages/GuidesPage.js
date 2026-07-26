@@ -29,7 +29,7 @@ const content = {
     ctaButton: "Book A Mexico Fit Call",
     ctaButtonSecondary: "Build My Mexico Blueprint",
     footerLine: "A different rhythm of life.",
-    footer: "Playa del Carmen • Tulum • Riviera Maya • Mexico",
+    footer: "25 Destinations Across The Yucatán Peninsula",
   },
   es: {
     nav: {
@@ -53,7 +53,7 @@ const content = {
     ctaButton: "Reservar Llamada",
     ctaButtonSecondary: "Build My Mexico Blueprint",
     footerLine: "Un ritmo de vida diferente.",
-    footer: "Playa del Carmen • Tulum • Riviera Maya • México",
+    footer: "25 Destinos En La Península De Yucatán",
   },
 };
 
