@@ -110,6 +110,39 @@ export const CITY_DETAILS = {
       note: "Housing is the biggest lever here — a block from the beach costs meaningfully more than ten minutes inland.",
     },
 
+    // I18N-002 — quick-fact parity for the original 11 destinations (see
+    // cityLookup.js's mergeCityRecord comment: DEST-003's 14 newer
+    // destinations already carry this content.en/es wrapper; the original
+    // 11 never got it). Only lifestyleSnapshot/monthlyBudget are covered
+    // here — the full long-form narrative (whyThisFeelsLikeYou,
+    // tuesdayInYourLife, honestTruth, neighborhoods, etc.) stays out of
+    // scope, same as the prior Spanish-parity ticket's explicit exclusion.
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Enérgico pero llevadero", detail: "Más ajetreado que tus otras coincidencias, pero lejos del ritmo de una gran ciudad." },
+          walkability: { value: "Muy caminable", detail: "La Quinta Avenida y la cuadrícula circundante hacen que muchos mandados no requieran auto." },
+          internet: { value: "Rápido y confiable", detail: "La fibra óptica es común en edificios nuevos — una buena opción para trabajo remoto." },
+          healthcare: { value: "Atención privada sólida", detail: "Varios hospitales privados y clínicas con personal de habla inglesa en la ciudad." },
+          safety: { value: "Generalmente tranquilo, precauciones estándar", detail: "Como en cualquier lugar, usa prácticas normales de seguridad al viajar y verifica las condiciones actuales antes de mudarte — esto no es una estadística de criminalidad documentada." },
+          transportation: { value: "Caminable, auto opcional", detail: "Muchos residentes se desplazan a pie, en bici o en taxi día a día; un auto ayuda principalmente para salidas fuera de la ciudad." },
+          airportAccess: { value: "45 min desde el Aeropuerto Intl. de Cancún", detail: "Un viaje directo por carretera, sin necesidad de vuelos de conexión." },
+          climate: { value: "Cálido y húmedo todo el año", detail: "La temporada de lluvias va de junio a octubre; los huracanes son un riesgo real, aunque poco frecuente." },
+          community: { value: "Comunidad extranjera grande y activa", detail: "Fácil conocer gente rápido — posiblemente la más fácil de tus tres coincidencias." },
+        },
+        monthlyBudget: {
+          housing: "$900–$1,600",
+          groceries: "$300–$450",
+          dining: "$200–$450",
+          transportation: "$60–$150",
+          utilities: "$80–$150",
+          internet: "$60–$120",
+          estimatedTotal: "$1,600–$2,900",
+          note: "La vivienda es la palanca más grande aquí — una cuadra de la playa cuesta notablemente más que diez minutos tierra adentro.",
+        },
+      },
+    },
+
     neighborhoods: [
       {
         name: "Playacar",
@@ -268,6 +301,32 @@ export const CITY_DETAILS = {
       note: "Tulum's premium reputation is earned — imported goods and beach-adjacent housing both carry a real markup.",
     },
 
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Lento e intencional", detail: "Los planes cambian seguido — la puntualidad es más relajada aquí de lo que podrías esperar." },
+          walkability: { value: "Centro caminable, playa dispersa", detail: "El pueblo es caminable; el camino de la playa realmente requiere bici o auto." },
+          internet: { value: "Bueno en el pueblo, más irregular en la playa", detail: "La fibra óptica está en expansión, pero hay más cortes que en Playa." },
+          healthcare: { value: "En crecimiento pero limitada", detail: "Clínicas básicas localmente; cualquier cosa seria implica un viaje a Playa o Cancún." },
+          safety: { value: "Generalmente tranquilo, precauciones estándar", detail: "Similar al resto de esta costa — usa prácticas normales de seguridad al viajar y verifica las condiciones actuales localmente." },
+          transportation: { value: "Se recomienda bici o auto", detail: "El centro del pueblo es caminable, pero el camino de la playa es lo bastante largo como para que la mayoría use bici, scooter o auto." },
+          airportAccess: { value: "45–60 min desde el Aeropuerto Intl. de Cancún", detail: "Un viaje similar al de Playa, a veces con más tráfico al cruzar el pueblo." },
+          climate: { value: "Cálido y húmedo, más brisa en la costa", detail: "La misma temporada de lluvias que el resto de la costa de la Riviera Maya." },
+          community: { value: "Orientada al bienestar, transitoria", detail: "Una comunidad fuerte, pero la gente rota más rápido que en tus otras coincidencias." },
+        },
+        monthlyBudget: {
+          housing: "$1,100–$2,200",
+          groceries: "$350–$500",
+          dining: "$250–$550",
+          transportation: "$70–$180",
+          utilities: "$90–$170",
+          internet: "$80–$150",
+          estimatedTotal: "$1,900–$3,700",
+          note: "La reputación premium de Tulum es merecida — tanto los productos importados como la vivienda cerca de la playa tienen un sobreprecio real.",
+        },
+      },
+    },
+
     neighborhoods: [
       {
         name: "Tulum Pueblo",
@@ -424,6 +483,32 @@ export const CITY_DETAILS = {
       internet: "$40–$90",
       estimatedTotal: "$1,000–$1,900",
       note: "The most budget-flexible of your matches — the further you are from the main strip, the more this number drops.",
+    },
+
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Lento y residencial", detail: "El ritmo más discreto de tus tres coincidencias, por un margen claro." },
+          walkability: { value: "Se recomienda auto", detail: "Los pueblos aquí son más pequeños y dispersos; un auto o scooter ayuda mucho." },
+          internet: { value: "Confiable en los centros urbanos", detail: "Sólido en pueblos establecidos, más débil mientras más te alejas de ellos." },
+          healthcare: { value: "Básica localmente, Playa cerca", detail: "Buena para atención de rutina; los hospitales grandes están a 20–40 minutos en auto." },
+          safety: { value: "Generalmente tranquilo, precauciones estándar", detail: "Un ambiente más tranquilo y residencial que Playa o Tulum — aun así, usa prácticas normales de seguridad al viajar." },
+          transportation: { value: "Se recomienda auto", detail: "Los pueblos aquí son más pequeños y dispersos; un auto o scooter hace la vida diaria notablemente más fácil." },
+          airportAccess: { value: "30–60 min desde el Aeropuerto Intl. de Cancún", detail: "Varía bastante según en qué parte de la región te encuentres." },
+          climate: { value: "Cálido y húmedo, un poco más fresco tierra adentro", detail: "El mismo patrón estacional que el resto de la costa." },
+          community: { value: "Pequeña, unida, edades mixtas", detail: "Menos gente en general, pero las relaciones tienden a ser más profundas, más rápido." },
+        },
+        monthlyBudget: {
+          housing: "$500–$1,000",
+          groceries: "$220–$350",
+          dining: "$100–$250",
+          transportation: "$50–$120",
+          utilities: "$60–$120",
+          internet: "$40–$90",
+          estimatedTotal: "$1,000–$1,900",
+          note: "La más flexible en presupuesto de tus coincidencias — entre más lejos estés de la zona principal, más baja esta cifra.",
+        },
+      },
     },
 
     neighborhoods: [
@@ -610,6 +695,32 @@ export const CITY_DETAILS = {
       note: "Directional estimate, not verified local data — see this file's DEST-001 note above. Housing varies enormously between Centro and the outer neighborhoods.",
     },
 
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Sin prisa pero urbano", detail: "El ritmo de una ciudad real — más ajetreado que la costa, aunque aún mucho más calmado que una gran metrópoli." },
+          walkability: { value: "Caminable en el Centro", detail: "El casco histórico y la zona del Paseo de Montejo premian caminar; las colonias periféricas dependen más del auto." },
+          internet: { value: "Sólido, de nivel urbano", detail: "Al ser una ciudad establecida, la infraestructura suele ser más consistente que en los pueblos costeros más pequeños." },
+          healthcare: { value: "Centro regional", detail: "Ampliamente considerada el centro de salud de la Península de Yucatán, con hospitales y especialistas de los que dependen los pueblos costeros." },
+          safety: { value: "Ampliamente considerada tranquila", detail: "Mérida tiene una sólida reputación de seguridad a nivel regional — aun así, toma precauciones normales y verifica las condiciones actuales antes de mudarte." },
+          transportation: { value: "Centro caminable, auto ayuda en el resto", detail: "El Centro y el Paseo de Montejo premian caminar; las colonias periféricas son más fáciles con auto." },
+          airportAccess: { value: "El Aeropuerto Internacional de Mérida está en la ciudad", detail: "No se requiere manejar por la costa — una ventaja genuina sobre cualquier otro destino de este sitio." },
+          climate: { value: "Calor seco y más intenso tierra adentro", detail: "Menos brisa marina que la costa; vale la pena experimentar el calor de temporada seca antes de comprometerte." },
+          community: { value: "Establecida, internacional", detail: "Una comunidad extranjera asentada desde hace tiempo junto a la propia y rica vida cultural de Mérida — no una escena transitoria." },
+        },
+        monthlyBudget: {
+          housing: "$400–$900",
+          groceries: "$200–$350",
+          dining: "$150–$350",
+          transportation: "$40–$100",
+          utilities: "$60–$140",
+          internet: "$40–$90",
+          estimatedTotal: "$700–$1,500",
+          note: "Estimación direccional, no son datos locales verificados — consulta la nota DEST-001 de este archivo más arriba. La vivienda varía enormemente entre el Centro y las colonias periféricas.",
+        },
+      },
+    },
+
     neighborhoods: [
       {
         name: "Centro Histórico",
@@ -764,6 +875,32 @@ export const CITY_DETAILS = {
       internet: "$40–$80",
       estimatedTotal: "$600–$1,300",
       note: "Directional estimate, not verified local data — see this file's DEST-001 note above.",
+    },
+
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Pueblo de playa activo y social", detail: "Más ajetreado los fines de semana con visitantes de Mérida, más tranquilo entre semana." },
+          walkability: { value: "Caminable cerca del malecón", detail: "La zona frente al mar es caminable; las calles residenciales más alejadas favorecen el auto o la bici." },
+          internet: { value: "Generalmente confiable", detail: "El más desarrollado de los pueblos de la costa del Golfo, con infraestructura acorde." },
+          healthcare: { value: "Básica localmente, Mérida cerca", detail: "Clínicas locales para necesidades cotidianas; hospitales y especialistas implican un viaje a Mérida." },
+          safety: { value: "Generalmente tranquilo, precauciones estándar", detail: "Un pueblo de playa relajado — aun así, usa prácticas normales de seguridad al viajar como en cualquier lugar." },
+          transportation: { value: "Caminable cerca del malecón, auto ayuda en el resto", detail: "El frente marítimo es caminable; las calles residenciales más alejadas y los viajes a Mérida son más fáciles con auto." },
+          airportAccess: { value: "Viaje cómodo desde el Aeropuerto de Mérida", detail: "Una sola carretera costera conecta Progreso directamente con Mérida y su aeropuerto." },
+          climate: { value: "Brisa abierta del Golfo", detail: "Una brisa marina más constante que los pueblos más pequeños más adelante en la costa, con un ritmo estacional real." },
+          community: { value: "Presencia extranjera establecida y en crecimiento", detail: "La comunidad extranjera más desarrollada de los tres pueblos de la costa del Golfo." },
+        },
+        monthlyBudget: {
+          housing: "$350–$750",
+          groceries: "$200–$320",
+          dining: "$120–$280",
+          transportation: "$40–$90",
+          utilities: "$60–$130",
+          internet: "$40–$80",
+          estimatedTotal: "$600–$1,300",
+          note: "Estimación direccional, no son datos locales verificados — consulta la nota DEST-001 de este archivo más arriba.",
+        },
+      },
     },
 
     neighborhoods: [
@@ -922,6 +1059,32 @@ export const CITY_DETAILS = {
       note: "Directional estimate, not verified local data — see this file's DEST-001 note above.",
     },
 
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Tranquilo y residencial", detail: "Una versión más calmada y cotidiana de la vida de playa en la costa del Golfo que Progreso." },
+          walkability: { value: "Pequeño y caminable", detail: "El pueblo en sí es lo bastante pequeño para caminar a la mayoría de los lugares, aunque las opciones son limitadas." },
+          internet: { value: "Más limitado que Progreso", detail: "Vale la pena probar tu dirección específica antes de comprometerte con trabajo remoto aquí." },
+          healthcare: { value: "Depende de Progreso y Mérida", detail: "Servicios locales mínimos; las necesidades cotidianas implican un corto viaje, la atención seria significa Mérida." },
+          safety: { value: "Tranquilo, precauciones estándar", detail: "Un pequeño pueblo residencial — usa prácticas normales de seguridad al viajar como en cualquier lugar." },
+          transportation: { value: "Se recomienda auto", detail: "El pueblo en sí es caminable, pero la vida diaria depende de un auto para viajes a Progreso y Mérida." },
+          airportAccess: { value: "Vía Progreso a Mérida", detail: "El camino costero conecta a través de Progreso con la misma carretera hacia Mérida." },
+          climate: { value: "Brisa abierta del Golfo", detail: "El mismo clima costero que Progreso, con una costa más tranquila y residencial." },
+          community: { value: "Pequeña y asentada", detail: "Una presencia extranjera modesta y de largo plazo, en lugar de una escena en crecimiento." },
+        },
+        monthlyBudget: {
+          housing: "$300–$650",
+          groceries: "$180–$300",
+          dining: "$100–$220",
+          transportation: "$40–$90",
+          utilities: "$55–$120",
+          internet: "$35–$75",
+          estimatedTotal: "$500–$1,100",
+          note: "Estimación direccional, no son datos locales verificados — consulta la nota DEST-001 de este archivo más arriba.",
+        },
+      },
+    },
+
     neighborhoods: [
       {
         name: "Coastal Chicxulub Puerto",
@@ -1071,6 +1234,32 @@ export const CITY_DETAILS = {
       internet: "$35–$75",
       estimatedTotal: "$450–$950",
       note: "Directional estimate, not verified local data — see this file's DEST-001 note above. Fewer local services also means fewer places to spend money day to day.",
+    },
+
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Lento y apartado", detail: "El más tranquilo y espacioso de los cuatro destinos de la Costa Yucateca, por un margen claro." },
+          walkability: { value: "Pequeño, pocos servicios", detail: "Poco a qué caminar localmente — la vida diaria aquí no está construida alrededor de mandados a pie." },
+          internet: { value: "El menos desarrollado de los cuatro", detail: "La confiabilidad varía según la dirección exacta — pruébalo a fondo antes de depender de él para trabajar." },
+          healthcare: { value: "Distante — planea en torno a ello", detail: "El más alejado de Mérida de los cuatro; los servicios locales son mínimos o inexistentes." },
+          safety: { value: "Tranquilo, precauciones estándar", detail: "Un pueblo apartado y de poco tránsito — usa prácticas normales de seguridad al viajar como en cualquier lugar." },
+          transportation: { value: "Auto indispensable", detail: "Poco es caminable localmente; la vida diaria aquí realmente asume el uso de un auto." },
+          airportAccess: { value: "El viaje costero más largo al Aeropuerto de Mérida", detail: "Aun así, un viaje directo y manejable por la misma carretera costera, solo que el más largo de los cuatro." },
+          climate: { value: "Costa abierta del Golfo", detail: "El mismo clima costero que Progreso y Chicxulub Puerto, con aún menos construcciones entre tú y él." },
+          community: { value: "Pequeña y discreta", detail: "La presencia extranjera más pequeña de las cuatro — soledad genuina, no una escena de pueblo pequeño diseñada como tal." },
+        },
+        monthlyBudget: {
+          housing: "$250–$550",
+          groceries: "$160–$280",
+          dining: "$80–$180",
+          transportation: "$40–$90",
+          utilities: "$50–$110",
+          internet: "$35–$75",
+          estimatedTotal: "$450–$950",
+          note: "Estimación direccional, no son datos locales verificados — consulta la nota DEST-001 de este archivo más arriba. Menos servicios locales también significa menos lugares para gastar dinero día a día.",
+        },
+      },
     },
 
     neighborhoods: [
@@ -1249,6 +1438,32 @@ export const CITY_DETAILS = {
       note: "Directional estimate, not verified local data — see this file's DEST-002 note above.",
     },
 
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Lento y centrado en la naturaleza", detail: "La vida aquí sigue al estuario y a la flota pesquera más que a un reloj." },
+          walkability: { value: "Pequeño y caminable", detail: "El centro del pueblo es compacto; la mayoría de las necesidades cotidianas están a poca distancia caminando." },
+          internet: { value: "Básico, en desarrollo", detail: "La cobertura existe pero es menos consistente que en Mérida o Progreso — prueba tu dirección específica." },
+          healthcare: { value: "Mínima localmente", detail: "Solo atención básica; cualquier cosa seria implica un viaje a Mérida." },
+          safety: { value: "Tranquilo, precauciones estándar", detail: "Un pequeño pueblo pesquero — usa prácticas normales de seguridad al viajar como en cualquier lugar." },
+          transportation: { value: "Se recomienda auto", detail: "El centro del pueblo es caminable; cualquier cosa más allá implica un viaje en auto." },
+          airportAccess: { value: "Viaje en auto al Aeropuerto Internacional de Mérida", detail: "Un viaje genuino a lo largo de la costa y tierra adentro — no un trayecto corto." },
+          climate: { value: "Brisa costera del Golfo", detail: "Humedad de estuario y manglar junto con el patrón de calor habitual de la costa yucateca." },
+          community: { value: "Pequeña y muy unida", detail: "Una modesta comunidad pesquera asentada desde hace tiempo, no una escena de expatriados en crecimiento." },
+        },
+        monthlyBudget: {
+          housing: "$250–$550",
+          groceries: "$160–$280",
+          dining: "$80–$180",
+          transportation: "$40–$90",
+          utilities: "$50–$110",
+          internet: "$35–$75",
+          estimatedTotal: "$450–$950",
+          note: "Estimación direccional, no son datos locales verificados — consulta la nota DEST-002 de este archivo más arriba.",
+        },
+      },
+    },
+
     neighborhoods: [
       {
         name: "Coastal Celestún",
@@ -1396,6 +1611,32 @@ export const CITY_DETAILS = {
       internet: "$35–$80",
       estimatedTotal: "$500–$1,100",
       note: "Directional estimate, not verified local data — see this file's DEST-002 note above.",
+    },
+
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Tranquilo y sin prisa", detail: "Un ritmo costero genuinamente calmado, favorecido y no interrumpido por su estatus de Pueblo Mágico." },
+          walkability: { value: "Pequeño y caminable", detail: "El centro del pueblo y el muelle son fáciles de recorrer a pie; las calles periféricas favorecen el auto o la bici." },
+          internet: { value: "En desarrollo, más consistente que los pueblos más pequeños", detail: "Beneficiado por la inversión de Pueblo Mágico, aunque sigue valiendo la pena probar tu dirección específica." },
+          healthcare: { value: "Básica localmente, Mérida cerca", detail: "Clínicas locales para necesidades cotidianas; cualquier cosa seria implica un viaje a Mérida." },
+          safety: { value: "Tranquilo, precauciones estándar", detail: "Un pueblo tranquilo de Pueblo Mágico — usa prácticas normales de seguridad al viajar como en cualquier lugar." },
+          transportation: { value: "Centro caminable, auto ayuda en el resto", detail: "El centro del pueblo y el muelle son fáciles de recorrer a pie; un auto ayuda para viajes a Mérida." },
+          airportAccess: { value: "Viaje manejable al Aeropuerto Internacional de Mérida", detail: "Un solo camino conecta Sisal con Mérida y su aeropuerto." },
+          climate: { value: "Brisa abierta del Golfo", detail: "El mismo patrón de clima costero que el resto de la costa del Golfo de Yucatán." },
+          community: { value: "Pequeña y asentada", detail: "Una modesta comunidad local, con creciente interés externo desde su designación como Pueblo Mágico en 2020." },
+        },
+        monthlyBudget: {
+          housing: "$300–$650",
+          groceries: "$180–$300",
+          dining: "$100–$220",
+          transportation: "$40–$90",
+          utilities: "$55–$120",
+          internet: "$35–$80",
+          estimatedTotal: "$500–$1,100",
+          note: "Estimación direccional, no son datos locales verificados — consulta la nota DEST-002 de este archivo más arriba.",
+        },
+      },
     },
 
     neighborhoods: [
@@ -1547,6 +1788,32 @@ export const CITY_DETAILS = {
       note: "Directional estimate, not verified local data — see this file's DEST-002 note above.",
     },
 
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Remoto y autónomo", detail: "Entre los ritmos más independientes y menos orientados al turismo de cualquier destino en este sitio." },
+          walkability: { value: "Pequeño, se recomienda auto", detail: "El pueblo en sí es caminable, pero llegar a cualquier otro lugar implica manejar." },
+          internet: { value: "Limitado, el menos desarrollado de los cuatro pueblos de DEST-002", detail: "La confiabilidad varía significativamente según la dirección — pruébalo a fondo antes de depender de él." },
+          healthcare: { value: "Muy limitada localmente", detail: "Servicios locales mínimos; cualquier cosa más allá de lo básico implica un viaje real a Mérida." },
+          safety: { value: "Tranquilo, precauciones estándar", detail: "Un pequeño pueblo pesquero de trabajo — usa prácticas normales de seguridad al viajar como en cualquier lugar." },
+          transportation: { value: "Auto indispensable", detail: "El pueblo en sí es caminable, pero llegar a cualquier otro lugar implica manejar." },
+          airportAccess: { value: "Viaje más largo al Aeropuerto Internacional de Mérida", detail: "Manejable, pero genuinamente más lejos que los pueblos del Golfo más establecidos." },
+          climate: { value: "Costa abierta del Golfo y estuario de manglares", detail: "El mismo patrón de calor costero, con más humedad cerca de los manglares." },
+          community: { value: "Pequeña, trabajadora, autosuficiente", detail: "Una comunidad pesquera real, no una escena de pueblo pequeño diseñada como tal." },
+        },
+        monthlyBudget: {
+          housing: "$250–$550",
+          groceries: "$160–$280",
+          dining: "$80–$180",
+          transportation: "$45–$100",
+          utilities: "$50–$110",
+          internet: "$35–$75",
+          estimatedTotal: "$450–$950",
+          note: "Estimación direccional, no son datos locales verificados — consulta la nota DEST-002 de este archivo más arriba.",
+        },
+      },
+    },
+
     neighborhoods: [
       {
         name: "Along The Waterfront",
@@ -1694,6 +1961,32 @@ export const CITY_DETAILS = {
       internet: "$35–$75",
       estimatedTotal: "$400–$900",
       note: "Directional estimate, not verified local data — see this file's DEST-002 note above.",
+    },
+
+    content: {
+      es: {
+        lifestyleSnapshot: {
+          pace: { value: "Rural y sin prisa", detail: "Un ritmo genuinamente lento y centrado en la comunidad — entre los destinos con menos vida nocturna de este sitio." },
+          walkability: { value: "Pequeño y caminable", detail: "El pueblo en sí es compacto y fácil de recorrer a pie; cualquier cosa más allá implica un viaje en auto." },
+          internet: { value: "Básico, en desarrollo", detail: "La cobertura existe pero es inconsistente — prueba tu dirección específica antes de depender de ella." },
+          healthcare: { value: "Mínima localmente, Mérida para cualquier cosa seria", detail: "Solo atención local básica; la región Puuc depende de Mérida como su centro de salud." },
+          safety: { value: "Tranquilo, precauciones estándar", detail: "Un pequeño pueblo rural — usa prácticas normales de seguridad al viajar como en cualquier lugar." },
+          transportation: { value: "Auto indispensable", detail: "El pueblo en sí es compacto y caminable, pero cualquier cosa más allá implica un viaje en auto." },
+          airportAccess: { value: "Viaje en auto al Aeropuerto Internacional de Mérida", detail: "Un viaje genuino tierra adentro por la Carretera 261 — no una ruta costera." },
+          climate: { value: "Calor seco e intenso tierra adentro", detail: "Aquí no hay brisa marina — el calor de temporada seca es más intenso que en la costa." },
+          community: { value: "Pequeña, arraigada, maya y yucateca", detail: "Una comunidad local viva con profunda continuidad cultural, no un enclave extranjero." },
+        },
+        monthlyBudget: {
+          housing: "$250–$500",
+          groceries: "$150–$260",
+          dining: "$70–$160",
+          transportation: "$45–$100",
+          utilities: "$50–$100",
+          internet: "$35–$75",
+          estimatedTotal: "$400–$900",
+          note: "Estimación direccional, no son datos locales verificados — consulta la nota DEST-002 de este archivo más arriba.",
+        },
+      },
     },
 
     neighborhoods: [
