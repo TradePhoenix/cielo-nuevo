@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../utils/language";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
 import SEO from "../components/SEO";
@@ -200,7 +201,13 @@ const content = {
       ["Can I bring my pets to Mexico?", "Generally, yes — Mexico's import requirements for pets are more straightforward than many countries, typically a health certificate and up-to-date vaccinations. Requirements can shift, so we recommend confirming current rules with a vet and your airline shortly before travel, and we're happy to point you to that current guidance."],
       ["Do you support families, remote workers, retirees, and entrepreneurs?", "Yes, and beyond that — we work with people from many countries and life stages, not just retirees or one nationality. Whatever brings you to Mexico, our job is to understand your specific situation and point you toward what actually fits it."],
       ["What happens after I arrive?", "That depends on what you've already set up before landing, but we stay involved — helping with local orientation, connecting you to community, and following up on the practical threads (banking, residency, housing) that are often still in motion after the move itself."],
-      ["How much do your services cost?", "It depends on the level of support you need, from a single $99 USD Mexico Fit Call to a fully guided relocation. We'll walk through pricing clearly during that first call, with no obligation to continue — or start with our free My Mexico Blueprint questionnaire if you're not ready to book a call yet."]
+      ["How much do your services cost?", "It depends on the level of support you need, from a single $99 USD Mexico Fit Call to a fully guided relocation. We'll walk through pricing clearly during that first call, with no obligation to continue — or start with our free My Mexico Blueprint questionnaire if you're not ready to book a call yet."],
+      ["Can I start planning my move before I have residency sorted out?", "Yes — most people do. Exploring destinations, understanding budgets, and building a rough timeline don't require residency in hand. My Mexico Blueprint and a Mexico Fit Call are both built for exactly this stage, so residency becomes one part of a plan you're already building rather than the first hurdle you have to clear."],
+      ["Can I buy, register, and insure a car in Mexico?", "Yes. Foreigners can buy a vehicle in Mexico with valid residency status (rules vary for tourist-visa visitors bringing a foreign-plated car temporarily). Registration and insurance work differently than in many home countries — insurance in particular is essential and not always mandatory by law depending on the state, which makes it easy to skip by mistake. We can point you toward what to expect and trusted local contacts; the actual purchase, registration, and policy are handled directly with dealers, government offices, and insurers."],
+      ["Do I have to pay taxes in Mexico, and will I be taxed twice?", "It depends on your residency status, income sources, and your home country's own tax rules and any tax treaty with Mexico — this is genuinely one of the areas where a qualified cross-border tax professional matters most, not general guidance. We can explain the general landscape (tax residency and immigration residency are not the same thing) and connect you with a qualified accountant familiar with your specific situation, but we don't provide tax advice ourselves."],
+      ["What's the best way to transfer money to Mexico or move funds between accounts?", "Most people use a mix of international wire transfers, transfer services designed for cross-border payments, and eventually a Mexican bank account once residency is in place. Fees, exchange rates, and transfer limits vary a lot between banks and services, so it's worth comparing before committing to one for anything ongoing. We can point you toward what's worked for others and trusted local contacts; the transfers themselves go through your own bank or provider."],
+      ["Can I bring my furniture and personal belongings when I move?", "Yes — many people bring a container or partial shipment of household goods, while others sell most things and start fresh, furnishing locally instead. A household goods import (menaje de casa) has its own paperwork and, done correctly, can mean reduced or no import duties on personal items — but the rules are specific about timing and documentation. We can point you toward what to expect and trusted moving and customs contacts; the shipment and customs process itself is handled by licensed movers and brokers."],
+      ["Is the internet reliable enough to work remotely from Mexico?", "In most of the destinations we cover, yes — fiber and reliable mobile data are common, especially in more established towns, and coworking spaces are increasingly available. Reliability varies more in smaller, more remote destinations, where a backup connection (a second provider or a mobile hotspot) is a genuinely good idea rather than overkill. We're happy to point you toward what to expect in your specific destination."]
     ],
 
     contactLabel: "Start Here",
@@ -403,7 +410,13 @@ const content = {
       ["¿Puedo llevar a mis mascotas a México?", "Por lo general, sí — los requisitos de México para importar mascotas son más sencillos que en muchos países, normalmente un certificado de salud y vacunas al día. Los requisitos pueden cambiar, así que recomendamos confirmar las reglas vigentes con un veterinario y tu aerolínea poco antes de viajar, y con gusto te orientamos hacia esa información actual."],
       ["¿Apoyan a familias, trabajadores remotos, jubilados y emprendedores?", "Sí, y más allá de eso — trabajamos con personas de muchos países y etapas de vida, no solo con jubilados o una nacionalidad en particular. Sea lo que sea lo que te traiga a México, nuestro trabajo es entender tu situación específica y orientarte hacia lo que realmente encaja con ella."],
       ["¿Qué pasa después de que llego?", "Depende de lo que ya hayas resuelto antes de llegar, pero seguimos presentes — ayudándote con la orientación local, conectándote con la comunidad y dando seguimiento a los asuntos prácticos (cuentas bancarias, residencia, vivienda) que muchas veces siguen en proceso después de la mudanza."],
-      ["¿Cuánto cuestan sus servicios?", "Depende del nivel de apoyo que necesites, desde una sola Mexico Fit Call de $99 USD hasta una reubicación totalmente acompañada. Te explicaremos los costos con claridad durante esa primera llamada, sin ningún compromiso de continuar — o empieza con nuestro cuestionario gratuito My Mexico Blueprint si aún no estás listo para agendar una llamada."]
+      ["¿Cuánto cuestan sus servicios?", "Depende del nivel de apoyo que necesites, desde una sola Mexico Fit Call de $99 USD hasta una reubicación totalmente acompañada. Te explicaremos los costos con claridad durante esa primera llamada, sin ningún compromiso de continuar — o empieza con nuestro cuestionario gratuito My Mexico Blueprint si aún no estás listo para agendar una llamada."],
+      ["¿Puedo empezar a planear mi mudanza antes de resolver la residencia?", "Sí — la mayoría de las personas lo hace así. Explorar destinos, entender presupuestos y armar un cronograma aproximado no requiere tener la residencia en mano. My Mexico Blueprint y una Mexico Fit Call están pensados exactamente para esta etapa, para que la residencia sea una parte más de un plan que ya estás construyendo, no el primer obstáculo que debes resolver."],
+      ["¿Puedo comprar, registrar y asegurar un auto en México?", "Sí. Los extranjeros pueden comprar un vehículo en México con un estatus migratorio válido (las reglas varían para quienes visitan con visa de turista y traen un auto con placas extranjeras de forma temporal). El registro y el seguro funcionan distinto que en muchos países de origen — el seguro en particular es esencial y no siempre es obligatorio por ley según el estado, lo cual hace fácil pasarlo por alto sin querer. Podemos orientarte sobre qué esperar y conectarte con contactos locales de confianza; la compra, el registro y la póliza en sí se gestionan directamente con agencias, oficinas de gobierno y aseguradoras."],
+      ["¿Tengo que pagar impuestos en México, y me cobrarán impuestos dos veces?", "Depende de tu estatus de residencia, tus fuentes de ingreso y las propias reglas fiscales de tu país de origen, además de cualquier tratado fiscal con México — esta es genuinamente una de las áreas donde más importa un profesional fiscal transfronterizo calificado, no una orientación general. Podemos explicarte el panorama general (la residencia fiscal y la residencia migratoria no son lo mismo) y conectarte con un contador calificado que conozca tu situación específica, pero nosotros no damos asesoría fiscal."],
+      ["¿Cuál es la mejor forma de transferir dinero a México o mover fondos entre cuentas?", "La mayoría combina transferencias bancarias internacionales, servicios de transferencia diseñados para pagos transfronterizos y, eventualmente, una cuenta bancaria mexicana una vez que la residencia está en trámite o resuelta. Las comisiones, tipos de cambio y límites de transferencia varían mucho entre bancos y servicios, así que vale la pena comparar antes de comprometerte con uno para algo recurrente. Podemos orientarte sobre lo que le ha funcionado a otros y conectarte con contactos locales de confianza; las transferencias en sí las gestionas con tu propio banco o proveedor."],
+      ["¿Puedo traer mis muebles y pertenencias personales cuando me mude?", "Sí — muchas personas traen un contenedor o un envío parcial de menaje de casa, mientras que otras venden la mayoría de sus cosas y empiezan de nuevo, amueblando localmente. El menaje de casa tiene sus propios trámites y, hecho correctamente, puede significar aranceles de importación reducidos o nulos en artículos personales — pero las reglas son específicas sobre tiempos y documentación. Podemos orientarte sobre qué esperar y conectarte con contactos de confianza de mudanzas y aduanas; el envío y el proceso aduanal en sí los gestionan agentes aduanales y empresas de mudanza con licencia."],
+      ["¿Es el internet lo suficientemente confiable para trabajar remotamente desde México?", "En la mayoría de los destinos que cubrimos, sí — la fibra óptica y los datos móviles confiables son comunes, especialmente en pueblos más consolidados, y cada vez hay más espacios de coworking disponibles. La confiabilidad varía más en destinos más pequeños y remotos, donde tener una conexión de respaldo (un segundo proveedor o un hotspot móvil) es genuinamente una buena idea, no una exageración. Con gusto te orientamos sobre qué esperar en tu destino específico."]
     ],
 
     contactLabel: "Empieza Aquí",
@@ -490,7 +503,12 @@ function SectionHeader({ label, title, text, light = false }) {
 }
 
 function HomePage() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLangState] = useState(getStoredLanguage);
+  const setLang = (next) => {
+    setLangState(next);
+    setStoredLanguage(next);
+  };
+  useHtmlLang(lang);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [nearContact, setNearContact] = useState(false);
@@ -628,7 +646,7 @@ function HomePage() {
           <div className="hidden items-center gap-6 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#14211C]/65 xl:flex">
             {t.nav.map((item, index) => (
               <a
-                key={item}
+                key={index}
                 href={navLinks[index]}
                 className="transition duration-300 hover:text-[#007C83]"
               >
@@ -696,7 +714,7 @@ function HomePage() {
           <div className="flex flex-1 flex-col justify-center gap-6 px-8 pb-20">
             {t.nav.map((item, index) => (
               <a
-                key={item}
+                key={index}
                 ref={index === 0 ? firstMenuLinkRef : null}
                 href={navLinks[index]}
                 onClick={() => setMenuOpen(false)}
@@ -846,7 +864,7 @@ function HomePage() {
             <div className="space-y-3 py-6">
               {t.blueprintHighlights.map((highlight, index) => (
                 <div
-                  key={highlight}
+                  key={index}
                   className="flex items-center gap-4 rounded-[4px] bg-[#F3EEE4] px-4 py-4"
                 >
                   <span
@@ -879,7 +897,7 @@ function HomePage() {
         <CinematicReveal stagger className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
           {t.services.map(([title, text], index) => (
             <motion.div
-              key={title}
+              key={index}
               variants={CinematicReveal.itemVariants(prefersReducedMotion)}
               whileHover={{ y: -6 }}
               className="ptm-card border-t-4 bg-white p-8 shadow-[0_18px_50px_rgba(20,33,28,0.06)] transition hover:shadow-[0_24px_70px_rgba(20,33,28,0.11)]"
@@ -916,7 +934,7 @@ function HomePage() {
             const isPrimary = index === 0;
             return (
               <motion.div
-                key={title}
+                key={index}
                 variants={CinematicReveal.itemVariants(prefersReducedMotion)}
                 whileHover={{ y: -6 }}
                 className={`ptm-card flex min-h-[500px] flex-col justify-between p-7 transition ${
@@ -981,7 +999,7 @@ function HomePage() {
         <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-px bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
           {t.process.map(([number, title, text]) => (
             <motion.div
-              key={title}
+              key={number}
               variants={CinematicReveal.itemVariants(prefersReducedMotion)}
               whileHover={{ y: -6 }}
               className="bg-[#0b0b0a] p-7 transition hover:bg-white hover:text-zinc-950"
@@ -998,9 +1016,9 @@ function HomePage() {
         <SectionHeader label={t.testimonialsLabel} title={`${t.testimonialsTitle1} ${t.testimonialsTitle2}`} />
 
         <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3">
-          {t.testimonials.map(([quote, name]) => (
+          {t.testimonials.map(([quote, name], index) => (
             <motion.div
-              key={quote}
+              key={index}
               variants={CinematicReveal.itemVariants(prefersReducedMotion)}
               className="ptm-card border border-zinc-200 bg-white/70 p-8 shadow-sm transition hover:-translate-y-1 hover:bg-white"
             >
@@ -1024,8 +1042,8 @@ function HomePage() {
           </div>
 
           <div className="space-y-6 text-lg leading-relaxed text-zinc-600">
-            {t.founderParagraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+            {t.founderParagraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
             ))}
 
             <p className="ptm-editorial pt-4 text-3xl leading-tight tracking-[-0.04em] text-[#007C83] md:text-5xl">
@@ -1045,9 +1063,9 @@ function HomePage() {
         <SectionHeader label={t.networkLabel} title={t.networkTitle} text={t.networkText} />
 
         <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {t.network.map((item) => (
+          {t.network.map((item, index) => (
             <motion.div
-              key={item}
+              key={index}
               variants={CinematicReveal.itemVariants(prefersReducedMotion)}
               className="ptm-card border border-zinc-200 bg-white p-8 text-lg font-semibold text-zinc-700 transition hover:-translate-y-1 hover:bg-[#f6f1e8]"
             >
@@ -1061,9 +1079,9 @@ function HomePage() {
         <SectionHeader label={t.trustLabel} title={t.trustTitle} />
 
         <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-px bg-zinc-300 sm:grid-cols-2 lg:grid-cols-4">
-          {t.trustPoints.map((point) => (
+          {t.trustPoints.map((point, index) => (
             <motion.div
-              key={point}
+              key={index}
               variants={CinematicReveal.itemVariants(prefersReducedMotion)}
               className="bg-[#efe7d8] p-8 text-lg text-zinc-700 transition hover:bg-white"
             >
@@ -1079,8 +1097,8 @@ function HomePage() {
           <p className="mb-12 max-w-3xl text-lg leading-relaxed text-zinc-600 sm:text-xl">{t.whoText}</p>
 
           <div className="flex flex-wrap gap-3">
-            {t.tags.map((item) => (
-              <span key={item} className="rounded-[4px] border border-zinc-300 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-600 transition hover:border-[#007C83] hover:bg-[#007C83] hover:text-white">
+            {t.tags.map((item, index) => (
+              <span key={index} className="rounded-[4px] border border-zinc-300 px-4 py-3 text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-600 transition hover:border-[#007C83] hover:bg-[#007C83] hover:text-white">
                 {item}
               </span>
             ))}

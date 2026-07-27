@@ -19,9 +19,17 @@
 
 const MAX_PRIORITIES = 2;
 
+// PTM Spanish-parity pass: added the `lang` parameter (default "en") for
+// this file's own verifyPersonally copy. `pros`/`tradeoffs` come from
+// yourMexico's CITY_DETAILS via cityLookup.js's mergeCityRecord(), which
+// deliberately flattens `content.en` for every non-CityDetailPage
+// consumer (see that file's own comment) — full destination-narrative
+// translation is explicitly out of scope for this pass, so those two
+// fields stay English here, same as everywhere else that reads them.
+//
 // matches: yourMexico's getMatchesWithDetails(recommendation.topCityMatches)
 // output — already ranked, already merged with CITY_DETAILS.
-export function buildCityComparison(matches) {
+export function buildCityComparison(matches, lang = "en") {
   const cities = (matches || []).map((city, index) => {
     const strongestPriorities = [...(city.decisionTrace || [])]
       .sort((a, b) => b.contribution - a.contribution)
@@ -43,11 +51,18 @@ export function buildCityComparison(matches) {
     };
   });
 
-  const verifyPersonally = [
-    "Neighborhood-level details, safety, and exact costs — these are general characterizations, not current listings or guarantees.",
-    "Your own reaction to each city in person — a description can't fully capture how a place feels day to day.",
-    "Your personal budget specifics and today's exchange rate — see the Cost Planner above for a starting range.",
-  ];
+  const verifyPersonally =
+    lang === "es"
+      ? [
+          "Detalles a nivel de colonia, seguridad y costos exactos — son caracterizaciones generales, no anuncios actuales ni garantías.",
+          "Tu propia reacción a cada ciudad en persona — una descripción no puede capturar del todo cómo se siente un lugar día a día.",
+          "Los detalles específicos de tu presupuesto personal y el tipo de cambio de hoy — consulta el Planificador de Costos arriba para un rango inicial.",
+        ]
+      : [
+          "Neighborhood-level details, safety, and exact costs — these are general characterizations, not current listings or guarantees.",
+          "Your own reaction to each city in person — a description can't fully capture how a place feels day to day.",
+          "Your personal budget specifics and today's exchange rate — see the Cost Planner above for a starting range.",
+        ];
 
   return {
     topMatchId: cities[0] ? cities[0].id : null,

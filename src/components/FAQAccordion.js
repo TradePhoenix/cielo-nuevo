@@ -28,7 +28,7 @@ export default function FAQAccordion({ items }) {
         const panelId = `${baseId}-answer-${index}`;
 
         return (
-          <div key={question}>
+          <div key={index}>
             <h3 className="m-0">
               <button
                 type="button"

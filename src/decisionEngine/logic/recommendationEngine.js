@@ -1,12 +1,20 @@
 // My Mexico Blueprint — recommendation engine.
 //
 // This is the seam where a real AI-generated blueprint can replace this
-// deterministic one later. `buildRecommendation(scores, answers)` is a pure
-// function with a fixed output shape (readinessScore, readinessLabel,
+// deterministic one later. `buildRecommendation(scores, answers, lang)` is a
+// pure function with a fixed output shape (readinessScore, readinessLabel,
 // archetype, topCityMatches, roadmapSteps, ctaVariant, cta). A future version
 // could replace this function's body with a call to a backend/Claude
 // endpoint that returns the same shape, and neither scoringEngine.js nor any
 // UI component would need to change.
+//
+// PTM Spanish-parity pass: added the `lang` parameter (default "en", so
+// every existing caller that doesn't pass it — and every existing test —
+// keeps getting exactly the same English strings as before). `copy.js`'s
+// data fields are now `{ en, es }`; this file is the one place that
+// resolves them down to plain strings, so the return shape UI components
+// already read (`archetype.title`, `readinessLabel.label`, etc.) never
+// changes — only the string values do.
 
 import { CITY_PROFILES } from "../data/cityProfiles";
 import {
@@ -16,24 +24,46 @@ import {
   ROADMAP_TEMPLATES,
   CTA_COPY,
   TAG_LABELS,
+  MATCH_REASON_TEMPLATES,
 } from "../../features/blueprint/data/copy";
 import { buildReadinessTrace, buildCityMatchTrace } from "./buildDecisionTrace";
+
+function resolve(field, lang) {
+  if (!field) return "";
+  return typeof field === "string" ? field : field[lang] || field.en || "";
+}
+
+function resolveArchetype(archetype, lang) {
+  return { id: archetype.id, title: resolve(archetype.title, lang), description: resolve(archetype.description, lang) };
+}
+
+function resolveReadinessLabel(range, lang) {
+  return { min: range.min, max: range.max, label: resolve(range.label, lang), blurb: resolve(range.blurb, lang) };
+}
+
+function resolveRoadmapStep(step, lang) {
+  return { id: step.id, title: resolve(step.title, lang), description: resolve(step.description, lang) };
+}
+
+function resolveCta(cta, lang) {
+  return { headline: resolve(cta.headline, lang), subtext: resolve(cta.subtext, lang), buttonLabel: resolve(cta.buttonLabel, lang) };
+}
 
 // scores: the object returned by scoringEngine.computeScores()
 // answers: { [questionId]: selectedOptionId } — used here only to read
 // lifeStage directly, since that's the most reliable archetype signal
-export function buildRecommendation(scores, answers) {
+export function buildRecommendation(scores, answers, lang = "en") {
   const readinessScore =
     scores.readinessMax > 0
       ? Math.round((scores.readinessRaw / scores.readinessMax) * 100)
       : 0;
 
-  const readinessLabel = getReadinessLabel(readinessScore);
-  const archetype = getArchetype(answers && answers.lifeStage);
-  const topCityMatches = rankCityMatches(scores.tagCounts || {});
+  const readinessLabel = getReadinessLabel(readinessScore, lang);
+  const archetype = getArchetype(answers && answers.lifeStage, lang);
+  const topCityMatches = rankCityMatches(scores.tagCounts || {}, lang);
   const isUrgent = Boolean(scores.tagCounts && scores.tagCounts.urgent);
   const ctaVariant = isUrgent ? "urgent" : "exploratory";
-  const roadmapSteps = buildRoadmap(ctaVariant);
+  const roadmapSteps = buildRoadmap(ctaVariant, lang);
 
   return {
     readinessScore,
@@ -42,25 +72,25 @@ export function buildRecommendation(scores, answers) {
     topCityMatches,
     roadmapSteps,
     ctaVariant,
-    cta: CTA_COPY[ctaVariant],
+    cta: resolveCta(CTA_COPY[ctaVariant], lang),
     // ENG-016 — Decision Intelligence Matrix: a purely additive reasoning
     // trace (see buildDecisionTrace.js). Internal only, not rendered
     // anywhere today; every field above this comment is computed exactly
     // as before and unaffected by its presence.
-    readinessTrace: buildReadinessTrace(answers),
+    readinessTrace: buildReadinessTrace(answers, lang),
   };
 }
 
-function getReadinessLabel(score) {
+function getReadinessLabel(score, lang) {
   const match = READINESS_LABELS.find((range) => score >= range.min && score <= range.max);
-  return match || READINESS_LABELS[READINESS_LABELS.length - 1];
+  return resolveReadinessLabel(match || READINESS_LABELS[READINESS_LABELS.length - 1], lang);
 }
 
-function getArchetype(lifeStageAnswerId) {
-  return ARCHETYPES[lifeStageAnswerId] || ARCHETYPES[DEFAULT_ARCHETYPE_ID];
+function getArchetype(lifeStageAnswerId, lang) {
+  return resolveArchetype(ARCHETYPES[lifeStageAnswerId] || ARCHETYPES[DEFAULT_ARCHETYPE_ID], lang);
 }
 
-function rankCityMatches(tagCounts) {
+function rankCityMatches(tagCounts, lang) {
   return CITY_PROFILES.map((city) => {
     const overlapTags = city.tags.filter((tag) => tagCounts[tag]);
     const matchScore = overlapTags.reduce((sum, tag) => sum + (tagCounts[tag] || 0), 0);
@@ -68,32 +98,33 @@ function rankCityMatches(tagCounts) {
     return {
       id: city.id,
       name: city.name,
-      teaser: city.teaser,
+      teaser: resolve(city.teaser, lang),
       guideLink: city.guideLink,
       matchScore,
-      matchReason: buildMatchReason(overlapTags),
+      matchReason: buildMatchReason(overlapTags, lang),
       // ENG-016 — Decision Intelligence Matrix: see buildDecisionTrace.js.
       // Built from the same overlapTags/tagCounts already used for
       // matchScore above, so it can never drift from the real score.
-      decisionTrace: buildCityMatchTrace(overlapTags, tagCounts, TAG_LABELS, city.name),
+      decisionTrace: buildCityMatchTrace(overlapTags, tagCounts, TAG_LABELS, city.name, lang),
     };
   })
     .sort((a, b) => b.matchScore - a.matchScore)
     .slice(0, 3);
 }
 
-function buildMatchReason(overlapTags) {
+function buildMatchReason(overlapTags, lang) {
   if (overlapTags.length === 0) {
-    return "A well-rounded option worth exploring.";
+    return resolve(MATCH_REASON_TEMPLATES.default, lang);
   }
-  const phrases = overlapTags.slice(0, 2).map((tag) => TAG_LABELS[tag] || tag);
-  return `Matches your ${phrases.join(" and ")}.`;
+  const phrases = overlapTags.slice(0, 2).map((tag) => resolve(TAG_LABELS[tag], lang) || tag);
+  const template = MATCH_REASON_TEMPLATES.withTags[lang] || MATCH_REASON_TEMPLATES.withTags.en;
+  return template(phrases);
 }
 
-function buildRoadmap(ctaVariant) {
+function buildRoadmap(ctaVariant, lang) {
   const steps = [...ROADMAP_TEMPLATES.base];
   if (ctaVariant === "urgent") {
     steps.unshift(ROADMAP_TEMPLATES.urgentBoost);
   }
-  return steps;
+  return steps.map((step) => resolveRoadmapStep(step, lang));
 }

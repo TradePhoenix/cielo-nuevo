@@ -7,6 +7,7 @@ import AtlasGrid from "../components/AtlasGrid";
 import TrustMoment from "../components/TrustMoment";
 import FitCallBar from "../components/FitCallBar";
 import SEO from "../../../components/SEO";
+import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../../../utils/language";
 import { useTopMatches } from "../hooks/useTopMatches";
 import { getAllCities } from "../logic/cityLookup";
 import { filterAtlasCities, prioritizeAtlasCities } from "../data/atlasGroups";
@@ -65,7 +66,15 @@ const content = {
 };
 
 export default function YourMexicoPage() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLangState] = useState(getStoredLanguage);
+  const setLang = (next) => {
+    setLangState((prev) => {
+      const resolved = typeof next === "function" ? next(prev) : next;
+      setStoredLanguage(resolved);
+      return resolved;
+    });
+  };
+  useHtmlLang(lang);
   const [regionId, setRegionId] = useState("all");
   const [lifestyleIds, setLifestyleIds] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");

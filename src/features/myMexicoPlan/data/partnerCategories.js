@@ -29,13 +29,19 @@
 //                  partner directory yet — this is the structural seam a
 //                  future real partner list would populate (item 7 of
 //                  ENG-021's scope), not a current claim of any kind.
+//
+// PTM Spanish-parity pass: `label`, `whyItMatters`, `whenNeeded` became
+// `{ en, es }`.
 
 export const PARTNER_CATEGORIES = [
   {
     id: "immigration-residency",
-    label: "Immigration / Residency",
-    whyItMatters: "Every visitor relocating to Mexico needs some form of legal residency status — this is the one category nobody skips.",
-    whenNeeded: "3–6 Months Before Moving, finalized in your First 90 Days",
+    label: { en: "Immigration / Residency", es: "Inmigración / Residencia" },
+    whyItMatters: {
+      en: "Every visitor relocating to Mexico needs some form of legal residency status — this is the one category nobody skips.",
+      es: "Toda persona que se reubica en México necesita algún tipo de estatus legal de residencia — esta es la única categoría que nadie se salta.",
+    },
+    whenNeeded: { en: "3–6 Months Before Moving, finalized in your First 90 Days", es: "3–6 Meses Antes De Mudarte, finalizado en tus Primeros 90 Días" },
     ownership: "professional",
     guideLink: "/guides/mexico-residency-support",
     relevance: "universal",
@@ -43,9 +49,12 @@ export const PARTNER_CATEGORIES = [
   },
   {
     id: "real-estate",
-    label: "Real Estate",
-    whyItMatters: "Finding honest, realistic housing — whether renting or buying — shapes nearly every other decision in your move.",
-    whenNeeded: "3–6 Months Before Moving through your Final Month",
+    label: { en: "Real Estate", es: "Bienes Raíces" },
+    whyItMatters: {
+      en: "Finding honest, realistic housing — whether renting or buying — shapes nearly every other decision in your move.",
+      es: "Encontrar vivienda honesta y realista — ya sea rentando o comprando — moldea casi todas las demás decisiones de tu mudanza.",
+    },
+    whenNeeded: { en: "3–6 Months Before Moving through your Final Month", es: "3–6 Meses Antes De Mudarte hasta tu Último Mes" },
     ownership: "pathToMexico",
     guideLink: "/guides/renting-vs-buying-in-mexico",
     relevance: "universal",
@@ -53,9 +62,12 @@ export const PARTNER_CATEGORIES = [
   },
   {
     id: "healthcare",
-    label: "Healthcare",
-    whyItMatters: "Finding a doctor and dentist before you need one beats doing it for the first time during an actual problem.",
-    whenNeeded: "Arrival Week, ongoing",
+    label: { en: "Healthcare", es: "Salud" },
+    whyItMatters: {
+      en: "Finding a doctor and dentist before you need one beats doing it for the first time during an actual problem.",
+      es: "Encontrar un médico y un dentista antes de necesitarlos es mejor que hacerlo por primera vez durante un problema real.",
+    },
+    whenNeeded: { en: "Arrival Week, ongoing", es: "Semana De Llegada, de forma continua" },
     ownership: "pathToMexico",
     guideLink: "/guides/healthcare-in-mexico-for-canadians",
     relevance: "universal",
@@ -63,9 +75,12 @@ export const PARTNER_CATEGORIES = [
   },
   {
     id: "insurance",
-    label: "Insurance",
-    whyItMatters: "Private health insurance coverage and cost vary a lot by provider — worth comparing before you need it, not during an emergency.",
-    whenNeeded: "3–6 Months Before Moving",
+    label: { en: "Insurance", es: "Seguros" },
+    whyItMatters: {
+      en: "Private health insurance coverage and cost vary a lot by provider — worth comparing before you need it, not during an emergency.",
+      es: "La cobertura y el costo del seguro médico privado varían mucho según el proveedor — vale la pena comparar antes de necesitarlo, no durante una emergencia.",
+    },
+    whenNeeded: { en: "3–6 Months Before Moving", es: "3–6 Meses Antes De Mudarte" },
     ownership: "professional",
     guideLink: "/guides/healthcare-in-mexico-for-canadians",
     relevance: "conditional",
@@ -73,9 +88,12 @@ export const PARTNER_CATEGORIES = [
   },
   {
     id: "banking",
-    label: "Banking",
-    whyItMatters: "International transfer fees, daily limits, and opening a local account all catch people off guard if left until the last minute.",
-    whenNeeded: "3–6 Months Before Moving, set up locally in your Arrival Week",
+    label: { en: "Banking", es: "Banca" },
+    whyItMatters: {
+      en: "International transfer fees, daily limits, and opening a local account all catch people off guard if left until the last minute.",
+      es: "Las comisiones de transferencia internacional, los límites diarios y la apertura de una cuenta local sorprenden a la gente si se dejan para el último momento.",
+    },
+    whenNeeded: { en: "3–6 Months Before Moving, set up locally in your Arrival Week", es: "3–6 Meses Antes De Mudarte, configurado localmente en tu Semana De Llegada" },
     ownership: "self",
     guideLink: "/guides/banking-in-mexico-as-a-foreigner",
     relevance: "universal",
@@ -83,9 +101,12 @@ export const PARTNER_CATEGORIES = [
   },
   {
     id: "accounting-tax",
-    label: "Accounting / Tax",
-    whyItMatters: "Pension and Social Security income often stretches further here, but confirming how it continues and how it's taxed is worth doing in writing, not assuming.",
-    whenNeeded: "Start Now, confirmed before your Final Month",
+    label: { en: "Accounting / Tax", es: "Contabilidad / Impuestos" },
+    whyItMatters: {
+      en: "Pension and Social Security income often stretches further here, but confirming how it continues and how it's taxed is worth doing in writing, not assuming.",
+      es: "El ingreso de pensión o Seguro Social a menudo rinde más aquí, pero vale la pena confirmar por escrito cómo continúa y cómo se grava, en lugar de asumirlo.",
+    },
+    whenNeeded: { en: "Start Now, confirmed before your Final Month", es: "Empieza Ahora, confirmado antes de tu Último Mes" },
     ownership: "professional",
     guideLink: "/guides/retiring-in-mexico",
     relevance: "conditional",
@@ -93,9 +114,12 @@ export const PARTNER_CATEGORIES = [
   },
   {
     id: "legal-services",
-    label: "Legal Services",
-    whyItMatters: "Lease agreements, property contracts, and residency paperwork often benefit from a licensed legal review — Path To Mexico is not a law firm and does not provide legal advice.",
-    whenNeeded: "3–6 Months Before Moving through your Final Month",
+    label: { en: "Legal Services", es: "Servicios Legales" },
+    whyItMatters: {
+      en: "Lease agreements, property contracts, and residency paperwork often benefit from a licensed legal review — Path To Mexico is not a law firm and does not provide legal advice.",
+      es: "Los contratos de renta, los contratos de propiedad y los trámites de residencia a menudo se benefician de una revisión legal certificada — Path To Mexico no es un despacho legal ni ofrece asesoría legal.",
+    },
+    whenNeeded: { en: "3–6 Months Before Moving through your Final Month", es: "3–6 Meses Antes De Mudarte hasta tu Último Mes" },
     ownership: "professional",
     guideLink: null,
     relevance: "universal",
@@ -103,9 +127,12 @@ export const PARTNER_CATEGORIES = [
   },
   {
     id: "vehicle-transportation",
-    label: "Vehicle / Transportation",
-    whyItMatters: "This region's day-to-day life mostly assumes you're driving — worth planning for before you're relying on it.",
-    whenNeeded: "3–6 Months Before Moving",
+    label: { en: "Vehicle / Transportation", es: "Vehículo / Transporte" },
+    whyItMatters: {
+      en: "This region's day-to-day life mostly assumes you're driving — worth planning for before you're relying on it.",
+      es: "La vida diaria de esta región generalmente asume que conduces — vale la pena planearlo antes de depender de ello.",
+    },
+    whenNeeded: { en: "3–6 Months Before Moving", es: "3–6 Meses Antes De Mudarte" },
     ownership: "self",
     guideLink: null,
     relevance: "conditional",
@@ -113,9 +140,12 @@ export const PARTNER_CATEGORIES = [
   },
   {
     id: "internet-utilities",
-    label: "Internet & Utilities",
-    whyItMatters: "Setting up phone, internet, and basic utilities early — starting with a prepaid option — avoids being locked into a plan before you know your neighborhood's actual coverage.",
-    whenNeeded: "Arrival Week",
+    label: { en: "Internet & Utilities", es: "Internet Y Servicios" },
+    whyItMatters: {
+      en: "Setting up phone, internet, and basic utilities early — starting with a prepaid option — avoids being locked into a plan before you know your neighborhood's actual coverage.",
+      es: "Configurar teléfono, internet y servicios básicos desde temprano — empezando con una opción prepago — evita quedar atado a un plan antes de conocer la cobertura real de tu colonia.",
+    },
+    whenNeeded: { en: "Arrival Week", es: "Semana De Llegada" },
     ownership: "self",
     guideLink: "/guides/internet-and-remote-work-in-mexico",
     relevance: "universal",
@@ -123,9 +153,12 @@ export const PARTNER_CATEGORIES = [
   },
   {
     id: "pet-relocation",
-    label: "Pet Relocation",
-    whyItMatters: "If you're bringing pets, import requirements and logistics are worth researching well ahead of your move rather than the final week.",
-    whenNeeded: "3–6 Months Before Moving",
+    label: { en: "Pet Relocation", es: "Reubicación De Mascotas" },
+    whyItMatters: {
+      en: "If you're bringing pets, import requirements and logistics are worth researching well ahead of your move rather than the final week.",
+      es: "Si traes mascotas, vale la pena investigar los requisitos de importación y la logística mucho antes de tu mudanza, no en la última semana.",
+    },
+    whenNeeded: { en: "3–6 Months Before Moving", es: "3–6 Meses Antes De Mudarte" },
     ownership: "self",
     guideLink: "/guides/bringing-pets-to-mexico",
     relevance: "universal",
@@ -133,9 +166,12 @@ export const PARTNER_CATEGORIES = [
   },
   {
     id: "moving-shipping",
-    label: "Moving & Shipping",
-    whyItMatters: "Deciding what to ship, sell, or replace is one of the most practical, concrete parts of making a move real.",
-    whenNeeded: "Final Month",
+    label: { en: "Moving & Shipping", es: "Mudanza Y Envíos" },
+    whyItMatters: {
+      en: "Deciding what to ship, sell, or replace is one of the most practical, concrete parts of making a move real.",
+      es: "Decidir qué enviar, vender o reemplazar es una de las partes más prácticas y concretas de hacer realidad una mudanza.",
+    },
+    whenNeeded: { en: "Final Month", es: "Último Mes" },
     ownership: "self",
     guideLink: "/guides/mexico-relocation-checklist",
     relevance: "universal",

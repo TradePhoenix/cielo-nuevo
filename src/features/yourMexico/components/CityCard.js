@@ -131,8 +131,8 @@ export default function CityCard({ city, index = 0, lang = "en", region, signals
           <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-zinc-600">{tagline}</p>
           {signals && signals.length > 0 && (
             <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.12em] text-zinc-500">
-              {signals.map((signal) => (
-                <li key={signal}>{signal}</li>
+              {signals.map((signal, signalIndex) => (
+                <li key={signalIndex}>{signal}</li>
               ))}
             </ul>
           )}

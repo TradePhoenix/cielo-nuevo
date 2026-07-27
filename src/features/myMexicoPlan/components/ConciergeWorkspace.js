@@ -1,4 +1,5 @@
 import TaskCard from "./TaskCard";
+import { PLAN_UI } from "../data/uiCopy";
 
 // Presentational only — every value comes from the `workspace` prop
 // (buildConciergeWorkspace.js's output shape). A future AI concierge can
@@ -10,15 +11,14 @@ import TaskCard from "./TaskCard";
 // itself has no slot for that; the card's own ownership label, reality
 // note, and guide link all render exactly as they do everywhere else on
 // this page, off the same shared taskState.
-export default function ConciergeWorkspace({ workspace, taskState, onToggleTask }) {
+export default function ConciergeWorkspace({ workspace, taskState, onToggleTask, lang = "en" }) {
   const { categories, disclaimer } = workspace;
+  const ui = (PLAN_UI[lang] || PLAN_UI.en).conciergeWorkspace;
 
   return (
     <div className="mt-10 border border-zinc-300 bg-white p-8 print:mt-6">
-      <p className="mb-2 text-xs uppercase tracking-[0.3em] text-zinc-500">Concierge Workspace</p>
-      <h2 className="mb-3 text-3xl font-light tracking-[-0.04em] md:text-5xl">
-        Your relocation, divided honestly.
-      </h2>
+      <p className="mb-2 text-xs uppercase tracking-[0.3em] text-zinc-500">{ui.label}</p>
+      <h2 className="mb-3 text-3xl font-light tracking-[-0.04em] md:text-5xl">{ui.title}</h2>
       <p className="mb-8 max-w-2xl text-sm leading-relaxed text-zinc-600">{disclaimer}</p>
 
       <div className="space-y-10">
@@ -42,6 +42,7 @@ export default function ConciergeWorkspace({ workspace, taskState, onToggleTask 
                         task={task}
                         done={Boolean(taskState[task.id])}
                         onToggle={() => onToggleTask(task.id)}
+                        lang={lang}
                       />
                     </div>
                   ))}

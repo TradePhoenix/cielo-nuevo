@@ -1,4 +1,5 @@
 import TaskCard from "./TaskCard";
+import { PLAN_UI } from "../data/uiCopy";
 
 // Presentational only — every value comes from the `timeline` prop
 // (buildRelocationTimeline.js's output shape). A future AI layer can pass
@@ -8,19 +9,17 @@ import TaskCard from "./TaskCard";
 // by every other My Mexico Plan section. TaskCard.js is reused
 // unmodified — the only addition here is the period's own rationale line
 // and a "date-dependent" tag, since TaskCard has no slot for either.
-export default function RelocationTimeline({ timeline, taskState, onToggleTask }) {
+export default function RelocationTimeline({ timeline, taskState, onToggleTask, lang = "en" }) {
   const { cityName, timelineAnswerLabel, disclaimer, currentPeriodId, periods } = timeline;
+  const ui = (PLAN_UI[lang] || PLAN_UI.en).relocationTimeline;
 
   return (
     <div className="mt-10 border border-zinc-300 bg-white p-8 print:mt-6">
-      <p className="mb-2 text-xs uppercase tracking-[0.3em] text-zinc-500">Relocation Timeline</p>
-      <h2 className="mb-3 text-3xl font-light tracking-[-0.04em] md:text-5xl">Your {cityName} plan, in sequence.</h2>
+      <p className="mb-2 text-xs uppercase tracking-[0.3em] text-zinc-500">{ui.label}</p>
+      <h2 className="mb-3 text-3xl font-light tracking-[-0.04em] md:text-5xl">{ui.title(cityName)}</h2>
       <p className="mb-2 max-w-2xl text-sm leading-relaxed text-zinc-600">{disclaimer}</p>
       {timelineAnswerLabel && (
-        <p className="mb-8 max-w-2xl text-sm leading-relaxed text-zinc-600">
-          Your Blueprint says <span className="font-semibold text-zinc-950">{timelineAnswerLabel.toLowerCase()}</span> —
-          the periods below reflect that.
-        </p>
+        <p className="mb-8 max-w-2xl text-sm leading-relaxed text-zinc-600">{ui.blueprintSays(timelineAnswerLabel)}</p>
       )}
 
       <div className="space-y-10">
@@ -30,11 +29,11 @@ export default function RelocationTimeline({ timeline, taskState, onToggleTask }
               <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">
                 {period.label} &middot; {period.totalCount}
                 {period.id === currentPeriodId && (
-                  <span className="ml-2 text-[#d8a15f]">&middot; Your Current Focus</span>
+                  <span className="ml-2 text-[#d8a15f]">&middot; {ui.currentFocus}</span>
                 )}
               </p>
               {period.dateDependent && (
-                <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-400">Depends On A Confirmed Move Date</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-400">{ui.dependsOnDate}</p>
               )}
             </div>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-600">{period.rationale}</p>
@@ -45,13 +44,11 @@ export default function RelocationTimeline({ timeline, taskState, onToggleTask }
             {period.tasks.length > 0 ? (
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {period.tasks.map((task) => (
-                  <TaskCard key={task.id} task={task} done={Boolean(taskState[task.id])} onToggle={() => onToggleTask(task.id)} />
+                  <TaskCard key={task.id} task={task} done={Boolean(taskState[task.id])} onToggle={() => onToggleTask(task.id)} lang={lang} />
                 ))}
               </div>
             ) : (
-              <p className="mt-4 border border-dashed border-zinc-200 p-4 text-sm text-zinc-500">
-                Nothing here yet based on your own answers — that's expected, not a gap.
-              </p>
+              <p className="mt-4 border border-dashed border-zinc-200 p-4 text-sm text-zinc-500">{ui.nothingYet}</p>
             )}
           </div>
         ))}

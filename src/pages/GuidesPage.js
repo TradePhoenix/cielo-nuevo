@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SEO from "../components/SEO";
+import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../utils/language";
 import RelocationRoadmap from "../components/RelocationRoadmap";
 import { GUIDES as guides } from "../data/guides";
 import { useCinematicMotion } from "../components/cinematicMotion";
@@ -58,7 +59,15 @@ const content = {
 };
 
 function GuidesPage() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLangState] = useState(getStoredLanguage);
+  const setLang = (next) => {
+    setLangState((prev) => {
+      const resolved = typeof next === "function" ? next(prev) : next;
+      setStoredLanguage(resolved);
+      return resolved;
+    });
+  };
+  useHtmlLang(lang);
   const t = content[lang];
   const prefersReducedMotion = useCinematicMotion();
 

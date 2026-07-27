@@ -1,12 +1,14 @@
-export default function QuestionCard({ question, selectedOptionId, onSelect }) {
+import { resolveText } from "../data/questions";
+
+export default function QuestionCard({ question, selectedOptionId, onSelect, lang = "en" }) {
   return (
     <div className="mx-auto w-full max-w-xl">
       <h2 className="text-2xl font-light leading-tight tracking-[-0.03em] text-zinc-950 sm:text-3xl">
-        {question.question}
+        {resolveText(question.question, lang)}
       </h2>
 
-      {question.helper && (
-        <p className="mt-3 text-sm text-zinc-500">{question.helper}</p>
+      {question.helper && resolveText(question.helper, lang) && (
+        <p className="mt-3 text-sm text-zinc-500">{resolveText(question.helper, lang)}</p>
       )}
 
       <div className="mt-8 flex flex-col gap-3">
@@ -25,7 +27,7 @@ export default function QuestionCard({ question, selectedOptionId, onSelect }) {
                   : "border-zinc-300 bg-white text-zinc-800 hover:border-zinc-950"
               }`}
             >
-              <span>{option.label}</span>
+              <span>{resolveText(option.label, lang)}</span>
               <span
                 className={`ml-4 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border ${
                   isSelected ? "border-white" : "border-zinc-400"

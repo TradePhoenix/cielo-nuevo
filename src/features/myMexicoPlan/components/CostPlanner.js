@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { PLAN_UI } from "../data/uiCopy";
 
 const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2";
@@ -18,23 +19,18 @@ function formatRange(range) {
 // pass a differently-computed `planner` object here without any change to
 // this component's markup, matching the same override-seam pattern used
 // by DecisionBrief.js, RelocationRoadmap.js, and ContinueYourJourney.js.
-export default function CostPlanner({ planner }) {
+export default function CostPlanner({ planner, lang = "en" }) {
   const { cityName, totalRange, categories, majorCostDrivers, assumptions, verifyPersonally, guideLinks } = planner;
+  const ui = (PLAN_UI[lang] || PLAN_UI.en).costPlanner;
 
   return (
     <div className="mt-10 border border-zinc-300 bg-white p-8 print:mt-6">
-      <p className="mb-2 text-xs uppercase tracking-[0.3em] text-zinc-500">Cost Planner</p>
-      <h2 className="mb-3 text-3xl font-light tracking-[-0.04em] md:text-5xl">
-        A planning range for life in {cityName}.
-      </h2>
-      <p className="mb-8 max-w-2xl text-sm leading-relaxed text-zinc-600">
-        These are planning ranges, not exact prices or guarantees. Actual costs vary by exact
-        location, season, exchange rates, household, and lifestyle — use this as a starting point
-        to plan around, not a quote.
-      </p>
+      <p className="mb-2 text-xs uppercase tracking-[0.3em] text-zinc-500">{ui.label}</p>
+      <h2 className="mb-3 text-3xl font-light tracking-[-0.04em] md:text-5xl">{ui.title(cityName)}</h2>
+      <p className="mb-8 max-w-2xl text-sm leading-relaxed text-zinc-600">{ui.description}</p>
 
       <div className="break-inside-avoid border border-zinc-200 bg-[#f4f0e8] p-6">
-        <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">Estimated Monthly Total</p>
+        <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">{ui.estimatedTotal}</p>
         <p className="mt-2 text-2xl font-light tracking-[-0.02em]">{formatRange(totalRange)}</p>
         <p className="mt-1 text-xs text-zinc-500">{totalRange.sourceLabel}</p>
       </div>
@@ -44,7 +40,7 @@ export default function CostPlanner({ planner }) {
           <div key={category.id} className="break-inside-avoid bg-white p-5">
             <p className="mb-2 text-xs uppercase tracking-[0.25em] text-zinc-500">{category.label}</p>
             <p className="text-lg font-light tracking-[-0.01em]">
-              {formatRange(category.range) || "Needs personal verification"}
+              {formatRange(category.range) || ui.needsVerification}
             </p>
             <p className="mt-2 text-xs leading-relaxed text-zinc-500">{category.note}</p>
           </div>
@@ -53,35 +49,35 @@ export default function CostPlanner({ planner }) {
 
       <div className="mt-8 grid gap-8 border-t border-zinc-200 pt-6 sm:grid-cols-3">
         <div>
-          <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">Major Cost Drivers</p>
+          <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">{ui.majorCostDrivers}</p>
           <ul className="space-y-2 text-sm leading-relaxed text-zinc-700">
-            {majorCostDrivers.map((driver) => (
-              <li key={driver}>{driver}</li>
+            {majorCostDrivers.map((driver, index) => (
+              <li key={index}>{driver}</li>
             ))}
           </ul>
         </div>
 
         <div>
-          <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">Assumptions Used</p>
+          <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">{ui.assumptions}</p>
           <ul className="space-y-2 text-sm leading-relaxed text-zinc-600">
-            {assumptions.map((assumption) => (
-              <li key={assumption}>{assumption}</li>
+            {assumptions.map((assumption, index) => (
+              <li key={index}>{assumption}</li>
             ))}
           </ul>
         </div>
 
         <div>
-          <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">Verify Personally</p>
+          <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">{ui.verifyPersonally}</p>
           <ul className="space-y-2 text-sm leading-relaxed text-zinc-600">
-            {verifyPersonally.map((item) => (
-              <li key={item}>{item}</li>
+            {verifyPersonally.map((item, index) => (
+              <li key={index}>{item}</li>
             ))}
           </ul>
         </div>
       </div>
 
       <div className="mt-8 border-t border-zinc-200 pt-6">
-        <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">Go Deeper</p>
+        <p className="mb-3 text-xs uppercase tracking-[0.25em] text-zinc-500">{ui.goDeeper}</p>
         <div className="flex flex-wrap gap-x-6 gap-y-2">
           {guideLinks.map((guide) => (
             <Link

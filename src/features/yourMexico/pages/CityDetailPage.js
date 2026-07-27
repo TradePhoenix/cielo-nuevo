@@ -21,6 +21,7 @@ import CompareYourMatches from "../components/CompareYourMatches";
 import TrustMoment from "../components/TrustMoment";
 import FitCallBar from "../components/FitCallBar";
 import SEO from "../../../components/SEO";
+import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../../../utils/language";
 import { getCityById, getAllCities, getOtherCities } from "../logic/cityLookup";
 import { getRegionIdForCity } from "../data/atlasGroups";
 import { useTopMatches } from "../hooks/useTopMatches";
@@ -62,7 +63,15 @@ export default function CityDetailPage() {
   const { cityId } = useParams();
   const city = getCityById(cityId);
   const { hasCompletedBlueprint, tagCounts, matches } = useTopMatches();
-  const [lang, setLang] = useState("en");
+  const [lang, setLangState] = useState(getStoredLanguage);
+  const setLang = (next) => {
+    setLangState((prev) => {
+      const resolved = typeof next === "function" ? next(prev) : next;
+      setStoredLanguage(resolved);
+      return resolved;
+    });
+  };
+  useHtmlLang(lang);
 
   if (!city) {
     return <Navigate to="/your-mexico" replace />;

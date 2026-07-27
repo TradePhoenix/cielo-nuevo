@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { entryReveal, entryRevealReduced, useCinematicMotion } from "../../../components/cinematicMotion";
+import { BLUEPRINT_UI } from "../data/uiCopy";
 
 // Full-bleed cinematic intro — reuses the same hero photo and dark-overlay
 // language as the homepage hero (src/pages/HomePage.js) so this feels like
@@ -10,9 +11,10 @@ import { entryReveal, entryRevealReduced, useCinematicMotion } from "../../../co
 // this screen is visible immediately on mount (not scroll-triggered), so
 // CinematicReveal's own whileInView contract isn't the right fit, but the
 // same timing/easing tokens are.
-export default function BlueprintIntro({ onStart, totalQuestions }) {
+export default function BlueprintIntro({ onStart, totalQuestions, lang = "en" }) {
   const prefersReducedMotion = useCinematicMotion();
   const revealVariants = prefersReducedMotion ? entryRevealReduced : entryReveal;
+  const ui = BLUEPRINT_UI[lang].intro;
 
   return (
     <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 py-24 text-center text-white">
@@ -32,35 +34,27 @@ export default function BlueprintIntro({ onStart, totalQuestions }) {
         variants={revealVariants}
         className="relative z-10 mx-auto max-w-2xl"
       >
-        <p className="mb-6 text-xs uppercase tracking-[0.4em] text-white/60">
-          My Mexico Blueprint
-        </p>
+        <p className="mb-6 text-xs uppercase tracking-[0.4em] text-white/60">{ui.eyebrow}</p>
 
         <h1 className="text-4xl font-light leading-tight tracking-[-0.04em] sm:text-6xl md:text-7xl">
-          Find your path to a life in Mexico.
+          {ui.title}
         </h1>
 
-        <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-white/80 sm:text-xl">
-          Every year, thousands of people dream about moving to Mexico. Most never do. This
-          blueprint helps you see what your move could actually look like — where you fit,
-          what it may cost, and what to do next.
-        </p>
+        <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-white/80 sm:text-xl">{ui.text}</p>
 
         <button
           type="button"
           onClick={onStart}
           className="mt-10 inline-block bg-white px-9 py-4 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-950 transition duration-300 hover:bg-[#d8a15f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b0a]"
         >
-          Start Your Blueprint
+          {ui.cta}
         </button>
 
         <p className="mt-6 text-xs uppercase tracking-[0.25em] text-white/50">
-          {totalQuestions} Quick Questions &middot; About 2 Minutes
+          {ui.questionsCount(totalQuestions)}
         </p>
 
-        <p className="mx-auto mt-4 max-w-md text-xs leading-relaxed text-white/50">
-          Your answers stay on this device — nothing is sent anywhere until you choose to talk to us.
-        </p>
+        <p className="mx-auto mt-4 max-w-md text-xs leading-relaxed text-white/50">{ui.privacy}</p>
       </motion.div>
     </section>
   );

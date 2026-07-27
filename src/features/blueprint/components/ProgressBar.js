@@ -1,12 +1,13 @@
-export default function ProgressBar({ current, total }) {
+import { BLUEPRINT_UI } from "../data/uiCopy";
+
+export default function ProgressBar({ current, total, lang = "en" }) {
   const percent = Math.round((current / total) * 100);
+  const ui = BLUEPRINT_UI[lang].question;
 
   return (
     <div className="mx-auto mb-10 w-full max-w-xl">
       <div className="mb-3 flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-zinc-500">
-        <span>
-          Question {current} of {total}
-        </span>
+        <span>{ui.progress(current, total)}</span>
         <span>{percent}%</span>
       </div>
 

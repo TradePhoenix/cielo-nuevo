@@ -26,47 +26,72 @@
 // richer, model-generated `conciergeReason` per task, or a different
 // selection of which tasks surface — without changing this file's output
 // shape or the component that renders it.
+//
+// PTM Spanish-parity pass: added the `lang` parameter (default "en").
 
 const CATEGORIES = [
   {
     id: "self",
-    label: "You Can Do Yourself",
-    description:
-      "Personal decisions and research that only you can make — no one else can decide these for you.",
+    label: { en: "You Can Do Yourself", es: "Puedes Hacerlo Tú Mismo" },
+    description: {
+      en: "Personal decisions and research that only you can make — no one else can decide these for you.",
+      es: "Decisiones personales e investigación que solo tú puedes hacer — nadie más puede decidir esto por ti.",
+    },
   },
   {
     id: "pathToMexico",
-    label: "Path To Mexico Can Help",
-    description:
-      "Path To Mexico can guide you, coordinate on your behalf, or make a trusted introduction here — not a guarantee of outcome, and never a substitute for a licensed professional where one is required.",
+    label: { en: "Path To Mexico Can Help", es: "Path To Mexico Puede Ayudar" },
+    description: {
+      en: "Path To Mexico can guide you, coordinate on your behalf, or make a trusted introduction here — not a guarantee of outcome, and never a substitute for a licensed professional where one is required.",
+      es: "Path To Mexico puede guiarte, coordinar en tu nombre o hacer una presentación de confianza aquí — no es una garantía de resultado, y nunca un sustituto de un profesional certificado donde se requiera uno.",
+    },
   },
   {
     id: "professional",
-    label: "Professional Support Recommended",
-    description:
-      "Legal, tax, medical, immigration, or real-estate matters that call for a qualified, licensed professional. Path To Mexico can help connect you with trusted options, but does not perform these services itself.",
+    label: { en: "Professional Support Recommended", es: "Se Recomienda Apoyo Profesional" },
+    description: {
+      en: "Legal, tax, medical, immigration, or real-estate matters that call for a qualified, licensed professional. Path To Mexico can help connect you with trusted options, but does not perform these services itself.",
+      es: "Asuntos legales, fiscales, médicos, de inmigración o bienes raíces que requieren un profesional calificado y certificado. Path To Mexico puede ayudarte a conectar con opciones de confianza, pero no realiza estos servicios directamente.",
+    },
   },
 ];
 
-const DISCLAIMER =
-  "Path To Mexico provides relocation guidance, local insight, and trusted introductions. We are not a law firm, immigration agency, tax advisor, financial advisor, or real estate brokerage. Legal, immigration, tax, financial, and real estate services are provided by independent qualified professionals where appropriate.";
+const DISCLAIMER = {
+  en: "Path To Mexico provides relocation guidance, local insight, and trusted introductions. We are not a law firm, immigration agency, tax advisor, financial advisor, or real estate brokerage. Legal, immigration, tax, financial, and real estate services are provided by independent qualified professionals where appropriate.",
+  es: "Path To Mexico ofrece orientación de reubicación, conocimiento local y conexiones de confianza. No somos un despacho legal, una agencia de inmigración, un asesor fiscal, un asesor financiero ni una correduría inmobiliaria. Los servicios legales, de inmigración, fiscales, financieros e inmobiliarios los brindan profesionales calificados e independientes cuando corresponde.",
+};
 
 const FALLBACK_LIMIT_PER_CATEGORY = 3;
+
+function resolve(field, lang) {
+  if (!field) return "";
+  return typeof field === "string" ? field : field[lang] || field.en || "";
+}
+
+const RANKED_REASON = {
+  en: "Ranked as one of your top priorities based on your own answers.",
+  es: "Clasificada como una de tus principales prioridades según tus propias respuestas.",
+};
+
+function gapReason(dimension, lang) {
+  return lang === "es" ? `Aborda tu brecha de ${dimension} — una de las formas más rápidas de subir tu preparación.` : `Addresses your ${dimension} gap — one of the fastest ways to raise your readiness.`;
+}
+
+function fallbackReason(cityName, lang) {
+  return lang === "es" ? `Parte de tu plan personalizado para ${cityName}.` : `Part of your personalized plan for ${cityName}.`;
+}
 
 // plan: buildPlan.js's output (already filtered to this visitor/city).
 // adaptiveChecklist: buildAdaptiveChecklist.js's output, computed once on
 // the page and passed in here — not recalculated.
 // readinessAssessment: buildReadinessAssessment.js's output, same.
-export function buildConciergeWorkspace({ plan, adaptiveChecklist, readinessAssessment }) {
+export function buildConciergeWorkspace({ plan, adaptiveChecklist, readinessAssessment }, lang = "en") {
   const allTasks = plan.chapters.flatMap((chapter) => chapter.tasks);
   const entries = new Map();
 
   for (const task of (adaptiveChecklist && adaptiveChecklist.doNow) || []) {
     if (!entries.has(task.id)) {
-      entries.set(task.id, {
-        ...task,
-        conciergeReason: "Ranked as one of your top priorities based on your own answers.",
-      });
+      entries.set(task.id, { ...task, conciergeReason: resolve(RANKED_REASON, lang) });
     }
   }
 
@@ -75,18 +100,17 @@ export function buildConciergeWorkspace({ plan, adaptiveChecklist, readinessAsse
       if (entries.has(taskId)) continue;
       const task = allTasks.find((candidate) => candidate.id === taskId);
       if (task) {
-        entries.set(task.id, {
-          ...task,
-          conciergeReason: `Addresses your ${opportunity.dimension} gap — one of the fastest ways to raise your readiness.`,
-        });
+        entries.set(task.id, { ...task, conciergeReason: gapReason(opportunity.dimension, lang) });
       }
     }
   }
 
   const categories = CATEGORIES.map((category) => {
     const personalized = Array.from(entries.values()).filter((task) => task.ownership === category.id);
+    const label = resolve(category.label, lang);
+    const description = resolve(category.description, lang);
     if (personalized.length > 0) {
-      return { ...category, tasks: personalized };
+      return { id: category.id, label, description, tasks: personalized };
     }
 
     // Fallback so a category is never empty in the overview: still scoped
@@ -94,12 +118,9 @@ export function buildConciergeWorkspace({ plan, adaptiveChecklist, readinessAsse
     const fallback = allTasks
       .filter((task) => task.ownership === category.id && !entries.has(task.id))
       .slice(0, FALLBACK_LIMIT_PER_CATEGORY)
-      .map((task) => ({
-        ...task,
-        conciergeReason: `Part of your personalized plan for ${plan.cityName}.`,
-      }));
-    return { ...category, tasks: fallback };
+      .map((task) => ({ ...task, conciergeReason: fallbackReason(plan.cityName, lang) }));
+    return { id: category.id, label, description, tasks: fallback };
   });
 
-  return { categories, disclaimer: DISCLAIMER };
+  return { categories, disclaimer: resolve(DISCLAIMER, lang) };
 }

@@ -19,33 +19,37 @@
 // This is the seam a future AI layer could enrich (e.g. a richer written
 // narrative per dimension) without changing this file's output shape or
 // any component that renders it.
+//
+// PTM Spanish-parity pass: added the `lang` parameter (default "en") to
+// buildReadinessAssessment(); every text field became `{ en, es }`,
+// resolved before returning.
 
-import { QUESTIONS } from "../../blueprint/data/questions";
+import { QUESTIONS, resolveText } from "../../blueprint/data/questions";
 
 const DIMENSION_INFO = {
   timeline: {
-    label: "Timeline Clarity",
-    whyItMatters: "Knowing roughly when you're moving shapes every other decision below.",
+    label: { en: "Timeline Clarity", es: "Claridad De Cronograma" },
+    whyItMatters: { en: "Knowing roughly when you're moving shapes every other decision below.", es: "Saber aproximadamente cuándo te mudas moldea cualquier otra decisión de abajo." },
   },
   lifeStage: {
-    label: "Life-Stage Fit",
-    whyItMatters: "This shapes which archetype and roadmap fits your situation.",
+    label: { en: "Life-Stage Fit", es: "Ajuste De Etapa De Vida" },
+    whyItMatters: { en: "This shapes which archetype and roadmap fits your situation.", es: "Esto define qué arquetipo y hoja de ruta se ajusta a tu situación." },
   },
   budget: {
-    label: "Budget Clarity",
-    whyItMatters: "A real number is one of the fastest ways to turn \"maybe\" into \"when.\"",
+    label: { en: "Budget Clarity", es: "Claridad De Presupuesto" },
+    whyItMatters: { en: "A real number is one of the fastest ways to turn \"maybe\" into \"when.\"", es: "Un número real es una de las formas más rápidas de convertir el \"tal vez\" en \"cuándo\"." },
   },
   lifestyle: {
-    label: "Lifestyle Clarity",
-    whyItMatters: "Knowing what setting you want narrows your city search fast.",
+    label: { en: "Lifestyle Clarity", es: "Claridad De Estilo De Vida" },
+    whyItMatters: { en: "Knowing what setting you want narrows your city search fast.", es: "Saber qué entorno quieres acota rápidamente tu búsqueda de ciudad." },
   },
   household: {
-    label: "Household Clarity",
-    whyItMatters: "Who's coming with you shapes housing size and school research.",
+    label: { en: "Household Clarity", es: "Claridad Familiar" },
+    whyItMatters: { en: "Who's coming with you shapes housing size and school research.", es: "Quién te acompaña define el tamaño de la vivienda y la investigación escolar." },
   },
   residencyFamiliarity: {
-    label: "Residency Knowledge",
-    whyItMatters: "Understanding the residency process early avoids timeline surprises later.",
+    label: { en: "Residency Knowledge", es: "Conocimiento De Residencia" },
+    whyItMatters: { en: "Understanding the residency process early avoids timeline surprises later.", es: "Entender el proceso de residencia desde temprano evita sorpresas de cronograma después." },
   },
 };
 
@@ -58,30 +62,40 @@ const MAX_HIGHEST_IMPACT_ACTIONS = 3;
 // to "fix," so they're scored below but never surfaced as an opportunity.
 const OPPORTUNITY_ACTIONS = {
   budget: {
-    suggestion:
-      "Get a real number instead of a range you're unsure about — this is one of the fastest ways to raise this score.",
+    suggestion: {
+      en: "Get a real number instead of a range you're unsure about — this is one of the fastest ways to raise this score.",
+      es: "Consigue un número real en lugar de un rango del que no estás seguro — esta es una de las formas más rápidas de subir este puntaje.",
+    },
     taskIds: ["get-honest-about-budget", "bare-minimum-budget"],
     guideLink: "/guides/how-much-money-do-you-need-to-move-to-mexico",
   },
   residencyFamiliarity: {
-    suggestion:
-      "Spend an hour on the residency basics — most of the uncertainty here disappears once you understand the general path.",
+    suggestion: {
+      en: "Spend an hour on the residency basics — most of the uncertainty here disappears once you understand the general path.",
+      es: "Dedica una hora a lo básico de la residencia — la mayor parte de la incertidumbre aquí desaparece una vez que entiendes el camino general.",
+    },
     taskIds: ["research-residency-track", "start-residency-paperwork-urgent"],
     guideLink: "/guides/temporary-residency-mexico",
   },
   timeline: {
-    suggestion: "A rough window — even just a season — makes the rest of this plan far more concrete.",
+    suggestion: {
+      en: "A rough window — even just a season — makes the rest of this plan far more concrete.",
+      es: "Una ventana aproximada — aunque sea solo una temporada — hace que el resto de este plan sea mucho más concreto.",
+    },
     taskIds: [],
     guideLink: null,
   },
   lifestyle: {
-    suggestion: "Compare more than one city match in Your Mexico before deciding what setting fits you.",
+    suggestion: {
+      en: "Compare more than one city match in Your Mexico before deciding what setting fits you.",
+      es: "Compara más de una ciudad coincidente en Your Mexico antes de decidir qué entorno te queda bien.",
+    },
     taskIds: [],
     guideLink: null,
   },
 };
 
-function computeDimensionScores(answers) {
+function computeDimensionScores(answers, lang) {
   return QUESTIONS.map((question) => {
     const options = question.options || [];
     const maxPoints = options.reduce(
@@ -91,12 +105,12 @@ function computeDimensionScores(answers) {
     const selectedOption = options.find((option) => option.id === answers[question.id]);
     const earnedPoints = selectedOption ? (selectedOption.scores && selectedOption.scores.readiness) || 0 : 0;
     const percentOfMax = maxPoints > 0 ? earnedPoints / maxPoints : 0;
-    const info = DIMENSION_INFO[question.id] || { label: question.question, whyItMatters: "" };
+    const info = DIMENSION_INFO[question.id] || { label: question.question, whyItMatters: { en: "", es: "" } };
 
     return {
       id: question.id,
-      label: info.label,
-      whyItMatters: info.whyItMatters,
+      label: resolveText(info.label, lang),
+      whyItMatters: resolveText(info.whyItMatters, lang),
       earnedPoints,
       maxPoints,
       percentOfMax,
@@ -106,8 +120,8 @@ function computeDimensionScores(answers) {
 
 // answers/recommendation: decisionEngine's existing outputs, unchanged.
 // plan/taskState: myMexicoPlan's existing outputs, unchanged.
-export function buildReadinessAssessment({ answers, recommendation, plan, taskState }) {
-  const dimensions = computeDimensionScores(answers);
+export function buildReadinessAssessment({ answers, recommendation, plan, taskState }, lang = "en") {
+  const dimensions = computeDimensionScores(answers, lang);
 
   const strengths = dimensions
     .filter((dimension) => dimension.percentOfMax >= STRENGTH_THRESHOLD)
@@ -122,7 +136,7 @@ export function buildReadinessAssessment({ answers, recommendation, plan, taskSt
     .filter((dimension) => OPPORTUNITY_ACTIONS[dimension.id])
     .map((dimension) => ({
       dimension: dimension.label,
-      suggestion: OPPORTUNITY_ACTIONS[dimension.id].suggestion,
+      suggestion: resolveText(OPPORTUNITY_ACTIONS[dimension.id].suggestion, lang),
       guideLink: OPPORTUNITY_ACTIONS[dimension.id].guideLink,
       taskIds: OPPORTUNITY_ACTIONS[dimension.id].taskIds,
     }));
@@ -130,17 +144,31 @@ export function buildReadinessAssessment({ answers, recommendation, plan, taskSt
   const strongDimensionCount = dimensions.filter((dimension) => dimension.percentOfMax >= STRENGTH_THRESHOLD).length;
 
   const confidenceFactors = [
-    "Built from your own 6 Blueprint answers — the same inputs used to rank your city matches and build the plan below.",
-    "Recalculated instantly if you retake the Blueprint — nothing here is locked in.",
-    `You gave a clear, decisive answer on ${strongDimensionCount} of 6 questions.`,
+    lang === "es"
+      ? "Construido a partir de tus propias 6 respuestas del Blueprint — los mismos datos usados para ordenar tus coincidencias de ciudad y construir el plan de abajo."
+      : "Built from your own 6 Blueprint answers — the same inputs used to rank your city matches and build the plan below.",
+    lang === "es"
+      ? "Se recalcula al instante si vuelves a hacer el Blueprint — nada aquí está fijo."
+      : "Recalculated instantly if you retake the Blueprint — nothing here is locked in.",
+    lang === "es"
+      ? `Diste una respuesta clara y decidida en ${strongDimensionCount} de 6 preguntas.`
+      : `You gave a clear, decisive answer on ${strongDimensionCount} of 6 questions.`,
   ];
 
   const validatePersonally = [
-    "This score reflects the clarity in your answers, not a guarantee of how the move will actually feel.",
-    "A Mexico Fit Call is the fastest way to pressure-test this against your specific situation with a real person.",
+    lang === "es"
+      ? "Este puntaje refleja la claridad en tus respuestas, no una garantía de cómo se sentirá realmente la mudanza."
+      : "This score reflects the clarity in your answers, not a guarantee of how the move will actually feel.",
+    lang === "es"
+      ? "Una Mexico Fit Call es la forma más rápida de poner a prueba esto contra tu situación específica con una persona real."
+      : "A Mexico Fit Call is the fastest way to pressure-test this against your specific situation with a real person.",
   ];
   if (answers.timeline === "exploring") {
-    validatePersonally.push("Your timeline isn't fixed yet — revisit this once you have a real window in mind.");
+    validatePersonally.push(
+      lang === "es"
+        ? "Tu cronograma aún no está fijo — vuelve a esto cuando tengas una ventana real en mente."
+        : "Your timeline isn't fixed yet — revisit this once you have a real window in mind."
+    );
   }
 
   const allTasks = plan ? plan.chapters.flatMap((chapter) => chapter.tasks) : [];

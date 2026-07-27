@@ -42,7 +42,7 @@ function loadInitialState() {
   }
 }
 
-export function useBlueprintState() {
+export function useBlueprintState(lang = "en") {
   const totalQuestions = QUESTIONS.length;
   const [{ screen, questionIndex, answers }, setState] = useState(loadInitialState);
 
@@ -126,8 +126,8 @@ export function useBlueprintState() {
   // goes stale relative to it. This is also the seam a real AI call would
   // replace later — same inputs, same output shape, different implementation.
   const recommendation = useMemo(
-    () => buildRecommendation(computeScores(answers, QUESTIONS), answers),
-    [answers]
+    () => buildRecommendation(computeScores(answers, QUESTIONS), answers, lang),
+    [answers, lang]
   );
 
   return {

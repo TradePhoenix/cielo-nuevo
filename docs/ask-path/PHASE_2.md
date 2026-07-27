@@ -7,11 +7,11 @@ message for ASK PATH-001. None of it is built.
    today (see `docs/ask-path/KNOWLEDGE_SOURCES.md`). Indexing the 27
    guides' full article bodies would require either restructuring guide
    content into data (a bigger content-architecture decision) or manually
-   curating longer per-guide summaries — and fixing, or at least working
-   around, `ArticleSection.js`'s standing body-rendering bug first so the
-   indexed content matches what visitors can actually see on the page.
-2. **`ArticleSection.js`'s rendering bug itself.** Documented, not fixed —
-   explicitly out of this ticket's scope.
+   curating longer per-guide summaries. (Note: `ArticleSection.js` was
+   previously believed to have a body-rendering bug blocking this —
+   verified during the PTM Spanish-parity pass that it renders correctly;
+   see the correction in `KNOWLEDGE_SOURCES.md`. That was never the real
+   blocker.)
 3. **Durable, distributed rate limiting.** `api/_lib/rateLimiter.js` is
    in-memory and per-instance — a real ceiling on abuse needs an external
    store (e.g. Upstash Redis), which is new infrastructure and was

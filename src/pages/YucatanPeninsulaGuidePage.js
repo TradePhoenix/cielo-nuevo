@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ArticleLayout from "../components/ArticleLayout";
 import Section from "../components/ArticleSection";
+import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../utils/language";
 
 // DEST-003 — "The Complete Guide to Living in the Yucatán Peninsula." Every
 // other guide page on this site is English-only (no lang mechanism exists
@@ -186,7 +187,15 @@ const content = {
 };
 
 export default function YucatanPeninsulaGuidePage() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLangState] = useState(getStoredLanguage);
+  const setLang = (next) => {
+    setLangState((prev) => {
+      const resolved = typeof next === "function" ? next(prev) : next;
+      setStoredLanguage(resolved);
+      return resolved;
+    });
+  };
+  useHtmlLang(lang);
   const t = content[lang];
 
   return (
@@ -201,10 +210,10 @@ export default function YucatanPeninsulaGuidePage() {
         </button>
       </div>
 
-      {t.sections.map((section) => (
-        <Section key={section.title} title={section.title}>
-          {section.paragraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+      {t.sections.map((section, sectionIndex) => (
+        <Section key={sectionIndex} title={section.title}>
+          {section.paragraphs.map((paragraph, paragraphIndex) => (
+            <p key={paragraphIndex}>{paragraph}</p>
           ))}
         </Section>
       ))}

@@ -5,9 +5,29 @@ import Checkbox from "../../../components/Checkbox";
 import { DURATION, EASE, useCinematicMotion } from "../../../components/cinematicMotion";
 
 const OWNERSHIP_LABELS = {
-  self: "You handle this",
-  pathToMexico: "Path To Mexico can help",
-  professional: "Needs a professional",
+  en: {
+    self: "You handle this",
+    pathToMexico: "Path To Mexico can help",
+    professional: "Needs a professional",
+  },
+  es: {
+    self: "Tú lo manejas",
+    pathToMexico: "Path To Mexico puede ayudar",
+    professional: "Necesita un profesional",
+  },
+};
+
+const TASK_CARD_UI = {
+  en: {
+    markDone: (title) => `Mark "${title}" as done`,
+    markNotDone: (title) => `Mark "${title}" as not done`,
+    readGuide: "Read The Guide",
+  },
+  es: {
+    markDone: (title) => `Marcar "${title}" como hecho`,
+    markNotDone: (title) => `Marcar "${title}" como no hecho`,
+    readGuide: "Leer La Guía",
+  },
 };
 
 // A single task — never just a checkbox and a title. The reality note is
@@ -22,10 +42,12 @@ const OWNERSHIP_LABELS = {
 // task. `pulseKey` increments on each qualifying transition and is used as
 // the overlay's React key, so rapid toggling always remounts a fresh
 // animation instead of fighting a stuck/half-finished one.
-export default function TaskCard({ task, done, onToggle }) {
+export default function TaskCard({ task, done, onToggle, lang = "en" }) {
   const prefersReducedMotion = useCinematicMotion();
   const previousDoneRef = useRef(done);
   const [pulseKey, setPulseKey] = useState(0);
+  const ownershipLabels = OWNERSHIP_LABELS[lang] || OWNERSHIP_LABELS.en;
+  const ui = TASK_CARD_UI[lang] || TASK_CARD_UI.en;
 
   useEffect(() => {
     if (!previousDoneRef.current && done) {
@@ -57,7 +79,7 @@ export default function TaskCard({ task, done, onToggle }) {
         <Checkbox
           checked={done}
           onToggle={onToggle}
-          label={done ? `Mark "${task.title}" as not done` : `Mark "${task.title}" as done`}
+          label={done ? ui.markNotDone(task.title) : ui.markDone(task.title)}
         />
 
         <div className="flex-1">
@@ -65,7 +87,7 @@ export default function TaskCard({ task, done, onToggle }) {
           <p className="mt-1.5 text-sm leading-relaxed text-zinc-600">{task.realityNote}</p>
 
           <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs uppercase tracking-[0.15em] text-zinc-400">
-            <span>{OWNERSHIP_LABELS[task.ownership]}</span>
+            <span>{ownershipLabels[task.ownership]}</span>
             {task.estimate.time && <span>{task.estimate.time}</span>}
             {task.estimate.cost && <span>{task.estimate.cost}</span>}
           </div>
@@ -75,7 +97,7 @@ export default function TaskCard({ task, done, onToggle }) {
               to={task.guideLink}
               className="mt-3 inline-block text-xs font-semibold uppercase tracking-[0.15em] text-zinc-500 underline decoration-zinc-300 underline-offset-4 transition hover:text-zinc-950 hover:decoration-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
             >
-              Read The Guide
+              {ui.readGuide}
             </Link>
           )}
         </div>

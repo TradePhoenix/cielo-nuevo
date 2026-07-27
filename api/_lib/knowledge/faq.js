@@ -155,6 +155,75 @@ export const FAQ_RECORDS = [
       es: "Depende del nivel de apoyo que necesites, desde una sola Mexico Fit Call de $99 USD hasta una reubicación totalmente acompañada. Te explicaremos los costos con claridad durante esa primera llamada, sin ningún compromiso de continuar — o empieza con nuestro cuestionario gratuito My Mexico Blueprint si aún no estás listo para agendar una llamada.",
     },
   },
+  // PTM — Spanish Parity, Spacing & FAQ pass: six new questions, added to
+  // both HomePage.js (16 -> 22 questions) and here at the same time, kept
+  // in sync deliberately — see docs/ask-path/KNOWLEDGE_SOURCES.md.
+  {
+    id: "faq-plan-before-residency",
+    q: {
+      en: "Can I start planning my move before I have residency sorted out?",
+      es: "¿Puedo empezar a planear mi mudanza antes de resolver la residencia?",
+    },
+    a: {
+      en: "Yes — most people do. Exploring destinations, understanding budgets, and building a rough timeline don't require residency in hand. My Mexico Blueprint and a Mexico Fit Call are both built for exactly this stage, so residency becomes one part of a plan you're already building rather than the first hurdle you have to clear.",
+      es: "Sí — la mayoría de las personas lo hace así. Explorar destinos, entender presupuestos y armar un cronograma aproximado no requiere tener la residencia en mano. My Mexico Blueprint y una Mexico Fit Call están pensados exactamente para esta etapa, para que la residencia sea una parte más de un plan que ya estás construyendo, no el primer obstáculo que debes resolver.",
+    },
+  },
+  {
+    id: "faq-vehicle-purchase",
+    q: {
+      en: "Can I buy, register, and insure a car in Mexico?",
+      es: "¿Puedo comprar, registrar y asegurar un auto en México?",
+    },
+    a: {
+      en: "Yes. Foreigners can buy a vehicle in Mexico with valid residency status (rules vary for tourist-visa visitors bringing a foreign-plated car temporarily). Registration and insurance work differently than in many home countries — insurance in particular is essential and not always mandatory by law depending on the state, which makes it easy to skip by mistake. We can point you toward what to expect and trusted local contacts; the actual purchase, registration, and policy are handled directly with dealers, government offices, and insurers.",
+      es: "Sí. Los extranjeros pueden comprar un vehículo en México con un estatus migratorio válido (las reglas varían para quienes visitan con visa de turista y traen un auto con placas extranjeras de forma temporal). El registro y el seguro funcionan distinto que en muchos países de origen — el seguro en particular es esencial y no siempre es obligatorio por ley según el estado, lo cual hace fácil pasarlo por alto sin querer. Podemos orientarte sobre qué esperar y conectarte con contactos locales de confianza; la compra, el registro y la póliza en sí se gestionan directamente con agencias, oficinas de gobierno y aseguradoras.",
+    },
+  },
+  {
+    id: "faq-taxes",
+    q: {
+      en: "Do I have to pay taxes in Mexico, and will I be taxed twice?",
+      es: "¿Tengo que pagar impuestos en México, y me cobrarán impuestos dos veces?",
+    },
+    a: {
+      en: "It depends on your residency status, income sources, and your home country's own tax rules and any tax treaty with Mexico — this is genuinely one of the areas where a qualified cross-border tax professional matters most, not general guidance. We can explain the general landscape (tax residency and immigration residency are not the same thing) and connect you with a qualified accountant familiar with your specific situation, but we don't provide tax advice ourselves.",
+      es: "Depende de tu estatus de residencia, tus fuentes de ingreso y las propias reglas fiscales de tu país de origen, además de cualquier tratado fiscal con México — esta es genuinamente una de las áreas donde más importa un profesional fiscal transfronterizo calificado, no una orientación general. Podemos explicarte el panorama general (la residencia fiscal y la residencia migratoria no son lo mismo) y conectarte con un contador calificado que conozca tu situación específica, pero nosotros no damos asesoría fiscal.",
+    },
+  },
+  {
+    id: "faq-transfer-money",
+    q: {
+      en: "What's the best way to transfer money to Mexico or move funds between accounts?",
+      es: "¿Cuál es la mejor forma de transferir dinero a México o mover fondos entre cuentas?",
+    },
+    a: {
+      en: "Most people use a mix of international wire transfers, transfer services designed for cross-border payments, and eventually a Mexican bank account once residency is in place. Fees, exchange rates, and transfer limits vary a lot between banks and services, so it's worth comparing before committing to one for anything ongoing. We can point you toward what's worked for others and trusted local contacts; the transfers themselves go through your own bank or provider.",
+      es: "La mayoría combina transferencias bancarias internacionales, servicios de transferencia diseñados para pagos transfronterizos y, eventualmente, una cuenta bancaria mexicana una vez que la residencia está en trámite o resuelta. Las comisiones, tipos de cambio y límites de transferencia varían mucho entre bancos y servicios, así que vale la pena comparar antes de comprometerte con uno para algo recurrente. Podemos orientarte sobre lo que le ha funcionado a otros y conectarte con contactos locales de confianza; las transferencias en sí las gestionas con tu propio banco o proveedor.",
+    },
+  },
+  {
+    id: "faq-bringing-belongings",
+    q: {
+      en: "Can I bring my furniture and personal belongings when I move?",
+      es: "¿Puedo traer mis muebles y pertenencias personales cuando me mude?",
+    },
+    a: {
+      en: "Yes — many people bring a container or partial shipment of household goods, while others sell most things and start fresh, furnishing locally instead. A household goods import (menaje de casa) has its own paperwork and, done correctly, can mean reduced or no import duties on personal items — but the rules are specific about timing and documentation. We can point you toward what to expect and trusted moving and customs contacts; the shipment and customs process itself is handled by licensed movers and brokers.",
+      es: "Sí — muchas personas traen un contenedor o un envío parcial de menaje de casa, mientras que otras venden la mayoría de sus cosas y empiezan de nuevo, amueblando localmente. El menaje de casa tiene sus propios trámites y, hecho correctamente, puede significar aranceles de importación reducidos o nulos en artículos personales — pero las reglas son específicas sobre tiempos y documentación. Podemos orientarte sobre qué esperar y conectarte con contactos de confianza de mudanzas y aduanas; el envío y el proceso aduanal en sí los gestionan agentes aduanales y empresas de mudanza con licencia.",
+    },
+  },
+  {
+    id: "faq-internet-remote-work",
+    q: {
+      en: "Is the internet reliable enough to work remotely from Mexico?",
+      es: "¿Es el internet lo suficientemente confiable para trabajar remotamente desde México?",
+    },
+    a: {
+      en: "In most of the destinations we cover, yes — fiber and reliable mobile data are common, especially in more established towns, and coworking spaces are increasingly available. Reliability varies more in smaller, more remote destinations, where a backup connection (a second provider or a mobile hotspot) is a genuinely good idea rather than overkill. We're happy to point you toward what to expect in your specific destination.",
+      es: "En la mayoría de los destinos que cubrimos, sí — la fibra óptica y los datos móviles confiables son comunes, especialmente en pueblos más consolidados, y cada vez hay más espacios de coworking disponibles. La confiabilidad varía más en destinos más pequeños y remotos, donde tener una conexión de respaldo (un segundo proveedor o un hotspot móvil) es genuinamente una buena idea, no una exageración. Con gusto te orientamos sobre qué esperar en tu destino específico.",
+    },
+  },
 ];
 
 export function buildFaqRecords() {

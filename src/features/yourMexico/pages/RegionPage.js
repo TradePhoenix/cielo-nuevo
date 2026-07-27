@@ -6,6 +6,7 @@ import CityCard from "../components/CityCard";
 import CompareYourMatches from "../components/CompareYourMatches";
 import DestinationImageFallback from "../components/DestinationImageFallback";
 import SEO from "../../../components/SEO";
+import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../../../utils/language";
 import { getRegionGroup } from "../data/atlasGroups";
 import { REGION_PAGE_CONTENT } from "../data/regionPageContent";
 import { getAllCities } from "../logic/cityLookup";
@@ -20,7 +21,15 @@ import { getAllCities } from "../logic/cityLookup";
 // Your Mexico already does — no new destination-rendering logic here.
 export default function RegionPage() {
   const { regionId } = useParams();
-  const [lang, setLang] = useState("en");
+  const [lang, setLangState] = useState(getStoredLanguage);
+  const setLang = (next) => {
+    setLangState((prev) => {
+      const resolved = typeof next === "function" ? next(prev) : next;
+      setStoredLanguage(resolved);
+      return resolved;
+    });
+  };
+  useHtmlLang(lang);
   const group = getRegionGroup(regionId);
 
   if (!group) {
@@ -95,8 +104,8 @@ export default function RegionPage() {
 
       <CitySection eyebrow={lang === "es" ? "Perfil Ideal" : "Ideal For"} title={lang === "es" ? "¿Esta región es para ti?" : "Is this region for you?"}>
         <ul className="grid gap-4 sm:grid-cols-2">
-          {content.idealClientProfiles.map((profile) => (
-            <li key={profile} className="flex gap-3 border border-zinc-200 bg-white p-5 text-sm leading-relaxed text-zinc-700">
+          {content.idealClientProfiles.map((profile, profileIndex) => (
+            <li key={profileIndex} className="flex gap-3 border border-zinc-200 bg-white p-5 text-sm leading-relaxed text-zinc-700">
               <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-zinc-950" />
               {profile}
             </li>

@@ -1,14 +1,31 @@
 import TaskCard from "./TaskCard";
 
+const UI = {
+  en: {
+    task: "Task",
+    tasks: "Tasks",
+    viewAhead: "View Ahead",
+    dayRange: (start, end) => `Days ${start}-${end}`,
+    noTasks: "No specific tasks here for your situation — this chapter is more about the shift itself than a checklist.",
+  },
+  es: {
+    task: "Tarea",
+    tasks: "Tareas",
+    viewAhead: "Ver Más Adelante",
+    dayRange: (start, end) => `Días ${start}-${end}`,
+    noTasks: "No hay tareas específicas aquí para tu situación — este capítulo trata más sobre el cambio en sí que sobre una lista de verificación.",
+  },
+};
+
 // Renders one chapter in one of three weights, depending on where it sits
 // relative to "Now": full detail for the current chapter, a collapsed
 // disclosure for the one right after it, and a quiet single line for
 // everything further out. The same chapter data drives all three — only
 // the presentation changes.
-export default function ChapterSection({ chapter, variant, taskState, onToggleTask, isUrgent }) {
+export default function ChapterSection({ chapter, variant, taskState, onToggleTask, isUrgent, lang = "en" }) {
+  const ui = UI[lang] || UI.en;
   const label = isUrgent ? chapter.title : chapter.phaseLabel;
-  const dayRange =
-    isUrgent && chapter.days.start !== chapter.days.end ? `Days ${chapter.days.start}-${chapter.days.end}` : null;
+  const dayRange = isUrgent && chapter.days.start !== chapter.days.end ? ui.dayRange(chapter.days.start, chapter.days.end) : null;
 
   if (variant === "later") {
     return (
@@ -18,7 +35,7 @@ export default function ChapterSection({ chapter, variant, taskState, onToggleTa
           {dayRange && <p className="mt-1 text-xs uppercase tracking-[0.15em] text-zinc-400">{dayRange}</p>}
         </div>
         <p className="text-xs uppercase tracking-[0.15em] text-zinc-400">
-          {chapter.tasks.length} {chapter.tasks.length === 1 ? "Task" : "Tasks"}
+          {chapter.tasks.length} {chapter.tasks.length === 1 ? ui.task : ui.tasks}
         </p>
       </div>
     );
@@ -33,7 +50,7 @@ export default function ChapterSection({ chapter, variant, taskState, onToggleTa
               <p className="text-xl font-light tracking-[-0.01em]">{label}</p>
               {dayRange && <p className="mt-1 text-xs uppercase tracking-[0.15em] text-zinc-400">{dayRange}</p>}
             </div>
-            <span className="print:hidden text-xs uppercase tracking-[0.15em] text-zinc-400">View Ahead</span>
+            <span className="print:hidden text-xs uppercase tracking-[0.15em] text-zinc-400">{ui.viewAhead}</span>
           </div>
         </summary>
         <div className="border-t border-zinc-200 p-5">
@@ -46,6 +63,7 @@ export default function ChapterSection({ chapter, variant, taskState, onToggleTa
                   task={task}
                   done={Boolean(taskState[task.id])}
                   onToggle={() => onToggleTask(task.id)}
+                  lang={lang}
                 />
               ))}
             </div>
@@ -70,13 +88,12 @@ export default function ChapterSection({ chapter, variant, taskState, onToggleTa
               task={task}
               done={Boolean(taskState[task.id])}
               onToggle={() => onToggleTask(task.id)}
+              lang={lang}
             />
           ))}
         </div>
       ) : (
-        <p className="mt-8 text-sm text-zinc-500">
-          No specific tasks here for your situation — this chapter is more about the shift itself than a checklist.
-        </p>
+        <p className="mt-8 text-sm text-zinc-500">{ui.noTasks}</p>
       )}
     </div>
   );

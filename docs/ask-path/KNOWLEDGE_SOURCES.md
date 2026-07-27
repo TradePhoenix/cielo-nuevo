@@ -44,12 +44,21 @@ reasons, both pre-existing and unrelated to this ticket:
 1. The 27 guide bodies are hand-written JSX inside individual page
    components (`src/pages/MovingToTulumPage.js` etc.), not structured data
    — there's no clean way to import them the way `guides.js` is imported.
-2. `src/components/ArticleSection.js` has a **standing, pre-existing bug**
-   (documented in CLAUDE.md) where a guide article's body `children` never
-   render in the live DOM at all. This ticket does not fix that bug — it's
-   out of scope — but it also means even a manual JSX-scrape of guide
-   bodies would be scraping content that isn't reliably validated against
-   what actually renders.
+2. Doing so for all 27 guides is a real content-curation effort (writing
+   or extracting accurate, current summaries per guide), not a quick
+   technical step — deferred on effort/scope grounds, not a blocker.
+
+**Correction (2026-07-27):** CLAUDE.md documents `ArticleSection.js` as
+having a standing bug where a guide article's body `children` never
+render, and this file previously repeated that claim as a second reason
+guide bodies weren't indexed. Verified directly against the current
+`src/components/ArticleSection.js` (during the PTM Spanish-parity ticket)
+and against a live guide page's rendered DOM (`/guides/moving-to-tulum`):
+the component does render `children` (see its lines 56–64), and the
+guide body text is genuinely present in the rendered page. That bug does
+not reproduce in the current codebase — CLAUDE.md's note on this point
+appears to be stale documentation, not a live defect. It is not the
+reason guide bodies are out of MVP scope; reason 2 above is.
 
 Ask Path will therefore answer guide-related questions using the same
 short editorial summary already shown on `/guides`, and link to the guide

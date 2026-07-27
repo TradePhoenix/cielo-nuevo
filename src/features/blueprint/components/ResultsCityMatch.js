@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BLUEPRINT_UI } from "../data/uiCopy";
 
 // CX-005 — receives only the *secondary* matches now (BlueprintApp.js
 // passes topCityMatches.slice(1)); the primary match has its own,
@@ -6,16 +7,15 @@ import { Link } from "react-router-dom";
 // for attention here. No "Best Match" badge or rank numbering — none of
 // the cities shown in this list is "the" match, they're honestly framed
 // as other places worth a look.
-export default function ResultsCityMatch({ cityMatches }) {
+export default function ResultsCityMatch({ cityMatches, lang = "en" }) {
   if (!cityMatches || cityMatches.length === 0) return null;
+  const ui = BLUEPRINT_UI[lang].cityMatch;
 
   return (
     <div className="border-b border-zinc-300 py-14">
-      <p className="mb-3 text-center text-xs uppercase tracking-[0.35em] text-zinc-500">
-        Also Worth A Look
-      </p>
+      <p className="mb-3 text-center text-xs uppercase tracking-[0.35em] text-zinc-500">{ui.eyebrow}</p>
       <h3 className="text-center text-2xl font-light tracking-[-0.03em] text-zinc-950 sm:text-4xl">
-        Other Places That Could Fit
+        {ui.title}
       </h3>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -39,7 +39,7 @@ export default function ResultsCityMatch({ cityMatches }) {
               to={city.guideLink}
               className="mt-6 inline-flex items-center justify-center border border-zinc-950 px-5 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition duration-300 hover:bg-zinc-950 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
             >
-              Read The Guide →
+              {ui.guideCta}
             </Link>
           </div>
         ))}

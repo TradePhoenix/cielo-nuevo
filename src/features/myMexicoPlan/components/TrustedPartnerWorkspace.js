@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { PLAN_UI } from "../data/uiCopy";
 
 const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2";
@@ -10,15 +11,14 @@ const FOCUS_RING =
 // matching the override-seam pattern used by every other My Mexico Plan
 // section. No task checkboxes here — categories aren't taskBank.js
 // entries, so this intentionally doesn't reuse TaskCard.js.
-export default function TrustedPartnerWorkspace({ workspace }) {
+export default function TrustedPartnerWorkspace({ workspace, lang = "en" }) {
   const { cityName, disclaimer, sections } = workspace;
+  const ui = (PLAN_UI[lang] || PLAN_UI.en).trustedPartnerWorkspace;
 
   return (
     <div className="mt-10 border border-zinc-300 bg-white p-8 print:mt-6">
-      <p className="mb-2 text-xs uppercase tracking-[0.3em] text-zinc-500">Trusted Partner &amp; Connector Workspace</p>
-      <h2 className="mb-3 text-3xl font-light tracking-[-0.04em] md:text-5xl">
-        Who you'll likely need for {cityName}.
-      </h2>
+      <p className="mb-2 text-xs uppercase tracking-[0.3em] text-zinc-500">{ui.label}</p>
+      <h2 className="mb-3 text-3xl font-light tracking-[-0.04em] md:text-5xl">{ui.title(cityName)}</h2>
       <p className="mb-8 max-w-2xl text-sm leading-relaxed text-zinc-600">{disclaimer}</p>
 
       <div className="space-y-10">
@@ -39,7 +39,7 @@ export default function TrustedPartnerWorkspace({ workspace }) {
 
                       <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs uppercase tracking-[0.15em] text-zinc-400">
                         <span>{category.whenNeeded}</span>
-                        <span>{category.canIntroduce ? "Path To Mexico Can Help Introduce" : "You Handle This Directly"}</span>
+                        <span>{category.canIntroduce ? ui.canIntroduce : ui.handleDirectly}</span>
                       </div>
 
                       <p className="mt-3 text-xs italic leading-relaxed text-zinc-500">{category.relevanceReason}</p>
@@ -49,7 +49,7 @@ export default function TrustedPartnerWorkspace({ workspace }) {
                           to={category.guideLink}
                           className={`mt-3 inline-block text-xs font-semibold uppercase tracking-[0.15em] text-zinc-500 underline decoration-zinc-300 underline-offset-4 transition hover:text-zinc-950 hover:decoration-zinc-950 ${FOCUS_RING}`}
                         >
-                          Read The Guide
+                          {ui.readGuide}
                         </Link>
                       )}
                     </div>

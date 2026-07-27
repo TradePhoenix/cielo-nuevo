@@ -10,6 +10,7 @@ import { useBlueprintAnswers } from "../../../decisionEngine/hooks/useBlueprintA
 import { getCityById } from "../../yourMexico/logic/cityLookup";
 import { buildPlan, getCurrentChapterIndex } from "../logic/buildPlan";
 import { ANCHOR_PHRASES, DEFAULT_ANCHOR_PHRASE } from "../data/anchorPhrases";
+import { resolveText } from "../../blueprint/data/questions";
 
 // Exported so other features (e.g. the Client Dashboard) can read the same
 // saved plan read-only, without duplicating this literal or its shape.
@@ -41,7 +42,7 @@ function loadInitialState(cityId) {
   }
 }
 
-export function usePlanState(cityId) {
+export function usePlanState(cityId, lang = "en") {
   const { hasCompletedBlueprint, answers, scores } = useBlueprintAnswers();
   const city = useMemo(() => getCityById(cityId), [cityId]);
 
@@ -66,14 +67,14 @@ export function usePlanState(cityId) {
 
   const plan = useMemo(() => {
     if (!hasCompletedBlueprint || !city) return null;
-    return buildPlan(answers, scores, city);
-  }, [hasCompletedBlueprint, answers, scores, city]);
+    return buildPlan(answers, scores, city, lang);
+  }, [hasCompletedBlueprint, answers, scores, city, lang]);
 
   const daysSinceAnchor = anchorDate ? Math.floor((Date.now() - new Date(anchorDate).getTime()) / MS_PER_DAY) : 0;
 
   const currentChapterIndex = plan ? getCurrentChapterIndex(plan.chapters, daysSinceAnchor) : 0;
 
-  const anchorPhrase = ANCHOR_PHRASES[answers.lifeStage] || DEFAULT_ANCHOR_PHRASE;
+  const anchorPhrase = resolveText(ANCHOR_PHRASES[answers.lifeStage] || DEFAULT_ANCHOR_PHRASE, lang);
 
   const toggleTask = useCallback((taskId) => {
     setState((prev) => ({

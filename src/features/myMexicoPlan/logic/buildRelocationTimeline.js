@@ -38,8 +38,12 @@
 // model-generated `rationale` per period, or real move-date-aware
 // scheduling once a visitor has an actual date) without changing this
 // file's output shape or the component that renders it.
+//
+// PTM Spanish-parity pass: added the `lang` parameter (default "en") to
+// buildRelocationTimeline(); every text field here became `{ en, es }`,
+// resolved before returning so the output shape is unchanged.
 
-import { QUESTIONS } from "../../blueprint/data/questions";
+import { QUESTIONS, resolveText } from "../../blueprint/data/questions";
 
 const TIMELINE_QUESTION = QUESTIONS.find((question) => question.id === "timeline");
 
@@ -48,53 +52,77 @@ const ARRIVAL_WEEK_TASK_IDS = new Set(["setup-phone-internet", "open-local-bank-
 const PERIOD_DEFINITIONS = [
   {
     id: "start-now",
-    label: "Start Now",
+    label: { en: "Start Now", es: "Empieza Ahora" },
     dateDependent: false,
-    rationale:
-      "Research and groundwork you can begin today, regardless of when you actually move — getting your bearings before you commit money or dates.",
+    rationale: {
+      en: "Research and groundwork you can begin today, regardless of when you actually move — getting your bearings before you commit money or dates.",
+      es: "Investigación y trabajo de base que puedes empezar hoy, sin importar cuándo te mudes realmente — orientándote antes de comprometer dinero o fechas.",
+    },
   },
   {
     id: "next-30-days",
-    label: "Next 30 Days",
+    label: { en: "Next 30 Days", es: "Próximos 30 Días" },
     dateDependent: false,
-    rationale:
-      "Time-sensitive actions your own answers flagged as worth starting soon — not tied to a specific move date, just worth not putting off.",
+    rationale: {
+      en: "Time-sensitive actions your own answers flagged as worth starting soon — not tied to a specific move date, just worth not putting off.",
+      es: "Acciones urgentes que tus propias respuestas señalaron como valiosas para empezar pronto — no están ligadas a una fecha de mudanza específica, solo vale la pena no posponerlas.",
+    },
   },
   {
     id: "3-6-months-before",
-    label: "3–6 Months Before Moving",
+    label: { en: "3–6 Months Before Moving", es: "3–6 Meses Antes De Mudarte" },
     dateDependent: true,
-    rationale:
-      "The logistics that turn \"maybe\" into \"when\" — banking, a housing shortlist, a real budget — best tackled once your move has real shape, even without an exact date yet.",
+    rationale: {
+      en: "The logistics that turn \"maybe\" into \"when\" — banking, a housing shortlist, a real budget — best tackled once your move has real shape, even without an exact date yet.",
+      es: "La logística que convierte el \"tal vez\" en \"cuándo\" — banca, una preselección de vivienda, un presupuesto real — mejor abordarla una vez que tu mudanza tenga forma real, aunque aún no tengas una fecha exacta.",
+    },
   },
   {
     id: "final-month",
-    label: "Final Month",
+    label: { en: "Final Month", es: "Último Mes" },
     dateDependent: true,
-    rationale: "The tasks that make a move official — booking flights, finalizing a lease — best done once your departure date is actually set.",
+    rationale: {
+      en: "The tasks that make a move official — booking flights, finalizing a lease — best done once your departure date is actually set.",
+      es: "Las tareas que hacen oficial una mudanza — reservar vuelos, finalizar un contrato de renta — mejor hacerlas una vez que tu fecha de salida esté realmente definida.",
+    },
   },
   {
     id: "arrival-week",
-    label: "Arrival Week",
+    label: { en: "Arrival Week", es: "Semana De Llegada" },
     dateDependent: true,
-    rationale: "The practical setup of your first days on the ground.",
+    rationale: { en: "The practical setup of your first days on the ground.", es: "La organización práctica de tus primeros días en el lugar." },
   },
   {
     id: "first-30-days",
-    label: "First 30 Days",
+    label: { en: "First 30 Days", es: "Primeros 30 Días" },
     dateDependent: true,
-    rationale: "Settling in beyond the initial logistics — the adjustment period itself.",
+    rationale: { en: "Settling in beyond the initial logistics — the adjustment period itself.", es: "Establecerte más allá de la logística inicial — el propio periodo de adaptación." },
   },
   {
     id: "first-90-days",
-    label: "First 90 Days",
+    label: { en: "First 90 Days", es: "Primeros 90 Días" },
     dateDependent: true,
-    rationale: "Community, routine, and residency follow-through, as this starts to feel like home rather than a trip.",
+    rationale: {
+      en: "Community, routine, and residency follow-through, as this starts to feel like home rather than a trip.",
+      es: "Comunidad, rutina y seguimiento de la residencia, mientras esto empieza a sentirse como un hogar y no como un viaje.",
+    },
   },
 ];
 
-const TIMELINE_DISCLAIMER =
-  "This is a practical sequence built from your plan's own tasks — not a fixed calendar or an official timeline. Exact timing shifts with your real move date, and anything requiring a professional should be confirmed directly with them.";
+const TIMELINE_DISCLAIMER = {
+  en: "This is a practical sequence built from your plan's own tasks — not a fixed calendar or an official timeline. Exact timing shifts with your real move date, and anything requiring a professional should be confirmed directly with them.",
+  es: "Esta es una secuencia práctica construida a partir de las propias tareas de tu plan — no un calendario fijo ni un cronograma oficial. El tiempo exacto cambia según tu fecha real de mudanza, y cualquier cosa que requiera un profesional debe confirmarse directamente con él.",
+};
+
+const READINESS_NOTE_LOW = {
+  en: "Your readiness score suggests these foundational steps are worth prioritizing before anything else.",
+  es: "Tu puntaje de preparación sugiere que vale la pena priorizar estos pasos fundamentales antes que cualquier otra cosa.",
+};
+
+const READINESS_NOTE_HIGH = {
+  en: "Your readiness score and timeline both point to these being worth acting on soon.",
+  es: "Tanto tu puntaje de preparación como tu cronograma indican que vale la pena actuar sobre esto pronto.",
+};
 
 function classifyTask(task) {
   if (task.chapterId === "getting-ready") {
@@ -118,7 +146,7 @@ function classifyTask(task) {
 // answers: decisionEngine's useBlueprintAnswers() answers, same.
 // taskState: the shared completion map from usePlanState.js — read only,
 // never written here.
-export function buildRelocationTimeline({ plan, recommendation, answers, taskState }) {
+export function buildRelocationTimeline({ plan, recommendation, answers, taskState }, lang = "en") {
   const allTasks = plan.chapters.flatMap((chapter) => chapter.tasks);
   const buckets = new Map(PERIOD_DEFINITIONS.map((definition) => [definition.id, []]));
 
@@ -134,12 +162,21 @@ export function buildRelocationTimeline({ plan, recommendation, answers, taskSta
 
     let readinessNote = null;
     if (definition.id === "start-now" && readinessScore < 30 && tasks.length > 0) {
-      readinessNote = "Your readiness score suggests these foundational steps are worth prioritizing before anything else.";
+      readinessNote = resolveText(READINESS_NOTE_LOW, lang);
     } else if (definition.id === "next-30-days" && readinessScore >= 55 && tasks.length > 0) {
-      readinessNote = "Your readiness score and timeline both point to these being worth acting on soon.";
+      readinessNote = resolveText(READINESS_NOTE_HIGH, lang);
     }
 
-    return { ...definition, tasks, totalCount: tasks.length, openCount, readinessNote };
+    return {
+      id: definition.id,
+      label: resolveText(definition.label, lang),
+      dateDependent: definition.dateDependent,
+      rationale: resolveText(definition.rationale, lang),
+      tasks,
+      totalCount: tasks.length,
+      openCount,
+      readinessNote,
+    };
   });
 
   const currentPeriod = periods.find((period) => period.openCount > 0) || null;
@@ -147,8 +184,8 @@ export function buildRelocationTimeline({ plan, recommendation, answers, taskSta
 
   return {
     cityName: plan.cityName,
-    timelineAnswerLabel: timelineOption ? timelineOption.label : null,
-    disclaimer: TIMELINE_DISCLAIMER,
+    timelineAnswerLabel: timelineOption ? resolveText(timelineOption.label, lang) : null,
+    disclaimer: resolveText(TIMELINE_DISCLAIMER, lang),
     currentPeriodId: currentPeriod ? currentPeriod.id : null,
     periods,
   };

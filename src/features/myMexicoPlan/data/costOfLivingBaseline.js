@@ -28,11 +28,12 @@ export const OVERALL_BUDGET_RANGES = {
 };
 
 // Source: CostOfLivingPage.js "Housing and rent" section, unchanged.
+// PTM Spanish-parity pass: `label` became `{ en, es }`.
 export const HOUSING_BY_UNIT = {
-  studio: { low: 12000, high: 18000, label: "Studio apartment" },
-  oneBedroom: { low: 15000, high: 25000, label: "One-bedroom condo" },
-  twoBedroom: { low: 20000, high: 35000, label: "Two-bedroom condo" },
-  luxury: { low: 35000, high: null, label: "Luxury condo or house" },
+  studio: { low: 12000, high: 18000, label: { en: "Studio apartment", es: "Departamento tipo estudio" } },
+  oneBedroom: { low: 15000, high: 25000, label: { en: "One-bedroom condo", es: "Condominio de una recámara" } },
+  twoBedroom: { low: 20000, high: 35000, label: { en: "Two-bedroom condo", es: "Condominio de dos recámaras" } },
+  luxury: { low: 35000, high: null, label: { en: "Luxury condo or house", es: "Condominio o casa de lujo" } },
 };
 
 // Source: CostOfLivingPage.js "Utilities" section — electricity + internet
@@ -89,8 +90,15 @@ export const GUIDE_LINKS = {
 // Source: src/decisionEngine/data/cityProfiles.js teasers, already
 // published and approved — used only to disclose a qualitative direction
 // for cities without their own cost guide, never to compute a number.
+// PTM Spanish-parity pass: values became `{ en, es }`.
 export const CITY_COST_DIRECTION = {
   "playa-del-carmen": null,
-  tulum: "Tulum's own city profile describes it as having a higher cost of living than Playa del Carmen.",
-  "riviera-maya": "Riviera Maya's own city profile describes it as quieter and more affordable than Playa del Carmen.",
+  tulum: {
+    en: "Tulum's own city profile describes it as having a higher cost of living than Playa del Carmen.",
+    es: "El propio perfil de Tulum lo describe como un lugar con un costo de vida más alto que Playa del Carmen.",
+  },
+  "riviera-maya": {
+    en: "Riviera Maya's own city profile describes it as quieter and more affordable than Playa del Carmen.",
+    es: "El propio perfil de Riviera Maya lo describe como más tranquilo y más asequible que Playa del Carmen.",
+  },
 };

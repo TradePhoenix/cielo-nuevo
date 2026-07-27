@@ -12,7 +12,14 @@ function collectSearchableText(city) {
     (filter) => filter.labelEn
   );
 
-  return [city.name, city.teaser, region?.labelEn, region?.labelEs, ...lifestyleLabels]
+  // PTM Spanish-parity pass: city.teaser became `{ en, es }` (see
+  // decisionEngine/data/cityProfiles.js) — include both variants so
+  // searching in either language still matches teaser copy, the same way
+  // region labels already cover both languages below.
+  const teaserEn = typeof city.teaser === "string" ? city.teaser : city.teaser?.en;
+  const teaserEs = typeof city.teaser === "string" ? null : city.teaser?.es;
+
+  return [city.name, teaserEn, teaserEs, region?.labelEn, region?.labelEs, ...lifestyleLabels]
     .filter(Boolean)
     .join(" ")
     .toLowerCase();

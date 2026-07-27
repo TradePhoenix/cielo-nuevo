@@ -7,12 +7,15 @@
 // uniform { signal, weight, contribution, explanation } shape, why each
 // of those numbers is what it is.
 //
-// Internal only: nothing here is rendered anywhere today. It exists so
-// a future "Why this city?" UI can read this trace directly instead of
-// re-deriving reasoning from scratch, and so today's outputs can be
-// audited signal-by-signal without changing behavior.
+// buildReadinessTrace()'s output is internal only — nothing renders it
+// today. buildCityMatchTrace()'s output IS rendered (My Mexico Plan's
+// CityComparisonWorkspace, via buildCityComparison.js's
+// strongestPriorities) — so both now accept a `lang` parameter (default
+// "en") and resolve their `explanation` text in that language, since
+// questions.js's `question`/`label` and copy.js's `TAG_LABELS` became
+// `{ en, es }` in the PTM Spanish-parity pass.
 
-import { QUESTIONS } from "../../features/blueprint/data/questions";
+import { QUESTIONS, resolveText } from "../../features/blueprint/data/questions";
 
 // One entry per Blueprint question, describing how much of the
 // visitor's readiness score came from that specific answer.
@@ -21,7 +24,7 @@ import { QUESTIONS } from "../../features/blueprint/data/questions";
 // a read-only recomputation of the same per-option `scores.readiness`
 // values scoringEngine.js already sums — it does not call or alter
 // scoringEngine.js in any way.
-export function buildReadinessTrace(answers) {
+export function buildReadinessTrace(answers, lang = "en") {
   return QUESTIONS.map((question) => {
     const options = question.options || [];
     const weight = options.reduce(
@@ -30,14 +33,15 @@ export function buildReadinessTrace(answers) {
     );
     const selectedOption = options.find((option) => option.id === (answers && answers[question.id]));
     const contribution = selectedOption ? (selectedOption.scores && selectedOption.scores.readiness) || 0 : 0;
+    const questionText = resolveText(question.question, lang);
 
     return {
       signal: question.id,
       weight,
       contribution,
       explanation: selectedOption
-        ? `"${question.question}" -> "${selectedOption.label}" contributed ${contribution} of ${weight} possible readiness points.`
-        : `"${question.question}" was not answered — contributed 0 of ${weight} possible readiness points.`,
+        ? `"${questionText}" -> "${resolveText(selectedOption.label, lang)}" contributed ${contribution} of ${weight} possible readiness points.`
+        : `"${questionText}" was not answered — contributed 0 of ${weight} possible readiness points.`,
     };
   });
 }
@@ -50,11 +54,14 @@ export function buildReadinessTrace(answers) {
 // undifferentiated weight (its raw tagCount) — this trace states that
 // plainly rather than inventing a distinct weighting scheme that doesn't
 // exist in the current engine.
-export function buildCityMatchTrace(overlapTags, tagCounts, tagLabels, cityName) {
-  return overlapTags.map((tag) => ({
-    signal: tag,
-    weight: tagCounts[tag] || 0,
-    contribution: tagCounts[tag] || 0,
-    explanation: `Your answers signaled "${tagLabels[tag] || tag}" ${tagCounts[tag] || 0} time(s), matching ${cityName}'s profile.`,
-  }));
+export function buildCityMatchTrace(overlapTags, tagCounts, tagLabels, cityName, lang = "en") {
+  return overlapTags.map((tag) => {
+    const label = resolveText(tagLabels[tag], lang) || tag;
+    const count = tagCounts[tag] || 0;
+    const explanation =
+      lang === "es"
+        ? `Tus respuestas señalaron "${label}" ${count} vez/veces, coincidiendo con el perfil de ${cityName}.`
+        : `Your answers signaled "${label}" ${count} time(s), matching ${cityName}'s profile.`;
+    return { signal: tag, weight: count, contribution: count, explanation };
+  });
 }

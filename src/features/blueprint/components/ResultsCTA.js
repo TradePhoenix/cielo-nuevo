@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
 import { trackEvent, ANALYTICS_EVENTS } from "../../../utils/analytics";
+import { BLUEPRINT_UI } from "../data/uiCopy";
 
 // CONV-001 — Fit Call continuity: when the Blueprint has a top match,
 // booking from here carries that destination through to the Fit Call page
 // (?city=<id>) instead of landing on a generic page regardless of what the
 // visitor just read. No topCityId (a neutral/no-signal result) falls back
 // to the exact original, unpersonalized link.
-export default function ResultsCTA({ cta, readinessScore, archetypeTitle, topCityId }) {
+export default function ResultsCTA({ cta, readinessScore, archetypeTitle, topCityId, lang = "en" }) {
   const fitCallHref = topCityId ? `/mexico-fit-call?city=${topCityId}` : "/mexico-fit-call";
+  const ui = BLUEPRINT_UI[lang].cta;
 
   return (
     <div className="bg-[#0b0b0a] p-10 text-center text-white sm:p-16">
-      <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
-        Start Here
-      </p>
+      <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">{ui.startHere}</p>
       <h3 className="mx-auto max-w-2xl text-3xl font-light leading-tight tracking-[-0.04em] sm:text-5xl">
         {cta.headline}
       </h3>
@@ -23,7 +23,7 @@ export default function ResultsCTA({ cta, readinessScore, archetypeTitle, topCit
 
       {typeof readinessScore === "number" && archetypeTitle && (
         <p className="mx-auto mt-6 max-w-xl text-xs uppercase tracking-[0.2em] text-white/40">
-          {readinessScore}/100 Readiness &middot; {archetypeTitle}
+          {readinessScore}/100 {ui.readinessWord} &middot; {archetypeTitle}
         </p>
       )}
 
@@ -42,7 +42,7 @@ export default function ResultsCTA({ cta, readinessScore, archetypeTitle, topCit
         to="/your-mexico"
         className="mt-6 block text-xs font-semibold uppercase tracking-[0.2em] text-white/50 underline underline-offset-4 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b0a]"
       >
-        See What Your Next Chapter Could Look Like
+        {ui.nextChapter}
       </Link>
     </div>
   );

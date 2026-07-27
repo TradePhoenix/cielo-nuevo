@@ -3,6 +3,7 @@ import ChapterSection from "./ChapterSection";
 import StillFeelRightCheckIn from "./StillFeelRightCheckIn";
 import CinematicReveal from "../../../components/CinematicReveal";
 import { useCinematicMotion } from "../../../components/cinematicMotion";
+import { PLAN_UI } from "../data/uiCopy";
 
 // The organizing device that makes this a plan instead of a checklist:
 // the whole 365-day horizon is always visible, but only "Now" is ever
@@ -17,6 +18,7 @@ export default function NowNextLater({
   cityId,
   checkInResponses,
   onRespondToCheckIn,
+  lang = "en",
 }) {
   const previousChapter = currentChapterIndex > 0 ? chapters[currentChapterIndex - 1] : null;
   const nowChapter = chapters[currentChapterIndex];
@@ -24,6 +26,7 @@ export default function NowNextLater({
   const laterChapters = chapters.slice(currentChapterIndex + 2);
   const prefersReducedMotion = useCinematicMotion();
   const itemVariants = CinematicReveal.itemVariants(prefersReducedMotion);
+  const ui = (PLAN_UI[lang] || PLAN_UI.en).nowNextLater;
 
   return (
     <div className="mt-16 space-y-16">
@@ -39,6 +42,7 @@ export default function NowNextLater({
             cityId={cityId}
             response={checkInResponses[previousChapter.id]}
             onRespond={(response) => onRespondToCheckIn(previousChapter.id, response)}
+            lang={lang}
           />
         </div>
       )}
@@ -53,32 +57,34 @@ export default function NowNextLater({
       */}
       <CinematicReveal stagger className="space-y-16">
         <motion.div variants={itemVariants}>
-          <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Now</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">{ui.now}</p>
           <ChapterSection
             chapter={nowChapter}
             variant="now"
             taskState={taskState}
             onToggleTask={onToggleTask}
             isUrgent={isUrgent}
+            lang={lang}
           />
         </motion.div>
 
         {nextChapter && (
           <motion.div variants={itemVariants}>
-            <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Coming Up</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">{ui.comingUp}</p>
             <ChapterSection
               chapter={nextChapter}
               variant="upcoming"
               taskState={taskState}
               onToggleTask={onToggleTask}
               isUrgent={isUrgent}
+              lang={lang}
             />
           </motion.div>
         )}
 
         {laterChapters.length > 0 && (
           <motion.div variants={itemVariants}>
-            <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Later</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">{ui.later}</p>
             <div className="mt-4 divide-y divide-zinc-200 border border-zinc-200">
               {laterChapters.map((chapter) => (
                 <ChapterSection
@@ -88,6 +94,7 @@ export default function NowNextLater({
                   taskState={taskState}
                   onToggleTask={onToggleTask}
                   isUrgent={isUrgent}
+                  lang={lang}
                 />
               ))}
             </div>
