@@ -29,4 +29,20 @@ export const ANALYTICS_EVENTS = {
   FIT_CALL_CTA_CLICKED: "fit_call_cta_clicked",
   SERVICES_CTA_CLICKED: "services_cta_clicked",
   SERVICE_TIER_CTA_CLICKED: "service_tier_cta_clicked",
+
+  // ASK PATH-001 — additive only, no existing event above was touched.
+  // Payloads are deliberately small structured signals (ids, categories,
+  // booleans), never raw conversation text — see the privacy requirements
+  // in the Ask Path spec.
+  ASK_PATH_OPENED: "ask_path_opened",
+  ASK_PATH_CONVERSATION_STARTED: "ask_path_conversation_started",
+  ASK_PATH_PROMPT_SELECTED: "ask_path_prompt_selected",
+  ASK_PATH_SOURCE_CLICKED: "ask_path_source_clicked",
+  ASK_PATH_BLUEPRINT_OFFERED: "ask_path_blueprint_offered",
+  ASK_PATH_BLUEPRINT_ACCEPTED: "ask_path_blueprint_accepted",
+  ASK_PATH_BLUEPRINT_DECLINED: "ask_path_blueprint_declined",
+  ASK_PATH_HUMAN_HANDOFF_REQUESTED: "ask_path_human_handoff_requested",
+  ASK_PATH_FIT_CALL_SELECTED: "ask_path_fit_call_selected",
+  ASK_PATH_QUALIFIED_INTENT_REACHED: "ask_path_qualified_intent_reached",
+  ASK_PATH_ERROR: "ask_path_error",
 };

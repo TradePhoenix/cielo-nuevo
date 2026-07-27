@@ -59,6 +59,9 @@ const MyMexicoPlanPage = lazy(() => import("./features/myMexicoPlan/pages/MyMexi
 const DashboardPage = lazy(() => import("./features/dashboard/pages/DashboardPage"));
 const DocumentVaultPage = lazy(() => import("./features/documentVault/pages/DocumentVaultPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+// ASK PATH-001 — mounted globally below, outside <Routes>, so it persists
+// across every page rather than remounting on each navigation.
+const AskPathLauncher = lazy(() => import("./features/askPath/components/AskPathLauncher"));
 
 // CX-002 route-transition treatment: a single opacity-only fade-in, keyed
 // on the top-level path segment rather than the full pathname — see
@@ -148,6 +151,9 @@ function App() {
       <ScrollToTop />
       <Suspense fallback={<RouteLoadingFallback />}>
         <AnimatedRoutes />
+      </Suspense>
+      <Suspense fallback={null}>
+        <AskPathLauncher />
       </Suspense>
     </BrowserRouter>
   );
