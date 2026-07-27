@@ -15,14 +15,20 @@ export default function PageHero({
   return (
     <section
       className={`px-6 py-28 md:px-20 md:py-36 ${
-        dark ? "bg-[#0b0b0a] text-white" : "bg-[#f6f1e8] text-zinc-950"
+        dark ? "bg-[#14211C] text-white" : "bg-[#F3EEE4] text-[#14211C]"
       }`}
     >
       <div className="mx-auto max-w-6xl">
+        <div className="ptm-rhythm-line mb-7" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
         {label && (
           <p
-            className={`mb-6 text-xs uppercase tracking-[0.35em] ${
-              dark ? "text-white/40" : "text-zinc-500"
+            className={`mb-5 text-[11px] font-bold uppercase tracking-[0.18em] ${
+              dark ? "text-white/55" : "text-[#E36F4F]"
             }`}
           >
             {label}
@@ -30,7 +36,7 @@ export default function PageHero({
         )}
 
         {title && (
-          <h1 className="max-w-5xl text-5xl font-light leading-[0.95] tracking-[-0.06em] md:text-8xl">
+          <h1 className="max-w-5xl text-5xl font-bold leading-[0.98] tracking-[-0.055em] md:text-7xl lg:text-8xl">
             {title}
           </h1>
         )}

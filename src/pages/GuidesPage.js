@@ -72,21 +72,26 @@ function GuidesPage() {
       <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-zinc-200 bg-[#f6f1e8]/85 px-4 py-4 backdrop-blur-md md:px-10">
         <Link
           to="/"
-          className="text-[10px] font-semibold uppercase tracking-[0.35em] text-zinc-950 sm:text-xs"
+          aria-label="Path to Mexico — home"
+          className="block"
         >
-          Path To Mexico
+          <img
+            src="/brand/logos/ptm-primary-horizontal-ink.svg"
+            alt="Path to Mexico"
+            className="h-7 w-auto sm:h-8"
+          />
         </Link>
 
-        <div className="flex items-center gap-5 text-[10px] uppercase tracking-[0.25em] text-zinc-500">
+        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-zinc-500 sm:gap-5">
           <Link to="/" className="transition hover:text-zinc-950">
             {t.nav.home}
           </Link>
 
-          <Link to="/guides" className="transition hover:text-zinc-950">
+          <Link to="/guides" className="hidden transition hover:text-zinc-950 sm:inline">
             {t.nav.guides}
           </Link>
 
-          <a href="/#contact" className="transition hover:text-zinc-950">
+          <a href="/#contact" className="hidden transition hover:text-zinc-950 sm:inline">
             {t.nav.contact}
           </a>
 
@@ -106,11 +111,17 @@ function GuidesPage() {
           transition={{ duration: prefersReducedMotion ? 0.12 : 0.9 }}
           className="mx-auto max-w-6xl"
         >
-          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-zinc-500">
+          <div className="ptm-rhythm-line mb-7" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#E36F4F]">
             {t.label}
           </p>
 
-          <h1 className="max-w-5xl text-5xl font-light leading-tight tracking-[-0.06em] md:text-8xl">
+          <h1 className="max-w-5xl text-5xl font-bold leading-[1.02] tracking-[-0.055em] md:text-7xl lg:text-8xl">
             {t.title}
           </h1>
 
@@ -213,10 +224,12 @@ function GuidesPage() {
       </section>
 
       <footer className="border-t border-zinc-200 bg-zinc-950 px-8 py-14 text-center text-sm text-zinc-500">
-        <p className="text-xs uppercase tracking-[0.38em] text-zinc-200">
-          PATH TO MEXICO
-        </p>
-        <p className="mt-6 italic text-zinc-400">{t.footerLine}</p>
+        <img
+          src="/brand/logos/ptm-primary-horizontal-reverse.svg"
+          alt="Path to Mexico"
+          className="mx-auto h-9 w-auto"
+        />
+        <p className="ptm-editorial mt-6 text-lg text-zinc-400">{t.footerLine}</p>
         <p className="mt-6 text-zinc-600">{t.footer}</p>
       </footer>
     </main>

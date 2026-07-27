@@ -2,14 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ptm-ink: #14211c;
+  --ptm-jungle: #103d33;
+  --ptm-limestone: #f3eee4;
+  --ptm-white: #fffdf8;
+  --ptm-cenote: #007c83;
+  --ptm-clay: #e36f4f;
+  --ptm-sun: #f3be54;
+  --ptm-sage: #a8bba6;
+  --ptm-sky: #bfdde0;
+  --ptm-mist: #e5efec;
+  --ptm-font-primary: "Manrope", Arial, Helvetica, sans-serif;
+  --ptm-font-accent: "Newsreader", Georgia, serif;
+  --ptm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/Manrope-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./assets/fonts/Manrope-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 600;
+  src: url("./assets/fonts/Manrope-Semibold.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./assets/fonts/Manrope-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 800;
+  src: url("./assets/fonts/Manrope-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 400;
+  src: url("./assets/fonts/Newsreader-Italic.ttf") format("truetype");
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #f5f5f4;
+  font-family: var(--ptm-font-primary);
+  color: var(--ptm-ink);
+  background: var(--ptm-limestone);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -18,8 +85,148 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--ptm-font-primary);
 }
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  color: var(--ptm-white);
+  background: var(--ptm-cenote);
+}
+
+/* Brand v3.1 compatibility layer. Existing routes keep their established
+   utility classes while the shared palette and typography move as one. */
+.bg-\[\#f6f1e8\] {
+  background-color: var(--ptm-limestone);
+}
+
+.bg-\[\#f4f0e8\] {
+  background-color: var(--ptm-limestone);
+}
+
+.bg-\[\#efe7d8\] {
+  background-color: var(--ptm-mist);
+}
+
+.bg-\[\#0b0b0a\],
+.bg-\[\#080807\],
+.bg-zinc-950 {
+  background-color: var(--ptm-ink);
+}
+
+.text-zinc-950 {
+  color: var(--ptm-ink);
+}
+
+.hover\:bg-\[\#d8a15f\]:hover {
+  background-color: var(--ptm-sun);
+}
+
+.text-\[\#d8a15f\] {
+  color: var(--ptm-clay);
+}
+
+.border-\[\#d8a15f\] {
+  border-color: var(--ptm-cenote);
+}
+
+.ring-\[\#d8a15f\] {
+  --tw-ring-color: var(--ptm-cenote);
+}
+
+.hover\:text-\[\#a97a3f\]:hover {
+  color: var(--ptm-cenote);
+}
+
+.focus-visible\:ring-\[\#d8a15f\]:focus-visible,
+.focus\:ring-\[\#d8a15f\]:focus {
+  --tw-ring-color: var(--ptm-cenote);
+}
+
+.ptm-editorial {
+  font-family: var(--ptm-font-accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.ptm-kicker {
+  color: var(--ptm-clay);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ptm-rhythm-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: min(100%, 220px);
+}
+
+.ptm-rhythm-line > span {
+  display: block;
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: ptm-rhythm-in 0.9s var(--ptm-ease) forwards;
+}
+
+.ptm-rhythm-line > span:nth-child(1) {
+  width: 70px;
+  background: var(--ptm-clay);
+}
+
+.ptm-rhythm-line > span:nth-child(2) {
+  width: 34px;
+  background: var(--ptm-cenote);
+  animation-delay: 0.1s;
+}
+
+.ptm-rhythm-line > span:nth-child(3) {
+  width: 52px;
+  background: var(--ptm-sun);
+  animation-delay: 0.2s;
+}
+
+.ptm-rhythm-line > span:nth-child(4) {
+  width: 24px;
+  background: var(--ptm-sage);
+  animation-delay: 0.3s;
+}
+
+.ptm-home h1,
+.ptm-home h2 {
+  font-weight: 700;
+  letter-spacing: -0.055em;
+}
+
+.ptm-home h3 {
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+
+.ptm-home .ptm-card {
+  border-radius: 8px;
+}
+
+.ptm-home .ptm-action {
+  border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(20, 33, 28, 0.12);
+}
+
+@keyframes ptm-rhythm-in {
+  to {
+    transform: scaleX(1);
+  }
+}
+
 html,
 body,
 #root {
@@ -69,5 +276,12 @@ img {
   50% {
     background-position: 80% 70%;
     opacity: 0.75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ptm-rhythm-line > span {
+    animation: none;
+    transform: none;
   }
 }

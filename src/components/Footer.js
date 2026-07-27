@@ -2,16 +2,22 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-zinc-200 bg-zinc-950 px-8 py-16 text-center">
+    <footer className="border-t border-white/10 bg-[#14211C] px-8 py-16 text-center">
       <div className="mx-auto max-w-6xl">
+        <img
+          src="/brand/logos/ptm-primary-horizontal-reverse.svg"
+          alt="Path to Mexico"
+          className="mx-auto h-9 w-auto"
+        />
 
-        <p className="text-xs uppercase tracking-[0.4em] text-zinc-300">
-          PATH TO MEXICO
-        </p>
+        <div className="ptm-rhythm-line mx-auto mt-8 justify-center" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
 
-        <p className="mt-5 text-zinc-500 italic">
-          Some people visit. Others build a life.
-        </p>
+        <p className="ptm-editorial mt-7 text-lg text-white/70">A different rhythm of life.</p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-8 text-sm text-zinc-400">
 

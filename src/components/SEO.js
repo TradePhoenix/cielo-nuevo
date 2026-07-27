@@ -1,6 +1,6 @@
 const SITE_NAME = "Path To Mexico";
 const SITE_URL = "https://pathtomexico.com";
-const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg?v=3`;
+const DEFAULT_OG_IMAGE = `${SITE_URL}/hero.jpg?v=4`;
 
 // Per-route document metadata. Relies on React 19 rendering <title>/<meta>/
 // <link> anywhere in the tree and hoisting them into <head> automatically —

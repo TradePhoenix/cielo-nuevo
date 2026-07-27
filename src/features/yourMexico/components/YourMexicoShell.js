@@ -29,15 +29,20 @@ export default function YourMexicoShell({
           <div className="print:hidden flex flex-wrap items-center justify-between gap-4">
             <Link
               to="/"
-              className={`text-xs font-semibold uppercase tracking-[0.3em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 ${
+              aria-label="Path to Mexico — home"
+              className={`transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007C83] focus-visible:ring-offset-2 ${
                 isDark ? "text-white/70 hover:text-white focus-visible:ring-offset-[#0b0b0a]" : "text-zinc-700 hover:text-zinc-950"
               }`}
             >
-              Path To Mexico
+              <img
+                src={isDark ? "/brand/logos/ptm-primary-horizontal-reverse.svg" : "/brand/logos/ptm-primary-horizontal-ink.svg"}
+                alt="Path to Mexico"
+                className="h-8 w-auto"
+              />
             </Link>
             <Link
               to={backTo}
-              className={`inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 ${
+              className={`inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007C83] focus-visible:ring-offset-2 ${
                 isDark ? "text-white/50 hover:text-white focus-visible:ring-offset-[#0b0b0a]" : "text-zinc-500 hover:text-zinc-950"
               }`}
             >

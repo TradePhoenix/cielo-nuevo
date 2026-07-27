@@ -59,12 +59,17 @@ function ArticleLayout({
       <nav className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/50 px-4 py-4 backdrop-blur-md md:px-10">
         <Link
           to="/"
-          className="text-[10px] font-semibold uppercase tracking-[0.35em] text-white/80"
+          aria-label="Path to Mexico — home"
+          className="block"
         >
-          Path To Mexico
+          <img
+            src="/brand/logos/ptm-primary-horizontal-reverse.svg"
+            alt="Path to Mexico"
+            className="h-8 w-auto"
+          />
         </Link>
 
-        <div className="flex items-center gap-6 text-[10px] uppercase tracking-[0.25em] text-white/50">
+        <div className="flex items-center gap-6 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/55">
           <Link to="/">{t.home}</Link>
           <Link to="/guides">{t.guides}</Link>
         </div>
@@ -77,6 +82,12 @@ function ArticleLayout({
           transition={{ duration: prefersReducedMotion ? 0.12 : 0.9 }}
           className="mx-auto max-w-5xl"
         >
+          <div className="ptm-rhythm-line mb-8" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
           <Link
             to="/guides"
             className="mb-10 inline-block text-xs uppercase tracking-[0.28em] text-white/45 transition hover:text-white"
@@ -84,11 +95,11 @@ function ArticleLayout({
             {t.backToGuides}
           </Link>
 
-          <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">
+          <p className="mb-6 text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">
             2026 Guide • {category}
           </p>
 
-          <h1 className="text-5xl font-light leading-[0.98] tracking-[-0.06em] md:text-8xl">
+          <h1 className="text-5xl font-bold leading-[0.98] tracking-[-0.055em] md:text-7xl lg:text-8xl">
             {title}
           </h1>
 
@@ -138,11 +149,13 @@ function ArticleLayout({
       </article>
 
       <footer className="border-t border-white/10 bg-zinc-950 px-8 py-14 text-center text-sm text-zinc-500">
-        <p className="text-xs uppercase tracking-[0.38em] text-zinc-200">
-          PATH TO MEXICO
-        </p>
+        <img
+          src="/brand/logos/ptm-primary-horizontal-reverse.svg"
+          alt="Path to Mexico"
+          className="mx-auto h-9 w-auto"
+        />
 
-        <p className="mt-6 italic text-zinc-400">
+        <p className="ptm-editorial mt-6 text-lg text-zinc-400">
           {t.footerTagline}
         </p>
 
