@@ -281,4 +281,13 @@ export const GUIDES = [
     href: "/guides/mexico-relocation-checklist",
     category: { en: "Checklist", es: "Lista De Verificación" },
   },
+  {
+    title: { en: "Responsible Relocation in Mexico", es: "Reubicación Responsable en México" },
+    description: {
+      en: "Language, local customs, Maya heritage, the environment, and building real relationships as you build a life in Mexico.",
+      es: "Idioma, costumbres locales, herencia maya, medio ambiente y cómo construir relaciones reales al construir una vida en México.",
+    },
+    href: "/guides/responsible-relocation-in-mexico",
+    category: { en: "Impact", es: "Impacto" },
+  },
 ];

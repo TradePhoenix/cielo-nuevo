@@ -19,7 +19,7 @@ const heroStagger = {
 
 const content = {
   en: {
-    nav: ["Blueprint", "Destinations", "Services", "Guides", "About", "Contact"],
+    nav: ["Blueprint", "Destinations", "Services", "Guides", "Impact", "About", "Contact"],
     seoTitle: "Path To Mexico | A Different Rhythm Of Life",
     seoDescription: "Relocation guidance, trusted local connections, and lifestyle support for people considering a new life in Mexico.",
     skipToContent: "Skip to content",
@@ -36,6 +36,15 @@ const content = {
     blueprintCta: "Build My Mexico Blueprint",
     blueprintFreeNote: "Free · Takes About 2 Minutes",
     blueprintHighlights: ["City matches built around you", "A clear readiness score", "Your first 90 days mapped"],
+
+    impactEyebrow: "The Fifth Pillar",
+    impactTitle: "Moving to Mexico is more than changing your address.",
+    impactText: "It's becoming part of a community. Impact is our permanent commitment to helping every client arrive as a neighbor — respecting Mexican culture, supporting local businesses, and leaving a positive mark on the place they now call home.",
+    impactCta: "See What Impact Means",
+    impactNote: "Our Commitment To Responsible Relocation",
+    impactCardLabel: "Impact",
+    impactCardHighlights: ["Respect Mexican culture", "Support local businesses", "Protect the natural environment"],
+    impactCardFooter: "Belong. Don't just arrive.",
     founderPhotoAlt: "Kalen Enns, founder of Path To Mexico",
     whatsappCta: "Prefer WhatsApp? Message Directly",
     disclaimerLabel: "Important Note",
@@ -150,6 +159,10 @@ const content = {
     ],
     founderQuote:
       "Some people come to Mexico for a vacation. Others come here looking for a life that feels more like their own.",
+    founderImpactParagraph:
+      "That belief shapes how Path To Mexico works. This isn't only about helping you leave well — it's about helping you arrive well: as a neighbor, not just a newcomer. Responsible relocation means learning the language, respecting local ways of life, and becoming part of the community you're joining, not apart from it.",
+    founderImpactQuote:
+      "We don't just help people relocate. We help them become thoughtful members of the communities they join.",
     founderSignature: "— Kalen Enns",
     founderRole: "Founder, Path To Mexico",
 
@@ -207,7 +220,8 @@ const content = {
       ["Do I have to pay taxes in Mexico, and will I be taxed twice?", "It depends on your residency status, income sources, and your home country's own tax rules and any tax treaty with Mexico — this is genuinely one of the areas where a qualified cross-border tax professional matters most, not general guidance. We can explain the general landscape (tax residency and immigration residency are not the same thing) and connect you with a qualified accountant familiar with your specific situation, but we don't provide tax advice ourselves."],
       ["What's the best way to transfer money to Mexico or move funds between accounts?", "Most people use a mix of international wire transfers, transfer services designed for cross-border payments, and eventually a Mexican bank account once residency is in place. Fees, exchange rates, and transfer limits vary a lot between banks and services, so it's worth comparing before committing to one for anything ongoing. We can point you toward what's worked for others and trusted local contacts; the transfers themselves go through your own bank or provider."],
       ["Can I bring my furniture and personal belongings when I move?", "Yes — many people bring a container or partial shipment of household goods, while others sell most things and start fresh, furnishing locally instead. A household goods import (menaje de casa) has its own paperwork and, done correctly, can mean reduced or no import duties on personal items — but the rules are specific about timing and documentation. We can point you toward what to expect and trusted moving and customs contacts; the shipment and customs process itself is handled by licensed movers and brokers."],
-      ["Is the internet reliable enough to work remotely from Mexico?", "In most of the destinations we cover, yes — fiber and reliable mobile data are common, especially in more established towns, and coworking spaces are increasingly available. Reliability varies more in smaller, more remote destinations, where a backup connection (a second provider or a mobile hotspot) is a genuinely good idea rather than overkill. We're happy to point you toward what to expect in your specific destination."]
+      ["Is the internet reliable enough to work remotely from Mexico?", "In most of the destinations we cover, yes — fiber and reliable mobile data are common, especially in more established towns, and coworking spaces are increasingly available. Reliability varies more in smaller, more remote destinations, where a backup connection (a second provider or a mobile hotspot) is a genuinely good idea rather than overkill. We're happy to point you toward what to expect in your specific destination."],
+      ["Does Path To Mexico support responsible relocation into local communities?", "Yes — it's central to how we work. We encourage learning the language, understanding local customs, and engaging with your new community rather than staying separate from it. A good relocation isn't just about your own comfort; it's about becoming a respectful, contributing part of the place you now call home.", { to: "/impact", label: "See our Impact commitment →" }]
     ],
 
     contactLabel: "Start Here",
@@ -228,7 +242,7 @@ const content = {
   },
 
   es: {
-    nav: ["Blueprint", "Destinos", "Servicios", "Guías", "Nosotros", "Contacto"],
+    nav: ["Blueprint", "Destinos", "Servicios", "Guías", "Impacto", "Nosotros", "Contacto"],
     seoTitle: "Path To Mexico | Un Ritmo De Vida Diferente",
     seoDescription: "Guía de reubicación, conexiones locales de confianza y apoyo de estilo de vida para quienes consideran una nueva vida en México.",
     skipToContent: "Saltar al contenido",
@@ -245,6 +259,15 @@ const content = {
     blueprintCta: "Construir Mi Mexico Blueprint",
     blueprintFreeNote: "Gratis · Toma Alrededor De 2 Minutos",
     blueprintHighlights: ["Ciudades que encajan contigo", "Un puntaje claro de preparación", "Tus primeros 90 días trazados"],
+
+    impactEyebrow: "El Quinto Pilar",
+    impactTitle: "Mudarte a México es más que cambiar de dirección.",
+    impactText: "Es convertirte en parte de una comunidad. Impacto es nuestro compromiso permanente de ayudar a cada cliente a llegar como vecino — respetando la cultura mexicana, apoyando negocios locales y dejando una huella positiva en el lugar que ahora llama hogar.",
+    impactCta: "Descubre Qué Significa Impacto",
+    impactNote: "Nuestro Compromiso Con La Reubicación Responsable",
+    impactCardLabel: "Impacto",
+    impactCardHighlights: ["Respetar la cultura mexicana", "Apoyar negocios locales", "Proteger el entorno natural"],
+    impactCardFooter: "Pertenece. No solo llegues.",
     founderPhotoAlt: "Kalen Enns, fundador de Path To Mexico",
     whatsappCta: "¿Prefieres WhatsApp? Escríbenos Directamente",
     disclaimerLabel: "Nota Importante",
@@ -359,6 +382,10 @@ const content = {
     ],
     founderQuote:
       "Algunas personas vienen a México de vacaciones. Otras vienen buscando una vida que se sienta más propia.",
+    founderImpactParagraph:
+      "Esa convicción define cómo trabaja Path To Mexico. No se trata solo de ayudarte a partir bien, sino de ayudarte a llegar bien: como vecino, no solo como recién llegado. La reubicación responsable significa aprender el idioma, respetar las formas de vida locales y convertirte en parte de la comunidad a la que te unes, no algo aparte de ella.",
+    founderImpactQuote:
+      "No solo ayudamos a las personas a reubicarse. Las ayudamos a convertirse en miembros conscientes de las comunidades a las que se integran.",
     founderSignature: "— Kalen Enns",
     founderRole: "Fundador, Path To Mexico",
 
@@ -416,7 +443,8 @@ const content = {
       ["¿Tengo que pagar impuestos en México, y me cobrarán impuestos dos veces?", "Depende de tu estatus de residencia, tus fuentes de ingreso y las propias reglas fiscales de tu país de origen, además de cualquier tratado fiscal con México — esta es genuinamente una de las áreas donde más importa un profesional fiscal transfronterizo calificado, no una orientación general. Podemos explicarte el panorama general (la residencia fiscal y la residencia migratoria no son lo mismo) y conectarte con un contador calificado que conozca tu situación específica, pero nosotros no damos asesoría fiscal."],
       ["¿Cuál es la mejor forma de transferir dinero a México o mover fondos entre cuentas?", "La mayoría combina transferencias bancarias internacionales, servicios de transferencia diseñados para pagos transfronterizos y, eventualmente, una cuenta bancaria mexicana una vez que la residencia está en trámite o resuelta. Las comisiones, tipos de cambio y límites de transferencia varían mucho entre bancos y servicios, así que vale la pena comparar antes de comprometerte con uno para algo recurrente. Podemos orientarte sobre lo que le ha funcionado a otros y conectarte con contactos locales de confianza; las transferencias en sí las gestionas con tu propio banco o proveedor."],
       ["¿Puedo traer mis muebles y pertenencias personales cuando me mude?", "Sí — muchas personas traen un contenedor o un envío parcial de menaje de casa, mientras que otras venden la mayoría de sus cosas y empiezan de nuevo, amueblando localmente. El menaje de casa tiene sus propios trámites y, hecho correctamente, puede significar aranceles de importación reducidos o nulos en artículos personales — pero las reglas son específicas sobre tiempos y documentación. Podemos orientarte sobre qué esperar y conectarte con contactos de confianza de mudanzas y aduanas; el envío y el proceso aduanal en sí los gestionan agentes aduanales y empresas de mudanza con licencia."],
-      ["¿Es el internet lo suficientemente confiable para trabajar remotamente desde México?", "En la mayoría de los destinos que cubrimos, sí — la fibra óptica y los datos móviles confiables son comunes, especialmente en pueblos más consolidados, y cada vez hay más espacios de coworking disponibles. La confiabilidad varía más en destinos más pequeños y remotos, donde tener una conexión de respaldo (un segundo proveedor o un hotspot móvil) es genuinamente una buena idea, no una exageración. Con gusto te orientamos sobre qué esperar en tu destino específico."]
+      ["¿Es el internet lo suficientemente confiable para trabajar remotamente desde México?", "En la mayoría de los destinos que cubrimos, sí — la fibra óptica y los datos móviles confiables son comunes, especialmente en pueblos más consolidados, y cada vez hay más espacios de coworking disponibles. La confiabilidad varía más en destinos más pequeños y remotos, donde tener una conexión de respaldo (un segundo proveedor o un hotspot móvil) es genuinamente una buena idea, no una exageración. Con gusto te orientamos sobre qué esperar en tu destino específico."],
+      ["¿Path To Mexico apoya una reubicación responsable dentro de las comunidades locales?", "Sí — es central en la forma en que trabajamos. Fomentamos aprender el idioma, entender las costumbres locales y participar en tu nueva comunidad en lugar de mantenerte al margen. Una buena reubicación no se trata solo de tu propia comodidad; se trata de convertirte en una parte respetuosa y activa del lugar que ahora llamas hogar.", { to: "/impact", label: "Conoce nuestro compromiso de Impacto →" }]
     ],
 
     contactLabel: "Empieza Aquí",
@@ -531,7 +559,7 @@ function HomePage() {
 
   const heroPointerActive = hasFinePointer && !prefersReducedMotion;
 
-  const navLinks = ["/my-mexico-blueprint", "/your-mexico", "#services", "/guides", "#about", "#contact"];
+  const navLinks = ["/my-mexico-blueprint", "/your-mexico", "#services", "/guides", "/impact", "#about", "#contact"];
 
   const heroRef = useRef(null);
   const contactRef = useRef(null);
@@ -889,6 +917,74 @@ function HomePage() {
         </CinematicReveal>
       </section>
 
+      <section id="impact" className="bg-[#efe7d8] px-6 py-20 md:px-16 md:py-28">
+        <CinematicReveal className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+          <div>
+            <div className="ptm-rhythm-line mb-7" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+            <p className="ptm-kicker mb-5">{t.impactEyebrow}</p>
+            <h2 className="max-w-3xl text-4xl leading-[1.02] text-[#14211C] md:text-6xl lg:text-7xl">
+              {t.impactTitle}
+            </h2>
+            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-[#14211C]/65 sm:text-xl">
+              {t.impactText}
+            </p>
+            <div className="mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <a
+                href="/impact"
+                className="ptm-action rounded-[4px] bg-[#103D33] px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#007C83]"
+              >
+                {t.impactCta}
+              </a>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#14211C]/45">
+                {t.impactNote}
+              </p>
+            </div>
+          </div>
+
+          <div className="ptm-card relative overflow-hidden border border-[#14211C]/10 bg-[#FFFDF8] p-6 shadow-[0_30px_80px_rgba(20,33,28,0.12)] sm:p-8">
+            <div className="flex items-center justify-between border-b border-[#14211C]/10 pb-6">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#103D33]">
+                  Path to Mexico
+                </p>
+                <p className="mt-2 text-lg font-bold text-[#14211C]">{t.impactCardLabel}</p>
+              </div>
+              <img src="/brand/logos/ptm-motion-mark-ink.svg" alt="" className="h-11 w-auto" aria-hidden="true" />
+            </div>
+
+            <div className="space-y-3 py-6">
+              {t.impactCardHighlights.map((highlight, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 rounded-[4px] bg-[#F3EEE4] px-4 py-4"
+                >
+                  <span
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${
+                      index === 0 ? "bg-[#103D33]" : index === 1 ? "bg-[#E36F4F]" : "bg-[#007C83]"
+                    }`}
+                  >
+                    {index + 1}
+                  </span>
+                  <p className="text-sm font-semibold text-[#14211C]">{highlight}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-between border-t border-[#14211C]/10 pt-5">
+              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#14211C]/45">
+                {t.impactCardFooter}
+              </p>
+              <span className="text-xl text-[#103D33]" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </CinematicReveal>
+      </section>
+
       <section id="relocation" className="bg-[#f6f1e8] px-6 py-20 md:px-20 md:py-28">
         <SectionHeader label={t.servicesLabel} title={t.servicesTitle} text={t.servicesText} />
       </section>
@@ -1048,6 +1144,12 @@ function HomePage() {
 
             <p className="ptm-editorial pt-4 text-3xl leading-tight tracking-[-0.04em] text-[#007C83] md:text-5xl">
               {t.founderQuote}
+            </p>
+
+            <p>{t.founderImpactParagraph}</p>
+
+            <p className="ptm-editorial pt-4 text-3xl leading-tight tracking-[-0.04em] text-[#007C83] md:text-5xl">
+              {t.founderImpactQuote}
             </p>
 
             <p className="pt-6 text-zinc-500">

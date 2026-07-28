@@ -48,6 +48,7 @@ export const GUIDE_STAGE_MAP = {
   "/guides/retiring-in-mexico": "explore",
   "/guides/remote-workers-moving-to-mexico": "explore",
   "/guides/mexico-relocation-checklist": "prepare",
+  "/guides/responsible-relocation-in-mexico": "settle",
 };
 
 // Stage ids ordered by closeness to `stageId`, current stage first, then

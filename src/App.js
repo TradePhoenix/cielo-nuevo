@@ -38,6 +38,8 @@ const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 const MexicoFitCallPage = lazy(() => import("./pages/MexicoFitCallPage"));
 const WorkWithPathToMexicoPage = lazy(() => import("./pages/WorkWithPathToMexicoPage"));
+const ImpactPage = lazy(() => import("./pages/ImpactPage"));
+const ResponsibleRelocationGuidePage = lazy(() => import("./pages/ResponsibleRelocationGuidePage"));
 const FreeGuidePage = lazy(() => import("./pages/FreeGuidePage"));
 const GroceryCostsInMexicoPage = lazy(() => import("./pages/GroceryCostsInMexicoPage"));
 const SafetyInMexicoPage = lazy(() => import("./pages/SafetyInMexicoPage"));
@@ -124,6 +126,8 @@ function AnimatedRoutes() {
 
           <Route path="/mexico-fit-call" element={<MexicoFitCallPage />} />
           <Route path="/work-with-path-to-mexico" element={<WorkWithPathToMexicoPage />} />
+          <Route path="/impact" element={<ImpactPage />} />
+          <Route path="/guides/responsible-relocation-in-mexico" element={<ResponsibleRelocationGuidePage />} />
           <Route path="/free-guide" element={<FreeGuidePage />} />
           <Route path="/my-mexico-blueprint" element={<MyMexicoBlueprintPage />} />
           <Route path="/your-mexico" element={<YourMexicoPage />} />

@@ -1,4 +1,5 @@
 import { useId, useState } from "react";
+import { Link } from "react-router-dom";
 import { useCinematicMotion } from "./cinematicMotion";
 
 // Single-open accordion (activating a question closes whichever was open) —
@@ -22,7 +23,7 @@ export default function FAQAccordion({ items }) {
 
   return (
     <div className="mx-auto mt-14 max-w-4xl divide-y divide-zinc-200 border-y border-zinc-200">
-      {items.map(([question, answer], index) => {
+      {items.map(([question, answer, link], index) => {
         const isOpen = openIndex === index;
         const buttonId = `${baseId}-question-${index}`;
         const panelId = `${baseId}-answer-${index}`;
@@ -59,7 +60,20 @@ export default function FAQAccordion({ items }) {
               }}
             >
               <div className="overflow-hidden">
-                <p className="max-w-2xl pb-6 leading-relaxed text-zinc-600">{answer}</p>
+                <p className="max-w-2xl pb-6 leading-relaxed text-zinc-600">
+                  {answer}
+                  {link && (
+                    <>
+                      {" "}
+                      <Link
+                        to={link.to}
+                        className="font-semibold text-[#007C83] underline decoration-1 underline-offset-4 transition hover:text-[#103D33]"
+                      >
+                        {link.label}
+                      </Link>
+                    </>
+                  )}
+                </p>
               </div>
             </div>
           </div>

@@ -66,7 +66,9 @@ const content = {
     whyParagraphs: [
       "Moving countries is not only about finding information. It is about knowing which information matters, what decisions come first, and who you can trust when the process becomes practical.",
       "Path To Mexico is intentionally built around clarity, lived experience, and carefully selected local connections rather than overwhelming directories or endless opinions.",
+      "We also believe a good relocation is a responsible one. The guidance and introductions we offer are built to help you settle in as a respectful, engaged part of your new community, not just an outsider passing through.",
     ],
+    whyImpactLinkLabel: "See how Impact shapes the way we work →",
     whyClosing: "Better questions. Better introductions. A smoother landing.",
     closingLabel: "Start Here",
     closingTitle: "One clear conversation can change the whole direction of your move.",
@@ -123,7 +125,9 @@ const content = {
     whyParagraphs: [
       "Mudarse de país no se trata solo de encontrar información. Se trata de saber qué información importa, qué decisiones vienen primero y en quién puedes confiar cuando el proceso se vuelve práctico.",
       "Path To Mexico está construido deliberadamente en torno a la claridad, la experiencia vivida y conexiones locales cuidadosamente seleccionadas, en lugar de directorios abrumadores u opiniones interminables.",
+      "También creemos que una buena reubicación es una reubicación responsable. La orientación y las conexiones que ofrecemos están pensadas para ayudarte a integrarte como una parte respetuosa y activa de tu nueva comunidad, no solo como alguien de paso.",
     ],
+    whyImpactLinkLabel: "Descubre cómo Impacto define la forma en que trabajamos →",
     whyClosing: "Mejores preguntas. Mejores conexiones. Una llegada más fácil.",
     closingLabel: "Empieza Aquí",
     closingTitle: "Una conversación clara puede cambiar toda la dirección de tu mudanza.",
@@ -249,7 +253,20 @@ export default function WorkWithPathToMexicoPage() {
 
           <div className="space-y-6 text-lg leading-relaxed text-zinc-700 md:text-xl">
             {t.whyParagraphs.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
+              <p key={index}>
+                {paragraph}
+                {index === t.whyParagraphs.length - 1 && (
+                  <>
+                    {" "}
+                    <Link
+                      to="/impact"
+                      className="font-semibold text-[#007C83] underline decoration-1 underline-offset-4 transition hover:text-[#103D33]"
+                    >
+                      {t.whyImpactLinkLabel}
+                    </Link>
+                  </>
+                )}
+              </p>
             ))}
             <p className="text-zinc-950">{t.whyClosing}</p>
           </div>
