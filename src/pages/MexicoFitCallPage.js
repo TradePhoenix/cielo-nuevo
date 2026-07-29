@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { FOUNDER, TESTIMONIALS, FIT_CALL_PRICE } from "../data/trustContent";
+import { FOUNDER, ENDORSEMENT, FIT_CALL_PRICE } from "../data/trustContent";
 import SEO from "../components/SEO";
 import { buildFitCallContext } from "./mexicoFitCallContext";
 import { trackEvent, ANALYTICS_EVENTS } from "../utils/analytics";
@@ -15,9 +15,13 @@ import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../utils/lang
 // string below falls back to the exact original generic copy.
 //
 // PTM Spanish-parity pass — bilingual content object, same local pattern
-// as HomePage.js/YourMexicoPage.js. `TESTIMONIALS[0]` already carries
-// `quoteEs`/`nameEs` (see data/trustContent.js's own header comment) —
-// resolved here by language rather than duplicated.
+// as HomePage.js/YourMexicoPage.js.
+//
+// TRUST-001 — the second trust card was a client testimonial; it's now a
+// verified professional endorsement (ENDORSEMENT, see trustContent.js).
+// Shows only its first paragraph — a complete, unaltered sentence — since
+// this compact card was sized for a short pull-quote, not the full
+// multi-paragraph reference letter (that lives in full on the homepage).
 const content = {
   en: {
     seoTitle: "Mexico Fit Call",
@@ -145,7 +149,8 @@ export default function MexicoFitCallPage() {
   };
   useHtmlLang(lang);
   const t = content[lang];
-  const testimonial = TESTIMONIALS[0];
+  const endorsementQuote = ENDORSEMENT.quoteParagraphs[0];
+  const endorsementQuoteEs = ENDORSEMENT.quoteParagraphsEs[0];
 
   function handleBookClick(source) {
     trackEvent(ANALYTICS_EVENTS.FIT_CALL_CTA_CLICKED, { source, cityName: cityName || null });
@@ -291,10 +296,10 @@ export default function MexicoFitCallPage() {
 
             <div className="border border-zinc-200 bg-[#f6f1e8] p-8">
               <p className="text-lg leading-relaxed text-zinc-700">
-                "{lang === "es" ? testimonial.quoteEs || testimonial.quote : testimonial.quote}"
+                "{lang === "es" ? endorsementQuoteEs : endorsementQuote}"
               </p>
               <p className="mt-5 text-xs uppercase tracking-[0.25em] text-zinc-500">
-                {lang === "es" ? testimonial.nameEs || testimonial.name : testimonial.name}
+                {ENDORSEMENT.name} &middot; {lang === "es" ? ENDORSEMENT.roleEs : ENDORSEMENT.role}
               </p>
             </div>
           </div>

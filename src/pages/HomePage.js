@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../utils/language";
+import { ENDORSEMENT } from "../data/trustContent";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
 import SEO from "../components/SEO";
@@ -124,23 +125,8 @@ const content = {
       ["04", "Settle", "You move forward with more clarity, fewer surprises, and people already on the ground."]
     ],
 
-    testimonialsLabel: "Testimonials",
-    testimonialsTitle1: "Trusted guidance.",
-    testimonialsTitle2: "Real conversations.",
-    testimonials: [
-      [
-        "We had been talking about moving to Mexico for years, but the amount of information online felt overwhelming. Path To Mexico helped us think through things we had not even considered, from neighborhoods and healthcare to what day-to-day life might actually feel like. More than anything, it gave us confidence and a clearer sense of direction.",
-        "Sarah & Michael — Vancouver, Canada"
-      ],
-      [
-        "I was not looking for someone to sell me anything. I just wanted honest answers from someone who had actually lived the experience. Path To Mexico provided clarity and helped me slow down and make better decisions. It felt more like talking to a trusted friend than dealing with a company.",
-        "Client from Calgary, Alberta"
-      ],
-      [
-        "Moving countries can feel intimidating. Having someone who understood both the practical and emotional sides of relocation made the entire process feel much less overwhelming. I left our conversations feeling excited instead of anxious.",
-        "Amanda — Seattle, Washington"
-      ]
-    ],
+    endorsementLabel: "A Professional Endorsement",
+    endorsementTitle: "What people say about working with Kalen.",
 
     founderLabel: "Founder Story",
     founderTitle: "Built from lived experience, not theory.",
@@ -347,23 +333,8 @@ const content = {
       ["04", "Establecerte", "Avanzas con más claridad, menos sorpresas y personas listas para ayudarte."]
     ],
 
-    testimonialsLabel: "Testimonios",
-    testimonialsTitle1: "Guía confiable.",
-    testimonialsTitle2: "Conversaciones reales.",
-    testimonials: [
-      [
-        "Kalen nos dio más claridad en una conversación que semanas de investigación en internet. Por fin entendimos cuáles eran nuestras opciones reales.",
-        "Futuro Cliente De Reubicación"
-      ],
-      [
-        "Lo que más destacó fue la honestidad. No hubo presión ni venta agresiva, solo consejos prácticos de alguien que ya había pasado por el proceso.",
-        "Cliente Potencial"
-      ],
-      [
-        "Mudarse de país se sentía abrumador hasta que tuvimos a alguien en el terreno que nos orientó y nos conectó con personas confiables.",
-        "Consulta De Reubicación En Playa"
-      ]
-    ],
+    endorsementLabel: "Un Respaldo Profesional",
+    endorsementTitle: "Lo que dicen quienes han trabajado con Kalen.",
 
     founderLabel: "Historia Del Fundador",
     founderTitle: "Construido desde experiencia real, no teoría.",
@@ -497,7 +468,7 @@ function LeadForm({ t }) {
 function SectionHeader({ label, title, text, light = false }) {
   // CX-003: this local component (not the shared ArticleSection.js) is
   // reused by every Homepage section header (Relocation, Work, Process,
-  // Testimonials, Network, Trust, FAQ) — it had no reduced-motion handling
+  // Endorsement, Network, Trust, FAQ) — it had no reduced-motion handling
   // at all until now, despite being the single most-repeated whileInView
   // usage on the page.
   const prefersReducedMotion = useCinematicMotion();
@@ -541,6 +512,7 @@ function HomePage() {
   const [scrolled, setScrolled] = useState(false);
   const [nearContact, setNearContact] = useState(false);
   const t = content[lang];
+  const endorsementParagraphs = lang === "es" ? ENDORSEMENT.quoteParagraphsEs : ENDORSEMENT.quoteParagraphs;
   const prefersReducedMotion = useCinematicMotion();
 
   // CX-002 hero pointer depth — desktop-only (a real cursor, not a touch
@@ -1109,19 +1081,21 @@ function HomePage() {
       </section>
 
       <section className="bg-[#efe7d8] px-6 py-20 md:px-20 md:py-28">
-        <SectionHeader label={t.testimonialsLabel} title={`${t.testimonialsTitle1} ${t.testimonialsTitle2}`} />
+        <SectionHeader label={t.endorsementLabel} title={t.endorsementTitle} />
 
-        <CinematicReveal stagger className="mx-auto mt-14 grid max-w-6xl gap-6 md:grid-cols-3">
-          {t.testimonials.map(([quote, name], index) => (
-            <motion.div
-              key={index}
-              variants={CinematicReveal.itemVariants(prefersReducedMotion)}
-              className="ptm-card border border-zinc-200 bg-white/70 p-8 shadow-sm transition hover:-translate-y-1 hover:bg-white"
-            >
-              <p className="mb-8 text-lg leading-relaxed text-zinc-700">“{quote}”</p>
-              <p className="text-xs uppercase tracking-[0.25em] text-zinc-500">{name}</p>
-            </motion.div>
-          ))}
+        <CinematicReveal className="mx-auto mt-14 max-w-3xl">
+          <div className="ptm-card border border-zinc-200 bg-white/70 p-8 shadow-sm sm:p-12">
+            <div className="space-y-5 text-lg leading-relaxed text-zinc-700">
+              {endorsementParagraphs.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+            <p className="mt-8 text-xs uppercase tracking-[0.25em] text-zinc-500">
+              {ENDORSEMENT.name}
+              <br />
+              {lang === "es" ? ENDORSEMENT.roleEs : ENDORSEMENT.role}
+            </p>
+          </div>
         </CinematicReveal>
       </section>
 

@@ -18,7 +18,7 @@ import { CITY_PROFILES } from "../decisionEngine/data/cityProfiles";
 import { GUIDES } from "./guides";
 import { RELOCATION_ROADMAP_STAGES } from "./relocationRoadmap";
 import { PTM_SCORE_FACTORS } from "../features/yourMexico/data/ptmScoreMethodology";
-import { FOUNDER, TESTIMONIALS } from "./trustContent";
+import { FOUNDER, ENDORSEMENT } from "./trustContent";
 
 function isNonEmptyString(value) {
   return typeof value === "string" && value.trim().length > 0;
@@ -145,12 +145,16 @@ describe("Trust content: bilingual coverage", () => {
     expect(isNonEmptyString(FOUNDER.roleEs)).toBe(true);
   });
 
-  TESTIMONIALS.forEach((testimonial, index) => {
-    test(`testimonial ${index + 1} has EN/ES quote and name`, () => {
-      expect(isNonEmptyString(testimonial.quote)).toBe(true);
-      expect(isNonEmptyString(testimonial.quoteEs)).toBe(true);
-      expect(isNonEmptyString(testimonial.name)).toBe(true);
-      expect(isNonEmptyString(testimonial.nameEs)).toBe(true);
-    });
+  test("endorsement has a name and EN/ES role", () => {
+    expect(isNonEmptyString(ENDORSEMENT.name)).toBe(true);
+    expect(isNonEmptyString(ENDORSEMENT.role)).toBe(true);
+    expect(isNonEmptyString(ENDORSEMENT.roleEs)).toBe(true);
+  });
+
+  test("endorsement has the same number of EN and ES paragraphs, all non-empty", () => {
+    expect(ENDORSEMENT.quoteParagraphs.length).toBeGreaterThan(0);
+    expect(ENDORSEMENT.quoteParagraphs.length).toBe(ENDORSEMENT.quoteParagraphsEs.length);
+    ENDORSEMENT.quoteParagraphs.forEach((paragraph) => expect(isNonEmptyString(paragraph)).toBe(true));
+    ENDORSEMENT.quoteParagraphsEs.forEach((paragraph) => expect(isNonEmptyString(paragraph)).toBe(true));
   });
 });

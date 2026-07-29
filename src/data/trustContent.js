@@ -20,23 +20,35 @@ export const FOUNDER = {
     "Algunas personas vienen a México de vacaciones. Otras vienen buscando una vida que se sienta más propia.",
 };
 
-export const TESTIMONIALS = [
-  {
-    quote:
-      "I was not looking for someone to sell me anything. I just wanted honest answers from someone who had actually lived the experience. Path To Mexico provided clarity and helped me slow down and make better decisions. It felt more like talking to a trusted friend than dealing with a company.",
-    name: "Client from Calgary, Alberta",
-    quoteEs:
-      "No estaba buscando que alguien me vendiera nada. Solo quería respuestas honestas de alguien que realmente hubiera vivido la experiencia. Path To Mexico me dio claridad y me ayudó a tomar decisiones con más calma. Se sintió más como hablar con un amigo de confianza que con una empresa.",
-    nameEs: "Cliente de Calgary, Alberta",
-  },
-  {
-    quote:
-      "We had been talking about moving to Mexico for years, but the amount of information online felt overwhelming. Path To Mexico helped us think through things we had not even considered, from neighborhoods and healthcare to what day-to-day life might actually feel like. More than anything, it gave us confidence and a clearer sense of direction.",
-    name: "Sarah & Michael — Vancouver, Canada",
-    quoteEs:
-      "Llevábamos años hablando de mudarnos a México, pero la cantidad de información en línea se sentía abrumadora. Path To Mexico nos ayudó a pensar en cosas que ni siquiera habíamos considerado, desde los vecindarios y la salud hasta cómo podría sentirse realmente el día a día. Sobre todo, nos dio confianza y un rumbo más claro.",
-    nameEs: "Sarah & Michael — Vancouver, Canadá",
-  },
-];
+// TRUST-001 — replaces two unverified placeholder client testimonials that
+// had no consent record and, on the homepage, didn't even match between
+// languages (different, unrelated placeholder text in EN vs ES). This is a
+// verified professional endorsement instead: Devon O'Tool worked with Kalen
+// professionally (Airbnb property management in British Columbia) before
+// Path To Mexico existed. It speaks to Kalen's character and work ethic —
+// it is not a Path To Mexico client story, and must never be presented or
+// labeled as one. `quoteParagraphs`/`quoteParagraphsEs` hold the complete,
+// unedited endorsement as separate paragraphs; consumers with room for the
+// full text (HomePage.js) render all of them, and compact placements
+// (TrustMoment.js, MexicoFitCallPage.js) use only paragraph [0] — itself a
+// complete, unaltered sentence — as an attributed pull-quote back to the
+// same source, not a separate or edited quote.
+export const ENDORSEMENT = {
+  name: "Devon O'Tool",
+  role: "Airbnb Property Owner, British Columbia",
+  roleEs: "Propietario De Airbnb, Columbia Británica",
+  quoteParagraphs: [
+    "I had the pleasure of working with Kalen while he managed my Airbnb property in British Columbia, and I can recommend him without hesitation.",
+    "Kalen managed multiple Airbnb properties with professionalism, exceptional attention to detail and genuine care. He consistently went above and beyond to ensure every guest felt welcomed and at home, creating outstanding experiences for both guests and property owners.",
+    "Through Ennspropertymgmt, operating as Poshclean & Stay, Kalen built a successful business grounded in reliability, quality and exceptional customer service. Whether coordinating property management, overseeing cleanings or handling unexpected challenges, he approached every situation with integrity and a commitment to excellence.",
+    "Based on my experience working with him, anyone considering Path To Mexico can do so with confidence. Kalen is hardworking, trustworthy and genuinely invested in helping people succeed.",
+  ],
+  quoteParagraphsEs: [
+    "Tuve el placer de trabajar con Kalen mientras administraba mi propiedad de Airbnb en Columbia Británica, y puedo recomendarlo sin dudarlo.",
+    "Kalen administró múltiples propiedades de Airbnb con profesionalismo, una atención excepcional al detalle y un cuidado genuino. Siempre hizo mucho más de lo esperado para asegurarse de que cada huésped se sintiera bienvenido y como en casa, creando experiencias excepcionales tanto para los huéspedes como para los propietarios.",
+    "A través de Ennspropertymgmt, operando como Poshclean & Stay, Kalen construyó un negocio exitoso basado en la confiabilidad, la calidad y un servicio al cliente excepcional. Ya fuera coordinando la administración de propiedades, supervisando limpiezas o resolviendo imprevistos, abordó cada situación con integridad y un compromiso con la excelencia.",
+    "Con base en mi experiencia trabajando con él, cualquier persona que esté considerando Path To Mexico puede hacerlo con confianza. Kalen es trabajador, confiable y está genuinamente comprometido con ayudar a las personas a tener éxito.",
+  ],
+};
 
 export const FIT_CALL_PRICE = "$99 USD";

@@ -1,22 +1,23 @@
 import CitySection from "./CitySection";
-import { FOUNDER, TESTIMONIALS } from "../../../data/trustContent";
+import { FOUNDER, ENDORSEMENT } from "../../../data/trustContent";
 
 const TEXT = {
   en: { eyebrow: "From Path To Mexico", title: "You're not figuring this out alone" },
   es: { eyebrow: "De Path To Mexico", title: "No estás resolviendo esto solo" },
 };
 
-// A real founder quote and a real client testimonial, reused verbatim from
-// the homepage — the audit found these already existed and already worked,
-// but went silent everywhere a visitor was actually deciding. This is the
-// fix: the same trust signal, carried into Your Mexico.
+// TRUST-001 — the second card was a client testimonial; it's now a
+// verified professional endorsement (see trustContent.js's ENDORSEMENT
+// comment for why). Shows only the endorsement's first paragraph — a
+// complete, unaltered sentence — since this compact card was sized for a
+// short pull-quote, not the full multi-paragraph reference letter (that
+// lives in full on the homepage).
 export default function TrustMoment({ lang = "en" }) {
-  const testimonial = TESTIMONIALS[0];
   const t = TEXT[lang] || TEXT.en;
   const founderQuote = lang === "es" ? FOUNDER.quoteEs : FOUNDER.quote;
   const founderRole = lang === "es" ? FOUNDER.roleEs : FOUNDER.role;
-  const testimonialQuote = lang === "es" ? testimonial.quoteEs : testimonial.quote;
-  const testimonialName = lang === "es" ? testimonial.nameEs : testimonial.name;
+  const endorsementQuote = (lang === "es" ? ENDORSEMENT.quoteParagraphsEs : ENDORSEMENT.quoteParagraphs)[0];
+  const endorsementRole = lang === "es" ? ENDORSEMENT.roleEs : ENDORSEMENT.role;
 
   return (
     <CitySection eyebrow={t.eyebrow} title={t.title}>
@@ -35,8 +36,10 @@ export default function TrustMoment({ lang = "en" }) {
         </div>
 
         <div className="border border-zinc-200 bg-white p-6">
-          <p className="text-lg leading-relaxed text-zinc-700">"{testimonialQuote}"</p>
-          <p className="mt-4 text-xs uppercase tracking-[0.2em] text-zinc-500">{testimonialName}</p>
+          <p className="text-lg leading-relaxed text-zinc-700">"{endorsementQuote}"</p>
+          <p className="mt-4 text-xs uppercase tracking-[0.2em] text-zinc-500">
+            {ENDORSEMENT.name} &middot; {endorsementRole}
+          </p>
         </div>
       </div>
     </CitySection>
