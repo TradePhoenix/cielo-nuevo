@@ -57,7 +57,126 @@ export const ARCHETYPES = {
   },
 };
 
+// V2 — archetypes for the three lifeStage options added in Blueprint V2
+// (questions.js). Existing archetypes and their ids are untouched.
+ARCHETYPES.investor = {
+  id: "investor",
+  title: { en: "The Deliberate Investor", es: "El Inversionista Deliberado" },
+  description: {
+    en: "You think in assets and outcomes, but this isn't only a transaction — you're choosing a place your money and your life can both live well.",
+    es: "Piensas en activos y resultados, pero esto no es solo una transacción — estás eligiendo un lugar donde tu dinero y tu vida puedan vivir bien.",
+  },
+};
+ARCHETYPES.localJob = {
+  id: "localJob",
+  title: { en: "The Local Builder", es: "El Constructor Local" },
+  description: {
+    en: "You're not arriving to observe Mexico from a distance — you plan to work inside it. That takes more paperwork and more language, and it builds the deepest roots.",
+    es: "No llegas a observar México desde lejos — planeas trabajar dentro de él. Eso requiere más trámites y más idioma, y construye las raíces más profundas.",
+  },
+};
+ARCHETYPES.sabbatical = {
+  id: "sabbatical",
+  title: { en: "The Intentional Pause", es: "La Pausa Intencional" },
+  description: {
+    en: "This chapter is about stepping back on purpose. The right place gives you room to breathe without cutting you off from what's next.",
+    es: "Este capítulo se trata de detenerte a propósito. El lugar correcto te da espacio para respirar sin desconectarte de lo que sigue.",
+  },
+};
+
 export const DEFAULT_ARCHETYPE_ID = "freshStart";
+
+// V2 — one honest response per possible "concerns" answer (questions.js).
+// These are the results screen's direct reply to what the visitor said they
+// were most uncertain about. Deliberately honest: where something depends on
+// individual circumstances or licensed professionals, the copy says so —
+// nothing here claims or implies eligibility for anything.
+export const CONCERN_RESPONSES = {
+  residency: {
+    title: { en: "Residency and paperwork", es: "Residencia y trámites" },
+    body: {
+      en: "Residency runs on rules that depend on your specific circumstances — income, savings, family ties. That's licensed-professional territory, and pointing you to the right one at the right moment is part of what PTM is for. What we can tell you now: the process is well-trodden, and starting it informed beats starting it fast.",
+      es: "La residencia funciona con reglas que dependen de tus circunstancias específicas — ingresos, ahorros, lazos familiares. Ese es territorio de profesionales acreditados, y orientarte hacia el indicado en el momento indicado es parte de lo que PTM hace. Lo que sí podemos decirte ahora: el proceso está bien recorrido, y empezarlo informado vale más que empezarlo rápido.",
+    },
+  },
+  rightPlace: {
+    title: { en: "Choosing the right place", es: "Elegir el lugar correcto" },
+    body: {
+      en: "This is exactly what your matches below are for — and they're built from what you actually said matters, not from what photographs best. The honest next step is time on the ground in your top match, in the hottest month you can manage.",
+      es: "Para esto existen exactamente tus coincidencias de abajo — construidas con lo que dijiste que te importa, no con lo que mejor se fotografía. El siguiente paso honesto es pasar tiempo en tu mejor coincidencia, en el mes más caluroso que puedas.",
+    },
+  },
+  money: {
+    title: { en: "Cost and budget", es: "Costo y presupuesto" },
+    body: {
+      en: "Location changes the math more than lifestyle does — the same budget lives very differently across the Peninsula. Your matches already account for the budget band you gave us.",
+      es: "La ubicación cambia las cuentas más que el estilo de vida — el mismo presupuesto vive muy diferente según el lugar de la Península. Tus coincidencias ya consideran el rango de presupuesto que nos diste.",
+    },
+  },
+  healthcare: {
+    title: { en: "Healthcare", es: "Atención médica" },
+    body: {
+      en: "Private healthcare in the Peninsula's cities is genuinely good, and distance to it is a real factor between destinations. Coverage and personal needs deserve early, honest answers — that conversation is part of a Fit Call.",
+      es: "La atención médica privada en las ciudades de la Península es genuinamente buena, y la distancia hacia ella es un factor real entre destinos. La cobertura y las necesidades personales merecen respuestas tempranas y honestas — esa conversación es parte de una Fit Call.",
+    },
+  },
+  housing: {
+    title: { en: "Finding housing", es: "Encontrar vivienda" },
+    body: {
+      en: "Renting first is how most people get this right — it turns the biggest decision into a reversible one. The rental market works differently here, and knowing the local norms protects you.",
+      es: "Rentar primero es como la mayoría acierta — convierte la decisión más grande en una reversible. El mercado de rentas funciona diferente aquí, y conocer las normas locales te protege.",
+    },
+  },
+  logistics: {
+    title: { en: "Moving your belongings", es: "Mudar tus pertenencias" },
+    body: {
+      en: "The honest math surprises most people: shipping less and buying locally often wins. It's a decision to run with real numbers, not assumptions — and it comes later than you'd think.",
+      es: "Las cuentas honestas sorprenden a la mayoría: enviar menos y comprar localmente suele ganar. Es una decisión para tomar con números reales, no con suposiciones — y llega más tarde de lo que crees.",
+    },
+  },
+  buying: {
+    title: { en: "Buying property safely", es: "Comprar propiedad con seguridad" },
+    body: {
+      en: "Buying safely in Mexico is absolutely doable — with the right professionals, in the right order, and almost never as your first move. Our standing advice is rent first; the market will still be there in a year.",
+      es: "Comprar con seguridad en México es totalmente posible — con los profesionales correctos, en el orden correcto, y casi nunca como tu primer paso. Nuestro consejo permanente es rentar primero; el mercado seguirá ahí en un año.",
+    },
+  },
+  safety: {
+    title: { en: "Safety", es: "Seguridad" },
+    body: {
+      en: "It's a fair question, and the Peninsula has a genuinely different reality than the headlines suggest — Yucatán state consistently ranks among Mexico's safest. Like anywhere, the honest answer is specific to each place, and we'll always give it to you that way.",
+      es: "Es una pregunta justa, y la Península tiene una realidad genuinamente distinta a la de los titulares — el estado de Yucatán se ubica consistentemente entre los más seguros de México. Como en todas partes, la respuesta honesta es específica de cada lugar, y siempre te la daremos así.",
+    },
+  },
+  language: {
+    title: { en: "Language", es: "El idioma" },
+    body: {
+      en: "You can land with little Spanish in the more established destinations — but the life you're imagining opens up with the language. We treat learning it as part of arriving well, not an optional extra.",
+      es: "Puedes llegar con poco español a los destinos más establecidos — pero la vida que imaginas se abre con el idioma. Tratamos aprenderlo como parte de llegar bien, no como un extra opcional.",
+    },
+  },
+  adapting: {
+    title: { en: "Adapting to life in Mexico", es: "Adaptarte a la vida en México" },
+    body: {
+      en: "The people who thrive here arrive as neighbours, not visitors — curious, patient, and willing to let Mexico be Mexico. That mindset matters more than any checklist, and it's the one thing no one can arrange for you.",
+      es: "Quienes prosperan aquí llegan como vecinos, no como visitantes — curiosos, pacientes y dispuestos a dejar que México sea México. Esa mentalidad importa más que cualquier lista, y es lo único que nadie puede arreglar por ti.",
+    },
+  },
+  trustedHelp: {
+    title: { en: "Finding trustworthy professionals", es: "Encontrar profesionales confiables" },
+    body: {
+      en: "This is the fear we take most seriously — it's why PTM only points people toward professionals we've actually vetted, and why we tell you plainly when something is outside our lane.",
+      es: "Este es el temor que más en serio tomamos — por eso PTM solo orienta hacia profesionales que realmente hemos verificado, y por eso te decimos con claridad cuando algo está fuera de nuestro terreno.",
+    },
+  },
+  somethingElse: {
+    title: { en: "The question you didn't see listed", es: "La pregunta que no viste en la lista" },
+    body: {
+      en: "Whatever it is, it deserves a real answer instead of a category. Bring it to a Fit Call — the odd questions are usually the important ones.",
+      es: "Sea lo que sea, merece una respuesta real y no una categoría. Llévala a una Fit Call — las preguntas raras suelen ser las importantes.",
+    },
+  },
+};
 
 // Ranges are inclusive on both ends; checked in order, first match wins.
 export const READINESS_LABELS = [

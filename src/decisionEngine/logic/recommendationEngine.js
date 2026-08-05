@@ -25,7 +25,9 @@ import {
   CTA_COPY,
   TAG_LABELS,
   MATCH_REASON_TEMPLATES,
+  CONCERN_RESPONSES,
 } from "../../features/blueprint/data/copy";
+import { QUESTIONS, resolveText, normalizeAnswer } from "../../features/blueprint/data/questions";
 import { buildReadinessTrace, buildCityMatchTrace } from "./buildDecisionTrace";
 
 function resolve(field, lang) {
@@ -73,12 +75,54 @@ export function buildRecommendation(scores, answers, lang = "en") {
     roadmapSteps,
     ctaVariant,
     cta: resolveCta(CTA_COPY[ctaVariant], lang),
+    // Blueprint V2 — two additive result-intelligence fields. Both are
+    // derived entirely from the visitor's own answers plus fixed copy, so
+    // the result stays explainable: nothing is generated, only selected.
+    focusAreas: buildFocusAreas(answers, lang),
+    profileHighlights: buildProfileHighlights(answers, lang),
     // ENG-016 — Decision Intelligence Matrix: a purely additive reasoning
     // trace (see buildDecisionTrace.js). Internal only, not rendered
     // anywhere today; every field above this comment is computed exactly
     // as before and unaffected by its presence.
     readinessTrace: buildReadinessTrace(answers, lang),
   };
+}
+
+// Blueprint V2 — the results screen's direct reply to what the visitor said
+// they were most uncertain about (the `concerns` question). One fixed,
+// honest response per selected concern, in selection order.
+function buildFocusAreas(answers, lang) {
+  return normalizeAnswer(answers && answers.concerns)
+    .map((id) => CONCERN_RESPONSES[id])
+    .filter(Boolean)
+    .map((entry, index) => ({
+      id: normalizeAnswer(answers.concerns)[index],
+      title: resolve(entry.title, lang),
+      body: resolve(entry.body, lang),
+    }));
+}
+
+// Blueprint V2 — a compact "what you told us" reflection, built by resolving
+// the visitor's selected option labels straight from the question schema.
+// Display copy lives only in questions.js, so EN/ES can never drift apart
+// from what the visitor actually tapped.
+const HIGHLIGHT_QUESTION_IDS = ["motivation", "placeCharacter", "priorities", "budget", "housing", "practicalNeeds"];
+
+function buildProfileHighlights(answers, lang) {
+  return HIGHLIGHT_QUESTION_IDS.map((questionId) => {
+    const question = QUESTIONS.find((q) => q.id === questionId);
+    if (!question) return null;
+    const selected = normalizeAnswer(answers && answers[questionId])
+      .map((id) => (question.options || []).find((option) => option.id === id))
+      .filter(Boolean)
+      .map((option) => resolveText(option.label, lang));
+    if (selected.length === 0) return null;
+    return {
+      id: questionId,
+      label: resolveText(question.question, lang),
+      values: selected,
+    };
+  }).filter(Boolean);
 }
 
 function getReadinessLabel(score, lang) {

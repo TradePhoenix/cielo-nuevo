@@ -7,6 +7,7 @@ import ProgressBar from "./components/ProgressBar";
 import BlueprintLoading from "./components/BlueprintLoading";
 import ResultsDiscovery from "./components/ResultsDiscovery";
 import ResultsSummary from "./components/ResultsSummary";
+import ResultsFocus from "./components/ResultsFocus";
 import ResultsCityMatch from "./components/ResultsCityMatch";
 import ResultsRoadmap from "./components/ResultsRoadmap";
 import ResultsCTA from "./components/ResultsCTA";
@@ -105,7 +106,7 @@ export default function BlueprintApp() {
           >
             <QuestionCard
               question={currentQuestion}
-              selectedOptionId={answers[currentQuestion.id]}
+              selectedValue={answers[currentQuestion.id]}
               onSelect={(optionId) => selectAnswer(currentQuestion.id, optionId)}
               lang={lang}
             />
@@ -165,6 +166,14 @@ export default function BlueprintApp() {
 
           <CinematicReveal skipReveal={skipResultsReveal}>
             <ResultsSummary recommendation={recommendation} lang={lang} />
+          </CinematicReveal>
+
+          <CinematicReveal skipReveal={skipResultsReveal}>
+            <ResultsFocus
+              focusAreas={recommendation.focusAreas}
+              profileHighlights={recommendation.profileHighlights}
+              lang={lang}
+            />
           </CinematicReveal>
 
           <CinematicReveal skipReveal={skipResultsReveal}>
