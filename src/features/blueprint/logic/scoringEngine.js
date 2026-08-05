@@ -5,8 +5,22 @@
 // localStorage, React state, or rendering — that separation is what makes
 // this function easy to unit-test and safe to reuse if the recommendation
 // step is ever swapped for a real backend/AI call later.
+//
+// V2: answers may now be a single option id (single-select) OR an array of
+// option ids (multi-select) — both shapes are normalized here, so every
+// caller (including older saved sessions whose answers are all strings)
+// keeps working unchanged.
+//
+// Readiness for a multi-select question is the MAX readiness among the
+// selected options — never the sum — so selecting more answers can never
+// inflate a readiness score. (In the current schema every multi-select
+// option carries readiness 0 anyway; this rule keeps the engine honest if
+// that ever changes.) readinessMax per question remains the single highest
+// option value, exactly as before.
 
-// answers: { [questionId]: selectedOptionId }
+import { normalizeAnswer } from "../data/questions";
+
+// answers: { [questionId]: optionId | optionId[] }
 // questions: the QUESTIONS array from data/questions.js (passed in, not
 // imported, so this function has no hidden dependency on where the schema lives)
 export function computeScores(answers, questions) {
@@ -24,21 +38,27 @@ export function computeScores(answers, questions) {
     }, 0);
     readinessMax += maxForQuestion;
 
-    const selectedOptionId = answers[question.id];
-    if (!selectedOptionId) return;
+    const selectedIds = normalizeAnswer(answers && answers[question.id]);
+    if (selectedIds.length === 0) return;
 
-    const selectedOption = options.find((option) => option.id === selectedOptionId);
-    if (!selectedOption) return;
+    const selectedOptions = selectedIds
+      .map((id) => options.find((option) => option.id === id))
+      .filter(Boolean);
+    if (selectedOptions.length === 0) return;
 
-    readinessRaw += (selectedOption.scores && selectedOption.scores.readiness) || 0;
+    readinessRaw += selectedOptions.reduce(
+      (max, option) => Math.max(max, (option.scores && option.scores.readiness) || 0),
+      0
+    );
 
-    (selectedOption.tags || []).forEach((tag) => {
-      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    selectedOptions.forEach((option) => {
+      (option.tags || []).forEach((tag) => {
+        tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+      });
+      if (option.budgetTier) {
+        budgetTier = option.budgetTier;
+      }
     });
-
-    if (selectedOption.budgetTier) {
-      budgetTier = selectedOption.budgetTier;
-    }
   });
 
   return { readinessRaw, readinessMax, tagCounts, budgetTier };

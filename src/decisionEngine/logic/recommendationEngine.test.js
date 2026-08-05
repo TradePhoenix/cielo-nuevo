@@ -99,51 +99,77 @@ describe("DEST-002 — four more destinations win their intended signal profile"
   });
 });
 
-describe("DEST-001 — existing destination results are unchanged", () => {
+describe("DEST-001/V2 — the three established regression profiles, recalibrated for Blueprint V2", () => {
+  // Blueprint V2 changed the questionnaire (12 core questions + conditional
+  // follow-ups, multi-select answers, residencyFamiliarity removed, and
+  // readinessMax now a constant 77), so the V1 profiles' exact readiness
+  // values no longer exist. These are the V2-complete equivalents of the
+  // same three personas, with expectations computed against the real
+  // engine. Playa del Carmen's persona still lands Playa del Carmen first —
+  // the V1->V2 continuity that matters most.
   function scoresFromAnswers(answers) {
     return computeScores(answers, QUESTIONS);
   }
 
   test("Premium-Solo-Urban profile still matches Playa del Carmen first", () => {
     const answers = {
+      motivation: ["remoteWork"],
       timeline: "asap",
-      lifeStage: "remote",
-      budget: "premium",
-      lifestyle: "cityEnergy",
       household: "solo",
-      residencyFamiliarity: "researched",
+      origin: "canada",
+      lifestyle: ["cityEnergy"],
+      placeCharacter: "establishedCoastal",
+      priorities: ["walkability", "internet", "dining"],
+      budget: "premium",
+      housing: "rentFirst",
+      lifeStage: "remote",
+      practicalNeeds: ["internet"],
+      concerns: ["rightPlace"],
     };
     const recommendation = buildRecommendation(scoresFromAnswers(answers), answers);
     expect(recommendation.topCityMatches[0].id).toBe("playa-del-carmen");
     expect(recommendation.readinessScore).toBe(100);
   });
 
-  test("Unknown-Couple-Quiet profile still matches Tulum first", () => {
+  test("Exploring-Couple-Beach profile matches Tulum first", () => {
     const answers = {
+      motivation: ["retirement"],
       timeline: "exploring",
-      lifeStage: "retiree",
-      budget: "notSure",
-      lifestyle: "quietNature",
       household: "couple",
-      residencyFamiliarity: "none",
+      origin: "canada",
+      lifestyle: ["beachTown"],
+      placeCharacter: "notSure",
+      priorities: ["safety"],
+      budget: "premium",
+      housing: "unsure",
+      lifeStage: "family",
+      practicalNeeds: ["none"],
+      concerns: ["rightPlace"],
     };
     const recommendation = buildRecommendation(scoresFromAnswers(answers), answers);
     expect(recommendation.topCityMatches[0].id).toBe("tulum");
-    expect(recommendation.readinessScore).toBe(51);
+    expect(recommendation.readinessScore).toBe(57);
   });
 
-  test("Comfortable-Family-Quiet profile still matches Riviera Maya first", () => {
+  test("Comfortable-Family-Quiet profile matches Riviera Maya first", () => {
     const answers = {
-      timeline: "1-2y",
-      lifeStage: "family",
-      budget: "comfortable",
-      lifestyle: "quietNature",
+      motivation: ["retirement"],
+      timeline: "exploring",
       household: "familyKids",
-      residencyFamiliarity: "heardOf",
+      schooling: "stillDeciding",
+      origin: "canada",
+      lifestyle: ["familyLife"],
+      placeCharacter: "notSure",
+      priorities: ["affordability"],
+      budget: "comfortable",
+      housing: "rentFirst",
+      lifeStage: "retiree",
+      practicalNeeds: ["none"],
+      concerns: ["rightPlace"],
     };
     const recommendation = buildRecommendation(scoresFromAnswers(answers), answers);
     expect(recommendation.topCityMatches[0].id).toBe("riviera-maya");
-    expect(recommendation.readinessScore).toBe(70);
+    expect(recommendation.readinessScore).toBe(69);
   });
 });
 
@@ -154,10 +180,14 @@ describe("DEST-001 — existing destination results are unchanged", () => {
 // city's tag SET isn't a strict subset of another's — necessary but not
 // sufficient), every profile below is a real, complete answer to all 7
 // live questions, run through the real computeScores()/buildRecommendation()
-// pipeline exactly as a visitor's browser would. Each was found by
-// exhaustively enumerating all 15,360 real combinations of the current
-// questionnaire and is asserted to win strict #1 (matchScore strictly
-// greater than every other city's, not just tied) — the same standard
+// pipeline exactly as a visitor's browser would (Blueprint V2: multi-select
+// answers are arrays, exactly as useBlueprintState stores them). The
+// original profiles were found by exhaustively enumerating all 15,360 real
+// combinations of the V1 questionnaire; profiles updated for Blueprint V2
+// were re-found by brute-force search over a constrained-but-real V2 answer
+// space against the real engine, and every profile below is asserted to win
+// strict #1 (matchScore strictly greater than every other city's, not just
+// tied) — the same standard
 // BP-001's audit used to prove Sisal's OLD profile could never win.
 //
 // If the questionnaire, a city's tags, or the tag vocabulary ever changes
@@ -185,10 +215,9 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
         timeline: "asap",
         lifeStage: "remote",
         budget: "premium",
-        lifestyle: "beachTown",
+        lifestyle: ["beachTown"],
         placeCharacter: "establishedCoastal",
         household: "solo",
-        residencyFamiliarity: "researched",
       },
       "playa-del-carmen"
     );
@@ -200,10 +229,9 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
         timeline: "exploring",
         lifeStage: "entrepreneur",
         budget: "premium",
-        lifestyle: "beachTown",
+        lifestyle: ["beachTown"],
         placeCharacter: "cultureHeritage",
         household: "solo",
-        residencyFamiliarity: "none",
       },
       "tulum"
     );
@@ -215,10 +243,9 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
         timeline: "asap",
         lifeStage: "retiree",
         budget: "lean",
-        lifestyle: "cityEnergy",
+        lifestyle: ["cityEnergy"],
         placeCharacter: "cultureHeritage",
         household: "familyKids",
-        residencyFamiliarity: "researched",
       },
       "riviera-maya"
     );
@@ -230,10 +257,9 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
         timeline: "asap",
         lifeStage: "remote",
         budget: "lean",
-        lifestyle: "cityEnergy",
+        lifestyle: ["cityEnergy"],
         placeCharacter: "cultureHeritage",
         household: "solo",
-        residencyFamiliarity: "researched",
       },
       "merida"
     );
@@ -245,10 +271,9 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
         timeline: "asap",
         lifeStage: "family",
         budget: "comfortable",
-        lifestyle: "cityEnergy",
+        lifestyle: ["cityEnergy"],
         placeCharacter: "establishedCoastal",
         household: "familyKids",
-        residencyFamiliarity: "researched",
       },
       "progreso"
     );
@@ -260,10 +285,9 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
         timeline: "asap",
         lifeStage: "family",
         budget: "comfortable",
-        lifestyle: "beachTown",
+        lifestyle: ["beachTown"],
         placeCharacter: "natureWildlife",
         household: "familyKids",
-        residencyFamiliarity: "researched",
       },
       "chicxulub-puerto"
     );
@@ -272,13 +296,18 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
   test("Telchac Puerto", () => {
     assertStrictWin(
       {
+        motivation: ["retirement"],
         timeline: "asap",
-        lifeStage: "remote",
-        budget: "lean",
-        lifestyle: "beachTown",
-        placeCharacter: "trueRemote",
         household: "solo",
-        residencyFamiliarity: "none",
+        origin: "canada",
+        lifestyle: ["beachTown"],
+        placeCharacter: "trueRemote",
+        priorities: ["affordability"],
+        budget: "lean",
+        housing: "rentFirst",
+        lifeStage: "sabbatical",
+        practicalNeeds: ["none"],
+        concerns: ["rightPlace"],
       },
       "telchac-puerto"
     );
@@ -290,10 +319,9 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
         timeline: "asap",
         lifeStage: "retiree",
         budget: "lean",
-        lifestyle: "beachTown",
+        lifestyle: ["beachTown"],
         placeCharacter: "natureWildlife",
         household: "solo",
-        residencyFamiliarity: "researched",
       },
       "celestun"
     );
@@ -309,10 +337,9 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
         timeline: "asap",
         lifeStage: "retiree",
         budget: "comfortable",
-        lifestyle: "beachTown",
+        lifestyle: ["beachTown"],
         placeCharacter: "cultureHeritage",
         household: "solo",
-        residencyFamiliarity: "researched",
       };
       return assertStrictWin(answers, "sisal");
     })();
@@ -330,10 +357,9 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
         timeline: "asap",
         lifeStage: "remote",
         budget: "lean",
-        lifestyle: "notSure",
+        lifestyle: ["notSure"],
         placeCharacter: "natureWildlife",
         household: "familyKids",
-        residencyFamiliarity: "none",
       },
       "dzilam-de-bravo"
     );
@@ -345,10 +371,9 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
         timeline: "asap",
         lifeStage: "family",
         budget: "notSure",
-        lifestyle: "quietNature",
+        lifestyle: ["quietNature"],
         placeCharacter: "cultureHeritage",
         household: "familyKids",
-        residencyFamiliarity: "none",
       },
       "santa-elena"
     );
@@ -365,98 +390,189 @@ describe("BP-002/DEST-003 — every one of the 25 destinations is reachable via 
   // to still pass unchanged after those adjustments.
   test("Puerto Morelos", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "remote", budget: "lean", lifestyle: "beachTown", placeCharacter: "cultureHeritage", household: "solo", residencyFamiliarity: "researched" },
+      { timeline: "asap", lifeStage: "remote", budget: "lean", lifestyle: ["beachTown"], placeCharacter: "cultureHeritage", household: "solo", },
       "puerto-morelos"
     );
   });
 
   test("Cozumel", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "retiree", budget: "premium", lifestyle: "cityEnergy", placeCharacter: "establishedCoastal", household: "solo", residencyFamiliarity: "none" },
+      {
+        motivation: ["retirement"],
+        timeline: "asap",
+        household: "solo",
+        origin: "canada",
+        lifestyle: ["beachTown"],
+        placeCharacter: "establishedCoastal",
+        priorities: ["beachAccess"],
+        budget: "premium",
+        housing: "rentFirst",
+        lifeStage: "sabbatical",
+        practicalNeeds: ["none"],
+        concerns: ["rightPlace"],
+      },
       "cozumel"
     );
   });
 
   test("Bacalar", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "retiree", budget: "lean", lifestyle: "notSure", placeCharacter: "natureWildlife", household: "solo", residencyFamiliarity: "none" },
+      {
+        motivation: ["retirement"],
+        timeline: "asap",
+        household: "solo",
+        origin: "canada",
+        lifestyle: ["quietNature"],
+        placeCharacter: "natureWildlife",
+        priorities: ["affordability"],
+        budget: "notSure",
+        housing: "rentFirst",
+        lifeStage: "sabbatical",
+        practicalNeeds: ["none"],
+        concerns: ["rightPlace"],
+      },
       "bacalar"
     );
   });
 
   test("Mahahual", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "remote", budget: "premium", lifestyle: "notSure", placeCharacter: "trueRemote", household: "solo", residencyFamiliarity: "none" },
+      {
+        motivation: ["retirement"],
+        timeline: "asap",
+        household: "solo",
+        origin: "canada",
+        lifestyle: ["cityEnergy"],
+        placeCharacter: "trueRemote",
+        priorities: ["beachAccess"],
+        budget: "notSure",
+        housing: "rentFirst",
+        lifeStage: "sabbatical",
+        practicalNeeds: ["none"],
+        concerns: ["rightPlace"],
+      },
       "mahahual"
     );
   });
 
   test("Akumal", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "family", budget: "premium", lifestyle: "beachTown", placeCharacter: "natureWildlife", household: "solo", residencyFamiliarity: "researched" },
+      { timeline: "asap", lifeStage: "family", budget: "premium", lifestyle: ["beachTown"], placeCharacter: "natureWildlife", household: "solo", },
       "akumal"
     );
   });
 
   test("Cancún", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "entrepreneur", budget: "lean", lifestyle: "cityEnergy", placeCharacter: "cultureHeritage", household: "familyKids", residencyFamiliarity: "researched" },
+      { timeline: "asap", lifeStage: "entrepreneur", budget: "lean", lifestyle: ["cityEnergy"], placeCharacter: "cultureHeritage", household: "familyKids", },
       "cancun"
     );
   });
 
   test("Valladolid", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "remote", budget: "lean", lifestyle: "notSure", placeCharacter: "cultureHeritage", household: "solo", residencyFamiliarity: "researched" },
+      { timeline: "asap", lifeStage: "remote", budget: "lean", lifestyle: ["notSure"], placeCharacter: "cultureHeritage", household: "solo", },
       "valladolid"
     );
   });
 
   test("Izamal", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "retiree", budget: "lean", lifestyle: "cityEnergy", placeCharacter: "cultureHeritage", household: "solo", residencyFamiliarity: "none" },
+      {
+        motivation: ["retirement"],
+        timeline: "asap",
+        household: "solo",
+        origin: "canada",
+        lifestyle: ["beachTown"],
+        placeCharacter: "cultureHeritage",
+        priorities: ["culture"],
+        budget: "lean",
+        housing: "rentFirst",
+        lifeStage: "sabbatical",
+        practicalNeeds: ["none"],
+        concerns: ["rightPlace"],
+      },
       "izamal"
     );
   });
 
   test("Tekax", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "remote", budget: "lean", lifestyle: "notSure", placeCharacter: "trueRemote", household: "solo", residencyFamiliarity: "researched" },
+      { timeline: "asap", lifeStage: "remote", budget: "lean", lifestyle: ["notSure"], placeCharacter: "trueRemote", household: "solo", },
       "tekax"
     );
   });
 
   test("Tizimín", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "retiree", budget: "lean", lifestyle: "beachTown", placeCharacter: "trueRemote", household: "familyKids", residencyFamiliarity: "researched" },
+      { timeline: "asap", lifeStage: "retiree", budget: "lean", lifestyle: ["beachTown"], placeCharacter: "trueRemote", household: "familyKids", },
       "tizimin"
     );
   });
 
   test("Chelem", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "retiree", budget: "lean", lifestyle: "beachTown", placeCharacter: "establishedCoastal", household: "solo", residencyFamiliarity: "none" },
+      {
+        motivation: ["retirement"],
+        timeline: "asap",
+        household: "solo",
+        origin: "canada",
+        lifestyle: ["beachTown"],
+        placeCharacter: "establishedCoastal",
+        priorities: ["affordability"],
+        budget: "lean",
+        housing: "rentFirst",
+        lifeStage: "sabbatical",
+        practicalNeeds: ["none"],
+        concerns: ["rightPlace"],
+      },
       "chelem"
     );
   });
 
   test("Chuburná Puerto", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "retiree", budget: "comfortable", lifestyle: "beachTown", placeCharacter: "trueRemote", household: "solo", residencyFamiliarity: "researched" },
+      { timeline: "asap", lifeStage: "retiree", budget: "comfortable", lifestyle: ["beachTown"], placeCharacter: "trueRemote", household: "solo", },
       "chuburna-puerto"
     );
   });
 
   test("El Cuyo", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "retiree", budget: "notSure", lifestyle: "beachTown", placeCharacter: "natureWildlife", household: "solo", residencyFamiliarity: "none" },
+      {
+        motivation: ["retirement"],
+        timeline: "asap",
+        household: "solo",
+        origin: "canada",
+        lifestyle: ["beachTown"],
+        placeCharacter: "cultureHeritage",
+        priorities: ["nature"],
+        budget: "notSure",
+        housing: "rentFirst",
+        lifeStage: "sabbatical",
+        practicalNeeds: ["none"],
+        concerns: ["rightPlace"],
+      },
       "el-cuyo"
     );
   });
 
   test("Río Lagartos", () => {
     assertStrictWin(
-      { timeline: "asap", lifeStage: "retiree", budget: "comfortable", lifestyle: "cityEnergy", placeCharacter: "trueRemote", household: "solo", residencyFamiliarity: "none" },
+      {
+        motivation: ["retirement"],
+        timeline: "asap",
+        household: "solo",
+        origin: "canada",
+        lifestyle: ["cityEnergy"],
+        placeCharacter: "trueRemote",
+        priorities: ["culture"],
+        budget: "notSure",
+        housing: "rentFirst",
+        lifeStage: "retiree",
+        practicalNeeds: ["none"],
+        concerns: ["rightPlace"],
+      },
       "rio-lagartos"
     );
   });

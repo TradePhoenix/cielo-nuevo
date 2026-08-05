@@ -11,7 +11,7 @@ export const BLUEPRINT_UI = {
       title: "Find your path to a life in Mexico.",
       text: "Every year, thousands of people dream about moving to Mexico. Most never do. This blueprint helps you see what your move could actually look like — where you fit, what it may cost, and what to do next.",
       cta: "Start Your Blueprint",
-      questionsCount: (n) => `${n} Quick Questions · About 2 Minutes`,
+      questionsCount: (n) => `${n} Quick Questions · About 3 Minutes`,
       privacy: "Your answers stay on this device — nothing is sent anywhere until you choose to talk to us.",
     },
     question: {
@@ -19,6 +19,8 @@ export const BLUEPRINT_UI = {
       next: "Next",
       finish: "Finish",
       progress: (current, total) => `Question ${current} of ${total}`,
+      multiCount: (selected, max) => `${selected} of ${max} selected`,
+      multiFree: (selected) => (selected === 1 ? `1 selected` : `${selected} selected`),
     },
     loading: {
       messages: [
@@ -61,6 +63,11 @@ export const BLUEPRINT_UI = {
       readinessWord: "Readiness",
       nextChapter: "See What Your Next Chapter Could Look Like",
     },
+    focus: {
+      eyebrow: "Built Around Your Questions",
+      title: "What you said you're still weighing",
+      builtFromEyebrow: "Your blueprint was built from",
+    },
     retake: "Retake The Blueprint",
   },
   es: {
@@ -70,7 +77,7 @@ export const BLUEPRINT_UI = {
       title: "Encuentra tu camino hacia una vida en México.",
       text: "Cada año, miles de personas sueñan con mudarse a México. La mayoría nunca lo hace. Este blueprint te ayuda a ver cómo podría verse realmente tu mudanza — dónde encajas, cuánto podría costar y qué hacer después.",
       cta: "Empieza Tu Blueprint",
-      questionsCount: (n) => `${n} Preguntas Rápidas · Alrededor De 2 Minutos`,
+      questionsCount: (n) => `${n} Preguntas Rápidas · Alrededor De 3 Minutos`,
       privacy: "Tus respuestas se quedan en este dispositivo — nada se envía a ningún lado hasta que decidas hablar con nosotros.",
     },
     question: {
@@ -78,6 +85,8 @@ export const BLUEPRINT_UI = {
       next: "Siguiente",
       finish: "Terminar",
       progress: (current, total) => `Pregunta ${current} de ${total}`,
+      multiCount: (selected, max) => `${selected} de ${max} seleccionadas`,
+      multiFree: (selected) => (selected === 1 ? `1 seleccionada` : `${selected} seleccionadas`),
     },
     loading: {
       messages: [
@@ -119,6 +128,11 @@ export const BLUEPRINT_UI = {
       startHere: "Empieza Aquí",
       readinessWord: "Preparación",
       nextChapter: "Mira Cómo Podría Verse Tu Próximo Capítulo",
+    },
+    focus: {
+      eyebrow: "Construido Alrededor De Tus Preguntas",
+      title: "Lo que dijiste que aún estás sopesando",
+      builtFromEyebrow: "Tu blueprint se construyó a partir de",
     },
     retake: "Retomar El Blueprint",
   },
