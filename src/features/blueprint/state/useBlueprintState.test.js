@@ -70,7 +70,12 @@ test("completing the questionnaire live always reveals the results (never skippe
   expect(result.current.screen).toBe("loading");
   expect(result.current.skipResultsReveal).toBe(false);
 
+  // P0-1: a first-time visitor meets the lead-capture step after loading;
+  // only a confirmed successful submission reveals the results.
   act(() => result.current.completeLoading());
+  expect(result.current.screen).toBe("leadCapture");
+
+  act(() => result.current.completeLeadCapture());
   expect(result.current.screen).toBe("results");
   expect(result.current.skipResultsReveal).toBe(false);
 });
@@ -94,7 +99,12 @@ test("retaking after a returning (skip-reveal) visit reveals results again on th
   });
   expect(result.current.screen).toBe("loading");
 
+  // This saved session predates lead capture (no leadCaptured flag), so the
+  // retake passes through the capture step like any first submission.
   act(() => result.current.completeLoading());
+  expect(result.current.screen).toBe("leadCapture");
+
+  act(() => result.current.completeLeadCapture());
   expect(result.current.screen).toBe("results");
   expect(result.current.skipResultsReveal).toBe(false);
 });
@@ -218,6 +228,97 @@ describe("V2 — pre-V2 saved sessions are discarded safely", () => {
     const { result } = renderHook(() => useBlueprintState());
     expect(result.current.screen).toBe("question");
     expect(result.current.currentQuestion).not.toBeNull();
+  });
+});
+
+// P0-1 — lead capture: the step machine gates results behind a confirmed
+// lead submission exactly once per device, keeps answers intact throughout,
+// and persists sessionId/leadCaptured alongside the existing saved shape.
+describe("P0-1 — lead capture step", () => {
+  function completeQuestionnaire(result) {
+    act(() => result.current.startQuestionnaire());
+    answerAll(result);
+    act(() => {
+      for (let i = 0; i < result.current.totalQuestions; i += 1) result.current.goNext();
+    });
+    act(() => result.current.completeLoading());
+  }
+
+  test("successful capture persists leadCaptured and the session id", () => {
+    const { result } = renderHook(() => useBlueprintState());
+    completeQuestionnaire(result);
+    expect(result.current.screen).toBe("leadCapture");
+    expect(result.current.leadCaptured).toBe(false);
+    expect(result.current.sessionId).toMatch(/^bp-/);
+
+    act(() => result.current.completeLeadCapture());
+    expect(result.current.screen).toBe("results");
+    expect(result.current.leadCaptured).toBe(true);
+
+    const saved = JSON.parse(window.localStorage.getItem(STORAGE_KEY));
+    expect(saved.leadCaptured).toBe(true);
+    expect(saved.sessionId).toBe(result.current.sessionId);
+  });
+
+  test("a visitor who already submitted is never asked again (retake included)", () => {
+    const { result } = renderHook(() => useBlueprintState());
+    completeQuestionnaire(result);
+    act(() => result.current.completeLeadCapture());
+
+    const previousSessionId = result.current.sessionId;
+    act(() => result.current.restart());
+    expect(result.current.leadCaptured).toBe(true);
+    // A retake is a fresh session for lead-matching purposes.
+    expect(result.current.sessionId).not.toBe(previousSessionId);
+
+    completeQuestionnaire(result);
+    expect(result.current.screen).toBe("results");
+  });
+
+  test("a reload on the capture step resumes there with every answer intact", () => {
+    const { result } = renderHook(() => useBlueprintState());
+    completeQuestionnaire(result);
+    const sessionId = result.current.sessionId;
+
+    // Simulate the reload: a second mount hydrating from localStorage.
+    const { result: reloaded } = renderHook(() => useBlueprintState());
+    expect(reloaded.current.screen).toBe("leadCapture");
+    expect(reloaded.current.answers).toEqual(CORE_ANSWERS);
+    expect(reloaded.current.sessionId).toBe(sessionId);
+    // Landing on capture (results not yet revealed) must not pre-arm the
+    // "returning visitor" skip — the eventual reveal still plays live.
+    expect(reloaded.current.skipResultsReveal).toBe(false);
+  });
+
+  test("backing out of the capture step returns to the last question, answers intact", () => {
+    const { result } = renderHook(() => useBlueprintState());
+    completeQuestionnaire(result);
+
+    act(() => result.current.goPrevious());
+    expect(result.current.screen).toBe("question");
+    expect(result.current.questionIndex).toBe(result.current.totalQuestions - 1);
+    expect(result.current.answers).toEqual(CORE_ANSWERS);
+  });
+
+  test("completeLeadCapture is a no-op on any other screen", () => {
+    const { result } = renderHook(() => useBlueprintState());
+    act(() => result.current.completeLeadCapture());
+    expect(result.current.screen).toBe("intro");
+    expect(result.current.leadCaptured).toBe(false);
+  });
+
+  test("an older version-3 save without the new fields hydrates safely and gains a session id", () => {
+    window.localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ version: 3, screen: "results", questionIndex: 11, answers: CORE_ANSWERS })
+    );
+
+    const { result } = renderHook(() => useBlueprintState());
+    // A pre-capture completed session keeps its results — it is not
+    // retroactively gated.
+    expect(result.current.screen).toBe("results");
+    expect(result.current.leadCaptured).toBe(false);
+    expect(result.current.sessionId).toMatch(/^bp-/);
   });
 });
 
