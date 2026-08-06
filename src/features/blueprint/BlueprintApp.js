@@ -5,6 +5,7 @@ import BlueprintIntro from "./components/BlueprintIntro";
 import QuestionCard from "./components/QuestionCard";
 import ProgressBar from "./components/ProgressBar";
 import BlueprintLoading from "./components/BlueprintLoading";
+import LeadCaptureCard from "./components/LeadCaptureCard";
 import ResultsDiscovery from "./components/ResultsDiscovery";
 import ResultsSummary from "./components/ResultsSummary";
 import ResultsFocus from "./components/ResultsFocus";
@@ -45,6 +46,7 @@ export default function BlueprintApp() {
     screen,
     questionIndex,
     answers,
+    sessionId,
     totalQuestions,
     currentQuestion,
     isCurrentAnswered,
@@ -54,6 +56,7 @@ export default function BlueprintApp() {
     goNext,
     goPrevious,
     completeLoading,
+    completeLeadCapture,
     restart,
     skipResultsReveal,
   } = useBlueprintState(lang);
@@ -138,6 +141,33 @@ export default function BlueprintApp() {
       )}
 
       {screen === "loading" && <BlueprintLoading onComplete={completeLoading} lang={lang} />}
+
+      {/*
+        CONV/P0-1 — inline lead capture between loading and results: the
+        Blueprint is announced as ready, and saving it (first name + email,
+        with consent) is what reveals it. Submission goes through the site's
+        existing Formspree pathway; answers stay safe in localStorage if it
+        fails, and a visitor who already submitted once on this device never
+        sees this step again (see useBlueprintState.js).
+      */}
+      {screen === "leadCapture" && (
+        <div className="px-6 py-16 sm:py-24">
+          <motion.div
+            initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: prefersReducedMotion ? DURATION.instant : DURATION.quick, ease: EASE.standard }}
+          >
+            <LeadCaptureCard
+              answers={answers}
+              recommendation={recommendation}
+              sessionId={sessionId}
+              lang={lang}
+              onSuccess={completeLeadCapture}
+              onBack={goPrevious}
+            />
+          </motion.div>
+        </div>
+      )}
 
       {screen === "results" && recommendation && (
         <div

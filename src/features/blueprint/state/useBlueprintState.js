@@ -1,9 +1,11 @@
 // My Mexico Blueprint — questionnaire state + localStorage persistence.
 //
-// Owns the wizard's step machine (intro -> question -> loading -> results)
-// and the visitor's answers. Every change is written to localStorage so a
-// reload resumes exactly where the visitor left off. No backend, no auth —
-// the entire session lives in the browser.
+// Owns the wizard's step machine (intro -> question -> loading ->
+// leadCapture -> results) and the visitor's answers. Every change is
+// written to localStorage so a reload resumes exactly where the visitor
+// left off. The one network interaction in the flow is the lead-capture
+// submission itself (LeadCaptureCard -> Formspree); everything else stays
+// in the browser.
 //
 // V2: the questionnaire now contains multi-select questions and conditional
 // follow-ups (see data/questions.js). This hook derives the *visible*
@@ -25,8 +27,22 @@ export const STORAGE_KEY = "pathToMexico.blueprint.v1";
 // are discarded rather than migrated — the established policy for this key.
 const STORAGE_VERSION = 3;
 
+// Lead capture (CONV/P0-1): an anonymous, client-side-only id that ties a
+// submitted lead back to this browser session's Blueprint. Not a user id,
+// not tracking — it exists so a lead in the inbox can be matched to a
+// retake/duplicate from the same device.
+function makeSessionId() {
+  return `bp-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
 function loadInitialState() {
-  const defaults = { screen: "intro", questionIndex: 0, answers: {} };
+  const defaults = {
+    screen: "intro",
+    questionIndex: 0,
+    answers: {},
+    sessionId: makeSessionId(),
+    leadCaptured: false,
+  };
 
   if (typeof window === "undefined") {
     return defaults;
@@ -46,6 +62,10 @@ function loadInitialState() {
         parsed.answers && typeof parsed.answers === "object" && !Array.isArray(parsed.answers)
           ? parsed.answers
           : {},
+      // Additive fields (no STORAGE_VERSION bump): older version-3 saves
+      // simply lack them, so they fall back without discarding the session.
+      sessionId: typeof parsed.sessionId === "string" && parsed.sessionId ? parsed.sessionId : makeSessionId(),
+      leadCaptured: parsed.leadCaptured === true,
     };
   } catch (error) {
     return defaults;
@@ -70,7 +90,7 @@ export function pruneHiddenAnswers(answers) {
 }
 
 export function useBlueprintState(lang = "en") {
-  const [{ screen, questionIndex, answers }, setState] = useState(loadInitialState);
+  const [{ screen, questionIndex, answers, sessionId, leadCaptured }, setState] = useState(loadInitialState);
 
   // CX-005 — Blueprint Discovery Experience: true only when this mount
   // loaded straight into "results" from a previous session (a refresh or
@@ -83,9 +103,9 @@ export function useBlueprintState(lang = "en") {
     if (typeof window === "undefined") return;
     window.localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify({ version: STORAGE_VERSION, screen, questionIndex, answers })
+      JSON.stringify({ version: STORAGE_VERSION, screen, questionIndex, answers, sessionId, leadCaptured })
     );
-  }, [screen, questionIndex, answers]);
+  }, [screen, questionIndex, answers, sessionId, leadCaptured]);
 
   // The questions this visitor actually sees, given their answers so far.
   // Conditional follow-ups appear in place (directly after their trigger,
@@ -162,7 +182,7 @@ export function useBlueprintState(lang = "en") {
         }
         return { ...prev, screen: "intro" };
       }
-      if (prev.screen === "results" || prev.screen === "loading") {
+      if (prev.screen === "results" || prev.screen === "loading" || prev.screen === "leadCapture") {
         const visibleNow = getVisibleQuestions(QUESTIONS, prev.answers);
         return { ...prev, screen: "question", questionIndex: visibleNow.length - 1 };
       }
@@ -170,15 +190,40 @@ export function useBlueprintState(lang = "en") {
     });
   }, []);
 
-  // BlueprintLoading calls this once its staged sequence finishes — this is
-  // the only way "loading" transitions to "results".
+  // BlueprintLoading calls this once its staged sequence finishes. Lead
+  // capture (CONV/P0-1) sits between loading and results: a visitor who has
+  // not yet left their contact details sees the capture step first; one who
+  // already submitted (this session or a previous one on this device) goes
+  // straight to results and is never re-asked.
   const completeLoading = useCallback(() => {
     skipResultsRevealRef.current = false;
-    setState((prev) => (prev.screen === "loading" ? { ...prev, screen: "results" } : prev));
+    setState((prev) =>
+      prev.screen === "loading"
+        ? { ...prev, screen: prev.leadCaptured ? "results" : "leadCapture" }
+        : prev
+    );
+  }, []);
+
+  // LeadCaptureCard calls this only after Formspree confirms the submission
+  // succeeded — this is the only way "leadCapture" transitions to "results",
+  // so a failed submission can never silently skip capture.
+  const completeLeadCapture = useCallback(() => {
+    setState((prev) =>
+      prev.screen === "leadCapture" ? { ...prev, screen: "results", leadCaptured: true } : prev
+    );
   }, []);
 
   const restart = useCallback(() => {
-    setState({ screen: "intro", questionIndex: 0, answers: {} });
+    // A retake keeps leadCaptured (the person is already a captured lead —
+    // asking again would feel broken) and starts a fresh sessionId so a
+    // second submission from a future flow would be distinguishable.
+    setState((prev) => ({
+      screen: "intro",
+      questionIndex: 0,
+      answers: {},
+      sessionId: makeSessionId(),
+      leadCaptured: prev.leadCaptured,
+    }));
   }, []);
 
   const boundedIndex = Math.min(questionIndex, Math.max(totalQuestions - 1, 0));
@@ -200,6 +245,8 @@ export function useBlueprintState(lang = "en") {
     screen,
     questionIndex: boundedIndex,
     answers,
+    sessionId,
+    leadCaptured,
     totalQuestions,
     currentQuestion,
     isCurrentAnswered,
@@ -209,6 +256,7 @@ export function useBlueprintState(lang = "en") {
     goNext,
     goPrevious,
     completeLoading,
+    completeLeadCapture,
     restart,
     skipResultsReveal: skipResultsRevealRef.current,
   };
