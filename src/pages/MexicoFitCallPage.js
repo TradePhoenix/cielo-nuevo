@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { FOUNDER, ENDORSEMENT, FIT_CALL_PRICE } from "../data/trustContent";
+import { FOUNDER, ENDORSEMENT, CLIENT_TESTIMONIAL, FIT_CALL_PRICE } from "../data/trustContent";
 import { getCalendlyUrl } from "../config/booking";
 import SEO from "../components/SEO";
 import { buildFitCallContext } from "./mexicoFitCallContext";
@@ -71,6 +71,8 @@ const content = {
       "You need help deciding your smartest first step.",
     ],
     whoLabel: "Who You're Talking To",
+    clientStoryLabel: "A Client Story",
+    starsAria: "Rated 5 out of 5 stars",
     whoTitle: "Not a sales team. One person who has already done this.",
     aboutLink: "Read why Kalen built Path To Mexico",
     closingLabel: "Private Relocation Guidance",
@@ -129,6 +131,8 @@ const content = {
       "Necesitas ayuda para decidir tu paso inicial más inteligente.",
     ],
     whoLabel: "Con Quién Estás Hablando",
+    clientStoryLabel: "Una Historia De Cliente",
+    starsAria: "Calificación: 5 de 5 estrellas",
     whoTitle: "No es un equipo de ventas. Una persona que ya ha vivido esto.",
     aboutLink: "Lee por qué Kalen creó Path To Mexico",
     closingLabel: "Orientación Privada De Reubicación",
@@ -315,6 +319,26 @@ export default function MexicoFitCallPage() {
                 {ENDORSEMENT.name} &middot; {lang === "es" ? ENDORSEMENT.roleEs : ENDORSEMENT.role}
               </p>
             </div>
+          </div>
+
+          <div className="mt-6 border border-zinc-200 bg-[#f6f1e8] p-8 sm:p-10">
+            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-zinc-500">
+              {t.clientStoryLabel}
+            </p>
+            <p role="img" aria-label={t.starsAria} className="mb-6 text-base tracking-[0.35em] text-zinc-950">
+              <span aria-hidden="true">{"★".repeat(CLIENT_TESTIMONIAL.rating)}</span>
+            </p>
+            <div className="space-y-5 text-lg leading-relaxed text-zinc-700">
+              {(lang === "es" ? CLIENT_TESTIMONIAL.quoteParagraphsEs : CLIENT_TESTIMONIAL.quoteParagraphs).map(
+                (paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                )
+              )}
+            </div>
+            <p className="mt-8 text-xs uppercase tracking-[0.25em] text-zinc-500">
+              {CLIENT_TESTIMONIAL.name} &middot;{" "}
+              {lang === "es" ? CLIENT_TESTIMONIAL.roleEs : CLIENT_TESTIMONIAL.role}
+            </p>
           </div>
 
           <p className="mt-8 text-sm text-zinc-500">

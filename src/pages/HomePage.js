@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../utils/language";
-import { ENDORSEMENT } from "../data/trustContent";
+import { ENDORSEMENT, CLIENT_TESTIMONIAL } from "../data/trustContent";
 import { CALENDLY_EVENTS } from "../config/booking";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
@@ -126,8 +126,11 @@ const content = {
       ["04", "Settle", "You move forward with more clarity, fewer surprises, and people already on the ground."]
     ],
 
-    endorsementLabel: "A Professional Endorsement",
+    endorsementLabel: "Client Stories & Endorsements",
     endorsementTitle: "What people say about working with Kalen.",
+    clientStoryCardLabel: "Client Story",
+    endorsementCardLabel: "Professional Endorsement",
+    starsAria: "Rated 5 out of 5 stars",
 
     founderLabel: "Founder Story",
     founderTitle: "Built from lived experience, not theory.",
@@ -334,8 +337,11 @@ const content = {
       ["04", "Establecerte", "Avanzas con más claridad, menos sorpresas y personas listas para ayudarte."]
     ],
 
-    endorsementLabel: "Un Respaldo Profesional",
+    endorsementLabel: "Historias De Clientes Y Respaldos",
     endorsementTitle: "Lo que dicen quienes han trabajado con Kalen.",
+    clientStoryCardLabel: "Historia De Cliente",
+    endorsementCardLabel: "Respaldo Profesional",
+    starsAria: "Calificación: 5 de 5 estrellas",
 
     founderLabel: "Historia Del Fundador",
     founderTitle: "Construido desde experiencia real, no teoría.",
@@ -1087,6 +1093,28 @@ function HomePage() {
 
         <CinematicReveal className="mx-auto mt-14 max-w-3xl">
           <div className="ptm-card border border-zinc-200 bg-white/70 p-8 shadow-sm sm:p-12">
+            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.3em] text-zinc-500">
+              {t.clientStoryCardLabel}
+            </p>
+            <p role="img" aria-label={t.starsAria} className="mb-6 text-base tracking-[0.35em] text-zinc-950">
+              <span aria-hidden="true">{"★".repeat(CLIENT_TESTIMONIAL.rating)}</span>
+            </p>
+            <p className="text-lg leading-relaxed text-zinc-700">
+              "{lang === "es" ? CLIENT_TESTIMONIAL.excerptEs : CLIENT_TESTIMONIAL.excerpt}"
+            </p>
+            <p className="mt-8 text-xs uppercase tracking-[0.25em] text-zinc-500">
+              {CLIENT_TESTIMONIAL.name}
+              <br />
+              {lang === "es" ? CLIENT_TESTIMONIAL.roleEs : CLIENT_TESTIMONIAL.role}
+            </p>
+          </div>
+        </CinematicReveal>
+
+        <CinematicReveal className="mx-auto mt-8 max-w-3xl">
+          <div className="ptm-card border border-zinc-200 bg-white/70 p-8 shadow-sm sm:p-12">
+            <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.3em] text-zinc-500">
+              {t.endorsementCardLabel}
+            </p>
             <div className="space-y-5 text-lg leading-relaxed text-zinc-700">
               {endorsementParagraphs.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>

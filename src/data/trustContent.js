@@ -51,4 +51,37 @@ export const ENDORSEMENT = {
   ],
 };
 
+// TRUST-002 — Roni Bridger's real, approved five-star client testimonial
+// (EN and ES text supplied and approved verbatim by Kalen, August 2026).
+// Unlike ENDORSEMENT above, this IS a Path To Mexico client story and is
+// labeled as such wherever it renders. Placement rule: the complete
+// `quoteParagraphs` render in exactly one place (MexicoFitCallPage.js);
+// compact placements (HomePage.js) use only `excerpt`/`excerptEs` — an
+// approved standalone excerpt, not an edit of the long version. No photo,
+// occupation, age, or date exists for this testimonial — don't invent one.
+export const CLIENT_TESTIMONIAL = {
+  name: "Roni Bridger",
+  role: "Relocated to Playa del Carmen, Mexico",
+  roleEs: "Se mudó a Playa del Carmen, México",
+  rating: 5,
+  quoteParagraphs: [
+    "Relocating to Mexico can feel overwhelming when you don't know where to start or who you can trust. Kalen and Path To Mexico made the entire experience feel much easier and gave me confidence in the decisions I was making.",
+    "Kalen provided me with helpful, honest advice about living in Playa del Carmen and took the time to understand what I needed as I got settled. What I appreciated most was having someone I could turn to who could connect me with trustworthy people rather than having to figure everything out on my own.",
+    "Through Path To Mexico, I was connected with excellent doctors, a safe and reliable place to purchase a vehicle, and a great property manager and real estate agent. Those connections made a real difference and removed a lot of the uncertainty that comes with establishing a new life in another country.",
+    "Kalen has been genuinely helpful, responsive, and invested in making sure I've had a positive experience here. His knowledge, advice, and local connections have helped make my transition to Mexico much smoother.",
+    "I'm very happy with my decision to relocate and grateful for the support I've received along the way. I would absolutely recommend Kalen and Path To Mexico to anyone considering making the move to Mexico.",
+  ],
+  quoteParagraphsEs: [
+    "Mudarse a México puede resultar abrumador cuando no sabes por dónde empezar ni en quién confiar. Kalen y Path To Mexico hicieron que toda la experiencia fuera mucho más sencilla y me dieron confianza en las decisiones que estaba tomando.",
+    "Kalen me brindó consejos útiles y honestos sobre la vida en Playa del Carmen y se tomó el tiempo de comprender lo que necesitaba mientras me instalaba. Lo que más valoré fue tener a alguien a quien acudir, capaz de conectarme con personas de confianza, en lugar de tener que resolverlo todo por mi cuenta.",
+    "A través de Path To Mexico, me pusieron en contacto con excelentes médicos, un lugar seguro y confiable para comprar un vehículo, y una excelente administradora de propiedades y agente inmobiliaria. Esas conexiones marcaron una verdadera diferencia y eliminaron gran parte de la incertidumbre que implica establecer una nueva vida en otro país.",
+    "Kalen ha sido genuinamente servicial, atento y comprometido con asegurar que yo tuviera una experiencia positiva aquí. Su conocimiento, sus consejos y sus conexiones locales han hecho que mi transición a México sea mucho más fluida.",
+    "Estoy muy feliz con mi decisión de mudarme y agradecida por el apoyo que he recibido durante el proceso. Recomendaría sin dudar a Kalen y Path To Mexico a cualquiera que esté considerando mudarse a México.",
+  ],
+  excerpt:
+    "Kalen and Path To Mexico connected me with excellent doctors, a safe place to purchase a vehicle, and a great property manager and real estate agent. Those trusted connections made my move to Playa del Carmen much smoother and removed so much uncertainty.",
+  excerptEs:
+    "Kalen y Path To Mexico me conectaron con excelentes médicos, un lugar seguro para comprar un vehículo, y una excelente administradora de propiedades y agente inmobiliaria. Esas conexiones de confianza hicieron que mi mudanza a Playa del Carmen fuera mucho más sencilla y eliminaron gran parte de la incertidumbre.",
+};
+
 export const FIT_CALL_PRICE = "$99 USD";
