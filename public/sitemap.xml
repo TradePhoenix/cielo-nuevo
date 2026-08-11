@@ -341,6 +341,16 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://pathtomexico.com/guides/canadian-taxes-moving-to-mexico</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pathtomexico.com/guides/moving-household-goods-to-mexico</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pathtomexico.com/terms-of-service</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
