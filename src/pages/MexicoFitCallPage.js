@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { FOUNDER, ENDORSEMENT, FIT_CALL_PRICE } from "../data/trustContent";
+import { getCalendlyUrl } from "../config/booking";
 import SEO from "../components/SEO";
 import { buildFitCallContext } from "./mexicoFitCallContext";
 import { trackEvent, ANALYTICS_EVENTS } from "../utils/analytics";
@@ -34,6 +35,7 @@ const content = {
     heroTextCity: (cityName) => `A private one-on-one relocation call, starting with ${cityName}. We'll talk through your goals, timeline, budget, residency questions, lifestyle needs, and the smartest next step.`,
     priceLine: "One Private, One-On-One Call",
     bookTheCall: "Book The Call",
+    whatsappSecondary: "Prefer WhatsApp? Message Kalen Directly",
     backToHome: "Back To Home",
     planBannerText: (
       <>
@@ -91,6 +93,7 @@ const content = {
     heroTextCity: (cityName) => `Una llamada privada uno a uno de reubicación, empezando con ${cityName}. Hablaremos de tus metas, cronograma, presupuesto, preguntas de residencia, necesidades de estilo de vida y el paso más inteligente a seguir.`,
     priceLine: "Una Llamada Privada, Uno A Uno",
     bookTheCall: "Reservar La Llamada",
+    whatsappSecondary: "¿Prefieres WhatsApp? Escríbele Directamente a Kalen",
     backToHome: "Volver Al Inicio",
     planBannerText: (
       <>
@@ -187,7 +190,7 @@ export default function MexicoFitCallPage() {
 
           <div className="mt-6 flex flex-col gap-4 sm:flex-row">
             <a
-              href={whatsapp}
+              href={getCalendlyUrl(lang)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => handleBookClick("hero")}
@@ -203,6 +206,16 @@ export default function MexicoFitCallPage() {
               {t.backToHome}
             </Link>
           </div>
+
+          <a
+            href={whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => handleBookClick("hero_whatsapp")}
+            className="mt-5 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-white/50 underline underline-offset-4 transition hover:text-white"
+          >
+            {t.whatsappSecondary}
+          </a>
         </div>
       </section>
 
@@ -328,13 +341,23 @@ export default function MexicoFitCallPage() {
           </p>
 
           <a
-            href={whatsapp}
+            href={getCalendlyUrl(lang)}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => handleBookClick("closing")}
             className="mt-8 inline-block bg-white px-8 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f]"
           >
             {t.closingCta}
+          </a>
+
+          <a
+            href={whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => handleBookClick("closing_whatsapp")}
+            className="mx-auto mt-6 block text-xs font-semibold uppercase tracking-[0.2em] text-white/50 underline underline-offset-4 transition hover:text-white"
+          >
+            {t.whatsappSecondary}
           </a>
 
           <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-white/40">

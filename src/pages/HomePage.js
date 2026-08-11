@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../utils/language";
 import { ENDORSEMENT } from "../data/trustContent";
+import { CALENDLY_EVENTS } from "../config/booking";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
 import SEO from "../components/SEO";
@@ -89,7 +90,7 @@ const content = {
         "A private one-on-one conversation designed to answer your questions, provide honest insight, and help you understand what moving to Mexico could realistically look like for you.",
         "Perfect for people still exploring costs, residency options, neighborhoods, lifestyle questions, and next steps.",
         "Book A Mexico Fit Call",
-        "/mexico-fit-call"
+        CALENDLY_EVENTS.en
       ],
       [
         "Relocation Roadmap",
@@ -297,7 +298,7 @@ const content = {
         "Una conversación privada uno a uno para responder tus preguntas, darte perspectiva honesta y ayudarte a entender cómo podría verse una mudanza a México para ti.",
         "Perfecto para personas que están explorando costos, opciones de residencia, zonas, estilo de vida y próximos pasos.",
         "Reservar Llamada",
-        "/mexico-fit-call"
+        CALENDLY_EVENTS.es
       ],
       [
         "Roadmap De Reubicación",
@@ -1031,6 +1032,7 @@ function HomePage() {
 
                 <a
                   href={href}
+                  {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className={`mt-9 inline-block px-6 py-4 text-center text-xs font-semibold uppercase tracking-[0.2em] transition ${
                     isPrimary
                       ? "bg-white text-zinc-950 hover:bg-[#d8a15f]"
