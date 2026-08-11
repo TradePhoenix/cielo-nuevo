@@ -290,4 +290,22 @@ export const GUIDES = [
     href: "/guides/responsible-relocation-in-mexico",
     category: { en: "Impact", es: "Impacto" },
   },
+  {
+    title: { en: "Canadian Taxes When Moving to Mexico", es: "Impuestos Canadienses al Mudarte a México" },
+    description: {
+      en: "Residency ties, departure tax, CPP, OAS, RRSPs, and the treaty rules every Canadian should understand before leaving Canada for Mexico.",
+      es: "Lazos de residencia, impuesto de salida, CPP, OAS, RRSPs y las reglas del tratado que todo canadiense debe entender antes de dejar Canadá por México.",
+    },
+    href: "/guides/canadian-taxes-moving-to-mexico",
+    category: { en: "Canada", es: "Canadá" },
+  },
+  {
+    title: { en: "Moving Household Goods to Mexico from Canada", es: "Mudar Tu Menaje de Casa de Canadá a México" },
+    description: {
+      en: "Menaje de casa, shipping options, customs rules, and an honest look at what's worth bringing — and what's better bought from local hands in Mexico.",
+      es: "Menaje de casa, opciones de envío, reglas aduanales y una mirada honesta a qué vale la pena traer — y qué es mejor comprar de manos locales en México.",
+    },
+    href: "/guides/moving-household-goods-to-mexico",
+    category: { en: "Logistics", es: "Logística" },
+  },
 ];
