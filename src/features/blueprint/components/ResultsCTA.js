@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import { trackEvent, ANALYTICS_EVENTS } from "../../../utils/analytics";
 import { BLUEPRINT_UI } from "../data/uiCopy";
+import { getCalendlyUrl } from "../../../config/booking";
 
-// CONV-001 — Fit Call continuity: when the Blueprint has a top match,
-// booking from here carries that destination through to the Fit Call page
-// (?city=<id>) instead of landing on a generic page regardless of what the
-// visitor just read. No topCityId (a neutral/no-signal result) falls back
-// to the exact original, unpersonalized link.
+// REV-001 — the primary CTA books the paid Fit Call directly on Calendly
+// (language-matched event via getCalendlyUrl). The Blueprint's topCityId
+// still rides along in the analytics payload so booking sources remain
+// attributable per destination.
 export default function ResultsCTA({ cta, readinessScore, archetypeTitle, topCityId, lang = "en" }) {
-  const fitCallHref = topCityId ? `/mexico-fit-call?city=${topCityId}` : "/mexico-fit-call";
   const ui = BLUEPRINT_UI[lang].cta;
 
   return (
@@ -27,8 +26,10 @@ export default function ResultsCTA({ cta, readinessScore, archetypeTitle, topCit
         </p>
       )}
 
-      <Link
-        to={fitCallHref}
+      <a
+        href={getCalendlyUrl(lang)}
+        target="_blank"
+        rel="noopener noreferrer"
         onClick={() => trackEvent(ANALYTICS_EVENTS.FIT_CALL_CTA_CLICKED, { source: "blueprint_results", cityId: topCityId || null })}
         className="group mt-10 inline-flex items-center gap-2 bg-white px-9 py-4 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-950 transition duration-300 hover:-translate-y-0.5 hover:bg-[#d8a15f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0b0a]"
       >
@@ -36,7 +37,7 @@ export default function ResultsCTA({ cta, readinessScore, archetypeTitle, topCit
         <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
           →
         </span>
-      </Link>
+      </a>
 
       <Link
         to="/your-mexico"
