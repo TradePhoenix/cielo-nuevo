@@ -14,7 +14,10 @@
 
 export const AUDIT_DATE = "August 16, 2026";
 
-export const FINDING_COUNTS = { p0: 5, p1: 14, p2: 11, p3: 8 };
+// Updated as launch fixes ship: #1 lead-capture hardening closed 4 P1s,
+// #2 booking verification closed 1 P1 and shrank the booking P0 to one
+// account-side task, #3 minimal CRM closed the CRM P0.
+export const FINDING_COUNTS = { p0: 4, p1: 9, p2: 11, p3: 8 };
 
 // weight: contribution to overall readiness (sums to 100).
 // score: current 0–100. required: October 1 threshold.
@@ -24,7 +27,9 @@ export const GATES = [
     id: "lead-capture",
     name: "Lead Capture",
     weight: 15,
-    score: 55,
+    // Fix #1 shipped: failure UI, metadata, honeypots, Blueprint gate
+    // softened — delivery to Kalen's inbox is the remaining unknown.
+    score: 75,
     required: 90,
     status: "BLOCKED",
     blockers: 1,
@@ -35,12 +40,15 @@ export const GATES = [
     id: "booking-calendar",
     name: "Booking & Calendar",
     weight: 12,
-    score: 60,
+    // Fix #2 shipped: both events verified live with $99 shown, copy
+    // contradiction removed, URLs pinned by tests. Payment capture and
+    // calendar/reminder settings remain account-side.
+    score: 85,
     required: 90,
     status: "BLOCKED",
     blockers: 1,
     nextAction:
-      "Verify both Calendly events (EN mexico-fit-call, ES llamada-mexico-fit) are live, in America/Cancun, with reminders on.",
+      "Complete one real test checkout per language in Calendly (then refund) and run the Google Calendar / reminder verification checklist.",
   },
   {
     id: "revenue-funnel",
@@ -57,12 +65,15 @@ export const GATES = [
     id: "crm",
     name: "CRM / Lead Management",
     weight: 10,
-    score: 10,
+    // Fix #3 shipped: 9-stage pipeline, full lead model, needs-attention
+    // view, metrics, manual entry, JSON backup — but records persist only
+    // in this browser and website leads still enter manually.
+    score: 55,
     required: 80,
-    status: "BLOCKED",
-    blockers: 1,
+    status: "AT RISK",
+    blockers: 0,
     nextAction:
-      "Stand up the 9-stage lead pipeline (New Lead → Closed) with the minimum lead fields — no CRM exists today.",
+      "Move CRM storage server-side behind auth and wire automatic Formspree/Blueprint lead intake — today the pipeline lives in one browser with manual entry plus JSON backups.",
   },
   {
     id: "website-qa",
@@ -84,7 +95,7 @@ export const GATES = [
     status: "AT RISK",
     blockers: 0,
     nextAction:
-      "Fix the Fit Call 'not an automated booking system' copy, the Blueprint 'vetted professionals' claim, and add footer legal links.",
+      "Fix the Blueprint 'vetted professionals' claim and add footer Privacy/Terms links (the Fit Call booking copy is fixed).",
   },
   {
     id: "client-delivery",

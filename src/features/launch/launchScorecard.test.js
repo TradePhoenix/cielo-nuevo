@@ -32,6 +32,6 @@ describe("launch scorecard", () => {
   });
 
   it("current overall readiness matches the audited weighted score", () => {
-    expect(getOverallReadiness()).toBe(41);
+    expect(getOverallReadiness()).toBe(52);
   });
 });
