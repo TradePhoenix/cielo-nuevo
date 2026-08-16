@@ -123,10 +123,10 @@ export function buildServiceRecords() {
       title: { en: "What a Mexico Fit Call actually is", es: null },
       category: "fitcall",
       route: "/mexico-fit-call",
-      lastReviewed: "2026-07-26",
-      keywords: ["fit call", "booking", "whatsapp", "schedule"],
+      lastReviewed: "2026-08-16",
+      keywords: ["fit call", "booking", "calendly", "whatsapp", "schedule"],
       content: {
-        en: "The Mexico Fit Call is not an automated booking system. Booking happens by messaging Path To Mexico's founder, Kalen, directly on WhatsApp from the /mexico-fit-call page — he replies personally to arrange a time. There is no self-serve calendar and no automated confirmation; it is a real, human conversation from the first message.",
+        en: "Booking a Mexico Fit Call happens through the booking button on the /mexico-fit-call page, which opens Path To Mexico's Calendly scheduling page — pick a time and the confirmation arrives automatically. Anyone who prefers to talk to a person first can message Path To Mexico's founder, Kalen, on WhatsApp from the same page, and he replies personally. Either way, the call itself is a real, private, one-on-one conversation with Kalen.",
         es: null,
       },
     },
