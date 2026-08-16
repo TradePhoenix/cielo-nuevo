@@ -33,6 +33,14 @@ export default function DeveloperDashboardPage() {
       ],
     },
     {
+      title: "Partner Network",
+      links: [
+        ["🤝 Partner Network Admin (internal)", "/partner-network/admin"],
+        ["🌐 Partner With PTM (public page)", "/partner-with-ptm"],
+        ["📝 Partner Application (public form)", "/partner-with-ptm/apply"],
+      ],
+    },
+    {
       title: "Legal",
       links: [
         ["Privacy Policy", "/privacy-policy"],

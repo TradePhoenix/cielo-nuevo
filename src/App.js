@@ -62,6 +62,9 @@ const MyMexicoPlanSetupPage = lazy(() => import("./features/myMexicoPlan/pages/M
 const MyMexicoPlanPage = lazy(() => import("./features/myMexicoPlan/pages/MyMexicoPlanPage"));
 const DashboardPage = lazy(() => import("./features/dashboard/pages/DashboardPage"));
 const DocumentVaultPage = lazy(() => import("./features/documentVault/pages/DocumentVaultPage"));
+const PartnerWithPTMPage = lazy(() => import("./features/partnerNetwork/pages/PartnerWithPTMPage"));
+const PartnerApplyPage = lazy(() => import("./features/partnerNetwork/pages/PartnerApplyPage"));
+const PartnerNetworkAdminPage = lazy(() => import("./features/partnerNetwork/pages/PartnerNetworkAdminPage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 // ASK PATH-001 — mounted globally below, outside <Routes>, so it persists
 // across every page rather than remounting on each navigation.
@@ -143,6 +146,12 @@ function AnimatedRoutes() {
           <Route path="/my-mexico-plan/:cityId" element={<MyMexicoPlanPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/documents" element={<DocumentVaultPage />} />
+
+          <Route path="/partner-with-ptm" element={<PartnerWithPTMPage />} />
+          <Route path="/partner-with-ptm/apply" element={<PartnerApplyPage />} />
+          {/* Internal recordkeeping surface — unlinked from public nav and
+              robots-disallowed, same access model as /developer-dashboard. */}
+          <Route path="/partner-network/admin" element={<PartnerNetworkAdminPage />} />
 
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
