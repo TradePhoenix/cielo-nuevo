@@ -45,9 +45,9 @@ const content = {
     ),
     planBannerCta: "Open My Mexico Plan",
     nextLabel: "What Happens Next",
-    nextTitle: "From your first message to your next step.",
+    nextTitle: "From booking your call to your next step.",
     nextSteps: [
-      ["01 · Reach Out", "Message Path To Mexico on WhatsApp using the button above. It's a real conversation, not an automated booking system — Kalen replies personally to arrange a time."],
+      ["01 · Book Your Call", "Pick a time that works for you with the booking button above — it takes about a minute. Prefer to talk to a person first? Message Path To Mexico on WhatsApp and Kalen replies personally."],
       ["02 · Before The Call", "There is nothing you need to prepare. It helps to have a general sense of your timeline and budget, but showing up without every answer figured out is completely normal."],
       ["03 · During The Call", "One focused, one-on-one conversation about your specific situation and questions — see exactly what's covered below."],
       ["04 · After The Call", "You leave with a clearer next step, not a sales pitch. There is no obligation to book anything further — some people continue with the Relocation Roadmap or Guided Landing, many simply move forward with more clarity."],
@@ -105,9 +105,9 @@ const content = {
     ),
     planBannerCta: "Abrir My Mexico Plan",
     nextLabel: "Qué Sigue",
-    nextTitle: "De tu primer mensaje a tu próximo paso.",
+    nextTitle: "De reservar tu llamada a tu próximo paso.",
     nextSteps: [
-      ["01 · Escríbenos", "Envía un mensaje a Path To Mexico por WhatsApp usando el botón de arriba. Es una conversación real, no un sistema de reservas automatizado — Kalen responde personalmente para acordar un horario."],
+      ["01 · Reserva Tu Llamada", "Elige un horario que te funcione con el botón de reserva de arriba — toma alrededor de un minuto. ¿Prefieres hablar primero con una persona? Escribe a Path To Mexico por WhatsApp y Kalen responde personalmente."],
       ["02 · Antes De La Llamada", "No necesitas preparar nada. Ayuda tener una idea general de tu cronograma y presupuesto, pero llegar sin tener todas las respuestas resueltas es completamente normal."],
       ["03 · Durante La Llamada", "Una conversación enfocada, uno a uno, sobre tu situación y preguntas específicas — mira exactamente lo que se cubre abajo."],
       ["04 · Después De La Llamada", "Sales con un próximo paso más claro, no con un discurso de venta. No hay obligación de reservar nada más — algunas personas continúan con el Roadmap De Reubicación o Llegada Guiada, muchas simplemente avanzan con más claridad."],
