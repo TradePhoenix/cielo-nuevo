@@ -1,5 +1,6 @@
 import React from "react";
 import SEO from "../components/SEO";
+import LaunchCommandCenter from "../features/launch/LaunchCommandCenter";
 
 export default function DeveloperDashboardPage() {
   const sections = [
@@ -70,6 +71,8 @@ export default function DeveloperDashboardPage() {
           Your private control center for building, testing, publishing,
           and managing Path To Mexico.
         </p>
+
+        <LaunchCommandCenter />
 
         <div className="mt-20 grid gap-10">
 
