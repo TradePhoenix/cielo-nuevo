@@ -227,6 +227,8 @@ const content = {
     formMessagePlaceholder: "What do you need help with?",
     formSubmitting: "Sending...",
     formSubmit: "Send Relocation Inquiry",
+    formError:
+      "Something went wrong sending your inquiry. Your details are still here — please try again.",
     footerLine: "A different rhythm of life.",
     footer: "25 Destinations Across The Yucatán Peninsula"
   },
@@ -438,12 +440,14 @@ const content = {
     formMessagePlaceholder: "¿En qué necesitas ayuda?",
     formSubmitting: "Enviando...",
     formSubmit: "Enviar Consulta De Reubicación",
+    formError:
+      "Algo salió mal al enviar tu consulta. Tus datos siguen aquí — inténtalo de nuevo.",
     footerLine: "Un ritmo de vida diferente.",
     footer: "25 Destinos En La Península De Yucatán"
   }
 };
 
-function LeadForm({ t }) {
+function LeadForm({ t, lang }) {
   const [state, handleSubmit] = useForm("xdabqdyq");
 
   if (state.succeeded) {
@@ -455,8 +459,31 @@ function LeadForm({ t }) {
     );
   }
 
+  // Duplicate-click guard (same pattern as the Blueprint's LeadCaptureCard):
+  // a submission already in flight must never fire a second POST.
+  const onSubmit = (event) => {
+    if (state.submitting || state.succeeded) {
+      event.preventDefault();
+      return;
+    }
+    handleSubmit(event);
+  };
+
+  // Launch fix #1: a network/Formspree failure must never disappear
+  // silently — inputs stay filled (the form never unmounts) and this
+  // message invites a retry.
+  const showError = !state.submitting && !state.succeeded && state.errors != null;
+
   return (
-    <form onSubmit={handleSubmit} className="mx-auto mt-10 grid max-w-3xl gap-5 text-left">
+    <form onSubmit={onSubmit} className="mx-auto mt-10 grid max-w-3xl gap-5 text-left">
+      <input type="hidden" name="_subject" value="New Website Inquiry — homepage" />
+      <input type="hidden" name="source" value="homepage" />
+      <input type="hidden" name="form_name" value="homepage_lead" />
+      <input type="hidden" name="page" value="/" />
+      <input type="hidden" name="language" value={lang} />
+      {/* Formspree honeypot: display:none keeps it out of the tab order and
+          accessibility tree; bots that fill it are silently dropped. */}
+      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
       <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="name" placeholder={t.formNamePlaceholder} required />
       <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="email" name="email" placeholder={t.formEmailPlaceholder} required />
       <ValidationError field="email" errors={state.errors} />
@@ -464,6 +491,12 @@ function LeadForm({ t }) {
       <input className="border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" type="text" name="timeline" placeholder={t.formTimelinePlaceholder} />
       <textarea className="min-h-36 border border-zinc-300 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-zinc-950" name="message" placeholder={t.formMessagePlaceholder} required />
       <ValidationError field="message" errors={state.errors} />
+
+      {showError && (
+        <p role="alert" className="text-sm leading-relaxed text-[#E36F4F]">
+          {t.formError}
+        </p>
+      )}
 
       <button disabled={state.submitting} className="bg-zinc-950 px-8 py-5 text-sm font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-zinc-800 disabled:opacity-60">
         {state.submitting ? t.formSubmitting : t.formSubmit}
@@ -1223,7 +1256,7 @@ function HomePage() {
           <h2 className="mb-7 text-4xl font-light leading-tight tracking-[-0.05em] md:text-8xl">{t.contactTitle}</h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-white/60 sm:text-xl">{t.contactText}</p>
 
-          <LeadForm t={t} />
+          <LeadForm t={t} lang={lang} />
 
           <div className="mt-10 flex flex-col items-center gap-4">
             <a

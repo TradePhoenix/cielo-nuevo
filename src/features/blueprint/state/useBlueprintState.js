@@ -205,11 +205,29 @@ export function useBlueprintState(lang = "en") {
   }, []);
 
   // LeadCaptureCard calls this only after Formspree confirms the submission
-  // succeeded — this is the only way "leadCapture" transitions to "results",
-  // so a failed submission can never silently skip capture.
+  // succeeded — it is the only transition that sets leadCaptured, so a
+  // failed submission can never silently count as a captured lead.
   const completeLeadCapture = useCallback(() => {
     setState((prev) =>
       prev.screen === "leadCapture" ? { ...prev, screen: "results", leadCaptured: true } : prev
+    );
+  }, []);
+
+  // Graceful degradation (launch fix #1): LeadCaptureCard offers this only
+  // AFTER a real submission failure, so a Formspree/network outage can't
+  // hold the visitor's completed Blueprint hostage. leadCaptured stays
+  // false — the results screen shows a persistent retry banner, and any
+  // future loading -> results transition re-asks for capture.
+  const continueAfterCaptureFailure = useCallback(() => {
+    setState((prev) => (prev.screen === "leadCapture" ? { ...prev, screen: "results" } : prev));
+  }, []);
+
+  // The results banner's retry path back to the capture card. Only
+  // meaningful while the lead is still uncaptured; answers and results are
+  // untouched either way.
+  const retryLeadCapture = useCallback(() => {
+    setState((prev) =>
+      prev.screen === "results" && !prev.leadCaptured ? { ...prev, screen: "leadCapture" } : prev
     );
   }, []);
 
@@ -257,6 +275,8 @@ export function useBlueprintState(lang = "en") {
     goPrevious,
     completeLoading,
     completeLeadCapture,
+    continueAfterCaptureFailure,
+    retryLeadCapture,
     restart,
     skipResultsReveal: skipResultsRevealRef.current,
   };

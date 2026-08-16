@@ -47,6 +47,7 @@ export default function BlueprintApp() {
     questionIndex,
     answers,
     sessionId,
+    leadCaptured,
     totalQuestions,
     currentQuestion,
     isCurrentAnswered,
@@ -57,6 +58,8 @@ export default function BlueprintApp() {
     goPrevious,
     completeLoading,
     completeLeadCapture,
+    continueAfterCaptureFailure,
+    retryLeadCapture,
     restart,
     skipResultsReveal,
   } = useBlueprintState(lang);
@@ -164,6 +167,7 @@ export default function BlueprintApp() {
               lang={lang}
               onSuccess={completeLeadCapture}
               onBack={goPrevious}
+              onContinueAnyway={continueAfterCaptureFailure}
             />
           </motion.div>
         </div>
@@ -176,6 +180,23 @@ export default function BlueprintApp() {
           className="mx-auto max-w-3xl px-6 py-16 outline-none sm:py-24"
           aria-label="Your Mexico Blueprint results"
         >
+          {/*
+            Launch fix #1 — a visitor who reached results through the
+            failure path (submission never landed) keeps a quiet, honest
+            retry banner. Never shown once the lead actually submitted.
+          */}
+          {!leadCaptured && (
+            <div className="mb-10 border border-zinc-300 bg-white p-5 sm:flex sm:items-center sm:justify-between sm:gap-6">
+              <p className="text-sm leading-relaxed text-zinc-600">{ui.leadCapture.pendingBannerText}</p>
+              <button
+                type="button"
+                onClick={retryLeadCapture}
+                className={`mt-3 whitespace-nowrap bg-zinc-950 px-5 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-[#d8a15f] sm:mt-0 ${FOCUS_RING}`}
+              >
+                {ui.leadCapture.pendingBannerRetry}
+              </button>
+            </div>
+          )}
           {/*
             CX-005 — reveal order: primary destination, then the
             personalized reason + supporting fit factors (both inside
