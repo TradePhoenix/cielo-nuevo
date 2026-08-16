@@ -60,6 +60,8 @@ describe("ANALYTICS_EVENTS", () => {
       ASK_PATH_FIT_CALL_SELECTED: "ask_path_fit_call_selected",
       ASK_PATH_QUALIFIED_INTENT_REACHED: "ask_path_qualified_intent_reached",
       ASK_PATH_ERROR: "ask_path_error",
+      PARTNER_APPLY_CTA_CLICKED: "partner_apply_cta_clicked",
+      PARTNER_APPLICATION_SUBMITTED: "partner_application_submitted",
     });
   });
 });

@@ -1,5 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow: /developer-dashboard
+Disallow: /partner-network/
 
 Sitemap: https://pathtomexico.com/sitemap.xml
