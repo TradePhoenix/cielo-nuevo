@@ -40,6 +40,8 @@ const content = {
     emailPlaceholder: "Email Address",
     submitting: "Sending...",
     submit: "Send Me The Guide",
+    formError:
+      "Something went wrong sending your request. Your details are still here — please try again.",
     successTitle: "Your guide is ready.",
     successText: "The button below opens it right away.",
     downloadCta: "Download Guide",
@@ -78,6 +80,8 @@ const content = {
     emailPlaceholder: "Correo Electrónico",
     submitting: "Enviando...",
     submit: "Enviarme La Guía",
+    formError:
+      "Algo salió mal al enviar tu solicitud. Tus datos siguen aquí — inténtalo de nuevo.",
     successTitle: "Tu guía está lista.",
     successText: "El botón de abajo la abre de inmediato.",
     downloadCta: "Descargar Guía",
@@ -90,6 +94,19 @@ const content = {
 
 function GuideCaptureForm({ guideLink, t, lang }) {
   const [state, handleSubmit] = useForm("xdabqdyq");
+
+  // Duplicate-click guard (same pattern as the Blueprint's LeadCaptureCard).
+  const onSubmit = (event) => {
+    if (state.submitting || state.succeeded) {
+      event.preventDefault();
+      return;
+    }
+    handleSubmit(event);
+  };
+
+  // Launch fix #1: a network/Formspree failure must never look successful or
+  // vanish silently — inputs stay filled and this message invites a retry.
+  const showError = !state.submitting && !state.succeeded && state.errors != null;
 
   if (state.succeeded) {
     return (
@@ -133,9 +150,15 @@ function GuideCaptureForm({ guideLink, t, lang }) {
 
       <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-white/65">{t.formText}</p>
 
-      <form onSubmit={handleSubmit} className="mx-auto mt-10 grid max-w-md gap-4 text-left">
+      <form onSubmit={onSubmit} className="mx-auto mt-10 grid max-w-md gap-4 text-left">
         <input type="hidden" name="_subject" value="Free Guide Request" />
+        <input type="hidden" name="source" value="free-guide" />
+        <input type="hidden" name="form_name" value="free_guide_lead" />
+        <input type="hidden" name="page" value="/free-guide" />
         <input type="hidden" name="language" value={lang} />
+        {/* Formspree honeypot: display:none keeps it out of the tab order and
+            accessibility tree; bots that fill it are silently dropped. */}
+        <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
         <div>
           <input
             type="text"
@@ -156,6 +179,11 @@ function GuideCaptureForm({ guideLink, t, lang }) {
           />
           <ValidationError field="email" errors={state.errors} />
         </div>
+        {showError && (
+          <p role="alert" className="text-sm leading-relaxed text-[#E36F4F]">
+            {t.formError}
+          </p>
+        )}
         <button
           type="submit"
           disabled={state.submitting}

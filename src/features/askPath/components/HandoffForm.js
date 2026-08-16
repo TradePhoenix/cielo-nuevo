@@ -24,9 +24,19 @@ export default function HandoffForm({ t, messages, language }) {
     <form onSubmit={handleSubmit} className="rounded-xl border border-zinc-200 bg-white p-4 text-sm">
       <p className="font-medium text-zinc-900">{t.handoffIntro}</p>
 
+      <input type="hidden" name="_subject" value="New Ask Path Handoff — ask-path" />
       <input type="hidden" name="source" value="ask-path" />
+      <input type="hidden" name="form_name" value="ask_path_handoff" />
+      <input
+        type="hidden"
+        name="page"
+        value={typeof window !== "undefined" ? window.location.pathname : ""}
+      />
       <input type="hidden" name="language" value={language} />
       <input type="hidden" name="conversationSummary" value={buildHandoffSummary(messages)} />
+      {/* Formspree honeypot: display:none keeps it out of the tab order and
+          accessibility tree; bots that fill it are silently dropped. */}
+      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
       <div className="mt-3 grid gap-2">
         <input

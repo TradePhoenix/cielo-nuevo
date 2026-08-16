@@ -81,6 +81,10 @@ export const BLUEPRINT_UI = {
       submit: "Reveal My Blueprint",
       submitting: "Saving Your Blueprint...",
       error: "Something went wrong sending your details. Your answers are safe on this device — please try again.",
+      continueAfterError: "View My Blueprint Anyway",
+      pendingBannerText:
+        "Your Blueprint is saved on this device, but your details haven't reached Path To Mexico yet.",
+      pendingBannerRetry: "Retry Sending My Details",
       back: "Back To My Answers",
     },
     retake: "Retake The Blueprint",
@@ -162,6 +166,10 @@ export const BLUEPRINT_UI = {
       submit: "Revelar Mi Blueprint",
       submitting: "Guardando Tu Blueprint...",
       error: "Algo salió mal al enviar tus datos. Tus respuestas están seguras en este dispositivo — inténtalo de nuevo.",
+      continueAfterError: "Ver Mi Blueprint De Todos Modos",
+      pendingBannerText:
+        "Tu Blueprint está guardado en este dispositivo, pero tus datos aún no han llegado a Path To Mexico.",
+      pendingBannerRetry: "Reintentar Enviar Mis Datos",
       back: "Volver A Mis Respuestas",
     },
     retake: "Retomar El Blueprint",

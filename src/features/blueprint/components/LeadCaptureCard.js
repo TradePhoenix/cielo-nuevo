@@ -20,7 +20,15 @@ const FOCUS_RING =
 // staying router-free follows the established Jest constraint (see
 // mexicoFitCallContext.js) that react-router-dom can't be imported,
 // even transitively, in testable Blueprint modules.
-export default function LeadCaptureCard({ answers, recommendation, sessionId, lang = "en", onSuccess, onBack }) {
+export default function LeadCaptureCard({
+  answers,
+  recommendation,
+  sessionId,
+  lang = "en",
+  onSuccess,
+  onBack,
+  onContinueAnyway,
+}) {
   const ui = BLUEPRINT_UI[lang].leadCapture;
   const [state, handleSubmit] = useForm("xdabqdyq");
   const payload = useMemo(() => buildLeadPayload(answers, recommendation), [answers, recommendation]);
@@ -66,7 +74,13 @@ export default function LeadCaptureCard({ answers, recommendation, sessionId, la
         <form onSubmit={onSubmit} className="mt-8 grid gap-4" noValidate={false}>
           <input type="hidden" name="_subject" value="New Blueprint Lead — blueprint-v2" />
           <input type="hidden" name="source" value="blueprint-v2" />
+          <input type="hidden" name="form_name" value="blueprint_lead" />
+          <input type="hidden" name="page" value="/my-mexico-blueprint" />
           <input type="hidden" name="language" value={lang} />
+          {/* Formspree honeypot: hidden from real users (display:none keeps
+              it out of the tab order and accessibility tree); bots that fill
+              it are silently dropped by Formspree. */}
+          <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
           <input type="hidden" name="sessionId" value={sessionId || ""} />
           <input type="hidden" name="submittedAt" ref={submittedAtRef} defaultValue="" />
           <input type="hidden" name="readinessScore" value={payload.readinessScore} />
@@ -127,6 +141,20 @@ export default function LeadCaptureCard({ answers, recommendation, sessionId, la
             <p role="alert" className="text-sm leading-relaxed text-[#E36F4F]">
               {ui.error}
             </p>
+          )}
+
+          {/* Graceful degradation: only after a real failed attempt may the
+              visitor view their completed Blueprint without the submission
+              landing — leadCaptured stays false and the results screen keeps
+              offering a retry (see useBlueprintState.js). */}
+          {showError && onContinueAnyway && (
+            <button
+              type="button"
+              onClick={onContinueAnyway}
+              className={`justify-self-start text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 underline underline-offset-4 transition hover:text-zinc-950 ${FOCUS_RING}`}
+            >
+              {ui.continueAfterError}
+            </button>
           )}
 
           <button
