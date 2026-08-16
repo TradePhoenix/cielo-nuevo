@@ -62,6 +62,11 @@ describe("ANALYTICS_EVENTS", () => {
       ASK_PATH_ERROR: "ask_path_error",
       PARTNER_APPLY_CTA_CLICKED: "partner_apply_cta_clicked",
       PARTNER_APPLICATION_SUBMITTED: "partner_application_submitted",
+      // WEDDINGS-001 — additive events, see src/utils/analytics.js
+      WEDDINGS_PAGE_VIEWED: "weddings_page_viewed",
+      WEDDINGS_CTA_CLICKED: "weddings_cta_clicked",
+      WEDDINGS_INQUIRY_VIEWED: "weddings_inquiry_viewed",
+      WEDDINGS_INQUIRY_SUBMITTED: "weddings_inquiry_submitted",
     });
   });
 });
