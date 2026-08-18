@@ -3,14 +3,19 @@ import { Link } from "react-router-dom";
 import { useForm, ValidationError } from "@formspree/react";
 import { trackEvent, ANALYTICS_EVENTS } from "../../../utils/analytics";
 
-// Wedding inquiry form, staged as three quiet movements — You / The Day /
-// The Feeling — rather than one field wall. Posts to the same verified
-// production Formspree form ("xdabqdyq") as every other lead path in this
-// codebase, tagged with `_subject` + `source` (the established
-// HandoffForm.js / FreeGuidePage.js convention) so wedding leads read
-// distinctly in the inbox. Field names are unchanged from V1 — do not
-// rename them, the inbox history depends on them. No new vendor, no
-// backend.
+// Wedding inquiry form, staged as three quiet movements — You / The
+// Ceremony / The Feeling — rather than one field wall. Posts to the same
+// verified production Formspree form ("xdabqdyq") as every other lead
+// path in this codebase, tagged with `_subject` + `source` (the
+// established HandoffForm.js / FreeGuidePage.js convention) so wedding
+// leads read distinctly in the inbox. No new vendor, no backend.
+//
+// V2 (jungle-only model): the venue-preference field (preferredSetting)
+// was removed — there is no venue choice; the setting is the jungle of
+// Tulum. Added coordination-fit fields: accommodationCoordination,
+// transportationCoordination, ceremonialMealInterest, wellnessInterest.
+// Keep the surviving field names stable — the inbox history depends on
+// them.
 
 const inputClasses =
   "w-full border border-white/20 bg-white px-5 py-4 text-zinc-950 outline-none transition focus:border-[#d8a15f] focus-visible:ring-2 focus-visible:ring-[#d8a15f]";
@@ -160,14 +165,9 @@ export default function WeddingInquiryForm({ t, lang }) {
             placeholder={t.options.select}
             required
           />
-          <SelectField
-            id={fieldId("setting")}
-            name="preferredSetting"
-            label={t.labels.setting}
-            options={t.options.setting}
-            placeholder={t.options.select}
-            required
-          />
+          {/* V2 (jungle-only model): the venue-preference select was
+              removed — the setting is the jungle of Tulum. In its place,
+              coordination-fit questions that actually shape the plan. */}
           <SelectField
             id={fieldId("scope")}
             name="experienceScope"
@@ -177,10 +177,42 @@ export default function WeddingInquiryForm({ t, lang }) {
             required
           />
           <SelectField
+            id={fieldId("accommodation")}
+            name="accommodationCoordination"
+            label={t.labels.accommodation}
+            options={t.options.yesNoUnsure}
+            placeholder={t.options.select}
+            required
+          />
+          <SelectField
+            id={fieldId("transportation")}
+            name="transportationCoordination"
+            label={t.labels.transportation}
+            options={t.options.yesNoUnsure}
+            placeholder={t.options.select}
+            required
+          />
+          <SelectField
+            id={fieldId("foodInterest")}
+            name="ceremonialMealInterest"
+            label={t.labels.foodInterest}
+            options={t.options.yesNoUnsure}
+            placeholder={t.options.select}
+            required
+          />
+          <SelectField
+            id={fieldId("wellnessInterest")}
+            name="wellnessInterest"
+            label={t.labels.wellnessInterest}
+            options={t.options.yesNoUnsure}
+            placeholder={t.options.select}
+            required
+          />
+          <SelectField
             id={fieldId("legalAssistance")}
             name="legalMarriageAssistance"
             label={t.labels.legalAssistance}
-            options={t.options.legalAssistance}
+            options={t.options.yesNoUnsure}
             placeholder={t.options.select}
             required
           />

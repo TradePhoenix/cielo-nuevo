@@ -2,16 +2,16 @@ import { motion } from "framer-motion";
 import CinematicReveal from "../../../components/CinematicReveal";
 import { useCinematicMotion } from "../../../components/cinematicMotion";
 
-// Section 4 — the network, set like the credits of a film rather than a
-// directory: the core line as the section's oversized statement, then
-// four curated groups of roles. Categories only, never names — no
-// practitioner is promised for any given wedding, and no fake profiles
-// exist anywhere.
+// The people behind the ceremony, set like the credits of a film rather
+// than a directory: the core line as the section's oversized statement,
+// then five curated groups (Ceremony / Food / Music / Preparation /
+// Hospitality). Categories only, never names — no practitioner is
+// promised for any given ceremony, and no fake profiles exist anywhere.
 //
 // image slot: networkAtWork — candid working photography (a ceremonial
-// leader preparing a space, a chef plating, a florist's hands, a
-// musician) will eventually replace the typographic-only treatment.
-// Never headshot grids.
+// leader preparing a space, cooks at the fire, a musician) will
+// eventually replace the typographic-only treatment. Never headshot
+// grids, never costumes.
 export default function LocalNetwork({ t }) {
   const prefersReducedMotion = useCinematicMotion();
 
@@ -25,7 +25,7 @@ export default function LocalNetwork({ t }) {
         <p className="mt-8 max-w-3xl text-lg leading-relaxed text-zinc-600 sm:text-xl">{t.text}</p>
       </CinematicReveal>
 
-      <CinematicReveal stagger className="mx-auto mt-16 grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <CinematicReveal stagger className="mx-auto mt-16 grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
         {t.groups.map((group, index) => (
           <motion.div
             key={index}

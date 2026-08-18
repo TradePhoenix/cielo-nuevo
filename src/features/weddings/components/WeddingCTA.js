@@ -2,16 +2,20 @@ import { Link } from "react-router-dom";
 import CinematicReveal from "../../../components/CinematicReveal";
 import { trackEvent, ANALYTICS_EVENTS } from "../../../utils/analytics";
 
-// Final CTA — the emotional close. The Telchac Puerto dusk shoreline
-// (real PTM region asset) sits deep under a heavy charcoal overlay, so
-// the section reads as warm evening atmosphere rather than a literal
-// place. "Start A Conversation" reuses the site's one verified direct
-// channel — the founder's WhatsApp number, exactly as HomePage.js and
+// Final CTA — the emotional close. V2 (jungle-only model): a restrained
+// dark field with a faint firelight glow from below — the previous coastal
+// photograph was removed so the page's visual world stays jungle-only.
+// "Start A Conversation" reuses the site's one verified direct channel —
+// the founder's WhatsApp number, exactly as HomePage.js and
 // mexicoFitCallContext.js already use it.
+//
+// image slot: ceremonyNightGathering — a real evening frame from the
+// setting (fire, candlelight, the gathering under the trees) can replace
+// the tonal field once authorized photography exists.
 const WHATSAPP_NUMBER = "16043154625";
 const WHATSAPP_MESSAGE = {
-  en: "Hi Kalen, I found Path To Mexico and would love to talk about a wedding in Mexico.",
-  es: "Hola Kalen, encontré Path To Mexico y me encantaría platicar sobre una boda en México.",
+  en: "Hi Kalen, I found Path To Mexico and would love to talk about a Maya ceremony in Tulum.",
+  es: "Hola Kalen, encontré Path To Mexico y me encantaría platicar sobre una ceremonia maya en Tulum.",
 };
 
 export default function WeddingCTA({ t, lang }) {
@@ -19,19 +23,9 @@ export default function WeddingCTA({ t, lang }) {
 
   return (
     <section className="relative overflow-hidden bg-[#0b0b0a] px-6 py-32 text-center text-white md:py-44">
-      <picture>
-        <source type="image/webp" srcSet="/regions/telchac-puerto/telchac-puerto-hero-desktop.webp" />
-        <img
-          src="/regions/telchac-puerto/telchac-puerto-hero-desktop.jpg"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
-        />
-      </picture>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#0b0b0a]/80 via-[#0b0b0a]/60 to-[#0b0b0a]/90"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_50%_100%,rgba(216,161,95,0.13),transparent)]"
       />
 
       <CinematicReveal className="relative z-10 mx-auto max-w-4xl">

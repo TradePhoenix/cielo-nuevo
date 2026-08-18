@@ -8,7 +8,8 @@ import WeddingPhilosophy from "../features/weddings/components/WeddingPhilosophy
 import CeremonyElements from "../features/weddings/components/CeremonyElements";
 import RespectForCulture from "../features/weddings/components/RespectForCulture";
 import LocalNetwork from "../features/weddings/components/LocalNetwork";
-import WeddingLocations from "../features/weddings/components/WeddingLocations";
+import JungleSetting from "../features/weddings/components/JungleSetting";
+import WeddingFood from "../features/weddings/components/WeddingFood";
 import WeddingWellness from "../features/weddings/components/WeddingWellness";
 import ExperienceTypes from "../features/weddings/components/ExperienceTypes";
 import CompleteExperience from "../features/weddings/components/CompleteExperience";
@@ -17,11 +18,12 @@ import LegalMarriageNotice from "../features/weddings/components/LegalMarriageNo
 import ResponsibleWedding from "../features/weddings/components/ResponsibleWedding";
 import WeddingCTA from "../features/weddings/components/WeddingCTA";
 
-// WEDDINGS-001 — Maya Weddings & Sacred Unions, the Weddings vertical's
-// landing page. Same bilingual page-local content convention as every
-// other page (see src/utils/language.js); all copy lives in
-// src/features/weddings/data/copy.js, including its cultural and legal
-// guardrails — read that file's header before editing any wording.
+// WEDDINGS-001 / V2 (jungle-only model) — Maya Weddings & Sacred Unions
+// in the Jungle of Tulum. One ceremonial experience in one private jungle
+// setting — not a menu of destination-wedding venues; see copy.js's
+// POSITIONING header and its guardrail tests before editing any wording.
+// Same bilingual page-local content convention as every other page (see
+// src/utils/language.js).
 export default function WeddingsPage() {
   const [lang, setLangState] = useState(getStoredLanguage);
   const setLang = (next) => {
@@ -49,13 +51,14 @@ export default function WeddingsPage() {
         lang={lang}
         toggleLabel={t.toggle}
         onToggleLang={() => setLang(lang === "en" ? "es" : "en")}
-        onPrimaryCta={() => trackEvent(ANALYTICS_EVENTS.WEDDINGS_CTA_CLICKED, { source: "weddings_hero", cta: "begin_your_wedding" })}
+        onPrimaryCta={() => trackEvent(ANALYTICS_EVENTS.WEDDINGS_CTA_CLICKED, { source: "weddings_hero", cta: "begin_your_ceremony" })}
       />
       <WeddingPhilosophy t={t.philosophy} />
+      <JungleSetting t={t.jungle} />
       <CeremonyElements t={t.ceremony} />
       <RespectForCulture t={t.culture} />
       <LocalNetwork t={t.network} />
-      <WeddingLocations t={t.places} />
+      <WeddingFood t={t.food} />
       <WeddingWellness t={t.wellness} />
       <ExperienceTypes t={t.types} />
       <CompleteExperience t={t.complete} />
