@@ -48,11 +48,11 @@ const content = {
     impactCardHighlights: ["Respect Mexican culture", "Support local businesses", "Protect the natural environment"],
     impactCardFooter: "Belong. Don't just arrive.",
 
-    weddingsEyebrow: "Weddings In Mexico",
+    weddingsEyebrow: "Maya Weddings · Tulum",
     weddingsTitle: "A ceremony that belongs to the place.",
-    weddingsText: "Maya-inspired weddings, sacred unions, elopements, and multi-day celebrations across the Yucatán — created with local practitioners and Path To Mexico coordination.",
+    weddingsText: "Intimate Maya-led weddings and sacred unions in a private jungle setting in Tulum — created with Maya ceremonial practitioners and Path To Mexico coordination.",
     weddingsCta: "Discover Maya Weddings",
-    weddingsImageAlt: "The Caribbean coastline of the Riviera Maya at golden hour",
+    weddingsImageAlt: "A quiet jungle-shaded street of limestone and stucco in Tulum, morning light coming through the trees",
     founderPhotoAlt: "Kalen Enns, founder of Path To Mexico",
     whatsappCta: "Prefer WhatsApp? Message Directly",
     disclaimerLabel: "Important Note",
@@ -267,11 +267,11 @@ const content = {
     impactCardHighlights: ["Respetar la cultura mexicana", "Apoyar negocios locales", "Proteger el entorno natural"],
     impactCardFooter: "Pertenece. No solo llegues.",
 
-    weddingsEyebrow: "Bodas En México",
+    weddingsEyebrow: "Bodas Mayas · Tulum",
     weddingsTitle: "Una ceremonia que pertenece al lugar.",
-    weddingsText: "Bodas de inspiración maya, uniones sagradas, fugas románticas y celebraciones de varios días en Yucatán — creadas con practicantes locales y la coordinación de Path To Mexico.",
+    weddingsText: "Bodas mayas íntimas y uniones sagradas en un entorno privado de selva en Tulum — creadas con practicantes ceremoniales mayas y la coordinación de Path To Mexico.",
     weddingsCta: "Descubre Bodas Mayas",
-    weddingsImageAlt: "La costa caribeña de la Riviera Maya en la hora dorada",
+    weddingsImageAlt: "Una calle tranquila de piedra caliza y estuco bajo la sombra de la selva en Tulum, con luz de mañana entre los árboles",
     founderPhotoAlt: "Kalen Enns, fundador de Path To Mexico",
     whatsappCta: "¿Prefieres WhatsApp? Escríbenos Directamente",
     disclaimerLabel: "Nota Importante",
@@ -1031,7 +1031,7 @@ function HomePage() {
           </div>
           <div className="relative overflow-hidden rounded-[4px]">
             <img
-              src="/regions/riviera-maya/riviera-maya-hero-mobile.webp"
+              src="/regions/tulum/tulum-hero-mobile.webp"
               alt={t.weddingsImageAlt}
               loading="lazy"
               className="aspect-[16/9] w-full object-cover lg:aspect-[4/3]"

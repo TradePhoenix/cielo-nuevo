@@ -1,90 +1,112 @@
-// Weddings — Maya Weddings & Sacred Unions. All visible copy for
-// /weddings and /weddings/inquire, EN + ES, following the established
-// page-local `{ en, es }` convention (see src/utils/language.js).
+// Weddings — Maya Weddings & Sacred Unions in the Jungle of Tulum.
+// All visible copy for /weddings and /weddings/inquire, EN + ES, following
+// the established page-local `{ en, es }` convention (see
+// src/utils/language.js).
+//
+// POSITIONING (V2 — jungle-only model): PTM offers ONE ceremonial
+// experience — a private jungle setting in the Tulum area — not a menu of
+// destination-wedding venues. Do not reintroduce venue-choice language
+// (ballroom / beach / cenote / hacienda / villa); copy.test.js enforces
+// this.
 //
 // Cultural + legal guardrails baked into this copy — do not loosen them
 // when editing:
-//   * Ceremonies are "Maya-led or Maya-inspired, developed with local
-//     practitioners" — never a historical recreation, never invented
-//     tradition, never PTM as the spiritual authority.
+//   * Ceremonies are Maya-led, created with Maya ceremonial practitioners
+//     and guided by living tradition — never a historical recreation,
+//     never invented tradition, never PTM as the spiritual authority.
+//   * Prefer "Maya ceremonial leader / practitioner" over the tourism
+//     word "shaman" (also test-enforced).
 //   * Ceremony elements are always "may include, depending on the
 //     practitioner" — never a guaranteed or historically universal list.
-//   * Wellness copy never promises outcomes or implies medical care;
-//     licensed health professionals stay distinct from wellness services.
+//   * No specific practitioner is promised until confirmed; no names,
+//     testimonials, counts, prices, menus, or credentials are invented.
+//   * Wellness copy never promises outcomes or implies medical care.
 //   * Ceremonies are symbolic/spiritual unless the couple separately
 //     completes the civil process; legal requirements are never stated
 //     as fixed facts.
-//   * Venue copy never promises access — permits, environmental
-//     protections, and owner authorization are acknowledged.
-//   * No practitioner names, testimonials, counts, prices, or credentials
-//     are invented anywhere.
+//   * The ceremonial setting is private — no precise location, no
+//     implication of public access.
 //
-// NOTE: scripts/prerender-meta.mjs extracts `seoTitle:`/`seoDescription:`
-// (and the inquiry* variants) from this file via regex — keep the EN block
-// first and keep those four values as plain double-quoted literals with no
-// inner double quotes.
+// NOTE: scripts/prerender-meta.mjs (SEO-engine release) extracts
+// `seoTitle:`/`seoDescription:` (and the inquiry* variants) from this file
+// via regex — keep the EN block first and keep those four values as plain
+// double-quoted literals with no inner double quotes.
 
 export const WEDDINGS_CONTENT = {
   en: {
-    seoTitle: "Maya Weddings & Sacred Unions in Mexico",
+    seoTitle: "Maya Weddings in Tulum | Jungle Ceremonies | Path To Mexico",
     seoDescription:
-      "Create an intimate Maya-inspired wedding, sacred union, elopement, or multi-day celebration in the Yucatán Peninsula — with trusted local practitioners and Path To Mexico coordination.",
-    inquirySeoTitle: "Plan Your Wedding in Mexico",
+      "Create an intimate Maya-led wedding or sacred union in a private jungle setting in Tulum, coordinated with trusted ceremonial practitioners and local partners.",
+    inquirySeoTitle: "Begin Your Maya Ceremony in Tulum",
     inquirySeoDescription:
-      "Tell us what you are imagining — the place, the feeling, the people — and Path To Mexico will help determine what can be created around it in the Yucatán Peninsula.",
+      "Tell us what you want the ceremony to mean and how you want it to feel — and Path To Mexico will help shape a private Maya-led jungle ceremony in Tulum around it.",
     toggle: "ES",
     backToSite: "Path To Mexico",
 
     hero: {
-      eyebrow: "Weddings · Yucatán Peninsula",
+      eyebrow: "Weddings · Tulum, Quintana Roo",
       title: "Maya Weddings & Sacred Unions",
-      subtitle: "A ceremony that belongs to the place.",
+      subtitle: "In the Jungle of Tulum",
       paragraphs: [
-        "Some weddings are built around a ballroom. Others begin beneath jungle canopy, beside Caribbean water, within a private hacienda, near a cenote, or somewhere that feels completely removed from the ordinary.",
-        "Path To Mexico helps couples create intimate ceremonies and celebrations that feel connected to Mexico — not simply staged in it.",
+        "There are places that need no stage. Deep within the jungle of Tulum, Path To Mexico creates intimate Maya ceremonial weddings shaped around the land, the people who carry the traditions, and the meaning of the union itself.",
+        "This is not a resort wedding moved into the jungle. The jungle is the experience.",
       ],
-      ctaPrimary: "Begin Your Wedding",
+      ctaPrimary: "Begin Your Ceremony",
       ctaSecondary: "Explore The Experience",
       caption: "Tulum · Quintana Roo",
       imageAlt: "A quiet jungle-shaded street of limestone and stucco in Tulum, morning light coming through the trees",
     },
 
     philosophy: {
-      label: "More Than A Destination Wedding",
-      titleLead: "Mexico does not have to be the backdrop to your wedding.",
-      titleAccent: "It can become part of the story.",
+      label: "One Place. One Ceremony.",
+      titleLead: "We are not building another destination-wedding company.",
+      titleAccent: "We are creating one ceremony, with the people who carry it.",
       paragraphs: [
-        "Most destination weddings start from a package: a resort, a set menu, a coordinator you meet twice. We are not tied to any of that. Path To Mexico works from its own relationships on the peninsula, which means the experience can be designed around you — the setting, the atmosphere, the number of people, and the meaning you want the day to carry.",
-        "That difference sounds small. It changes everything about how the day feels.",
+        "There is no menu of settings here, and no list of packages. The ceremony takes place in one private jungle setting in the Tulum area — a place being prepared specifically for this experience. Maya ceremonial leaders determine and lead the ceremonial practices; Path To Mexico's role is to coordinate everything around them.",
+        "Narrower on purpose. Because one place, held properly, goes deeper than a hundred options.",
       ],
-      pull: "Some weddings are planned around a venue. We start with the feeling.",
+      pull: "A ceremony that belongs to the place.",
+    },
+
+    jungle: {
+      label: "The Setting",
+      title: "The jungle is the experience.",
+      paragraphs: [
+        "The ceremony takes place within a private jungle setting in the Tulum area. No rotating list of commercial venues — one place, prepared specifically for this experience.",
+        "The landscape becomes part of the ceremony: trees, earth, fire, copal smoke, food, sound, darkness, and candlelight, with the jungle holding the gathering in a way no built room can.",
+        "We are developing this setting intentionally — enough comfort for hospitality, food, ceremony, and gathering, and no more. The goal was never to build a wedding venue in the jungle. It is to keep the character of the place intact, because that character is the reason to be here.",
+      ],
+      note: "The setting is private. Its location is shared with couples and their guests as part of planning — it is not published, and it is not open to the public.",
     },
 
     ceremony: {
       label: "The Ceremony",
-      title: "Led by local practitioners. Shaped around the two of you.",
+      title: "Led by Maya practitioners. Shaped around the two of you.",
       paragraphs: [
-        "Ceremonial and cultural elements are led by local Maya ceremonial leaders and practitioners, each within their own area of knowledge. Path To Mexico's role is to produce and coordinate — to bring the right people, place, and moment together — never to stand in as the spiritual authority.",
-        "No two ceremonies follow the same script, and none of this is presented as a fixed or historically universal Maya wedding ritual. What takes place is decided by the practitioner leading it, the setting, and the two of you.",
+        "The ceremonial practices are determined and led by Maya ceremonial leaders and practitioners, guided by living tradition and their own knowledge. Path To Mexico's role is to produce and coordinate — to bring the right people, place, and moment together — never to stand in as the spiritual authority.",
+        "Ceremonial leadership is arranged in advance through Path To Mexico's trusted practitioner network — Maya ceremonial leaders primarily connected to Yucatán, with scheduling and travel coordinated as part of the experience. No specific practitioner is promised until confirmed.",
+        "No two ceremonies follow the same script, and none of this is presented as a fixed or historically universal Maya wedding ritual. What takes place is decided by the practitioner leading it and the two of you.",
       ],
-      elementsLead: "Depending on the practitioner, the setting, and the ceremony itself, elements may include:",
+      elementsLead: "Depending on the practitioner and the ceremony itself, elements may include:",
       elements: [
+        "Ceremonial preparation",
         "Ceremonial cleansing",
         "Copal",
-        "Acknowledgement of the directions",
-        "Natural elements",
-        "A ceremonial altar",
-        "The sound of the conch",
+        "Fire",
         "Flowers",
+        "Natural materials",
+        "A ceremonial altar",
+        "Acknowledgement of the directions",
+        "The sound of the conch",
         "Cacao",
         "Maize",
-        "Fire",
-        "Water",
+        "Blessings",
         "Spoken intentions",
         "Vows",
-        "Blessings",
         "Music",
-        "Symbolic union rituals",
+        "Food",
+        "The gathering around the couple",
+        "Symbolic union elements determined by the ceremonial leader",
       ],
     },
 
@@ -94,91 +116,54 @@ export const WEDDINGS_CONTENT = {
       quote: "Our intention is never to turn it into decoration.",
       paragraphs: [
         "The Yucatán Peninsula is Maya land — home to a people, a language, and traditions that are very much alive today. We do not recreate an imagined ancient wedding, and we do not invent ritual for atmosphere.",
-        "Where ceremonial elements are part of a celebration, they are incorporated respectfully and, where appropriate, guided by local Maya practitioners who understand the traditions and their significance. What they choose to share, and how, is theirs to decide.",
+        "The experience intentionally takes the ceremony away from the commercial resort environment and places it within the Maya jungle landscape of Tulum. Its strength comes from what is created now, with Maya practitioners — from the people, the place, the preparation, and the relationships — not from claims about the past. What the practitioners choose to share, and how, is theirs to decide.",
         "This is the same commitment that shapes everything Path To Mexico does — celebration, like relocation, should leave the place and its people better than it found them.",
       ],
       cta: "Our Impact Commitment",
     },
 
     network: {
-      label: "Our Local Network",
+      label: "The People Behind The Ceremony",
       title: "The experience is built around people, not packages.",
-      text: "Path To Mexico's strength is its relationships — a curated network of practitioners, creatives, and local operators across the Yucatán and Riviera Maya, built by living and working here. Each celebration is assembled from that network around what the couple actually wants. No one participates by default, and no wedding uses everyone.",
+      text: "Path To Mexico's strength is its relationships — Maya ceremonial leaders and practitioners primarily connected to Yucatán, and the local people who prepare, cook, play, and host. Each ceremony is assembled from that network around what the couple actually wants. No one participates by default, and no ceremony uses everyone.",
       groups: [
         {
           title: "Ceremony",
-          roles: ["Maya ceremonial leaders", "Musicians", "Cultural practitioners"],
+          roles: ["Maya ceremonial leaders", "Supporting practitioners"],
         },
         {
-          title: "Wellness",
-          roles: [
-            "Wellness practitioners",
-            "Traditional & local healers",
-            "Massage & bodywork",
-            "Breathwork facilitators",
-            "Sound practitioners",
-            "Health & wellness professionals",
-          ],
+          title: "Food",
+          roles: ["Regional & Maya cooks", "Ceremonial meals, where arranged"],
         },
         {
-          title: "Celebration",
-          roles: ["Chefs", "Florists", "Photographers", "Videographers & filmmakers", "Stylists"],
+          title: "Music",
+          roles: ["Local & traditional musicians"],
         },
         {
-          title: "Place & Movement",
-          roles: ["Venue owners", "Hospitality partners", "Transportation partners", "Local coordinators"],
+          title: "Preparation",
+          roles: ["Natural decoration & altar", "Flowers", "Fire & lighting", "Seating & the ceremonial environment"],
+        },
+        {
+          title: "Hospitality",
+          roles: ["Path To Mexico coordination", "Guest arrival & transportation", "Food service", "Practical support"],
         },
       ],
       note: "Licensed health professionals in our wider network provide their services independently and separately from wellness experiences — coordination never replaces professional care.",
     },
 
-    places: {
-      label: "Choose Your Place",
-      title: "The setting does half the storytelling.",
-      venues: [
-        {
-          id: "caribbean",
-          name: "Caribbean",
-          text: "Sand underfoot, sea air, an open horizon, and the long light of sunset.",
-          imageAlt: "The Caribbean coastline of the Riviera Maya at golden hour, jungle meeting turquoise water",
-        },
-        {
-          id: "jungle",
-          name: "Jungle",
-          text: "Private tropical surroundings, natural textures, candlelight, and real seclusion under the canopy.",
-          imageAlt: "A tree-shaded lane under tropical canopy opening toward turquoise sea, Playa del Carmen",
-        },
-        {
-          id: "cenote",
-          name: "Cenote",
-          text: "Extraordinary natural surroundings — where access and ceremony permissions allow.",
-        },
-        {
-          id: "hacienda",
-          name: "Hacienda",
-          text: "Historic architecture, gardens, courtyards, and old-world Yucatán atmosphere.",
-          imageAlt: "A carved stone doorway and lantern-lit facades on an old colonial street in Mérida",
-        },
-        {
-          id: "villa",
-          name: "Private Villa",
-          text: "Ceremony, dinner, accommodation, and celebration held in one private place.",
-        },
-        {
-          id: "unexpected",
-          name: "Somewhere Unexpected",
-          text: "Through our local network, we can help identify less conventional private settings most visitors never find.",
-          imageAlt: "Flamingos wading through a still mangrove lagoon at dawn, Celestún",
-        },
+    food: {
+      label: "The Food",
+      title: "Food as part of the ceremony, not a service behind it.",
+      paragraphs: [
+        "Where arranged through the participating Maya and local network, the gathering can include regional and Maya food prepared by people connected to the ceremony — cooked at the setting, shared around the couple, part of the evening itself.",
+        "The food offering is being built with the people who will prepare it, not invented in advance. Menus take shape for each celebration, with the cooks, rather than being printed in a brochure.",
       ],
-      caveat:
-        "No setting is ever assumed. Venue availability, permits, access rules, environmental protections, and owner authorization all shape what is possible — cenotes and natural areas especially. We confirm what a place genuinely allows before anything is promised.",
     },
 
     wellness: {
       label: "Ceremony + Wellness",
       title: "Arrive settled. Leave restored.",
-      text: "A wedding is more than one day of standing still. Around the ceremony, optional experiences can be arranged with qualified local practitioners — before, between, or after.",
+      text: "A ceremony is more than one day of standing still. Around it, optional experiences can be arranged with qualified local practitioners — before, between, or after.",
       itemsLead: "Where provided by qualified local practitioners, optional experiences may include:",
       items: [
         "Temazcal",
@@ -189,40 +174,39 @@ export const WEDDINGS_CONTENT = {
         "Sound experiences",
         "Cacao ceremony",
         "Herbal traditions",
-        "Pre-wedding grounding sessions",
+        "Pre-ceremony grounding sessions",
         "Couples wellness sessions",
-        "A post-wedding restoration day",
+        "A post-ceremony restoration day",
       ],
       note: "These are wellness experiences, not medical treatment. Nothing here is offered as healthcare, and no outcome is promised. Anything involving licensed healthcare remains separate and is arranged directly with the appropriate professionals.",
     },
 
     types: {
-      label: "Types Of Experiences",
-      title: "However you want to mark it, it can be built.",
+      label: "Kinds Of Union",
+      title: "One ceremonial model. Every kind of union.",
       cards: [
-        ["Elopements", "Just the two of you, the ceremony, and the place."],
-        ["Intimate Weddings", "A carefully chosen circle of family and friends."],
-        ["Destination Weddings", "A larger experience built across several days."],
-        ["Vow Renewals", "Return to one another somewhere meaningful."],
+        ["Weddings", "An intimate ceremony and gathering, held in the jungle."],
+        ["Elopements", "Just the two of you, the practitioners, and the place."],
         ["Commitment Ceremonies", "Personal unions outside a conventional wedding structure."],
-        ["LGBTQ+ Weddings", "Inclusive, personal ceremonies — never forced into a traditional template."],
-        ["Anniversary Journeys", "Private ceremonial experiences built around a milestone worth honoring."],
+        ["Vow Renewals", "Return to one another somewhere unrepeatable."],
+        ["LGBTQ+ Unions", "Inclusive, personal ceremonies — never forced into a template."],
+        ["Anniversary Ceremonies", "A recommitment built around a milestone worth honoring."],
       ],
     },
 
     complete: {
       label: "The Complete Experience",
       title: "The ceremony is the center. Everything around it can be carried too.",
-      text: "Through coordination and trusted local partners, Path To Mexico can hold far more than the ceremony itself — so the days around it feel as considered as the day.",
+      text: "From practitioner travel to guest transportation and the preparation of the ceremonial setting, Path To Mexico coordinates the moving pieces behind the experience — so the ceremony itself can remain intimate and focused.",
       stages: [
         {
           number: "01",
           title: "The Ceremony",
           items: [
-            "Venue sourcing",
-            "Ceremonial practitioner coordination",
-            "Wedding planning",
-            "Floral design & natural installations",
+            "Practitioner coordination & travel",
+            "Ceremonial preparation",
+            "Natural decoration & altar",
+            "Fire & lighting",
             "Hair & makeup",
           ],
         },
@@ -230,61 +214,59 @@ export const WEDDINGS_CONTENT = {
           number: "02",
           title: "The Table",
           items: [
-            "Private chef & dinner",
-            "Cocktails & beverage service",
-            "Musicians",
+            "Regional & Maya food, where arranged",
+            "Ceremonial meals",
             "Welcome gatherings",
-            "Post-wedding brunch",
+            "Post-ceremony brunch",
           ],
         },
         {
           number: "03",
           title: "The Story",
-          items: ["Photography", "Videography & cinematic film"],
+          items: ["Photography", "Film"],
         },
         {
           number: "04",
           title: "The Stay",
-          items: ["Guest accommodations", "Airport transfers & transportation", "Local logistics"],
+          items: ["Accommodations in and around Tulum", "Guest transportation", "Airport transfers"],
         },
         {
           number: "05",
           title: "Beyond",
-          items: [
-            "Excursions & sailing",
-            "Cenote experiences, where permitted",
-            "Honeymoon planning",
-            "Mexico travel concierge",
-          ],
+          items: ["Excursions & wellness additions", "Honeymoon support", "Mexico travel concierge"],
         },
       ],
-      note: "Each service is delivered by the people who do it best — our role is producing and coordinating the whole, through partners we genuinely trust.",
+      note: "Accommodation is coordinated separately, in and around Tulum — the jungle setting is held for the ceremony itself.",
     },
 
     journey: {
-      label: "A Wedding Journey",
+      label: "The Experience",
       title: "Four days, as one example.",
-      intro: "This is a rhythm, not a package. Every journey is shaped from scratch around the couple and the place.",
+      intro: "This is a rhythm, not a package. Every experience is shaped from scratch around the couple and the ceremony.",
       days: [
         {
           number: "01",
           name: "Arrival",
-          lines: ["Private transfers.", "Guests settle in.", "Welcome cocktails or dinner as the light goes down."],
+          lines: ["Guests arrive in Tulum and settle into their accommodations.", "A welcome dinner, if the couple wants one."],
         },
         {
           number: "02",
-          name: "Mexico",
-          lines: ["A private excursion, a cenote, sailing, a beach, wellness, a cultural experience — or nothing at all."],
+          name: "Preparation",
+          lines: ["An open day — a gathering, a wellness session, a shared meal, or simply time together before the ceremony."],
         },
         {
           number: "03",
           name: "The Ceremony",
-          lines: ["Preparation, unhurried.", "The ceremony.", "Sunset. Dinner. Music. Celebration."],
+          lines: [
+            "Transportation to the private jungle setting.",
+            "The ceremony, led by Maya ceremonial practitioners.",
+            "Food. Music. The gathering, into the night.",
+          ],
         },
         {
           number: "04",
-          name: "The Morning After",
-          lines: ["Slow breakfast. Swimming. Brunch.", "Departure — or the beginning of the honeymoon."],
+          name: "After",
+          lines: ["A slow morning. Brunch.", "Rest, excursions, the honeymoon — or the road home."],
         },
       ],
     },
@@ -302,8 +284,8 @@ export const WEDDINGS_CONTENT = {
     responsible: {
       title: "Celebrate Mexico. Respect Mexico.",
       paragraphs: [
-        "A wedding brings money, attention, and many guests into a place. We want all of that to land well — for the practitioners who lead, the communities that host, the venues, the businesses, and the nature that makes any of it possible.",
-        "In practice that means prioritizing local professionals and responsible sourcing wherever we can, treating cultural elements as something shared with us rather than extracted from the place, and leaving every setting the way a good guest would.",
+        "A ceremony brings money, attention, and guests into a place. We want all of that to land well — for the practitioners who lead, the communities they come from, the land that holds the ceremony, the local businesses, and the nature that makes any of it possible.",
+        "In practice that means prioritizing local people and responsible sourcing wherever we can, treating cultural elements as something shared with us rather than extracted from the place, and leaving the jungle the way a good guest would.",
       ],
       ctaImpact: "Read Our Impact Commitment",
       ctaGuide: "The Responsible Relocation Guide",
@@ -313,40 +295,43 @@ export const WEDDINGS_CONTENT = {
       label: "Begin",
       title: "Your wedding should not feel like anyone else's.",
       paragraphs: [
-        "Tell us the place. The feeling. The people. Even the parts you cannot quite describe yet.",
-        "We'll help build the experience from there.",
+        "Tell us the feeling. The people. Even the parts you cannot quite describe yet.",
+        "We'll help build the ceremony from there.",
       ],
-      qualification: "Every celebration begins differently. Tell us what you are imagining, and we'll determine what can be created around it.",
-      ctaPrimary: "Plan My Wedding",
+      qualification: "Every ceremony begins differently. Tell us what you are imagining, and we'll determine what can be created around it.",
+      ctaPrimary: "Begin Your Ceremony",
       ctaSecondary: "Start A Conversation",
     },
 
     inquiry: {
       eyebrow: "Weddings · Inquiry",
       title: "Start with the feeling.",
-      lead: "Every celebration begins differently. Tell us what you are imagining — even loosely — and we'll determine what can be created around it. Nothing is confirmed until the right venue and practitioners are, so think of this as the first conversation, not a booking form.",
+      lead: "Every ceremony begins differently. Tell us what you are imagining — even loosely — and we'll determine what can be created around it. Nothing is confirmed until the ceremonial leadership and dates are, so think of this as the first conversation, not a booking form.",
       assurances: [
         "Read personally — never by a system.",
         "We reply by email or WhatsApp.",
-        "Nothing is promised until venue and practitioners are confirmed.",
+        "Nothing is promised until practitioners and dates are confirmed.",
       ],
       groupYou: "You",
-      groupDay: "The Day",
+      groupDay: "The Ceremony",
       groupFeeling: "The Feeling",
       labels: {
         coupleNames: "Your names",
         email: "Email",
         phone: "WhatsApp or phone",
         country: "Country",
-        weddingDate: "Approximate wedding date",
+        weddingDate: "Preferred date",
         flexibleDates: "Are your dates flexible?",
         guestCount: "Estimated guest count",
-        ceremonyType: "Type of ceremony",
-        setting: "Preferred setting",
-        scope: "Ceremony only, or more?",
+        ceremonyType: "Type of union",
+        scope: "Ceremony only, or a broader Tulum experience?",
+        accommodation: "Would guests need accommodation coordination?",
+        transportation: "Would guests need transportation coordination?",
+        foodInterest: "Interested in the ceremonial meal & food experience?",
+        wellnessInterest: "Interested in wellness experiences?",
         legalAssistance: "Legal marriage assistance needed?",
-        budgetRange: "Approximate budget",
-        feeling: "What do you want the experience to feel like?",
+        budgetRange: "Approximate overall budget",
+        feeling: "What do you want this ceremony to mean, or feel like?",
         anythingElse: "Anything else we should know?",
       },
       placeholders: {
@@ -355,7 +340,7 @@ export const WEDDINGS_CONTENT = {
         phone: "+1 …",
         country: "Where you live now",
         weddingDate: "A month, a season, a year — however precise it is",
-        feeling: "Quiet. Barefoot. Candlelit. Sixty people dancing under the trees. However it comes to you.",
+        feeling: "Quiet. Barefoot. Firelight under the trees. Thirty people around you. However it comes to you.",
         anythingElse: "Guests, family, worries, half-formed ideas — anything.",
       },
       options: {
@@ -363,16 +348,15 @@ export const WEDDINGS_CONTENT = {
         flexibleDates: ["Yes, flexible", "No, the date is set"],
         guestCount: ["Just us", "Up to 10", "10–30", "30–60", "More than 60"],
         ceremonyType: [
+          "Wedding",
           "Elopement",
-          "Intimate wedding",
-          "Destination wedding",
-          "Vow renewal",
           "Commitment ceremony",
+          "Vow renewal",
+          "Anniversary ceremony",
           "Not sure yet",
         ],
-        setting: ["Jungle", "Beach", "Cenote", "Hacienda", "Private villa", "Not sure yet"],
-        scope: ["Ceremony only", "A multi-day experience", "Not sure yet"],
-        legalAssistance: ["Yes", "No", "Not sure"],
+        scope: ["Ceremony only", "A broader Tulum experience", "Not sure yet"],
+        yesNoUnsure: ["Yes", "No", "Not sure"],
         budgetRange: [
           "Under $10,000 USD",
           "$10,000–$25,000 USD",
@@ -385,72 +369,86 @@ export const WEDDINGS_CONTENT = {
       submitting: "Sending…",
       submit: "Send Inquiry",
       successTitle: "It has begun.",
-      successText: "Your inquiry is with us, and it will be read personally — not by a system. We'll reply by email or WhatsApp. If what you're imagining is something we can build well with our venues and practitioners, we'll start shaping it together.",
+      successText: "Your inquiry is with us, and it will be read personally — not by a system. We'll reply by email or WhatsApp. If what you're imagining is something we can hold well with our practitioners and our setting, we'll start shaping it together.",
       successBack: "Return To Weddings",
       successExplore: "Explore The Yucatán",
     },
   },
 
   es: {
-    seoTitle: "Bodas Mayas y Uniones Sagradas en México",
+    seoTitle: "Bodas Mayas en Tulum | Ceremonias en la Selva | Path To Mexico",
     seoDescription:
-      "Crea una boda íntima de inspiración maya, una unión sagrada, una fuga romántica o una celebración de varios días en la Península de Yucatán — con practicantes locales de confianza y la coordinación de Path To Mexico.",
-    inquirySeoTitle: "Planea Tu Boda en México",
+      "Crea una boda maya íntima o una unión sagrada en un entorno privado de selva en Tulum, coordinada con practicantes ceremoniales de confianza y socios locales.",
+    inquirySeoTitle: "Comienza Tu Ceremonia Maya en Tulum",
     inquirySeoDescription:
-      "Cuéntanos qué imaginas — el lugar, la sensación, las personas — y Path To Mexico te ayudará a determinar qué se puede crear alrededor de ello en la Península de Yucatán.",
+      "Cuéntanos qué quieres que la ceremonia signifique y cómo quieres que se sienta — y Path To Mexico te ayudará a dar forma a una ceremonia maya privada en la selva de Tulum alrededor de ello.",
     toggle: "EN",
     backToSite: "Path To Mexico",
 
     hero: {
-      eyebrow: "Bodas · Península de Yucatán",
+      eyebrow: "Bodas · Tulum, Quintana Roo",
       title: "Bodas Mayas y Uniones Sagradas",
-      subtitle: "Una ceremonia que pertenece al lugar.",
+      subtitle: "En la Selva de Tulum",
       paragraphs: [
-        "Algunas bodas se construyen alrededor de un salón. Otras comienzan bajo el dosel de la selva, junto al mar Caribe, dentro de una hacienda privada, cerca de un cenote, o en algún lugar que se siente completamente fuera de lo ordinario.",
-        "Path To Mexico ayuda a las parejas a crear ceremonias y celebraciones íntimas que se sienten conectadas con México — no simplemente montadas en México.",
+        "Hay lugares que no necesitan escenario. En lo profundo de la selva de Tulum, Path To Mexico crea bodas ceremoniales mayas íntimas, formadas alrededor de la tierra, de las personas que portan las tradiciones y del significado de la unión misma.",
+        "Esto no es una boda de resort trasladada a la selva. La selva es la experiencia.",
       ],
-      ctaPrimary: "Comienza Tu Boda",
+      ctaPrimary: "Comienza Tu Ceremonia",
       ctaSecondary: "Explora La Experiencia",
       caption: "Tulum · Quintana Roo",
       imageAlt: "Una calle tranquila de piedra caliza y estuco bajo la sombra de la selva en Tulum, con luz de mañana entre los árboles",
     },
 
     philosophy: {
-      label: "Más Que Una Boda De Destino",
-      titleLead: "México no tiene que ser el telón de fondo de tu boda.",
-      titleAccent: "Puede volverse parte de la historia.",
+      label: "Un Lugar. Una Ceremonia.",
+      titleLead: "No estamos construyendo otra empresa de bodas de destino.",
+      titleAccent: "Estamos creando una ceremonia, con las personas que la portan.",
       paragraphs: [
-        "La mayoría de las bodas de destino parte de un paquete: un resort, un menú fijo, un coordinador que ves dos veces. Nosotros no estamos atados a nada de eso. Path To Mexico trabaja desde sus propias relaciones en la península, lo que significa que la experiencia puede diseñarse alrededor de ustedes — el lugar, la atmósfera, el número de personas y el significado que quieren que el día tenga.",
-        "Esa diferencia suena pequeña. Cambia por completo cómo se siente el día.",
+        "Aquí no hay un menú de escenarios ni una lista de paquetes. La ceremonia se celebra en un solo entorno privado de selva en la zona de Tulum — un lugar que se prepara específicamente para esta experiencia. Los líderes ceremoniales mayas determinan y guían las prácticas ceremoniales; el papel de Path To Mexico es coordinar todo lo demás alrededor de ellos.",
+        "Más estrecho a propósito. Porque un solo lugar, sostenido como se debe, llega más profundo que cien opciones.",
       ],
-      pull: "Algunas bodas se planean alrededor de un lugar. Nosotros empezamos por la sensación.",
+      pull: "Una ceremonia que pertenece al lugar.",
+    },
+
+    jungle: {
+      label: "El Entorno",
+      title: "La selva es la experiencia.",
+      paragraphs: [
+        "La ceremonia se celebra en un entorno privado de selva en la zona de Tulum. Sin lista rotativa de recintos comerciales — un solo lugar, preparado específicamente para esta experiencia.",
+        "El paisaje se vuelve parte de la ceremonia: árboles, tierra, fuego, humo de copal, comida, sonido, oscuridad y luz de velas, con la selva sosteniendo la reunión como ningún espacio construido puede hacerlo.",
+        "Estamos desarrollando este entorno de manera intencional — la comodidad suficiente para la hospitalidad, la comida, la ceremonia y la reunión, y nada más. La meta nunca fue construir un recinto de bodas en la selva. Es mantener intacto el carácter del lugar, porque ese carácter es la razón de estar aquí.",
+      ],
+      note: "El entorno es privado. Su ubicación se comparte con las parejas y sus invitados como parte de la planeación — no se publica, y no está abierto al público.",
     },
 
     ceremony: {
       label: "La Ceremonia",
-      title: "Guiada por practicantes locales. Formada alrededor de ustedes dos.",
+      title: "Guiada por practicantes mayas. Formada alrededor de ustedes dos.",
       paragraphs: [
-        "Los elementos ceremoniales y culturales son guiados por líderes ceremoniales y practicantes mayas locales, cada uno dentro de su propia área de conocimiento. El papel de Path To Mexico es producir y coordinar — reunir a las personas, el lugar y el momento correctos — nunca asumir el lugar de la autoridad espiritual.",
-        "No hay dos ceremonias que sigan el mismo guion, y nada de esto se presenta como un ritual maya fijo o históricamente universal. Lo que sucede lo deciden el practicante que la guía, el lugar y ustedes dos.",
+        "Las prácticas ceremoniales las determinan y guían líderes y practicantes ceremoniales mayas, orientados por la tradición viva y su propio conocimiento. El papel de Path To Mexico es producir y coordinar — reunir a las personas, el lugar y el momento correctos — nunca asumir el lugar de la autoridad espiritual.",
+        "El liderazgo ceremonial se organiza con anticipación a través de la red de practicantes de confianza de Path To Mexico — líderes ceremoniales mayas principalmente vinculados a Yucatán, con la agenda y el traslado coordinados como parte de la experiencia. Ningún practicante específico se promete hasta estar confirmado.",
+        "No hay dos ceremonias que sigan el mismo guion, y nada de esto se presenta como un ritual maya fijo o históricamente universal. Lo que sucede lo deciden el practicante que la guía y ustedes dos.",
       ],
-      elementsLead: "Dependiendo del practicante, del lugar y de la ceremonia misma, los elementos pueden incluir:",
+      elementsLead: "Dependiendo del practicante y de la ceremonia misma, los elementos pueden incluir:",
       elements: [
+        "Preparación ceremonial",
         "Limpia ceremonial",
         "Copal",
-        "Reconocimiento de los rumbos",
-        "Elementos naturales",
-        "Un altar ceremonial",
-        "El sonido del caracol",
+        "Fuego",
         "Flores",
+        "Materiales naturales",
+        "Un altar ceremonial",
+        "Reconocimiento de los rumbos",
+        "El sonido del caracol",
         "Cacao",
         "Maíz",
-        "Fuego",
-        "Agua",
+        "Bendiciones",
         "Intenciones habladas",
         "Votos",
-        "Bendiciones",
         "Música",
-        "Rituales simbólicos de unión",
+        "Comida",
+        "La reunión alrededor de la pareja",
+        "Elementos simbólicos de unión determinados por quien guía la ceremonia",
       ],
     },
 
@@ -460,91 +458,54 @@ export const WEDDINGS_CONTENT = {
       quote: "Nuestra intención nunca es convertirla en decoración.",
       paragraphs: [
         "La Península de Yucatán es tierra maya — hogar de un pueblo, un idioma y tradiciones que siguen plenamente vivas hoy. No recreamos una boda antigua imaginada, ni inventamos rituales para crear ambiente.",
-        "Cuando los elementos ceremoniales forman parte de una celebración, se incorporan con respeto y, cuando corresponde, guiados por practicantes mayas locales que comprenden las tradiciones y su significado. Qué eligen compartir, y cómo, es decisión suya.",
+        "La experiencia aleja intencionalmente la ceremonia del entorno comercial de resort y la coloca dentro del paisaje de selva maya de Tulum. Su fuerza viene de lo que se crea ahora, con practicantes mayas — de las personas, el lugar, la preparación y las relaciones — no de afirmaciones sobre el pasado. Qué eligen compartir los practicantes, y cómo, es decisión suya.",
         "Este es el mismo compromiso que da forma a todo lo que hace Path To Mexico — una celebración, como una reubicación, debería dejar al lugar y a su gente mejor de como los encontró.",
       ],
       cta: "Nuestro Compromiso De Impacto",
     },
 
     network: {
-      label: "Nuestra Red Local",
+      label: "Las Personas Detrás De La Ceremonia",
       title: "La experiencia se construye alrededor de personas, no de paquetes.",
-      text: "La fuerza de Path To Mexico son sus relaciones — una red curada de practicantes, creativos y operadores locales en Yucatán y la Riviera Maya, construida viviendo y trabajando aquí. Cada celebración se arma desde esa red alrededor de lo que la pareja realmente quiere. Nadie participa por defecto, y ninguna boda los usa a todos.",
+      text: "La fuerza de Path To Mexico son sus relaciones — líderes y practicantes ceremoniales mayas principalmente vinculados a Yucatán, y las personas locales que preparan, cocinan, tocan y reciben. Cada ceremonia se arma desde esa red alrededor de lo que la pareja realmente quiere. Nadie participa por defecto, y ninguna ceremonia los usa a todos.",
       groups: [
         {
           title: "Ceremonia",
-          roles: ["Líderes ceremoniales mayas", "Músicos", "Practicantes culturales"],
+          roles: ["Líderes ceremoniales mayas", "Practicantes de apoyo"],
         },
         {
-          title: "Bienestar",
-          roles: [
-            "Practicantes de bienestar",
-            "Sanadores tradicionales y locales",
-            "Masaje y trabajo corporal",
-            "Facilitadores de respiración",
-            "Practicantes de sonido",
-            "Profesionales de salud y bienestar",
-          ],
+          title: "Comida",
+          roles: ["Cocineras y cocineros regionales y mayas", "Comidas ceremoniales, cuando se organizan"],
         },
         {
-          title: "Celebración",
-          roles: ["Chefs", "Floristas", "Fotógrafos", "Videógrafos y cineastas", "Estilistas"],
+          title: "Música",
+          roles: ["Músicos locales y tradicionales"],
         },
         {
-          title: "Lugar y Movimiento",
-          roles: ["Dueños de recintos", "Socios de hospitalidad", "Transporte", "Coordinadores locales"],
+          title: "Preparación",
+          roles: ["Decoración natural y altar", "Flores", "Fuego e iluminación", "Asientos y el entorno ceremonial"],
+        },
+        {
+          title: "Hospitalidad",
+          roles: ["Coordinación de Path To Mexico", "Llegada y transporte de invitados", "Servicio de comida", "Apoyo práctico"],
         },
       ],
       note: "Los profesionales de la salud con licencia dentro de nuestra red más amplia brindan sus servicios de manera independiente y separada de las experiencias de bienestar — la coordinación nunca sustituye la atención profesional.",
     },
 
-    places: {
-      label: "Elige Tu Lugar",
-      title: "El lugar cuenta la mitad de la historia.",
-      venues: [
-        {
-          id: "caribbean",
-          name: "Caribe",
-          text: "Arena bajo los pies, aire de mar, un horizonte abierto y la luz larga del atardecer.",
-          imageAlt: "La costa caribeña de la Riviera Maya en la hora dorada, la selva encontrándose con el agua turquesa",
-        },
-        {
-          id: "jungle",
-          name: "Selva",
-          text: "Entorno tropical privado, texturas naturales, luz de velas y verdadera privacidad bajo el dosel.",
-          imageAlt: "Un camino sombreado bajo el dosel tropical que se abre hacia el mar turquesa, Playa del Carmen",
-        },
-        {
-          id: "cenote",
-          name: "Cenote",
-          text: "Entornos naturales extraordinarios — donde el acceso y los permisos de ceremonia lo permiten.",
-        },
-        {
-          id: "hacienda",
-          name: "Hacienda",
-          text: "Arquitectura histórica, jardines, patios y la atmósfera del Yucatán de otro tiempo.",
-          imageAlt: "Un portal de piedra tallada y fachadas iluminadas por faroles en una calle colonial antigua de Mérida",
-        },
-        {
-          id: "villa",
-          name: "Villa Privada",
-          text: "Ceremonia, cena, hospedaje y celebración en un solo lugar privado.",
-        },
-        {
-          id: "unexpected",
-          name: "Un Lugar Inesperado",
-          text: "A través de nuestra red local, podemos ayudar a encontrar escenarios privados poco convencionales que la mayoría de los visitantes nunca conoce.",
-          imageAlt: "Flamencos vadeando una laguna de manglar en calma al amanecer, Celestún",
-        },
+    food: {
+      label: "La Comida",
+      title: "La comida como parte de la ceremonia, no un servicio detrás de ella.",
+      paragraphs: [
+        "Cuando se organiza a través de la red maya y local participante, la reunión puede incluir comida regional y maya preparada por personas conectadas con la ceremonia — cocinada en el lugar, compartida alrededor de la pareja, parte de la noche misma.",
+        "La propuesta de comida se construye con las personas que la prepararán, no se inventa por adelantado. Los menús toman forma para cada celebración, con quienes cocinan, en lugar de imprimirse en un folleto.",
       ],
-      caveat:
-        "Ningún escenario se da por hecho. La disponibilidad, los permisos, las reglas de acceso, las protecciones ambientales y la autorización de los propietarios definen lo que es posible — especialmente en cenotes y áreas naturales. Confirmamos lo que un lugar genuinamente permite antes de prometer nada.",
     },
 
     wellness: {
       label: "Ceremonia + Bienestar",
       title: "Llegar en calma. Irse restaurado.",
-      text: "Una boda es más que un solo día. Alrededor de la ceremonia, se pueden organizar experiencias opcionales con practicantes locales calificados — antes, entre o después.",
+      text: "Una ceremonia es más que un solo día. Alrededor de ella, se pueden organizar experiencias opcionales con practicantes locales calificados — antes, entre o después.",
       itemsLead: "Cuando las ofrecen practicantes locales calificados, las experiencias opcionales pueden incluir:",
       items: [
         "Temazcal",
@@ -555,40 +516,39 @@ export const WEDDINGS_CONTENT = {
         "Experiencias de sonido",
         "Ceremonia de cacao",
         "Tradiciones herbales",
-        "Sesiones de arraigo antes de la boda",
+        "Sesiones de arraigo antes de la ceremonia",
         "Sesiones de bienestar en pareja",
-        "Un día de restauración después de la boda",
+        "Un día de restauración después de la ceremonia",
       ],
       note: "Estas son experiencias de bienestar, no tratamiento médico. Nada de esto se ofrece como atención de salud, y no se promete ningún resultado. Todo lo que involucre atención médica con licencia permanece separado y se organiza directamente con los profesionales correspondientes.",
     },
 
     types: {
-      label: "Tipos De Experiencias",
-      title: "Como quieran celebrarlo, se puede construir.",
+      label: "Tipos De Unión",
+      title: "Un solo modelo ceremonial. Todo tipo de unión.",
       cards: [
-        ["Fugas Románticas", "Solo ustedes dos, la ceremonia y el lugar."],
-        ["Bodas Íntimas", "Un círculo cuidadosamente elegido de familia y amigos."],
-        ["Bodas De Destino", "Una experiencia más grande construida a lo largo de varios días."],
-        ["Renovación De Votos", "Volver el uno al otro en un lugar con significado."],
+        ["Bodas", "Una ceremonia y una reunión íntimas, celebradas en la selva."],
+        ["Fugas Románticas", "Solo ustedes dos, los practicantes y el lugar."],
         ["Ceremonias De Compromiso", "Uniones personales fuera de la estructura convencional de una boda."],
-        ["Bodas LGBTQ+", "Ceremonias inclusivas y personales — nunca forzadas a una plantilla tradicional."],
-        ["Viajes De Aniversario", "Experiencias ceremoniales privadas construidas alrededor de un hito que vale la pena honrar."],
+        ["Renovación De Votos", "Volver el uno al otro en un lugar irrepetible."],
+        ["Uniones LGBTQ+", "Ceremonias inclusivas y personales — nunca forzadas a una plantilla."],
+        ["Ceremonias De Aniversario", "Un recompromiso construido alrededor de un hito que vale la pena honrar."],
       ],
     },
 
     complete: {
       label: "La Experiencia Completa",
       title: "La ceremonia es el centro. Todo lo demás también puede estar en buenas manos.",
-      text: "A través de coordinación y socios locales de confianza, Path To Mexico puede encargarse de mucho más que la ceremonia — para que los días alrededor se sientan tan cuidados como el día mismo.",
+      text: "Desde el traslado de los practicantes hasta el transporte de los invitados y la preparación del entorno ceremonial, Path To Mexico coordina las piezas en movimiento detrás de la experiencia — para que la ceremonia misma permanezca íntima y enfocada.",
       stages: [
         {
           number: "01",
           title: "La Ceremonia",
           items: [
-            "Búsqueda del lugar",
-            "Coordinación de practicantes ceremoniales",
-            "Planeación de la boda",
-            "Diseño floral e instalaciones naturales",
+            "Coordinación y traslado de practicantes",
+            "Preparación ceremonial",
+            "Decoración natural y altar",
+            "Fuego e iluminación",
             "Peinado y maquillaje",
           ],
         },
@@ -596,61 +556,59 @@ export const WEDDINGS_CONTENT = {
           number: "02",
           title: "La Mesa",
           items: [
-            "Chef privado y cena",
-            "Cócteles y servicio de bebidas",
-            "Músicos",
+            "Comida regional y maya, cuando se organiza",
+            "Comidas ceremoniales",
             "Reuniones de bienvenida",
-            "Brunch después de la boda",
+            "Brunch después de la ceremonia",
           ],
         },
         {
           number: "03",
           title: "La Historia",
-          items: ["Fotografía", "Video y película cinematográfica"],
+          items: ["Fotografía", "Película"],
         },
         {
           number: "04",
           title: "La Estancia",
-          items: ["Hospedaje para invitados", "Traslados al aeropuerto y transporte", "Logística local"],
+          items: ["Hospedaje en Tulum y sus alrededores", "Transporte de invitados", "Traslados al aeropuerto"],
         },
         {
           number: "05",
           title: "Más Allá",
-          items: [
-            "Excursiones y velero",
-            "Experiencias en cenotes, donde está permitido",
-            "Planeación de la luna de miel",
-            "Concierge de viaje en México",
-          ],
+          items: ["Excursiones y experiencias de bienestar", "Apoyo con la luna de miel", "Concierge de viaje en México"],
         },
       ],
-      note: "Cada servicio lo entrega la gente que mejor lo hace — nuestro papel es producir y coordinar el conjunto, a través de socios en los que genuinamente confiamos.",
+      note: "El hospedaje se coordina por separado, en Tulum y sus alrededores — el entorno de selva se reserva para la ceremonia misma.",
     },
 
     journey: {
-      label: "Un Viaje De Boda",
+      label: "La Experiencia",
       title: "Cuatro días, como un ejemplo.",
-      intro: "Esto es un ritmo, no un paquete. Cada viaje se crea desde cero alrededor de la pareja y del lugar.",
+      intro: "Esto es un ritmo, no un paquete. Cada experiencia se crea desde cero alrededor de la pareja y de la ceremonia.",
       days: [
         {
           number: "01",
           name: "Llegada",
-          lines: ["Traslados privados.", "Los invitados se instalan.", "Cócteles o cena de bienvenida mientras cae la luz."],
+          lines: ["Los invitados llegan a Tulum y se instalan en su hospedaje.", "Una cena de bienvenida, si la pareja la desea."],
         },
         {
           number: "02",
-          name: "México",
-          lines: ["Una excursión privada, un cenote, un velero, una playa, bienestar, una experiencia cultural — o nada en absoluto."],
+          name: "Preparación",
+          lines: ["Un día abierto — una reunión, una sesión de bienestar, una comida compartida o simplemente tiempo juntos antes de la ceremonia."],
         },
         {
           number: "03",
           name: "La Ceremonia",
-          lines: ["Preparación, sin prisa.", "La ceremonia.", "Atardecer. Cena. Música. Celebración."],
+          lines: [
+            "Traslado al entorno privado de selva.",
+            "La ceremonia, guiada por practicantes ceremoniales mayas.",
+            "Comida. Música. La reunión, hasta entrada la noche.",
+          ],
         },
         {
           number: "04",
-          name: "La Mañana Siguiente",
-          lines: ["Desayuno lento. Nadar. Brunch.", "La partida — o el comienzo de la luna de miel."],
+          name: "Después",
+          lines: ["Una mañana lenta. Brunch.", "Descanso, excursiones, la luna de miel — o el camino a casa."],
         },
       ],
     },
@@ -668,8 +626,8 @@ export const WEDDINGS_CONTENT = {
     responsible: {
       title: "Celebra México. Respeta México.",
       paragraphs: [
-        "Una boda trae dinero, atención y muchos invitados a un lugar. Queremos que todo eso caiga bien — para los practicantes que guían, las comunidades que reciben, los recintos, los negocios y la naturaleza que hace posible todo lo demás.",
-        "En la práctica, eso significa priorizar a los profesionales locales y el abastecimiento responsable siempre que podamos, tratar los elementos culturales como algo que se comparte con nosotros y no como algo que se extrae del lugar, y dejar cada escenario como lo haría un buen invitado.",
+        "Una ceremonia trae dinero, atención e invitados a un lugar. Queremos que todo eso caiga bien — para los practicantes que guían, las comunidades de donde vienen, la tierra que sostiene la ceremonia, los negocios locales y la naturaleza que hace posible todo lo demás.",
+        "En la práctica, eso significa priorizar a las personas locales y el abastecimiento responsable siempre que podamos, tratar los elementos culturales como algo que se comparte con nosotros y no como algo que se extrae del lugar, y dejar la selva como lo haría un buen invitado.",
       ],
       ctaImpact: "Lee Nuestro Compromiso De Impacto",
       ctaGuide: "La Guía De Reubicación Responsable",
@@ -679,40 +637,43 @@ export const WEDDINGS_CONTENT = {
       label: "Comienza",
       title: "Tu boda no debería sentirse como la de nadie más.",
       paragraphs: [
-        "Cuéntanos el lugar. La sensación. Las personas. Incluso las partes que todavía no puedes describir.",
-        "Nosotros ayudamos a construir la experiencia desde ahí.",
+        "Cuéntanos la sensación. Las personas. Incluso las partes que todavía no puedes describir.",
+        "Nosotros ayudamos a construir la ceremonia desde ahí.",
       ],
-      qualification: "Cada celebración comienza de forma diferente. Cuéntanos qué imaginas, y determinaremos qué se puede crear alrededor de ello.",
-      ctaPrimary: "Planear Mi Boda",
+      qualification: "Cada ceremonia comienza de forma diferente. Cuéntanos qué imaginas, y determinaremos qué se puede crear alrededor de ello.",
+      ctaPrimary: "Comienza Tu Ceremonia",
       ctaSecondary: "Iniciar Una Conversación",
     },
 
     inquiry: {
       eyebrow: "Bodas · Consulta",
       title: "Empieza por la sensación.",
-      lead: "Cada celebración comienza de forma diferente. Cuéntanos qué imaginas — aunque sea vagamente — y determinaremos qué se puede crear alrededor de ello. Nada se confirma hasta que el lugar y los practicantes correctos lo estén, así que piensa en esto como la primera conversación, no como un formulario de reserva.",
+      lead: "Cada ceremonia comienza de forma diferente. Cuéntanos qué imaginas — aunque sea vagamente — y determinaremos qué se puede crear alrededor de ello. Nada se confirma hasta que el liderazgo ceremonial y las fechas lo estén, así que piensa en esto como la primera conversación, no como un formulario de reserva.",
       assurances: [
         "Leída personalmente — nunca por un sistema.",
         "Respondemos por correo o WhatsApp.",
-        "Nada se promete hasta confirmar el lugar y a los practicantes.",
+        "Nada se promete hasta confirmar a los practicantes y las fechas.",
       ],
       groupYou: "Ustedes",
-      groupDay: "El Día",
+      groupDay: "La Ceremonia",
       groupFeeling: "La Sensación",
       labels: {
         coupleNames: "Sus nombres",
         email: "Correo electrónico",
         phone: "WhatsApp o teléfono",
         country: "País",
-        weddingDate: "Fecha aproximada de la boda",
+        weddingDate: "Fecha preferida",
         flexibleDates: "¿Sus fechas son flexibles?",
         guestCount: "Número estimado de invitados",
-        ceremonyType: "Tipo de ceremonia",
-        setting: "Escenario preferido",
-        scope: "¿Solo la ceremonia, o más?",
+        ceremonyType: "Tipo de unión",
+        scope: "¿Solo la ceremonia, o una experiencia más amplia en Tulum?",
+        accommodation: "¿Sus invitados necesitarían coordinación de hospedaje?",
+        transportation: "¿Sus invitados necesitarían coordinación de transporte?",
+        foodInterest: "¿Les interesa la comida ceremonial y la experiencia gastronómica?",
+        wellnessInterest: "¿Les interesan las experiencias de bienestar?",
         legalAssistance: "¿Necesitan ayuda con el matrimonio legal?",
-        budgetRange: "Presupuesto aproximado",
-        feeling: "¿Cómo quieren que se sienta la experiencia?",
+        budgetRange: "Presupuesto general aproximado",
+        feeling: "¿Qué quieren que esta ceremonia signifique, o cómo quieren que se sienta?",
         anythingElse: "¿Algo más que debamos saber?",
       },
       placeholders: {
@@ -721,7 +682,7 @@ export const WEDDINGS_CONTENT = {
         phone: "+52 …",
         country: "Donde viven ahora",
         weddingDate: "Un mes, una temporada, un año — con la precisión que tengan",
-        feeling: "Silencio. Descalzos. Luz de velas. Sesenta personas bailando bajo los árboles. Como les llegue.",
+        feeling: "Silencio. Descalzos. Luz de fuego bajo los árboles. Treinta personas alrededor. Como les llegue.",
         anythingElse: "Invitados, familia, dudas, ideas a medio formar — lo que sea.",
       },
       options: {
@@ -729,16 +690,15 @@ export const WEDDINGS_CONTENT = {
         flexibleDates: ["Sí, flexibles", "No, la fecha está fija"],
         guestCount: ["Solo nosotros", "Hasta 10", "10–30", "30–60", "Más de 60"],
         ceremonyType: [
+          "Boda",
           "Fuga romántica",
-          "Boda íntima",
-          "Boda de destino",
-          "Renovación de votos",
           "Ceremonia de compromiso",
+          "Renovación de votos",
+          "Ceremonia de aniversario",
           "Aún no lo sabemos",
         ],
-        setting: ["Selva", "Playa", "Cenote", "Hacienda", "Villa privada", "Aún no lo sabemos"],
-        scope: ["Solo la ceremonia", "Una experiencia de varios días", "Aún no lo sabemos"],
-        legalAssistance: ["Sí", "No", "No estamos seguros"],
+        scope: ["Solo la ceremonia", "Una experiencia más amplia en Tulum", "Aún no lo sabemos"],
+        yesNoUnsure: ["Sí", "No", "No estamos seguros"],
         budgetRange: [
           "Menos de $10,000 USD",
           "$10,000–$25,000 USD",
@@ -751,7 +711,7 @@ export const WEDDINGS_CONTENT = {
       submitting: "Enviando…",
       submit: "Enviar Consulta",
       successTitle: "Ha comenzado.",
-      successText: "Tu consulta está con nosotros y será leída personalmente — no por un sistema. Te responderemos por correo o WhatsApp. Si lo que imaginas es algo que podemos construir bien con nuestros lugares y practicantes, empezaremos a darle forma juntos.",
+      successText: "Tu consulta está con nosotros y será leída personalmente — no por un sistema. Te responderemos por correo o WhatsApp. Si lo que imaginas es algo que podemos sostener bien con nuestros practicantes y nuestro entorno, empezaremos a darle forma juntos.",
       successBack: "Volver A Bodas",
       successExplore: "Explora Yucatán",
     },
@@ -759,12 +719,13 @@ export const WEDDINGS_CONTENT = {
 };
 
 // Internal product architecture only — deliberately NOT rendered anywhere.
-// The public site stays inquiry-led at launch; these four levels exist so a
-// future pricing/packaging decision has a stable structure to attach to
-// (and so the inquiry data collected today maps onto it cleanly).
+// The public site stays inquiry-led at launch; these levels exist so a
+// future pricing/packaging decision has a stable structure to attach to.
+// All levels live under the single jungle ceremonial model — they scale
+// the experience, never the setting.
 export const WEDDING_EXPERIENCE_LEVELS = [
-  { id: "union", name: "The Union", scope: "Couples / elopement experience" },
-  { id: "gathering", name: "The Gathering", scope: "Small intimate wedding" },
-  { id: "journey", name: "The Journey", scope: "Multi-day destination wedding" },
+  { id: "union", name: "The Union", scope: "Couples / elopement ceremony" },
+  { id: "gathering", name: "The Gathering", scope: "Small intimate ceremony and gathering" },
+  { id: "journey", name: "The Journey", scope: "Multi-day Tulum experience around the ceremony" },
   { id: "pathWedding", name: "The Path Wedding", scope: "Fully bespoke experience" },
 ];
