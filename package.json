@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@formspree/react": "^3.0.0",
+    "@supabase/supabase-js": "^2.112.3",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -21,8 +22,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:api": "jest --config jest.config.api.js",
+    "dev:api": "node scripts/dev-api-server.mjs",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": [
       "react-app",

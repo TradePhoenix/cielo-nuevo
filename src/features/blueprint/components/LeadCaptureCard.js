@@ -39,13 +39,42 @@ export default function LeadCaptureCard({
   // Reveal exactly once per successful submission, even if this effect
   // re-runs.
   const revealedRef = useRef(false);
+  // Contact fields captured at submit time (the inputs are uncontrolled) so
+  // the database copy below can include them after Formspree succeeds.
+  const contactRef = useRef({ firstName: "", email: "" });
 
   useEffect(() => {
     if (state.succeeded && !revealedRef.current) {
       revealedRef.current = true;
+      // DATA-001: best-effort durable copy of this lead in the PTM database
+      // (POST /api/public/blueprint-lead). Formspree remains the delivery
+      // channel that gates the UX above; this call is fire-and-forget and can
+      // never affect the visitor's flow — any failure is simply ignored.
+      try {
+        if (typeof fetch === "function") {
+          fetch("/api/public/blueprint-lead", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              firstName: contactRef.current.firstName,
+              email: contactRef.current.email,
+              language: lang,
+              sessionId: sessionId || "",
+              readinessScore: payload.readinessScore,
+              archetype: payload.archetype,
+              topDestinations: payload.topDestinations,
+              answers: payload.answersRaw,
+              source: "blueprint-v2",
+              consent: true,
+            }),
+          }).catch(() => {});
+        }
+      } catch (error) {
+        // Never let persistence problems touch the visitor experience.
+      }
       onSuccess();
     }
-  }, [state.succeeded, onSuccess]);
+  }, [state.succeeded, onSuccess, lang, sessionId, payload]);
 
   const onSubmit = (event) => {
     // Duplicate-click guard: a submission already in flight (or already
@@ -56,6 +85,15 @@ export default function LeadCaptureCard({
     }
     if (submittedAtRef.current) {
       submittedAtRef.current.value = new Date().toISOString();
+    }
+    try {
+      const form = event.target;
+      contactRef.current = {
+        firstName: form.elements.firstName?.value || "",
+        email: form.elements.email?.value || "",
+      };
+    } catch (error) {
+      // Best-effort capture only.
     }
     handleSubmit(event);
   };

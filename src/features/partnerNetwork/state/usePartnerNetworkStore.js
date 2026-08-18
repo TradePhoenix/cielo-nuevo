@@ -7,14 +7,12 @@ import {
 } from "../logic/model";
 import { AGREEMENT_VERSION } from "../data/agreementTemplate";
 
-// Partner Network Phase 1 store — the same versioned-localStorage idiom as
-// every other feature (see useBlueprintState.js / useDocumentVaultState.js).
-// IMPORTANT SCOPE NOTE: with no backend in this project, these records live
-// only in the browser where they were entered. That makes the admin surface a
-// private working ledger on Kalen's own machine — nothing here is transmitted
-// anywhere. When a real backend is scoped (Phase 2 decision), this hook is
-// the only file that needs to change: the entity shapes in logic/model.js are
-// already the API contract.
+// Partner Network Phase 1 store — LEGACY as of DATA-001. The admin surface
+// now persists to the PTM database via usePartnerNetworkApiStore.js (the
+// backend swap this file's original scope note promised). This hook is kept
+// only so the Migration panel can READ any Phase 1 records still saved in
+// this browser (STORAGE_KEY below) and import them; nothing writes here
+// anymore, and localStorage is no longer a source of truth.
 export const STORAGE_KEY = "pathToMexico.partnerNetwork.v1";
 const STORAGE_VERSION = 1;
 

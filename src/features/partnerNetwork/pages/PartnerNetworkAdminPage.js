@@ -1,31 +1,58 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../../components/SEO";
-import { usePartnerNetworkStore, STORAGE_KEY } from "../state/usePartnerNetworkStore";
+import { usePartnerNetworkApiStore } from "../state/usePartnerNetworkApiStore";
+import AdminLoginGate from "../components/admin/AdminLoginGate";
+import ApplicationsPanel from "../components/admin/ApplicationsPanel";
 import PartnersPanel from "../components/admin/PartnersPanel";
 import ReferralsPanel from "../components/admin/ReferralsPanel";
 import EquityPanel from "../components/admin/EquityPanel";
+import MigrationPanel from "../components/admin/MigrationPanel";
 import { AdminButton } from "../components/admin/fields";
 
-// Internal Partner Network admin — the same access model as the existing
-// /dashboard and /developer-dashboard internal surfaces: an unlinked,
-// robots-disallowed route with NO auth (none exists in this project, by
-// standing architecture decision). Privately entered records live only in
-// this browser's localStorage — they are never transmitted anywhere and are
-// not present in the site bundle, so visitors who find this URL see an empty
-// ledger, not PTM's data. Export/Import below is the backup story: browser
-// storage can be lost to a cache clear, so the working ledger should be
-// exported to a file regularly.
-const TABS = ["Partners", "Referrals", "Equity & Strategic"];
+// Partner Network admin — now a real authenticated surface (DATA-001).
+// Access is enforced server-side: every /api/admin/* call validates the
+// httpOnly session cookie, so this page renders private records only after
+// sign-in. Records live in the PTM database (Supabase Postgres); the old
+// browser-localStorage ledger is importable once via the Migration panel and
+// is never modified by this page.
+const TABS = ["Applications", "Partners", "Referrals", "Equity & Strategic"];
+
+function SaveIndicator({ saveState, onRetry }) {
+  if (saveState === "idle") return null;
+  if (saveState === "error") {
+    return (
+      <span className="flex items-center gap-2 text-xs text-[#b3543f]">
+        Save failed
+        <AdminButton tone="quiet" onClick={onRetry}>
+          Retry
+        </AdminButton>
+      </span>
+    );
+  }
+  return (
+    <span className="text-xs text-zinc-400" role="status">
+      {saveState === "saving" ? "Saving…" : "Saved"}
+    </span>
+  );
+}
 
 export default function PartnerNetworkAdminPage() {
-  const store = usePartnerNetworkStore();
-  const [tab, setTab] = useState(0);
-  const fileInputRef = useRef(null);
+  const store = usePartnerNetworkApiStore();
+  const [tab, setTab] = useState(1); // default to Partners; Applications keeps its queue badge visible
+  const [showMigration, setShowMigration] = useState(false);
 
   const exportRecords = () => {
-    const raw = window.localStorage.getItem(STORAGE_KEY) || "{}";
-    const blob = new Blob([raw], { type: "application/json" });
+    const snapshot = {
+      exportedAt: new Date().toISOString(),
+      source: "ptm-database",
+      partners: store.partners,
+      referrals: store.referrals,
+      agreements: store.agreements,
+      equityPartners: store.equityPartners,
+      applications: store.applications,
+    };
+    const blob = new Blob([JSON.stringify(snapshot, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -34,28 +61,16 @@ export default function PartnerNetworkAdminPage() {
     URL.revokeObjectURL(url);
   };
 
-  const importRecords = (event) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      try {
-        const parsed = JSON.parse(String(reader.result));
-        if (!parsed || typeof parsed !== "object" || !Array.isArray(parsed.partners)) {
-          window.alert("That file doesn't look like a Partner Network export.");
-          return;
-        }
-        if (window.confirm("Replace the records in this browser with the imported file?")) {
-          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
-          window.location.reload();
-        }
-      } catch (error) {
-        window.alert("Couldn't read that file as JSON.");
-      }
-    };
-    reader.readAsText(file);
-    event.target.value = "";
-  };
+  const newApplications = store.applications.filter((a) => a.status === "New").length;
+
+  if (store.connection !== "ready") {
+    return (
+      <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
+        <SEO title="Partner Network Admin" path="/partner-network/admin" />
+        <AdminLoginGate connection={store.connection} onLogin={store.login} onRetry={store.refresh} />
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
@@ -72,14 +87,17 @@ export default function PartnerNetworkAdminPage() {
             </Link>
             <span className="text-xs uppercase tracking-[0.16em] text-zinc-400">Partner Network · Internal</span>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <SaveIndicator saveState={store.saveState} onRetry={store.retrySave} />
             <AdminButton tone="quiet" onClick={exportRecords}>
               Export Records
             </AdminButton>
-            <AdminButton tone="quiet" onClick={() => fileInputRef.current?.click()}>
-              Import
+            <AdminButton tone="quiet" onClick={() => setShowMigration((v) => !v)}>
+              Migrate Phase 1 Data
             </AdminButton>
-            <input ref={fileInputRef} type="file" accept="application/json" className="hidden" onChange={importRecords} />
+            <AdminButton tone="quiet" onClick={store.logout}>
+              Sign Out{store.adminEmail ? ` (${store.adminEmail})` : ""}
+            </AdminButton>
           </div>
         </div>
       </div>
@@ -89,8 +107,14 @@ export default function PartnerNetworkAdminPage() {
           <h1 className="text-3xl font-light tracking-[-0.03em] sm:text-4xl">Partner Network</h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-600">
             Onboarding, agreements, referral tracking, and compliance for PTM's professional partners. Records are
-            stored privately in this browser — export regularly to keep a backup.
+            stored securely in the PTM database and require an admin sign-in.
           </p>
+
+          {showMigration && (
+            <div className="mt-6">
+              <MigrationPanel store={store} onClose={() => setShowMigration(false)} />
+            </div>
+          )}
 
           <div className="mt-8 flex flex-wrap gap-2 border-b border-zinc-200 pb-px" role="tablist" aria-label="Partner Network sections">
             {TABS.map((label, i) => (
@@ -106,17 +130,19 @@ export default function PartnerNetworkAdminPage() {
                 }`}
               >
                 {label}
-                {i === 0 && store.partners.length > 0 ? ` (${store.partners.length})` : ""}
-                {i === 1 && store.referrals.length > 0 ? ` (${store.referrals.length})` : ""}
+                {i === 0 && newApplications > 0 ? ` (${newApplications} new)` : ""}
+                {i === 1 && store.partners.length > 0 ? ` (${store.partners.length})` : ""}
+                {i === 2 && store.referrals.length > 0 ? ` (${store.referrals.length})` : ""}
               </button>
             ))}
           </div>
         </div>
 
         <div className="mt-8">
-          {tab === 0 && <PartnersPanel store={store} />}
-          {tab === 1 && <ReferralsPanel store={store} />}
-          {tab === 2 && <EquityPanel store={store} />}
+          {tab === 0 && <ApplicationsPanel store={store} />}
+          {tab === 1 && <PartnersPanel store={store} />}
+          {tab === 2 && <ReferralsPanel store={store} />}
+          {tab === 3 && <EquityPanel store={store} />}
         </div>
       </div>
     </main>
