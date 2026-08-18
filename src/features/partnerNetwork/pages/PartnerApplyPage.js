@@ -8,11 +8,13 @@ import { trackEvent, ANALYTICS_EVENTS } from "../../../utils/analytics";
 import { PARTNER_CATEGORIES } from "../data/constants";
 
 // Partner application — four quiet steps instead of one massive form, per the
-// progressive-disclosure requirement. Submits through the same verified
-// Formspree form ("xdabqdyq") every live PTM form uses, tagged with
-// source: "partner-application" (the documented convention — see
-// HandoffForm.js). Draft answers persist to localStorage so a professional
-// interrupted mid-application never loses their work.
+// progressive-disclosure requirement. As of DATA-001 the authoritative record
+// is the PTM database (POST /api/public/partner-application → the admin
+// review queue); the shared Formspree form ("xdabqdyq") is kept as the email
+// NOTIFICATION channel on success, and as the delivery fallback if the
+// backend isn't configured (local dev / pre-setup production). Draft answers
+// persist to localStorage so a professional interrupted mid-application
+// never loses their work.
 const DRAFT_KEY = "pathToMexico.partnerApplication.v1";
 const DRAFT_VERSION = 1;
 
@@ -241,12 +243,20 @@ export default function PartnerApplyPage() {
   const [showErrors, setShowErrors] = useState(false);
   const [consent, setConsent] = useState(false);
   const [formState, handleSubmit] = useForm("xdabqdyq");
+  // API-first submission state: "idle" | "submitting" | "succeeded".
+  const [apiPhase, setApiPhase] = useState("idle");
+  const [submitError, setSubmitError] = useState("");
   const headingRef = useRef(null);
+
+  // Succeeded via either channel: database (authoritative) or the Formspree
+  // fallback when the backend isn't configured.
+  const succeeded = apiPhase === "succeeded" || formState.succeeded;
+  const submitting = apiPhase === "submitting" || formState.submitting;
 
   // Persist the draft on every change; clear it once the submission succeeds.
   useEffect(() => {
     try {
-      if (formState.succeeded) {
+      if (succeeded) {
         window.localStorage.removeItem(DRAFT_KEY);
       } else {
         window.localStorage.setItem(DRAFT_KEY, JSON.stringify({ version: DRAFT_VERSION, fields }));
@@ -254,17 +264,83 @@ export default function PartnerApplyPage() {
     } catch (error) {
       // Draft persistence is a convenience only.
     }
-  }, [fields, formState.succeeded]);
+  }, [fields, succeeded]);
 
+  const trackedRef = useRef(false);
   useEffect(() => {
-    if (formState.succeeded) {
+    if (succeeded && !trackedRef.current) {
+      trackedRef.current = true;
       trackEvent(ANALYTICS_EVENTS.PARTNER_APPLICATION_SUBMITTED, {
         category: fields.category || null,
         language: lang,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formState.succeeded]);
+  }, [succeeded]);
+
+  const notifyByEmail = (extra = {}) => {
+    // Formspree as notification channel — a plain values object, not a DOM
+    // event, so it can be fired independently of the API result.
+    try {
+      handleSubmit({
+        ...fields,
+        source: "partner-application",
+        _subject: `PTM Partner Application — ${fields.legalName || fields.contactPerson}`,
+        language: lang,
+        consent: "yes",
+        ...extra,
+      });
+    } catch (error) {
+      // Notification only — the database already holds the record.
+    }
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    if (submitting || succeeded) return;
+    const gotcha = event.target.elements._gotcha?.value || "";
+    setSubmitError("");
+    setApiPhase("submitting");
+    let response;
+    try {
+      response = await fetch("/api/public/partner-application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...fields, language: lang, consent: true, _gotcha: gotcha }),
+      });
+    } catch (error) {
+      response = null;
+    }
+
+    if (response && response.ok) {
+      setApiPhase("succeeded");
+      notifyByEmail({ persisted: "database" });
+      return;
+    }
+
+    let errorBody = null;
+    try {
+      errorBody = response ? await response.json() : null;
+    } catch (error) {
+      errorBody = null;
+    }
+
+    if (!response || errorBody?.error === "backend_not_configured") {
+      // Backend unreachable or not configured — fall back to the original
+      // email-only delivery path so no application is ever lost.
+      setApiPhase("idle");
+      notifyByEmail({ persisted: "email-fallback" });
+      return;
+    }
+
+    setApiPhase("idle");
+    setSubmitError(
+      errorBody?.message ||
+        (lang === "es"
+          ? "No se pudo enviar la solicitud — inténtalo de nuevo en un momento."
+          : "The application couldn't be sent — please try again in a moment.")
+    );
+  };
 
   // Same route-entry focus pattern as the Blueprint results / Dashboard.
   useEffect(() => {
@@ -311,7 +387,7 @@ export default function PartnerApplyPage() {
     backLabel: lang === "es" ? "Volver a Asóciate Con PTM" : "Back To Partner With PTM",
   };
 
-  if (formState.succeeded) {
+  if (succeeded) {
     return (
       <YourMexicoShell {...shellProps}>
         <SEO title={t.seoTitle} description={t.seoDescription} path="/partner-with-ptm/apply" />
@@ -518,20 +594,21 @@ export default function PartnerApplyPage() {
           )}
 
           {step === 3 && (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmit}>
               <p className="text-sm leading-relaxed text-zinc-600">
                 {t.review.intro} <span className="text-zinc-400">{t.review.editHint}</span>
               </p>
 
-              {/* The full application travels as named fields so it reads
-                  cleanly in the Formspree email. */}
-              <input type="hidden" name="source" value="partner-application" />
-              <input type="hidden" name="_subject" value={`PTM Partner Application — ${fields.legalName || fields.contactPerson}`} />
-              <input type="hidden" name="language" value={lang} />
-              {Object.entries(fields).map(([name, value]) => (
-                <input key={name} type="hidden" name={name} value={value} />
-              ))}
-              <input type="hidden" name="email" value={fields.email} />
+              {/* Honeypot: hidden from real users; the API silently discards
+                  submissions that fill it (Formspree does the same). */}
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
 
               <dl className="mt-6 divide-y divide-zinc-100 border-y border-zinc-200">
                 {reviewRows.map(([label, value]) => (
@@ -556,6 +633,12 @@ export default function PartnerApplyPage() {
                 {t.review.consent}
               </label>
 
+              {submitError && (
+                <p role="alert" className="mt-4 text-sm font-medium text-[#b3543f]">
+                  {submitError}
+                </p>
+              )}
+
               <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
                 <button
                   type="button"
@@ -566,10 +649,10 @@ export default function PartnerApplyPage() {
                 </button>
                 <button
                   type="submit"
-                  disabled={formState.submitting || !consent}
+                  disabled={submitting || !consent}
                   className="group inline-flex items-center gap-2 bg-zinc-950 px-7 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#d8a15f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  {formState.submitting ? t.review.submitting : t.review.submit}
+                  {submitting ? t.review.submitting : t.review.submit}
                   <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
                     →
                   </span>
