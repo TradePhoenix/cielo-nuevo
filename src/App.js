@@ -60,6 +60,12 @@ const RegionPage = lazy(() => import("./features/yourMexico/pages/RegionPage"));
 const YucatanPeninsulaGuidePage = lazy(() => import("./pages/YucatanPeninsulaGuidePage"));
 const MyMexicoPlanSetupPage = lazy(() => import("./features/myMexicoPlan/pages/MyMexicoPlanSetupPage"));
 const MyMexicoPlanPage = lazy(() => import("./features/myMexicoPlan/pages/MyMexicoPlanPage"));
+// WEDDINGS-001 — Maya Weddings & Sacred Unions vertical. /weddings is the
+// landing page; /weddings/inquire is the dedicated inquiry flow. Future
+// wedding sub-experiences (vow renewals, honeymoons, proposals, …) should
+// be added as further /weddings/* routes here, not a separate system.
+const WeddingsPage = lazy(() => import("./pages/WeddingsPage"));
+const WeddingInquiryPage = lazy(() => import("./pages/WeddingInquiryPage"));
 const DashboardPage = lazy(() => import("./features/dashboard/pages/DashboardPage"));
 const DocumentVaultPage = lazy(() => import("./features/documentVault/pages/DocumentVaultPage"));
 const PartnerWithPTMPage = lazy(() => import("./features/partnerNetwork/pages/PartnerWithPTMPage"));
@@ -142,6 +148,8 @@ function AnimatedRoutes() {
           <Route path="/your-mexico/region/:regionId" element={<RegionPage />} />
           <Route path="/your-mexico/:cityId" element={<CityDetailPage />} />
           <Route path="/guides/living-in-the-yucatan-peninsula" element={<YucatanPeninsulaGuidePage />} />
+          <Route path="/weddings" element={<WeddingsPage />} />
+          <Route path="/weddings/inquire" element={<WeddingInquiryPage />} />
           <Route path="/my-mexico-plan" element={<MyMexicoPlanSetupPage />} />
           <Route path="/my-mexico-plan/:cityId" element={<MyMexicoPlanPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />

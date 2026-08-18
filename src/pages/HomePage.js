@@ -21,7 +21,7 @@ const heroStagger = {
 
 const content = {
   en: {
-    nav: ["Blueprint", "Destinations", "Services", "Guides", "Impact", "About", "Contact"],
+    nav: ["Blueprint", "Destinations", "Weddings", "Services", "Guides", "Impact", "About", "Contact"],
     seoTitle: "Path To Mexico | A Different Rhythm Of Life",
     seoDescription: "Relocation guidance, trusted local connections, and lifestyle support for people considering a new life in Mexico.",
     skipToContent: "Skip to content",
@@ -47,6 +47,12 @@ const content = {
     impactCardLabel: "Impact",
     impactCardHighlights: ["Respect Mexican culture", "Support local businesses", "Protect the natural environment"],
     impactCardFooter: "Belong. Don't just arrive.",
+
+    weddingsEyebrow: "Weddings In Mexico",
+    weddingsTitle: "A ceremony that belongs to the place.",
+    weddingsText: "Maya-inspired weddings, sacred unions, elopements, and multi-day celebrations across the Yucatán — created with local practitioners and Path To Mexico coordination.",
+    weddingsCta: "Discover Maya Weddings",
+    weddingsImageAlt: "The Caribbean coastline of the Riviera Maya at golden hour",
     founderPhotoAlt: "Kalen Enns, founder of Path To Mexico",
     whatsappCta: "Prefer WhatsApp? Message Directly",
     disclaimerLabel: "Important Note",
@@ -234,7 +240,7 @@ const content = {
   },
 
   es: {
-    nav: ["Blueprint", "Destinos", "Servicios", "Guías", "Impacto", "Nosotros", "Contacto"],
+    nav: ["Blueprint", "Destinos", "Bodas", "Servicios", "Guías", "Impacto", "Nosotros", "Contacto"],
     seoTitle: "Path To Mexico | Un Ritmo De Vida Diferente",
     seoDescription: "Guía de reubicación, conexiones locales de confianza y apoyo de estilo de vida para quienes consideran una nueva vida en México.",
     skipToContent: "Saltar al contenido",
@@ -260,6 +266,12 @@ const content = {
     impactCardLabel: "Impacto",
     impactCardHighlights: ["Respetar la cultura mexicana", "Apoyar negocios locales", "Proteger el entorno natural"],
     impactCardFooter: "Pertenece. No solo llegues.",
+
+    weddingsEyebrow: "Bodas En México",
+    weddingsTitle: "Una ceremonia que pertenece al lugar.",
+    weddingsText: "Bodas de inspiración maya, uniones sagradas, fugas románticas y celebraciones de varios días en Yucatán — creadas con practicantes locales y la coordinación de Path To Mexico.",
+    weddingsCta: "Descubre Bodas Mayas",
+    weddingsImageAlt: "La costa caribeña de la Riviera Maya en la hora dorada",
     founderPhotoAlt: "Kalen Enns, fundador de Path To Mexico",
     whatsappCta: "¿Prefieres WhatsApp? Escríbenos Directamente",
     disclaimerLabel: "Nota Importante",
@@ -571,7 +583,9 @@ function HomePage() {
 
   const heroPointerActive = hasFinePointer && !prefersReducedMotion;
 
-  const navLinks = ["/my-mexico-blueprint", "/your-mexico", "#services", "/guides", "/impact", "#about", "#contact"];
+  // Index-coupled with content.en.nav / content.es.nav — any change here
+  // must land at the same position in both label arrays above.
+  const navLinks = ["/my-mexico-blueprint", "/your-mexico", "/weddings", "#services", "/guides", "/impact", "#about", "#contact"];
 
   const heroRef = useRef(null);
   const contactRef = useRef(null);
@@ -683,7 +697,7 @@ function HomePage() {
             />
           </a>
 
-          <div className="hidden items-center gap-6 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#14211C]/65 xl:flex">
+          <div className="hidden items-center gap-5 text-[10px] font-semibold uppercase tracking-[0.16em] text-[#14211C]/65 xl:flex">
             {t.nav.map((item, index) => (
               <a
                 key={index}
@@ -993,6 +1007,35 @@ function HomePage() {
               </p>
               <span className="text-xl text-[#103D33]" aria-hidden="true">→</span>
             </div>
+          </div>
+        </CinematicReveal>
+      </section>
+
+      {/* WEDDINGS-001 — compact entry band for the Weddings vertical. Kept
+          deliberately smaller than the Blueprint/Impact pillar bands above:
+          one eyebrow, one serif line, one paragraph, one CTA. */}
+      <section id="weddings" className="bg-[#14211C] px-6 py-16 text-white md:px-16 md:py-24">
+        <CinematicReveal className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div>
+            <p className="mb-5 text-[11px] font-bold uppercase tracking-[0.2em] text-[#d8a15f]">{t.weddingsEyebrow}</p>
+            <h2 className="ptm-editorial max-w-2xl text-4xl leading-[1.02] text-white md:text-6xl">
+              {t.weddingsTitle}
+            </h2>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/60">{t.weddingsText}</p>
+            <a
+              href="/weddings"
+              className="ptm-action mt-8 inline-block rounded-[4px] bg-white px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-[#14211C] transition duration-300 hover:-translate-y-0.5 hover:bg-[#d8a15f]"
+            >
+              {t.weddingsCta}
+            </a>
+          </div>
+          <div className="relative overflow-hidden rounded-[4px]">
+            <img
+              src="/regions/riviera-maya/riviera-maya-hero-mobile.webp"
+              alt={t.weddingsImageAlt}
+              loading="lazy"
+              className="aspect-[16/9] w-full object-cover lg:aspect-[4/3]"
+            />
           </div>
         </CinematicReveal>
       </section>
