@@ -16,8 +16,9 @@ export const AUDIT_DATE = "August 16, 2026";
 
 // Updated as launch fixes ship: #1 lead-capture hardening closed 4 P1s,
 // #2 booking verification closed 1 P1 and shrank the booking P0 to one
-// account-side task, #3 minimal CRM closed the CRM P0.
-export const FINDING_COUNTS = { p0: 4, p1: 9, p2: 11, p3: 8 };
+// account-side task, #3 minimal CRM closed the CRM P0, #4 revenue-funnel
+// activation closed the unsellable-tiers P0 (payment proof still open).
+export const FINDING_COUNTS = { p0: 3, p1: 9, p2: 11, p3: 8 };
 
 // weight: contribution to overall readiness (sums to 100).
 // score: current 0–100. required: October 1 threshold.
@@ -54,12 +55,16 @@ export const GATES = [
     id: "revenue-funnel",
     name: "Revenue Funnel",
     weight: 15,
-    score: 35,
+    // Fix #4 shipped: dedicated /relocation-roadmap ($499 visible) and
+    // /guided-landing (custom quote) pages, ladder aligned site-wide,
+    // qualification-first CTAs. Remaining P0 is account-side payment
+    // proof; Roadmap direct purchase awaits a provider decision.
+    score: 60,
     required: 85,
     status: "BLOCKED",
-    blockers: 2,
+    blockers: 1,
     nextAction:
-      "Confirm the $99 Fit Call actually collects payment, then give the $499 Roadmap and Guided Landing a real destination and intake.",
+      "Prove the $99 Fit Call checkout end-to-end in Calendly, then decide the $499 Roadmap payment mechanism (Calendly event vs. provider).",
   },
   {
     id: "crm",
