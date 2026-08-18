@@ -2,6 +2,7 @@ import React from "react";
 import SEO from "../components/SEO";
 import LaunchCommandCenter from "../features/launch/LaunchCommandCenter";
 import CrmSection from "../features/crm/CrmSection";
+import OperationsSection from "../features/operations/OperationsSection";
 
 export default function DeveloperDashboardPage() {
   const sections = [
@@ -84,6 +85,8 @@ export default function DeveloperDashboardPage() {
         <LaunchCommandCenter />
 
         <CrmSection />
+
+        <OperationsSection />
 
         <div className="mt-20 grid gap-10">
 
