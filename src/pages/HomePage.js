@@ -94,19 +94,19 @@ const content = {
       ],
       [
         "Relocation Roadmap",
-        "Starting at $499 USD",
-        "A personalized relocation strategy built around your goals, timeline, budget, lifestyle preferences, and long-term vision for life in Mexico.",
+        "$499 USD",
+        "A personalized relocation plan built around your goals, timeline, budget, lifestyle preferences, and long-term vision for life in Mexico.",
         "Ideal for individuals, couples, families, retirees, entrepreneurs, and remote workers who want a clear roadmap before making major decisions.",
-        "Discuss The Roadmap",
-        "/mexico-fit-call"
+        "Explore The Roadmap",
+        "/relocation-roadmap"
       ],
       [
         "Guided Landing",
         "Custom Quote",
         "Private concierge-style relocation support for people who want hands-on guidance, trusted introductions, and ongoing assistance throughout the process.",
         "Best for families, professionals, investors, business owners, and anyone seeking a highly personalized relocation experience.",
-        "Discuss Guided Landing",
-        "/mexico-fit-call"
+        "Explore Guided Landing",
+        "/guided-landing"
       ]
     ],
     bestFor: "Best For",
@@ -307,19 +307,19 @@ const content = {
       ],
       [
         "Roadmap De Reubicación",
-        "Desde $499 USD",
-        "Una estrategia personalizada construida alrededor de tus metas, tiempos, presupuesto, preferencias de vida y visión a largo plazo en México.",
+        "$499 USD",
+        "Un plan personalizado construido alrededor de tus metas, tiempos, presupuesto, preferencias de vida y visión a largo plazo en México.",
         "Ideal para individuos, parejas, familias, jubilados, emprendedores y trabajadores remotos que quieren un plan claro.",
-        "Hablar Sobre El Roadmap",
-        "/mexico-fit-call"
+        "Explorar El Roadmap",
+        "/relocation-roadmap"
       ],
       [
         "Llegada Guiada",
         "Cotización Personalizada",
         "Apoyo privado estilo concierge para quienes quieren guía práctica, conexiones confiables y acompañamiento durante el proceso.",
         "Ideal para familias, profesionales, inversionistas, dueños de negocios y personas que buscan una experiencia personalizada.",
-        "Hablar Sobre Llegada Guiada",
-        "/mexico-fit-call"
+        "Explorar Llegada Guiada",
+        "/guided-landing"
       ]
     ],
     bestFor: "Ideal Para",

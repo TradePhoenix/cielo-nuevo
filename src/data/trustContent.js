@@ -85,3 +85,13 @@ export const CLIENT_TESTIMONIAL = {
 };
 
 export const FIT_CALL_PRICE = "$99 USD";
+
+// Launch fix #4 — canonical service pricing. Every surface that shows a
+// tier price imports from here; no page re-declares these literals.
+// Guided Landing is deliberately NOT a number: it is quoted per client
+// after a Fit Call, and publishing a fixed price would be invented.
+export const ROADMAP_PRICE = "$499 USD";
+export const GUIDED_LANDING_PRICING = {
+  en: "Custom Quote",
+  es: "Cotización Personalizada",
+};

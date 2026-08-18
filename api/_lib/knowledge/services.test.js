@@ -27,3 +27,40 @@ describe("Fit Call booking knowledge matches the live Calendly flow", () => {
     }
   });
 });
+
+describe("service-tier pricing knowledge (launch fix #4)", () => {
+  const records = buildServiceRecords();
+  const byId = (id) => records.find((r) => r.id === id);
+
+  test("Fit Call is $99 and the Roadmap is exactly $499 in both languages", () => {
+    const fitCall = byId("service-tier-fit-call");
+    expect(fitCall.title.en).toContain("$99");
+    const roadmap = byId("service-tier-roadmap");
+    for (const lang of ["en", "es"]) {
+      expect(roadmap.title[lang]).toContain("$499");
+      expect(roadmap.content[lang]).toContain("$499");
+      expect(roadmap.content[lang]).not.toMatch(/starting at|desde \$/i);
+    }
+  });
+
+  test("Guided Landing never carries a dollar amount and forbids inventing one", () => {
+    const guided = byId("service-tier-guided-landing-pricing");
+    for (const lang of ["en", "es"]) {
+      expect(guided.title[lang]).not.toMatch(/\$\s?\d/);
+      expect(guided.content[lang]).not.toMatch(/\$\s?\d/);
+    }
+    expect(guided.content.en).toMatch(/NO fixed price/);
+    expect(guided.content.es).toMatch(/NO hay precio fijo/);
+  });
+
+  test("tier records route to the dedicated offer pages", () => {
+    expect(byId("service-tier-roadmap").route).toBe("/relocation-roadmap");
+    expect(byId("service-tier-guided-landing-pricing").route).toBe("/guided-landing");
+  });
+
+  test("no service record invents a fixed Guided Landing price anywhere", () => {
+    const all = JSON.stringify(records);
+    expect(all).not.toMatch(/3,?500/);
+    expect(all).not.toMatch(/Guided Landing[^"]*\$\s?\d/);
+  });
+});

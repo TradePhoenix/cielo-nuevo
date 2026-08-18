@@ -51,7 +51,7 @@ export function sourceLabel(id) {
 export const CRM_SERVICES = [
   { id: "undecided", label: "Undecided", defaultValue: null },
   { id: "fit-call", label: "Mexico Fit Call ($99)", defaultValue: 99 },
-  { id: "roadmap", label: "Relocation Roadmap (from $499)", defaultValue: 499 },
+  { id: "roadmap", label: "Relocation Roadmap ($499)", defaultValue: 499 },
   { id: "guided-landing", label: "Guided Landing (custom quote)", defaultValue: null },
 ];
 
