@@ -17,8 +17,10 @@ export const AUDIT_DATE = "August 16, 2026";
 // Updated as launch fixes ship: #1 lead-capture hardening closed 4 P1s,
 // #2 booking verification closed 1 P1 and shrank the booking P0 to one
 // account-side task, #3 minimal CRM closed the CRM P0, #4 revenue-funnel
-// activation closed the unsellable-tiers P0 (payment proof still open).
-export const FINDING_COUNTS = { p0: 3, p1: 9, p2: 11, p3: 8 };
+// activation closed the unsellable-tiers P0 (payment proof still open),
+// #5 client-delivery SOPs closed the no-delivery-system P0 (8 business
+// policies remain Kalen decisions).
+export const FINDING_COUNTS = { p0: 2, p1: 9, p2: 11, p3: 8 };
 
 // weight: contribution to overall readiness (sums to 100).
 // score: current 0–100. required: October 1 threshold.
@@ -106,12 +108,17 @@ export const GATES = [
     id: "client-delivery",
     name: "Client Delivery",
     weight: 12,
-    score: 15,
+    // Fix #5 shipped: 8 operator SOPs (Fit Call, Roadmap, Guided Landing,
+    // communication, partner coordination, escalation, aftercare,
+    // testimonials) live on this dashboard with guardrail tests. Capped
+    // because 8 business policies remain open and no client has yet been
+    // run through the SOPs in practice.
+    score: 55,
     required: 80,
-    status: "BLOCKED",
-    blockers: 1,
+    status: "AT RISK",
+    blockers: 0,
     nextAction:
-      "Write the Fit Call script + follow-up template and define the $499 Roadmap deliverable — no delivery SOPs exist today.",
+      "Kalen decides the 8 open delivery policies (turnaround, revisions, refunds, response times) and runs one real client through each SOP.",
   },
   {
     id: "partner-readiness",
