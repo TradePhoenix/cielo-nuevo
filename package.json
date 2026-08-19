@@ -20,6 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "node scripts/prerender-meta.mjs",
     "test": "react-scripts test",
     "test:api": "jest --config jest.config.api.js",
     "dev:api": "node scripts/dev-api-server.mjs",
