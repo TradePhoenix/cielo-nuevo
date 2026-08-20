@@ -18,8 +18,8 @@ export function buildPlanningToolRecords() {
       lastReviewed: "2026-07-26",
       keywords: ["blueprint", "quiz", "questionnaire", "readiness", "city match"],
       content: {
-        en: "A free, roughly 6-question relocation questionnaire. It produces a 0–100 readiness score, ranked destination matches across the Yucatán Peninsula with honest trade-offs (not just highlights), and a 30/60/90-day roadmap. It runs entirely in the browser — answers are saved to the browser's local storage, not sent anywhere, and the questionnaire can be retaken at any time.",
-        es: "Un cuestionario de reubicación gratuito, de aproximadamente 6 preguntas. Genera un puntaje de preparación de 0 a 100, coincidencias de destino en la Península de Yucatán con pros y contras honestos, y una hoja de ruta de 30/60/90 días. Funciona completamente en el navegador — las respuestas se guardan localmente, no se envían a ningún servidor, y el cuestionario puede repetirse en cualquier momento.",
+        en: "A free relocation questionnaire: 12 core questions plus a few follow-ups that appear based on your answers (about 3 minutes). It produces a 0–100 readiness score, ranked destination matches across the Yucatán Peninsula with honest trade-offs (not just highlights), and a 30/60/90-day roadmap. Answers stay in the browser's local storage while you work; nothing is sent to Path To Mexico unless you choose to save your Blueprint at the end. The questionnaire can be retaken at any time.",
+        es: "Un cuestionario de reubicación gratuito: 12 preguntas principales más algunas preguntas de seguimiento que aparecen según tus respuestas (unos 3 minutos). Genera un puntaje de preparación de 0 a 100, coincidencias de destino en la Península de Yucatán con pros y contras honestos, y una hoja de ruta de 30/60/90 días. Las respuestas se guardan localmente en el navegador mientras avanzas; nada se envía a Path To Mexico a menos que decidas guardar tu Blueprint al final. El cuestionario puede repetirse en cualquier momento.",
       },
     },
     {

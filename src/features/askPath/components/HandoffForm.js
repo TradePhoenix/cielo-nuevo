@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "@formspree/react";
 import { buildHandoffSummary } from "../logic/buildHandoffSummary";
+import { trackEvent, ANALYTICS_EVENTS } from "../../../utils/analytics";
 
 // Reuses the exact same Formspree form ("xdabqdyq") already live in
 // production on HomePage.js and FreeGuidePage.js — the one verified,
@@ -10,6 +11,16 @@ import { buildHandoffSummary } from "../logic/buildHandoffSummary";
 export default function HandoffForm({ t, messages, language }) {
   const [state, handleSubmit] = useForm("xdabqdyq");
   const [consent, setConsent] = useState(false);
+  const trackedRef = useRef(false);
+
+  // LAUNCH-W1: the request was tracked upstream; this records the completed
+  // submission (no contents, just the language).
+  useEffect(() => {
+    if (state.succeeded && !trackedRef.current) {
+      trackedRef.current = true;
+      trackEvent(ANALYTICS_EVENTS.ASK_PATH_HANDOFF_SUBMITTED, { language });
+    }
+  }, [state.succeeded, language]);
 
   if (state.succeeded) {
     return (

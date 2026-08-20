@@ -1,29 +1,57 @@
-// CONV-001 — Conversion measurement. No analytics provider exists anywhere
-// in this codebase today (confirmed: no gtag/dataLayer/analytics SDK
-// import, no new package installed here). This is deliberately just a
-// clean internal event interface: every commercial-intent UI call site
-// (FitCallBar, ResultsCTA, the Mexico Fit Call and Work With Us pages)
-// calls trackEvent() the same way a real provider call would be made, so
-// wiring up an actual analytics tool later is a one-line change inside
-// this file — never a change to any component that calls it.
+// Conversion measurement.
 //
-// In development, events log to the console so they're visible during
-// QA/manual testing. In production, this is currently a deliberate no-op
-// (see the flagged business decision in CONV-001's final report: which
-// analytics provider, if any, is out of this ticket's scope to decide).
+// Provider: Vercel Web Analytics, loaded production-only by
+// utils/vercelAnalytics.js (no npm dependency — the project already has Web
+// Analytics enabled, so the collector is served from /_vercel/insights/).
+// Every commercial-intent UI call site calls trackEvent() with a name from
+// ANALYTICS_EVENTS and a small structured payload; this file is the only
+// place that knows how events leave the browser.
+//
+// Privacy contract (enforced here, not trusted to call sites): payloads are
+// reduced to short primitive values, and any key that looks like personal
+// data — names, emails, phones, messages, free-text answers — is dropped
+// before dispatch. Analytics receives *that* a lead form was submitted,
+// never *what* was in it.
+//
+// In development, events log to the console so they're visible during QA.
+
+const SENSITIVE_KEY = /(^|_)(e-?mail|name|first|last|phone|whatsapp|tel|message|answer|note|address|rfc|tax|summary|text|comment|feeling|password)/i;
+const MAX_VALUE_LENGTH = 80;
+
+export function sanitizePayload(payload) {
+  if (!payload || typeof payload !== "object") return {};
+  const clean = {};
+  for (const [key, value] of Object.entries(payload)) {
+    if (SENSITIVE_KEY.test(key)) continue;
+    if (typeof value === "string") {
+      if (value.includes("@")) continue; // never let an email through under any key
+      clean[key] = value.length > MAX_VALUE_LENGTH ? value.slice(0, MAX_VALUE_LENGTH) : value;
+    } else if (typeof value === "number" || typeof value === "boolean") {
+      clean[key] = value;
+    }
+    // objects / arrays / null / undefined are dropped: custom-event data must be flat
+  }
+  return clean;
+}
+
 export function trackEvent(name, payload = {}) {
+  const data = sanitizePayload(payload);
   if (process.env.NODE_ENV !== "production") {
     // eslint-disable-next-line no-console
-    console.debug("[analytics]", name, payload);
+    console.debug("[analytics]", name, data);
   }
-  // Future real provider call goes here, e.g.:
-  //   window.dataLayer?.push({ event: name, ...payload });
-  // Intentionally absent until a provider is chosen.
+  if (typeof window !== "undefined" && typeof window.va === "function") {
+    try {
+      window.va("event", { name, data });
+    } catch (error) {
+      // Analytics must never break a conversion path.
+    }
+  }
 }
 
 // Named, stable event constants — every call site should use one of these
-// rather than a free-text string, so a future analytics dashboard can rely
-// on a fixed, known event vocabulary instead of grepping for typos.
+// rather than a free-text string, so the analytics dashboard can rely on a
+// fixed, known event vocabulary instead of grepping for typos.
 export const ANALYTICS_EVENTS = {
   PRICING_VIEWED: "pricing_viewed",
   FIT_CALL_CTA_CLICKED: "fit_call_cta_clicked",
@@ -56,4 +84,12 @@ export const ANALYTICS_EVENTS = {
   WEDDINGS_CTA_CLICKED: "weddings_cta_clicked",
   WEDDINGS_INQUIRY_VIEWED: "weddings_inquiry_viewed",
   WEDDINGS_INQUIRY_SUBMITTED: "weddings_inquiry_submitted",
+
+  // LAUNCH-W1 — the funnel events that were dark until now. Payloads carry
+  // the form name / language / step counts only.
+  BLUEPRINT_STARTED: "blueprint_started",
+  BLUEPRINT_COMPLETED: "blueprint_completed",
+  LEAD_FORM_SUBMITTED: "lead_form_submitted",
+  FREE_GUIDE_REQUESTED: "free_guide_requested",
+  ASK_PATH_HANDOFF_SUBMITTED: "ask_path_handoff_submitted",
 };

@@ -3,4 +3,4 @@ User-agent: *
 Disallow: /developer-dashboard
 Disallow: /partner-network/
 
-Sitemap: https://pathtomexico.com/sitemap.xml
+Sitemap: https://www.pathtomexico.com/sitemap.xml

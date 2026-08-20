@@ -46,8 +46,9 @@ describe("prerender-meta route registry", () => {
 });
 
 describe("canonical domain", () => {
-  it("keeps the established non-www production domain in client-side SEO", () => {
-    expect(seoComponentSource).toContain('const SITE_URL = "https://pathtomexico.com"');
+  it("uses the canonical www production host in client-side SEO", () => {
+    // The apex 308-redirects to www at the Vercel domain layer (LAUNCH-W1).
+    expect(seoComponentSource).toContain('const SITE_URL = "https://www.pathtomexico.com"');
     expect(seoComponentSource).not.toMatch(/localhost/);
   });
 });

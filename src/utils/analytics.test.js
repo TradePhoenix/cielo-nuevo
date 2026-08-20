@@ -1,4 +1,4 @@
-import { trackEvent, ANALYTICS_EVENTS } from "./analytics";
+import { trackEvent, sanitizePayload, ANALYTICS_EVENTS } from "./analytics";
 
 describe("trackEvent", () => {
   const originalEnv = process.env.NODE_ENV;
@@ -67,6 +67,59 @@ describe("ANALYTICS_EVENTS", () => {
       WEDDINGS_CTA_CLICKED: "weddings_cta_clicked",
       WEDDINGS_INQUIRY_VIEWED: "weddings_inquiry_viewed",
       WEDDINGS_INQUIRY_SUBMITTED: "weddings_inquiry_submitted",
+      // LAUNCH-W1 — additive funnel events, see src/utils/analytics.js
+      BLUEPRINT_STARTED: "blueprint_started",
+      BLUEPRINT_COMPLETED: "blueprint_completed",
+      LEAD_FORM_SUBMITTED: "lead_form_submitted",
+      FREE_GUIDE_REQUESTED: "free_guide_requested",
+      ASK_PATH_HANDOFF_SUBMITTED: "ask_path_handoff_submitted",
     });
+  });
+});
+
+describe("sanitizePayload (privacy contract)", () => {
+  it("drops personal-data keys and anything that looks like an email", () => {
+    expect(
+      sanitizePayload({
+        form: "homepage_lead",
+        language: "en",
+        name: "Somebody",
+        email: "x@example.com",
+        phoneWhatsapp: "+1",
+        message: "free text",
+        answers: { motivation: "x" },
+        contact: "x@example.com",
+        count: 3,
+        ok: true,
+      })
+    ).toEqual({ form: "homepage_lead", language: "en", count: 3, ok: true });
+  });
+
+  it("truncates long strings and tolerates non-object input", () => {
+    expect(sanitizePayload({ source: "a".repeat(200) }).source).toHaveLength(80);
+    expect(sanitizePayload(null)).toEqual({});
+    expect(sanitizePayload("nope")).toEqual({});
+  });
+});
+
+describe("provider dispatch", () => {
+  afterEach(() => {
+    delete window.va;
+  });
+
+  it("forwards sanitized events to window.va when the Vercel script is present", () => {
+    window.va = jest.fn();
+    trackEvent(ANALYTICS_EVENTS.LEAD_FORM_SUBMITTED, { form: "homepage_lead", email: "x@example.com" });
+    expect(window.va).toHaveBeenCalledWith("event", {
+      name: "lead_form_submitted",
+      data: { form: "homepage_lead" },
+    });
+  });
+
+  it("never throws if the provider throws", () => {
+    window.va = jest.fn(() => {
+      throw new Error("boom");
+    });
+    expect(() => trackEvent(ANALYTICS_EVENTS.BLUEPRINT_STARTED)).not.toThrow();
   });
 });

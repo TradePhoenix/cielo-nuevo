@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import { BLUEPRINT_UI } from "../data/uiCopy";
 import { buildLeadPayload } from "../logic/buildLeadPayload";
+import { trackEvent, ANALYTICS_EVENTS } from "../../../utils/analytics";
 
 const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2";
@@ -46,6 +47,7 @@ export default function LeadCaptureCard({
   useEffect(() => {
     if (state.succeeded && !revealedRef.current) {
       revealedRef.current = true;
+      trackEvent(ANALYTICS_EVENTS.LEAD_FORM_SUBMITTED, { form: "blueprint_lead" });
       // DATA-001: best-effort durable copy of this lead in the PTM database
       // (POST /api/public/blueprint-lead). Formspree remains the delivery
       // channel that gates the UX above; this call is fire-and-forget and can

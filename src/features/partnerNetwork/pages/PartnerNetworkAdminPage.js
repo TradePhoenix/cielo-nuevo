@@ -66,7 +66,7 @@ export default function PartnerNetworkAdminPage() {
   if (store.connection !== "ready") {
     return (
       <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
-        <SEO title="Partner Network Admin" path="/partner-network/admin" />
+        <SEO title="Partner Network Admin" path="/partner-network/admin" noindex />
         <AdminLoginGate connection={store.connection} onLogin={store.login} onRetry={store.refresh} />
       </main>
     );
@@ -74,7 +74,7 @@ export default function PartnerNetworkAdminPage() {
 
   return (
     <main className="min-h-screen bg-[#f6f1e8] text-zinc-950">
-      <SEO title="Partner Network Admin" path="/partner-network/admin" />
+      <SEO title="Partner Network Admin" path="/partner-network/admin" noindex />
 
       <div className="border-b border-zinc-200 bg-white print:hidden">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-4">

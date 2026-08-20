@@ -43,7 +43,7 @@ export default function WeddingsPage() {
         title={t.seoTitle}
         description={t.seoDescription}
         path="/weddings"
-        ogImage="https://pathtomexico.com/regions/tulum/tulum-hero-desktop.jpg"
+        ogImage="https://www.pathtomexico.com/regions/tulum/tulum-hero-desktop.jpg"
       />
 
       <WeddingHero

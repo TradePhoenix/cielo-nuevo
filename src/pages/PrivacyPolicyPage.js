@@ -10,8 +10,9 @@ import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../utils/lang
 // processor in the project; guidance emails are consent-based (the capture
 // step's required checkbox) with opt-out by contacting PTM (no automated
 // email system exists, so no unsubscribe-link mechanism is promised); and
-// "no analytics or tracking tools" remains true (utils/analytics.js is a
-// production no-op). No retention periods or legal-framework claims are
+// the analytics paragraph describes Vercel Web Analytics exactly as wired
+// in utils/analytics.js + utils/vercelAnalytics.js (LAUNCH-W1: cookieless,
+// aggregate, PII stripped before dispatch). No retention periods or legal-framework claims are
 // made because none are established anywhere in the project.
 //
 // PTM Spanish-parity pass (extended here): bilingual content object + local
@@ -24,7 +25,7 @@ const content = {
     toggle: "ES",
     backLink: "← Back To Path To Mexico",
     title: "Privacy Policy",
-    updated: "Last updated: August 16, 2026",
+    updated: "Last updated: August 20, 2026",
     paragraphs: [
       "Path To Mexico respects your privacy. Information submitted through this website may be used to respond to inquiries, provide relocation guidance, share requested resources, and improve our services.",
       "We may collect your name, email address, phone number, current location, relocation timeline, and details you choose to share through forms or direct communication.",
@@ -33,7 +34,7 @@ const content = {
       "Form submissions on this website — including saved Blueprints, contact requests, and guide downloads — are delivered and stored through Formspree, an independent form-processing service that handles them on our behalf under its own privacy policy. Saved Blueprints and partner applications are additionally stored in Path To Mexico's own secure database so we can review and respond to them.",
       "If you apply to join the PTM Partner Network, we collect the business and professional information you provide in the application — including your name and business name, contact details, business address, RFC or tax identification number where you provide it, and professional credential or license details. This information is stored securely in Path To Mexico's database, is used only to review your application and to manage a resulting partner relationship, is never published on this website, and can be corrected or deleted at your request by contacting Path To Mexico directly.",
       "We do not sell personal information. Information may be shared only when necessary with trusted independent professionals if you request introductions or support.",
-      "This website does not currently use analytics or tracking tools. If that changes in the future, this policy will be updated to reflect it.",
+      "This website uses Vercel Web Analytics, a privacy-focused, cookie-free service, to understand aggregate usage — for example, how many visitors view a page or complete a form. It does not receive your name, email address, phone number, or the contents of anything you submit, and it does not track you across other websites.",
       "By using this website, you agree to this privacy policy. For questions, contact Path To Mexico directly.",
     ],
   },
@@ -43,7 +44,7 @@ const content = {
     toggle: "EN",
     backLink: "← Volver A Path To Mexico",
     title: "Política De Privacidad",
-    updated: "Última actualización: 16 de agosto de 2026",
+    updated: "Última actualización: 20 de agosto de 2026",
     paragraphs: [
       "Path To Mexico respeta tu privacidad. La información enviada a través de este sitio web puede usarse para responder consultas, ofrecer orientación de reubicación, compartir recursos solicitados y mejorar nuestros servicios.",
       "Podemos recopilar tu nombre, correo electrónico, número de teléfono, ubicación actual, cronograma de reubicación y los detalles que decidas compartir a través de formularios o comunicación directa.",
@@ -52,7 +53,7 @@ const content = {
       "Los envíos de formularios en este sitio web — incluidos los Blueprints guardados, las solicitudes de contacto y las descargas de guías — se entregan y almacenan a través de Formspree, un servicio independiente de procesamiento de formularios que los gestiona en nuestro nombre bajo su propia política de privacidad. Los Blueprints guardados y las solicitudes de socios también se almacenan en la base de datos segura de Path To Mexico para poder revisarlos y responderlos.",
       "Si te postulas para unirte a la Red de Socios de PTM, recopilamos la información comercial y profesional que proporcionas en la solicitud — incluidos tu nombre y razón social, datos de contacto, dirección comercial, RFC o identificación fiscal cuando la proporcionas, y datos de credenciales o licencias profesionales. Esta información se almacena de forma segura en la base de datos de Path To Mexico, se usa únicamente para revisar tu solicitud y gestionar una relación de socio resultante, nunca se publica en este sitio web, y puede corregirse o eliminarse a tu solicitud contactando directamente a Path To Mexico.",
       "No vendemos información personal. La información puede compartirse únicamente cuando sea necesario con profesionales independientes de confianza si solicitas presentaciones o apoyo.",
-      "Este sitio web no utiliza actualmente herramientas de analítica ni de rastreo. Si eso cambia en el futuro, esta política se actualizará para reflejarlo.",
+      "Este sitio web utiliza Vercel Web Analytics, un servicio de analítica centrado en la privacidad y sin cookies, para entender el uso agregado — por ejemplo, cuántos visitantes ven una página o completan un formulario. No recibe tu nombre, correo electrónico, número de teléfono ni el contenido de lo que envías, y no te rastrea en otros sitios web.",
       "Al usar este sitio web, aceptas esta política de privacidad. Para preguntas, contacta directamente a Path To Mexico.",
     ],
   },

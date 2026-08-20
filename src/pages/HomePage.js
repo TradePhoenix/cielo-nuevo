@@ -5,6 +5,9 @@ import { CALENDLY_EVENTS } from "../config/booking";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
 import SEO from "../components/SEO";
+import ConsentNotice from "../components/ConsentNotice";
+import { stampConsentTimestamp } from "../utils/consent";
+import { trackEvent, ANALYTICS_EVENTS } from "../utils/analytics";
 import CinematicReveal from "../components/CinematicReveal";
 import FAQAccordion from "../components/FAQAccordion";
 import { useCinematicMotion, POINTER_DEPTH } from "../components/cinematicMotion";
@@ -34,9 +37,9 @@ const content = {
     startHereBadge: "Start Here",
     blueprintEyebrow: "My Mexico Blueprint",
     blueprintTitle: "See what your move to Mexico could actually look like.",
-    blueprintText: "Answer 6 quick questions and get your personalized city matches, readiness score, and 30/60/90-day roadmap.",
+    blueprintText: "Answer 12 quick questions — plus a few follow-ups tailored to your answers — and get your personalized city matches, readiness score, and 30/60/90-day roadmap.",
     blueprintCta: "Build My Mexico Blueprint",
-    blueprintFreeNote: "Free · Takes About 2 Minutes",
+    blueprintFreeNote: "Free · About 3 Minutes",
     blueprintHighlights: ["City matches built around you", "A clear readiness score", "Your first 90 days mapped"],
 
     impactEyebrow: "The Fifth Pillar",
@@ -253,9 +256,9 @@ const content = {
     startHereBadge: "Empieza Aquí",
     blueprintEyebrow: "My Mexico Blueprint",
     blueprintTitle: "Descubre cómo podría verse realmente tu mudanza a México.",
-    blueprintText: "Responde 6 preguntas rápidas y obtén tus coincidencias personalizadas de ciudad, tu puntaje de preparación y una hoja de ruta de 30/60/90 días.",
+    blueprintText: "Responde 12 preguntas rápidas — más algunas preguntas de seguimiento adaptadas a tus respuestas — y obtén tus coincidencias personalizadas de ciudad, tu puntaje de preparación y una hoja de ruta de 30/60/90 días.",
     blueprintCta: "Construir Mi Mexico Blueprint",
-    blueprintFreeNote: "Gratis · Toma Alrededor De 2 Minutos",
+    blueprintFreeNote: "Gratis · Alrededor De 3 Minutos",
     blueprintHighlights: ["Ciudades que encajan contigo", "Un puntaje claro de preparación", "Tus primeros 90 días trazados"],
 
     impactEyebrow: "El Quinto Pilar",
@@ -461,6 +464,15 @@ const content = {
 
 function LeadForm({ t, lang }) {
   const [state, handleSubmit] = useForm("xdabqdyq");
+  const trackedRef = useRef(false);
+
+  // LAUNCH-W1: fires once per successful delivery; carries no form contents.
+  useEffect(() => {
+    if (state.succeeded && !trackedRef.current) {
+      trackedRef.current = true;
+      trackEvent(ANALYTICS_EVENTS.LEAD_FORM_SUBMITTED, { form: "homepage_lead", language: lang });
+    }
+  }, [state.succeeded, lang]);
 
   if (state.succeeded) {
     return (
@@ -478,6 +490,7 @@ function LeadForm({ t, lang }) {
       event.preventDefault();
       return;
     }
+    stampConsentTimestamp(event.currentTarget);
     handleSubmit(event);
   };
 
@@ -513,6 +526,7 @@ function LeadForm({ t, lang }) {
       <button disabled={state.submitting} className="bg-zinc-950 px-8 py-5 text-sm font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:bg-zinc-800 disabled:opacity-60">
         {state.submitting ? t.formSubmitting : t.formSubmit}
       </button>
+      <ConsentNotice lang={lang} formName="homepage_lead" tone="dark" />
     </form>
   );
 }

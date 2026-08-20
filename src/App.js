@@ -1,9 +1,10 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import HomePage from "./pages/HomePage";
 import ScrollToTop from "./ScrollToTop";
 import RouteLoadingFallback from "./components/RouteLoadingFallback";
+import LegalFooter from "./components/LegalFooter";
 import { ROUTE_TRANSITION, routeTransitionDuration, useCinematicMotion, EASE } from "./components/cinematicMotion";
 
 // Every other route is code-split: the single main bundle previously shipped
@@ -167,6 +168,10 @@ function AnimatedRoutes() {
 
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+          {/* LAUNCH-W1: short legal aliases. vercel.json issues the 308 for
+              crawlers; these keep the aliases working in dev and client-side. */}
+          <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
+          <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
@@ -181,6 +186,7 @@ function App() {
       <Suspense fallback={<RouteLoadingFallback />}>
         <AnimatedRoutes />
       </Suspense>
+      <LegalFooter />
       <Suspense fallback={null}>
         <AskPathLauncher />
       </Suspense>

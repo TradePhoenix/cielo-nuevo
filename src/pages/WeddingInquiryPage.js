@@ -31,7 +31,7 @@ export default function WeddingInquiryPage() {
         title={t.inquirySeoTitle}
         description={t.inquirySeoDescription}
         path="/weddings/inquire"
-        ogImage="https://pathtomexico.com/regions/tulum/tulum-hero-desktop.jpg"
+        ogImage="https://www.pathtomexico.com/regions/tulum/tulum-hero-desktop.jpg"
       />
 
       <div className="flex items-center justify-between px-6 py-5 md:px-12">
