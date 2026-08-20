@@ -15,6 +15,7 @@ export default function NotFoundPage() {
         title="Page Not Found"
         description="This page doesn't exist — find your way back to Path To Mexico."
         path="/404"
+        noindex
       />
 
       <p className="text-xs uppercase tracking-[0.35em] text-zinc-500">Path To Mexico</p>

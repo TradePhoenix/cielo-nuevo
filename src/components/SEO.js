@@ -1,5 +1,8 @@
 const SITE_NAME = "Path To Mexico";
-const SITE_URL = "https://pathtomexico.com";
+// LAUNCH-W1: www is the canonical host — the apex 308-redirects to it at
+// the Vercel domain layer, so every canonical/og:url must say www or
+// crawlers see a canonical that immediately redirects.
+const SITE_URL = "https://www.pathtomexico.com";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/hero.jpg?v=4`;
 
 // Per-route document metadata. Relies on React 19 rendering <title>/<meta>/
@@ -14,6 +17,7 @@ export default function SEO({
   ogTitle,
   ogDescription,
   ogImage = DEFAULT_OG_IMAGE,
+  noindex = false,
 }) {
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
   const canonicalUrl = `${SITE_URL}${path}`;
@@ -24,7 +28,10 @@ export default function SEO({
     <>
       <title>{fullTitle}</title>
       {description && <meta name="description" content={description} />}
-      <link rel="canonical" href={canonicalUrl} />
+      {/* Internal/admin surfaces and the 404 shell must never be indexed;
+          a noindex page also gets no canonical (it would only point search
+          engines at a URL we are asking them to forget). */}
+      {noindex ? <meta name="robots" content="noindex, nofollow" /> : <link rel="canonical" href={canonicalUrl} />}
 
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />

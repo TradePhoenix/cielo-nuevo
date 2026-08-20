@@ -1,10 +1,26 @@
 import React from "react";
 import SEO from "../components/SEO";
+import AdminSessionGate from "../features/partnerNetwork/components/admin/AdminSessionGate";
 import LaunchCommandCenter from "../features/launch/LaunchCommandCenter";
 import CrmSection from "../features/crm/CrmSection";
 import OperationsSection from "../features/operations/OperationsSection";
 
+// LAUNCH-W1: this page previously rendered for anyone with the URL (robots
+// disallow was its only protection). It is now behind the same server-side
+// admin session as the Partner Network admin — see AdminSessionGate.
 export default function DeveloperDashboardPage() {
+  return (
+    <>
+      {/* noindex must be emitted in every state, including the login gate. */}
+      <SEO title="Developer Dashboard" path="/developer-dashboard" noindex />
+      <AdminSessionGate>
+        <DeveloperDashboardContent />
+      </AdminSessionGate>
+    </>
+  );
+}
+
+function DeveloperDashboardContent() {
   const sections = [
     {
       title: "Website",
@@ -52,7 +68,7 @@ export default function DeveloperDashboardPage() {
     {
       title: "External",
       links: [
-        ["🌎 Live Website", "https://pathtomexico.com"],
+        ["🌎 Live Website", "https://www.pathtomexico.com"],
         ["⚛️ Localhost", "http://localhost:3000"],
         ["🐙 GitHub", "https://github.com/TradePhoenix/cielo-nuevo-react"],
         ["▲ Vercel", "https://vercel.com/dashboard"],
@@ -66,7 +82,6 @@ export default function DeveloperDashboardPage() {
 
   return (
     <main className="min-h-screen bg-[#f6f1e8] px-6 py-20 text-zinc-950 md:px-20">
-      <SEO title="Developer Dashboard" path="/developer-dashboard" />
       <div className="mx-auto max-w-7xl">
 
         <p className="mb-5 text-xs uppercase tracking-[0.35em] text-zinc-500">

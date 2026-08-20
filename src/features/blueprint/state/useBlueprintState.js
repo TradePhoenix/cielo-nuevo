@@ -14,6 +14,7 @@
 // "family with kids" back to "just me" also forgets the schooling answer
 // rather than letting it silently keep influencing the result.
 
+import { trackEvent, ANALYTICS_EVENTS } from "../../../utils/analytics";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { QUESTIONS, getVisibleQuestions, normalizeAnswer } from "../data/questions";
 import { computeScores } from "../logic/scoringEngine";
@@ -114,6 +115,7 @@ export function useBlueprintState(lang = "en") {
   const totalQuestions = visibleQuestions.length;
 
   const startQuestionnaire = useCallback(() => {
+    trackEvent(ANALYTICS_EVENTS.BLUEPRINT_STARTED, { version: "v2" });
     setState((prev) => ({ ...prev, screen: "question", questionIndex: 0 }));
   }, []);
 
@@ -197,11 +199,16 @@ export function useBlueprintState(lang = "en") {
   // straight to results and is never re-asked.
   const completeLoading = useCallback(() => {
     skipResultsRevealRef.current = false;
-    setState((prev) =>
-      prev.screen === "loading"
-        ? { ...prev, screen: prev.leadCaptured ? "results" : "leadCapture" }
-        : prev
-    );
+    setState((prev) => {
+      if (prev.screen !== "loading") return prev;
+      // Completed = every visible question answered and results computed.
+      // Payload is a count only — never the answers themselves.
+      trackEvent(ANALYTICS_EVENTS.BLUEPRINT_COMPLETED, {
+        version: "v2",
+        questionsAnswered: getVisibleQuestions(QUESTIONS, prev.answers).length,
+      });
+      return { ...prev, screen: prev.leadCaptured ? "results" : "leadCapture" };
+    });
   }, []);
 
   // LeadCaptureCard calls this only after Formspree confirms the submission

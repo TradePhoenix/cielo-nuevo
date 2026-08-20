@@ -2,6 +2,8 @@ import { useEffect, useId } from "react";
 import { Link } from "react-router-dom";
 import { useForm, ValidationError } from "@formspree/react";
 import { trackEvent, ANALYTICS_EVENTS } from "../../../utils/analytics";
+import ConsentNotice from "../../../components/ConsentNotice";
+import { stampConsentTimestamp } from "../../../utils/consent";
 
 // Wedding inquiry form, staged as three quiet movements — You / The
 // Ceremony / The Feeling — rather than one field wall. Posts to the same
@@ -107,11 +109,30 @@ export default function WeddingInquiryForm({ t, lang }) {
     );
   }
 
+  // Duplicate-click guard + consent timestamp (same pattern as HomePage).
+  const onSubmit = (event) => {
+    if (state.submitting || state.succeeded) {
+      event.preventDefault();
+      return;
+    }
+    stampConsentTimestamp(event.currentTarget);
+    handleSubmit(event);
+  };
+
+  // A delivery failure must never vanish silently — inputs stay filled and
+  // this message invites a retry.
+  const showError = !state.submitting && !state.succeeded && state.errors != null;
+
   return (
-    <form onSubmit={handleSubmit} className="grid gap-14 text-left">
+    <form onSubmit={onSubmit} className="grid gap-14 text-left">
       <input type="hidden" name="_subject" value="Wedding Inquiry" />
       <input type="hidden" name="source" value="weddings" />
+      <input type="hidden" name="form_name" value="wedding_inquiry" />
+      <input type="hidden" name="page" value="/weddings/inquire" />
       <input type="hidden" name="language" value={lang} />
+      {/* Formspree honeypot: hidden from the tab order and accessibility
+          tree; bots that fill it are silently dropped. */}
+      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
       {/* 01 — You */}
       <div className="grid gap-7">
@@ -254,13 +275,21 @@ export default function WeddingInquiryForm({ t, lang }) {
         </div>
       </div>
 
-      <button
-        type="submit"
-        disabled={state.submitting}
-        className="bg-white px-8 py-5 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
-      >
-        {state.submitting ? t.submitting : t.submit}
-      </button>
+      <div className="grid gap-5">
+        {showError && (
+          <p role="alert" className="text-sm leading-relaxed text-[#E36F4F]">
+            {t.formError}
+          </p>
+        )}
+        <button
+          type="submit"
+          disabled={state.submitting}
+          className="justify-self-start bg-white px-8 py-5 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-[#d8a15f] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a15f] focus-visible:ring-offset-2"
+        >
+          {state.submitting ? t.submitting : t.submit}
+        </button>
+        <ConsentNotice lang={lang} formName="wedding_inquiry" tone="dark" />
+      </div>
     </form>
   );
 }

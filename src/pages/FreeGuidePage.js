@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm, ValidationError } from "@formspree/react";
 import SEO from "../components/SEO";
 import { getStoredLanguage, setStoredLanguage, useHtmlLang } from "../utils/language";
+import ConsentNotice from "../components/ConsentNotice";
+import { stampConsentTimestamp } from "../utils/consent";
+import { trackEvent, ANALYTICS_EVENTS } from "../utils/analytics";
 
 // PTM Spanish-parity pass — bilingual content object, same local pattern
 // as HomePage.js. Gates the guide download behind a first-name + email
@@ -94,6 +97,15 @@ const content = {
 
 function GuideCaptureForm({ guideLink, t, lang }) {
   const [state, handleSubmit] = useForm("xdabqdyq");
+  const trackedRef = useRef(false);
+
+  // LAUNCH-W1: fires once per successful request; carries no form contents.
+  useEffect(() => {
+    if (state.succeeded && !trackedRef.current) {
+      trackedRef.current = true;
+      trackEvent(ANALYTICS_EVENTS.FREE_GUIDE_REQUESTED, { form: "free_guide_lead", language: lang });
+    }
+  }, [state.succeeded, lang]);
 
   // Duplicate-click guard (same pattern as the Blueprint's LeadCaptureCard).
   const onSubmit = (event) => {
@@ -101,6 +113,7 @@ function GuideCaptureForm({ guideLink, t, lang }) {
       event.preventDefault();
       return;
     }
+    stampConsentTimestamp(event.currentTarget);
     handleSubmit(event);
   };
 
@@ -191,6 +204,7 @@ function GuideCaptureForm({ guideLink, t, lang }) {
         >
           {state.submitting ? t.submitting : t.submit}
         </button>
+        <ConsentNotice lang={lang} formName="free_guide_lead" tone="dark" />
       </form>
     </div>
   );
